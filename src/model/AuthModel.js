@@ -1,6 +1,6 @@
 import BaseModel from './BaseModel'
 import { auth } from './apiconfig'
-import { get, post } from '../nfeng-service/api'
+import { get, post } from '../nfeng-pc-vue/nfeng-service/api'
 /**
  * 登录 model
  */

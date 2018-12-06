@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index'
 import store from './store'
-import nfUi from './nfeng-components-vue'
+import nfUi from './nfeng-pc-vue/nfeng-components'
 Vue.use(nfUi);
 
 Vue.config.productionTip = false;

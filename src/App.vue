@@ -5,5 +5,5 @@
 </template>
 
 <style lang="scss">
-    @import "./nfeng-sass/style.scss";
+    @import "./nfeng-pc-vue/nfeng-sass/style.scss";
 </style>
