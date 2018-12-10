@@ -5,10 +5,12 @@ module.exports = {
         proxy: {
             '/auth': {
                 target: 'http://0.0.0.0:3000',
+                ws: true,
                 changeOrigin: true
             },
             '/admin': {
                 target: 'http://0.0.0.0:3000',
+                ws: true,
                 changeOrigin: true
             }
         }

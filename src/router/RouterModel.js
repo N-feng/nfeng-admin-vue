@@ -13,10 +13,12 @@ let routes = [
             {
                 path: 'auth',
                 component: router,
+                title: '用户管理',
                 children: [
                     {
                         path: 'userList',
-                        component: userList
+                        component: userList,
+                        title: '用户列表'
                     }
                 ]
             }
