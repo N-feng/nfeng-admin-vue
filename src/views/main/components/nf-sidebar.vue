@@ -1,6 +1,6 @@
 <template>
 <aside class="nf-sidebar nf-home__sidebar">
-    <nf-menu class="nf-menu" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" :default-openeds="['0']">
+    <nf-menu class="nf-menu" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" :default-openeds="['1']">
         <!-- 一级栏目 -->
         <nf-submenu v-for="(item,key) in RouterModel[0].children" :key="key" :index="key + ''">
             <template slot="title">

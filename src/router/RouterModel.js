@@ -11,6 +11,10 @@ let routes = [
         redirect: '/auth/userList',
         children: [
             {
+                path: 'public',
+                title: '首页'
+            },
+            {
                 path: 'auth',
                 component: router,
                 title: '用户管理',
