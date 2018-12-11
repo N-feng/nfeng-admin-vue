@@ -30,6 +30,14 @@ class AuthModel extends BaseModel {
             callback(res);
         })
     }
+    logOut(callback) {
+        let url = auth.logOut;
+        let param = {};
+        get(url, param).then(res => {
+            window.localStorage.removeItem('userToken');
+            callback(res);
+        })
+    }
     register(callback) {
         let url = auth.register;
         let param = {
