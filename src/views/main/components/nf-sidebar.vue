@@ -7,6 +7,7 @@
       active-text-color="#ffd04b"
       :default-openeds="['1']"
       :router="true"
+      :collapse="isCollapse"
     >
       <!-- 一级栏目 -->
       <nf-submenu
@@ -34,9 +35,8 @@ import RouterModel from '../../../router/RouterModel.js'
 export default {
   name: "nf-sidebar",
   props: {
-    auth: {
-      type: Object
-    }
+    auth: Object,
+    isCollapse: Boolean
   },
   computed: {
     RouterModel () {
@@ -48,6 +48,9 @@ export default {
 </script>
 
 <style scoped>
+.nf-menu:not(.nf-menu--collapse) {
+  width: 230px;
+}
 .nf-menu {
   height: 100%;
 }

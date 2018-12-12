@@ -5,6 +5,11 @@
       class="nf-header__logo nf-home__logo"
     ><b>Admin</b>NF</a>
     <nav class="nf-header__navbar nf-home__navbar">
+      <a
+        href="javascript:;"
+        class="nf-header__toggle fa fa-bars"
+        @click="handleClick"
+      ></a>
       <div class="nf-header__custom">
         <div class="nf-header__user">
           <nf-popover
@@ -50,28 +55,28 @@
 </template>
 
 <script>
-import AuthModel from '../../../model/AuthModel'
 export default {
   name: "nf-header",
-  props: {
-    // auth: {
-    //     type: Object
-    // }
-  },
   data () {
     return {
-      auth: new AuthModel(),
       visible2: false
     }
   },
+  props: {
+    auth: Object,
+    isCollapse: Boolean
+  },
   methods: {
-    logOut () {
+    logOut() {
       this.auth.logOut(() => {
         // this.$message.success(res.msg);
         this.$router.push({
           path: '/auth/login'
         });
       })
+    },
+    handleClick() {
+      this.$emit('collapseClick')
     }
   },
   created () {

@@ -1,4 +1,4 @@
-import Home from '../views/main/Home.vue';
+import Main from '../views/main/main.vue';
 import Login from '../views/auth/login.vue';
 import Register from '../views/auth/register.vue';
 import router from '../views/base/router.vue';
@@ -6,8 +6,8 @@ import userList from '../views/auth/userList.vue';
 let routes = [
     {
         path: '/',
-        name: 'home',
-        component: Home,
+        name: 'Main',
+        component: Main,
         redirect: '/auth/userList',
         children: [
             {
