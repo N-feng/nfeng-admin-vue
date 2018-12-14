@@ -1,6 +1,6 @@
 <template>
 <div class="content">
-    <nf-box title="userList">
+    <nf-box title="userList" border>
         <nf-table :data="auth.userList" border>
             <nf-table-column label="user" prop="user"></nf-table-column>
             <nf-table-column label="icon" prop="icon"></nf-table-column>

@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="nf-main">
     <!--<img alt="Vue logo" src="../assets/logo.png">-->
     <!--<HelloWorld msg="Welcome to Your Vue.js App"/>-->
     <nfHeader
@@ -11,7 +11,10 @@
       :auth="auth"
       :isCollapse="isCollapse"
     ></nfSidebar>
-    <div class="nf-home__wrapper">
+    <div
+      class="nf-main-wrapper"
+      :class="{ 'is-collapse': isCollapse }"
+    >
       <router-view></router-view>
     </div>
   </div>
@@ -23,9 +26,9 @@
 import nfHeader from './components/nf-header'
 import nfSidebar from './components/nf-sidebar'
 import AuthModel from '../../model/AuthModel'
+import { addClass, removeClass } from '../../nfeng-pc-vue/nfeng-utils/utils/dom.js'
 
 export default {
-  name: 'home',
   components: {
     // HelloWorld,
     nfHeader,
@@ -40,10 +43,12 @@ export default {
   //...前面的省略
   //通过两个钩子函数来添加移除class改变颜色
   mounted: function () {
-    document.getElementsByTagName("body")[0].className = "nf-home__page";
+    addClass(document.body, 'skin-blue');
+    // document.getElementsByTagName("body")[0].className = "nf-main__page";
   },
   beforeDestroy: function () {
-    document.body.removeAttribute("class", "nf-home__page");
+    removeClass(document.body, 'skin-blue');
+    // document.body.removeAttribute("class", "nf-main__page");
   },
   created () {
     // this.auth.getUserInfo();

@@ -1,17 +1,28 @@
 <template>
-  <header class="nf-header">
+  <header class="nf-main-header">
     <a
       href="javascript:;"
-      class="nf-header__logo nf-home__logo"
-    ><b>Admin</b>NF</a>
-    <nav class="nf-header__navbar nf-home__navbar">
+      class="nf-logo"
+      :class="{ 'is-collapse': isCollapse }"
+    >
+      <span class="nf-logo-mini">
+        <b>A</b>NF
+      </span>
+      <span class="nf-logo-lg">
+        <b>Admin</b>NF
+      </span>
+    </a>
+    <nav
+      class="nf-main-header__navbar"
+      :class="{ 'is-collapse': isCollapse }"
+    >
       <a
         href="javascript:;"
-        class="nf-header__toggle fa fa-bars"
+        class="nf-main-header__toggle fa fa-bars"
         @click="handleClick"
       ></a>
-      <div class="nf-header__custom">
-        <div class="nf-header__user">
+      <div class="nf-main-header__custom">
+        <div class="nf-main-header__user">
           <nf-popover
             width="280"
             placement="bottom-end"
@@ -56,7 +67,7 @@
 
 <script>
 export default {
-  name: "nf-header",
+  name: "nf-main-header",
   data () {
     return {
       visible2: false
@@ -67,7 +78,7 @@ export default {
     isCollapse: Boolean
   },
   methods: {
-    logOut() {
+    logOut () {
       this.auth.logOut(() => {
         // this.$message.success(res.msg);
         this.$router.push({
@@ -75,7 +86,7 @@ export default {
         });
       })
     },
-    handleClick() {
+    handleClick () {
       this.$emit('collapseClick')
     }
   },

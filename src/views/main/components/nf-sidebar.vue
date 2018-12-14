@@ -1,11 +1,14 @@
 <template>
-  <aside class="nf-sidebar nf-home__sidebar">
+  <aside
+    class="nf-main-sidebar"
+    :class="{ 'is-collapse': isCollapse }"
+  >
     <nf-menu
       class="nf-menu"
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b"
-      :default-openeds="['1']"
+      default-active="userList"
       :router="true"
       :collapse="isCollapse"
     >
@@ -19,12 +22,14 @@
           <i class="el-icon-menu"></i>
           <span>{{ item.title }}</span>
         </template>
-        <!-- 二级栏目 -->
-        <nf-menu-item
-          v-for="(el,index) in item.children"
-          :key="index"
-          :index="el.path"
-        >{{ el.title }}</nf-menu-item>
+        <nf-menu-item-group>
+          <!-- 二级栏目 -->
+          <nf-menu-item
+            v-for="(el,index) in item.children"
+            :key="index"
+            :index="el.path"
+          >{{ el.title }}</nf-menu-item>
+        </nf-menu-item-group>
       </nf-submenu>
     </nf-menu>
   </aside>
