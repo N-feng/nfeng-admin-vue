@@ -1,17 +1,17 @@
 <template>
-<div class="content">
-    <nf-box title="userList" border>
-        <nf-table :data="auth.userList" border>
-            <nf-table-column label="user" prop="user"></nf-table-column>
-            <nf-table-column label="icon" prop="icon"></nf-table-column>
-            <nf-table-column label="操作" width="300">
-                <template slot-scope="scope">
-                    <nf-button @click="handleClick(scope.row)" type="text" size="small">删除</nf-button>
-                </template>
-            </nf-table-column>
-        </nf-table>
-    </nf-box>
-</div>
+    <div class="content">
+        <nf-box title="userList" border>
+            <nf-table :data="auth.userList" border>
+                <nf-table-column label="user" prop="user"></nf-table-column>
+                <nf-table-column label="icon" prop="icon"></nf-table-column>
+                <nf-table-column label="操作" width="300">
+                    <template slot-scope="scope">
+                        <nf-button @click="handleClick(scope.row)" type="text" size="small">删除</nf-button>
+                    </template>
+                </nf-table-column>
+            </nf-table>
+        </nf-box>
+    </div>
 </template>
 
 <script>
@@ -54,5 +54,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
