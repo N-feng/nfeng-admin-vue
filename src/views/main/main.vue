@@ -3,11 +3,11 @@
         <!--<img alt="Vue logo" src="../assets/logo.png">-->
         <!--<HelloWorld msg="Welcome to Your Vue.js App"/>-->
         <nfHeader :auth="auth" :isCollapse="isCollapse" @collapseClick="isCollapse = !isCollapse"></nfHeader>
-        <nfSidebar :auth="auth" :isCollapse="isCollapse"></nfSidebar>
+        <nfSidebar :auth="auth" :isCollapse="isCollapse" @select="select"></nfSidebar>
         <div class="nf-main-wrapper" :class="{ 'is-collapse': isCollapse }">
             <div class="content-header">
                 <nf-breadcrumb>
-                    <nf-breadcrumb-item :to="{ path: '/' }">首页</nf-breadcrumb-item>
+                    <!-- <nf-breadcrumb-item :to="{ path: '/' }">首页</nf-breadcrumb-item> -->
                     <nf-breadcrumb-item>{{ parentMenu ? parentMenu.title : '' }}</nf-breadcrumb-item>
                     <nf-breadcrumb-item>{{ subMenu ? subMenu.title : '' }}</nf-breadcrumb-item>
                 </nf-breadcrumb>
@@ -40,10 +40,6 @@ export default {
             subMenu: ''
         }
     },
-    watch: {
-        // 如果路由有变化，会再次执行该方法
-        "$router": "getMenuTitle"
-    },
     computed: {
         router() {
             return router
@@ -51,15 +47,20 @@ export default {
     },
     methods: {
         getMenuTitle() {
-            let path = this.$router.currentRoute.path;
-            router.forEach(element => {
-                element.children.forEach(el => {
-                    if (el.path === path) {
-                        this.parentMenu = element;
-                        this.subMenu = el;
-                    }
+            this.$nextTick(() => {
+                let path = this.$router.currentRoute.path;
+                router.forEach(element => {
+                    element.children.forEach(el => {
+                        if (el.path === path) {
+                            this.parentMenu = element;
+                            this.subMenu = el;
+                        }
+                    });
                 });
-            });
+            })
+        },
+        select() {
+            this.getMenuTitle();
         }
     },
     //...前面的省略

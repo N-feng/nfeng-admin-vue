@@ -1,7 +1,7 @@
 <template>
     <aside class="nf-main-sidebar" :class="{ 'is-collapse': isCollapse }">
         <nf-menu class="nf-menu" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b"
-            default-active="/user/list" :router="true" :collapse="isCollapse">
+            default-active="/user/list" :router="true" :collapse="isCollapse" @select="select">
             <!-- 一级栏目 -->
             <nf-submenu v-for="(item,key) in routes" :key="key" :index="key + ''">
                 <template slot="title">
@@ -30,7 +30,11 @@ export default {
             return routes
         }
     },
-    methods: {}
+    methods: {
+        select() {
+            this.$emit('select')
+        }
+    }
 }
 </script>
 
