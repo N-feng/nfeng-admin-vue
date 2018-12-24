@@ -10,6 +10,7 @@
                     </template>
                 </nf-table-column>
             </nf-table>
+            <nf-pagination class="mt10 tr" background :current-page="4" :page-size="100" layout="total, prev, pager, next" :total="400"></nf-pagination>
         </nf-box>
     </div>
 </template>
