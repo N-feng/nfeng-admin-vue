@@ -1,6 +1,20 @@
 <template>
     <div class="content">
         <nf-box title="userList" border>
+            <nf-form :inline="true" :model="formInline" class="demo-form-inline">
+                <nf-form-item label="审批人">
+                    <nf-input v-model="formInline.user" placeholder="审批人" size="mini"></nf-input>
+                </nf-form-item>
+                <nf-form-item label="活动区域">
+                    <nf-select v-model="formInline.region" placeholder="活动区域" size="mini">
+                        <nf-option label="区域一" value="shanghai"></nf-option>
+                        <nf-option label="区域二" value="beijing"></nf-option>
+                    </nf-select>
+                </nf-form-item>
+                <nf-form-item>
+                    <nf-button type="primary" @click="onSubmit" size="mini">查询</nf-button>
+                </nf-form-item>
+            </nf-form>
             <nf-table :data="auth.userList" border>
                 <nf-table-column label="user" prop="user"></nf-table-column>
                 <nf-table-column label="icon" prop="icon"></nf-table-column>
@@ -10,7 +24,8 @@
                     </template>
                 </nf-table-column>
             </nf-table>
-            <nf-pagination class="mt10 tr" background :current-page="4" :page-size="100" layout="total, sizes, prev, pager, next" :total="400"></nf-pagination>
+            <nf-pagination class="mt10 tr" background :current-page="4" :page-size="100" layout="total, sizes, prev, pager, next"
+                :total="400"></nf-pagination>
         </nf-box>
     </div>
 </template>
@@ -41,11 +56,18 @@ export default {
                     message: '已取消删除'
                 });
             });
+        },
+        onSubmit() {
+            console.log('submit!');
         }
     },
     data() {
         return {
-            auth: new AuthModel()
+            auth: new AuthModel(),
+            formInline: {
+                user: '',
+                region: ''
+            }
         }
     },
     created() {
