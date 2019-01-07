@@ -6,10 +6,11 @@
                     <nf-input v-model="formInline.user" placeholder="审批人" size="mini"></nf-input>
                 </nf-form-item>
                 <nf-form-item label="活动区域">
-                    <nf-select v-model="formInline.region" placeholder="活动区域" size="mini">
+                    <nf-select v-model="formInline.region" placeholder="活动区域" filterable size="mini">
                         <nf-option label="区域一" value="shanghai"></nf-option>
                         <nf-option label="区域二" value="beijing"></nf-option>
                     </nf-select>
+                    <n-select v-model="formInline.region" placeholder="活动区域" filterable size="mini" :options="options"></n-select>
                 </nf-form-item>
                 <nf-form-item>
                     <nf-button type="primary" @click="onSubmit" size="mini">查询</nf-button>
@@ -67,7 +68,17 @@ export default {
             formInline: {
                 user: '',
                 region: ''
-            }
+            },
+            options: [
+                {
+                    label: '区域一',
+                    value: 'shanghai'
+                },
+                {
+                    label: '区域二',
+                    value: 'beijing'
+                }
+            ]
         }
     },
     created() {
