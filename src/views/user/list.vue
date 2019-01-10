@@ -10,7 +10,6 @@
                         <nf-option label="区域一" value="shanghai"></nf-option>
                         <nf-option label="区域二" value="beijing"></nf-option>
                     </nf-select>
-                    <n-select v-model="formInline.region" placeholder="活动区域" filterable size="mini" :options="options"></n-select>
                 </nf-form-item>
                 <nf-form-item>
                     <nf-button type="primary" @click="onSubmit" size="mini">查询</nf-button>
@@ -25,7 +24,7 @@
                     </template>
                 </nf-table-column>
             </nf-table>
-            <nf-pagination class="mt10 tr" background :current-page="4" :page-size="100" layout="total, sizes, prev, pager, next"
+            <nf-pagination class="mt10 tr" background :current-page="4" :page-size="100" layout="total, sizes, prev, pager, next, jumper"
                 :total="400"></nf-pagination>
         </nf-box>
     </div>
@@ -33,57 +32,58 @@
 
 <script>
 import AuthModel from '../../model/AuthModel'
+
 export default {
-    name: "userList",
+    name: 'userList',
     methods: {
         handleClick(row) {
             this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
-                type: 'warning'
+                type: 'warning',
             }).then(() => {
                 this.auth.delUser(row, (res) => {
                     if (res.code === 200) {
                         this.$message({
                             type: 'success',
-                            message: res.msg
-                        });
-                        this.auth.getUserList();
+                            message: res.msg,
+                        })
+                        this.auth.getUserList()
                     }
-                });
+                })
             }).catch(() => {
                 this.$message({
                     type: 'info',
-                    message: '已取消删除'
-                });
-            });
+                    message: '已取消删除',
+                })
+            })
         },
         onSubmit() {
-            console.log('submit!');
-        }
+            console.log('submit!')
+        },
     },
     data() {
         return {
             auth: new AuthModel(),
             formInline: {
                 user: '',
-                region: ''
+                region: '',
             },
             options: [
                 {
                     label: '区域一',
-                    value: 'shanghai'
+                    value: 'shanghai',
                 },
                 {
                     label: '区域二',
-                    value: 'beijing'
-                }
-            ]
+                    value: 'beijing',
+                },
+            ],
         }
     },
     created() {
-        this.auth.getUserList();
-    }
+        this.auth.getUserList()
+    },
 }
 </script>
 
