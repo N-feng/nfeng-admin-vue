@@ -35,5 +35,7 @@ module.exports = {
     "object-shorthand": 0, // 强制对象字面量缩写语法
     "func-names": 0, // 函数表达式必须有名字
     "no-plusplus": 0, // 禁止使用++，--
+    'array-callback-return': 0, // 强制数组方法的回调函数中有 return 语句
+    'no-nested-ternary': 0, // 不允许使用嵌套的三元表达式
   }
 }
