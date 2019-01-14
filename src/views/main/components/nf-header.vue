@@ -38,33 +38,33 @@
 
 <script>
 export default {
-    name: "nf-main-header",
+    name: 'nf-main-header',
     data() {
         return {
-            visible: false
+            visible: false,
         }
     },
     props: {
         auth: Object,
-        isCollapse: Boolean
+        isCollapse: Boolean,
     },
     methods: {
         logOut() {
-            this.visible = !this.visible;
-            this.auth.logOut(() => {
+            this.visible = !this.visible
+            this.auth.logout(() => {
                 // this.$message.success(res.msg);
                 this.$router.push({
-                    path: '/login'
-                });
+                    path: '/login',
+                })
             })
         },
         handleClick() {
             this.$emit('collapseClick')
-        }
+        },
     },
     created() {
-        this.auth.getUserInfo();
-    }
+        this.auth.getUserInfo()
+    },
 }
 </script>
 
