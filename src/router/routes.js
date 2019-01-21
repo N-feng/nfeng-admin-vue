@@ -1,9 +1,11 @@
-import Main from '../views/main/main.vue';
-import Login from '../views/auth/login.vue';
-import Register from '../views/auth/register.vue';
-import router from '../views/main/router.vue';
-import userList from '../views/user/list.vue';
-let routes = [
+import Main from '../views/main/main.vue'
+import Login from '../views/auth/login.vue'
+import Register from '../views/auth/register.vue'
+import router from '../views/main/router.vue'
+import userList from '../views/user/list.vue'
+import upload from '../views/img/upload.vue'
+
+const routes = [
     {
         path: '/',
         name: 'Main',
@@ -13,9 +15,14 @@ let routes = [
             {
                 path: '/user/list',
                 component: userList,
-                title: '用户列表'
-            }
-        ]
+                title: '用户列表',
+            },
+            {
+                path: '/img/upload',
+                component: upload,
+                title: '图片上传',
+            },
+        ],
     },
     {
         path: '/',
@@ -25,15 +32,15 @@ let routes = [
             {
                 path: '/login',
                 title: '登陆页面',
-                component: Login
+                component: Login,
             },
             {
                 path: '/register',
                 title: '注册页面',
-                component: Register
-            }
-        ]
-    }
-];
+                component: Register,
+            },
+        ],
+    },
+]
 
 export default routes
