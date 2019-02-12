@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <nf-box title="upload" border>
-            <nf-upload ref="upload" action :file-list="fileList" :on-change="handleChange" list-type="picture" :auto-upload="false" style="width: 360px;">
+            <nf-upload ref="upload" :file-list="fileList" list-type="picture" style="width: 360px;" action cdn :auto-upload="false" :before-remove="beforeRemove">
                 <nf-button slot="trigger" size="small" type="primary">选取文件</nf-button>
                 <nf-button class="ml10" size="small" @click="submitUpload">上传到服务器</nf-button>
             </nf-upload>
@@ -15,7 +15,7 @@ import cdn from '../../nfeng-pc-vue/nfeng-service/cdn'
 export default {
     data() {
         return {
-            fileList: [{ name: 'food.jpeg', url: 'https://feng-1257981287.cos.ap-chengdu.myqcloud.com/upload/timg.jpg?q-sign-algorithm=sha1&q-ak=AKIDwoFTVAZq47k7Zt0xn9wHXYrhSp6UUftE&q-sign-time=1549792799;1549794599&q-key-time=1549792799;1549794599&q-header-list=&q-url-param-list=&q-signature=6126ceb492b4660743fb87eb506ac8ceacd6182d&x-cos-security-token=336fe451232725a5c39704ed8c09149969c6e69b10001' }],
+            fileList: [],
         }
     },
     methods: {
@@ -24,9 +24,38 @@ export default {
             // cdn.getCdnUpload(file)
             cdn.uploadFile(file.raw)
         },
+        beforeRemove(file) {
+            return new Promise((resolve) => {
+                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning',
+                }).then(() => {
+                    cdn.deleteObject(file).then(() => {
+                        this.$message({
+                            type: 'success',
+                            message: '删除成功!',
+                        })
+                        resolve()
+                    })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除',
+                    })
+                })
+            })
+
+            // return cdn.deleteObject(file)
+        },
         submitUpload() {
             this.$refs.upload.submit()
         },
+    },
+    mounted() {
+        cdn.getBucketList().then((res) => {
+            this.fileList = res.data
+        })
     },
 }
 </script>
