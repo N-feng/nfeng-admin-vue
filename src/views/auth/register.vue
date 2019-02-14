@@ -37,33 +37,34 @@
 
 <script>
     import AuthModel from '../../model/AuthModel'
+
     export default {
-        data () {
+        data() {
             return {
-                auth: new AuthModel()
+                auth: new AuthModel(),
             }
         },
         methods: {
-            submit (formName) {
+            submit(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        this.auth.register(()=>{
+                        this.auth.register(() => {
                             this.$router.push({
-                                path: '/auth/login'
-                            });
-                        });
+                                path: '/login',
+                            })
+                        })
                     }
                 })
-            }
+            },
         },
-        //...前面的省略
-        //通过两个钩子函数来添加移除class改变颜色
-        mounted: function() {
-            document.getElementsByTagName("body")[0].className="nf-login__page";
+        // ...前面的省略
+        // 通过两个钩子函数来添加移除class改变颜色
+        mounted: function () {
+            document.getElementsByTagName('body')[0].className = 'nf-login__page'
         },
-        beforeDestroy: function() {
-            document.body.removeAttribute("class","nf-login__page");
-        }
+        beforeDestroy: function () {
+            document.body.removeAttribute('class', 'nf-login__page')
+        },
     }
 </script>
 
