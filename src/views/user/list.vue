@@ -42,7 +42,7 @@ export default {
                 cancelButtonText: '取消',
                 type: 'warning',
             }).then(() => {
-                this.auth.delUser(row, (res) => {
+                AuthModel.delUser(row, (res) => {
                     if (res.code === 200) {
                         this.$message({
                             type: 'success',

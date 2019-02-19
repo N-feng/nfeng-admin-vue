@@ -53,12 +53,13 @@ class AuthModel extends BaseModel {
         })
     }
 
-    // delUser(param, callback) {
-    //     const url = auth.delUser
-    //     post(url, param).then((res) => {
-    //         callback(res)
-    //     })
-    // }
+    static delUser(param, callback) {
+        console.log(param)
+        const url = auth.delUser
+        post(url, param).then((res) => {
+            callback(res)
+        })
+    }
 
     getUserInfo() {
         const url = auth.userInfo
