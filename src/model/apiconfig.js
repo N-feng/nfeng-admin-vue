@@ -1,14 +1,23 @@
 export const baseUrl = ''
 
 export const auth = {
-    login: '/auth/login', // 登录
-    logout: '/auth/logOut', // 退出
-    register: '/auth/register', // 注册
-    delUser: '/auth/delUser', // 删除
-    userInfo: '/auth/getUserInfo', // 用户信息
-    userList: '/admin/getUserList', // 用户列表
+    login: `${baseUrl}/auth/login`, // 登录
+    logout: `${baseUrl}/auth/logOut`, // 退出
+    register: `${baseUrl}/auth/register`, // 注册
+    delUser: `${baseUrl}/auth/delUser`, // 删除
+    userInfo: `${baseUrl}/auth/getUserInfo`, // 用户信息
+    userList: `${baseUrl}/admin/getUserList`, // 用户列表
+}
+
+export const global = {
+    getAuthorization: `${baseUrl}/global/getAuthorization`,
+    getCdnUpload: `${baseUrl}/global/getCdnUpload`,
+    getSignature: `${baseUrl}/global/getSignature`,
+    getBucketList: `${baseUrl}/global/getBucketList`,
+    deleteObject: `${baseUrl}/global/deleteObject`,
 }
 
 export default {
     auth,
+    global,
 }

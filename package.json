@@ -5,11 +5,13 @@
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "upload": "node upload"
   },
   "dependencies": {
     "element-ui": "^2.4.11",
     "node-sass": "^4.10.0",
+    "request": "^2.88.0",
     "sass-loader": "^7.1.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",

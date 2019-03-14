@@ -1,20 +1,26 @@
+const Path = require('path')
+// 转发地址
+const targetUrl = process.env.PROXY_URL
+
 // vue.config.js
 module.exports = {
     // 选项...
+    publicPath: process.env.NODE_ENV === 'production' ? process.env.PUBLIC_PATH : '/',
+    indexPath: Path.resolve(__dirname, process.env.INDEX_PATH),
     devServer: {
         proxy: {
             '/auth': {
-                target: 'http://0.0.0.0:3000',
+                target: targetUrl,
                 ws: true,
                 changeOrigin: true,
             },
             '/admin': {
-                target: 'http://0.0.0.0:3000',
+                target: targetUrl,
                 ws: true,
                 changeOrigin: true,
             },
             '/global': {
-                target: 'http://0.0.0.0:3000',
+                target: targetUrl,
                 ws: true,
                 changeOrigin: true,
             },

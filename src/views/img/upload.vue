@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import cdn from '../../nfeng-pc-vue/nfeng-service/cdn'
+import cdn from '../../model/CdnModel'
 
 export default {
     data() {
