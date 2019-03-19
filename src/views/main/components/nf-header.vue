@@ -1,6 +1,6 @@
 <template>
     <header class="nf-main-header">
-        <a href="javascript:;" class="nf-logo" :class="{ 'is-collapse': isCollapse }">
+        <a href="javascript:;" class="nf-logo is-blue" :class="{ 'is-collapse': isCollapse }">
             <span class="nf-logo-mini">
                 <b>A</b>NF
             </span>
@@ -8,7 +8,7 @@
                 <b>Admin</b>NF
             </span>
         </a>
-        <nav class="nf-main-header__navbar" :class="{ 'is-collapse': isCollapse }">
+        <nav class="nf-main-header__navbar is-blue" :class="{ 'is-collapse': isCollapse }">
             <a href="javascript:;" class="nf-main-header__toggle fa fa-bars" @click="handleClick"></a>
             <div class="nf-main-header__custom">
                 <div class="nf-main-header__user">
@@ -63,7 +63,7 @@ export default {
         },
     },
     created() {
-        this.auth.getUserInfo()
+        // this.auth.getUserInfo()
     },
 }
 </script>

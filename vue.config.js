@@ -14,11 +14,11 @@ module.exports = {
                 ws: true,
                 changeOrigin: true,
             },
-            '/admin': {
-                target: targetUrl,
-                ws: true,
-                changeOrigin: true,
-            },
+            // '/admin': {
+            //     target: targetUrl,
+            //     ws: true,
+            //     changeOrigin: true,
+            // },
             '/global': {
                 target: targetUrl,
                 ws: true,

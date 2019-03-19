@@ -18,23 +18,24 @@
 </template>
 
 <script>
-import routes from '../../../router/routes.js'
+import routes from '../../../router/routes'
+
 export default {
-    name: "nf-sidebar",
+    name: 'nf-sidebar',
     props: {
         auth: Object,
-        isCollapse: Boolean
+        isCollapse: Boolean,
     },
     computed: {
         routes() {
             return routes
-        }
+        },
     },
     methods: {
         select() {
             this.$emit('select')
-        }
-    }
+        },
+    },
 }
 </script>
 
