@@ -6,7 +6,6 @@
   .logo {
     line-height: 100px;
     float: left;
-    text-transform: uppercase;
     margin: 0;
   }
   .menu {
@@ -67,8 +66,8 @@
     }
     .hide-menu-btn {
       position: absolute;
-      top: 40px;
-      right: 40px;
+      top: 30px;
+      right: 30px;
     }
     #chk:checked ~ .menu {
       right: 0;

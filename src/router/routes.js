@@ -10,7 +10,6 @@ import Web from '../pc/web/public/index.vue'
 import Profile from '../pc/web/public/profile.vue'
 // admin 页面
 import Admin from '../pc/admin/public/index.vue'
-import Login from '../pc/admin/public/login.vue'
 
 const routes = [
   {
@@ -25,22 +24,17 @@ const routes = [
     component: Web,
     title: '首页',
   },
-  {
-    path: '/profile',
-    name: 'Profile',
-    component: Profile,
-    title: '个人页',
-  },
+  // {
+  //   path: '/profile',
+  //   name: 'Profile',
+  //   component: Profile,
+  //   title: '个人页',
+  // },
   {
     path: '/admin',
     name: 'Admin',
     component: Admin,
     title: '后台首页',
-  },
-  {
-    path: '/login',
-    component: Login,
-    title: '登录页面',
   },
   {
     path: '/user',
@@ -65,11 +59,6 @@ const routes = [
     component: router,
     title: '角色管理',
     children: [
-      {
-        path: '/login',
-        title: '登陆页面',
-        component: Login,
-      },
       {
         path: '/register',
         title: '注册页面',

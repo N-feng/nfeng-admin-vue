@@ -11,10 +11,7 @@
       <span></span>
     </a>
     <div class="menu" :class="{'show': showMenu}">
-      <a href="#">Home</a>
-      <a href="#">Works</a>
-      <a href="#">Blog</a>
-      <a href="#">Tools</a>
+      <a href="#" v-for="(item, key) in routers" :key="key" @click="routerClick(item)">{{item}}</a>
       <label for="chk" class="hide-menu-btn">
         <i class="fas fa-times"></i>
       </label>
@@ -27,7 +24,13 @@ export default {
   data() {
     return {
       showMenu: false,
+      routers: ['Home', 'Works', 'Blog', 'Tools', 'Admin'],
     }
+  },
+  methods: {
+    routerClick(item) {
+      this.$emit('routerClick', item)
+    },
   },
 }
 </script>

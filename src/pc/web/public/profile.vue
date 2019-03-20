@@ -1,6 +1,7 @@
 <template>
   <div style="width: 100%;height: 100%;">
-    <header-box></header-box>
+    <login-box :showLogin="showLogin" @closeClick="showLogin=false"></login-box>
+    <header-box @routerClick="routerClick"></header-box>
     <section class="profile-box">
       <div class="box">
         <div class="content">
@@ -8,23 +9,7 @@
           <h1>Nfeng</h1>
           <h5>Web Devlopoer - Web Designer</h5>
           <p>A web developer is a programmer who specializes In, or is specifically engaged in, the development of World Wide Web applications, or applications that are run over HTTP from a web server to a web browser.</p>
-          <ul>
-            <li>
-              <a href="#">
-                <i class="fab fa-facebook-square" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fab fa-twitter-square" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fab fa-google-plus-square" aria-hidden="true"></i>
-              </a>
-            </li>
-          </ul>
+          <social-box></social-box>
         </div>
       </div>
     </section>
@@ -34,9 +19,23 @@
 
 <script>
 import headerBox from '../../../components/pc/header-box.vue'
+import socialBox from '../../../components/pc/social-box.vue'
+import loginBox from '../../../components/admin/login-box.vue'
 
 export default {
-  components: { headerBox },
+  components: { headerBox, socialBox, loginBox },
+  data() {
+    return {
+      showLogin: false,
+    }
+  },
+  methods: {
+    routerClick(ev) {
+      if (ev === 'Admin') {
+        this.showLogin = true
+      }
+    },
+  },
 }
 </script>
 
