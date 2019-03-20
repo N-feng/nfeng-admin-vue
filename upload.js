@@ -102,6 +102,17 @@ function getFile(dirPath) {
     })
 }
 
-getFile('dist/')
-getFile('dist/css/')
-getFile('dist/js/')
+function uploadByArr(arr) {
+    arr.forEach((el) => {
+        getFile(el)
+    })
+}
+
+const arr = ['dist/', 'dist/css/', 'dist/js/', 'dist/img/']
+
+uploadByArr(arr)
+
+// getFile('dist/')
+// getFile('dist/css/')
+// getFile('dist/js/')
+// getFile('dis/img/')

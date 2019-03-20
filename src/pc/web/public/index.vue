@@ -99,7 +99,7 @@ export default {
     text-align: right;
 }
 .bg_2 {
-    background-image: url(../../../assets/img/winnower.jpg);
+    background-image: url(../../../assets/img/winnower.jpeg);
     background-attachment: fixed;
     width: 960px;
     height: 640px;
@@ -124,5 +124,3 @@ export default {
     background-position-y: bottom;
 }
 </style>
-
-
