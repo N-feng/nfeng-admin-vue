@@ -1,11 +1,11 @@
 import Main from '../views/main/main.vue'
 // import Login from '../views/auth/login.vue'
-import Register from '../views/auth/register.vue'
-import router from '../views/main/router.vue'
+// import Register from '../views/auth/register.vue'
+// import router from '../views/main/router.vue'
 import userList from '../views/user/list.vue'
 import upload from '../views/img/upload.vue'
 // web 页面
-import Web from '../pc/web/public/index.vue'
+// import Web from '../pc/web/public/index.vue'
 // import Simple from '../pc/web/public/simple.vue'
 import Profile from '../pc/web/public/profile.vue'
 // admin 页面
@@ -14,15 +14,21 @@ import Admin from '../pc/admin/public/index.vue'
 const routes = [
   {
     path: '/',
-    name: 'Profile',
-    component: Profile,
+    // component: Profile,
+    redirect: '/profile',
     title: '欢迎页',
   },
   {
-    path: '/web',
-    name: 'Web',
-    component: Web,
-    title: '首页',
+    path: '/profile',
+    component: Profile,
+    title: '个人介绍',
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: Admin,
+    redirect: '/user/list',
+    title: '后台首页',
   },
   // {
   //   path: '/profile',
@@ -30,12 +36,6 @@ const routes = [
   //   component: Profile,
   //   title: '个人页',
   // },
-  {
-    path: '/admin',
-    name: 'Admin',
-    component: Admin,
-    title: '后台首页',
-  },
   {
     path: '/user',
     name: 'Main',
@@ -54,18 +54,18 @@ const routes = [
       },
     ],
   },
-  {
-    path: '/',
-    component: router,
-    title: '角色管理',
-    children: [
-      {
-        path: '/register',
-        title: '注册页面',
-        component: Register,
-      },
-    ],
-  },
+  // {
+  //   path: '/',
+  //   component: router,
+  //   title: '角色管理',
+  //   children: [
+  //     {
+  //       path: '/register',
+  //       title: '注册页面',
+  //       component: Register,
+  //     },
+  //   ],
+  // },
 ]
 
 export default routes

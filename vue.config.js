@@ -4,26 +4,26 @@ const targetUrl = process.env.PROXY_URL
 
 // vue.config.js
 module.exports = {
-    // 选项...
-    publicPath: process.env.NODE_ENV === 'production' ? process.env.PUBLIC_PATH : '/',
-    indexPath: Path.resolve(__dirname, process.env.INDEX_PATH),
-    devServer: {
-        proxy: {
-            '/auth': {
-                target: targetUrl,
-                ws: true,
-                changeOrigin: true,
-            },
-            // '/admin': {
-            //     target: targetUrl,
-            //     ws: true,
-            //     changeOrigin: true,
-            // },
-            '/global': {
-                target: targetUrl,
-                ws: true,
-                changeOrigin: true,
-            },
-        },
+  // 选项...
+  publicPath: process.env.NODE_ENV === 'production' ? process.env.PUBLIC_PATH : '/',
+  indexPath: Path.resolve(__dirname, process.env.INDEX_PATH),
+  devServer: {
+    proxy: {
+      '/auth': {
+        target: targetUrl,
+        ws: true,
+        changeOrigin: true,
+      },
+      '/admin': {
+        target: targetUrl,
+        ws: true,
+        changeOrigin: true,
+      },
+      '/global': {
+        target: targetUrl,
+        ws: true,
+        changeOrigin: true,
+      },
     },
+  },
 }

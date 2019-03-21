@@ -1,13 +1,8 @@
 .header-box {
-  height: 100px;
   background: #34495e;
   padding: 0 20px;
   color: #fff;
-  .logo {
-    line-height: 100px;
-    float: left;
-    margin: 0;
-  }
+  @include utils-clearfix;
   .menu {
     float: right;
     line-height: 100px;
@@ -44,6 +39,12 @@
   }
 
   @media only screen and (max-width: 800px) {
+    .logo {
+      line-height: 70px;
+    }
+    .show-menu-btn i {
+      line-height: 70px;
+    }
     .show-menu-btn, .hide-menu-btn {
       display: block;
     }
@@ -59,6 +60,7 @@
       padding: 80px 0;
       line-height: normal;
       transition: 0.7s;
+      z-index: 1;
     }
     .menu a {
       display: block;

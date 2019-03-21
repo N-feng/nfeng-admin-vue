@@ -47,6 +47,7 @@
   margin: 20px auto;
   border-radius: 6px;
   cursor: pointer;
+  -webkit-appearance: none;
 }
 .login-form input[type = "submit"]:hover {
   // background: #2ecc71;

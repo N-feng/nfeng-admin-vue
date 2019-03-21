@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100%;height: 100%;">
+  <div class="wrap">
     <login-box :showLogin="showLogin" @closeClick="showLogin=false"></login-box>
     <header-box @routerClick="routerClick"></header-box>
     <section class="profile-box">
@@ -32,7 +32,8 @@ export default {
   methods: {
     routerClick(ev) {
       if (ev === 'Admin') {
-        this.showLogin = true
+        // this.showLogin = true
+        console.log(this.$router)
       }
     },
   },
@@ -40,4 +41,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 </style>
