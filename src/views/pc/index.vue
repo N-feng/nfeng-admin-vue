@@ -1,11 +1,11 @@
 <template>
   <div class="wrap">
     <login-box :showLogin="showLogin" @closeClick="showLogin=false"></login-box>
-    <header-box @routerClick="routerClick"></header-box>
+    <header-box style="position: absolute;"></header-box>
     <section class="profile-box">
       <div class="box">
         <div class="content">
-          <img src="../../../assets/img/me.jpg" alt="" class="box-img">
+          <img src="../../assets/img/me.jpg" alt="" class="box-img">
           <h1>Nfeng</h1>
           <h5>Web Devlopoer - Web Designer</h5>
           <p>A web developer is a programmer who specializes In, or is specifically engaged in, the development of World Wide Web applications, or applications that are run over HTTP from a web server to a web browser.</p>
@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import headerBox from '../../../components/pc/header-box.vue'
-import socialBox from '../../../components/pc/social-box.vue'
-import loginBox from '../../../components/admin/login-box.vue'
+import headerBox from '../../components/pc/header-box.vue'
+import socialBox from '../../components/pc/social-box.vue'
+import loginBox from '../../components/admin/login-box.vue'
 
 export default {
   components: { headerBox, socialBox, loginBox },
@@ -44,7 +44,7 @@ export default {
 .wrap {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 }
 </style>

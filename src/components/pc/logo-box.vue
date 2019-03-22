@@ -1,13 +1,19 @@
 <template>
-  <div class="logo-box">
-    <router-link :to="{ name: 'Admin', params: {} }">
-      <h2 class="logo">nfeng.net.cn</h2>
-    </router-link>
+  <div class="logo-box" @click="routerClick">
+    <a class="logo-mini"><b>N</b>F</a>
+    <a class="logo-lg"><b>nfeng</b>.net.cn</a>
   </div>
 </template>
 
 <script>
 export default {
+  methods: {
+    routerClick() {
+      this.$router.push({
+        name: 'Web'
+      })
+    }
+  }
 }
 </script>
 

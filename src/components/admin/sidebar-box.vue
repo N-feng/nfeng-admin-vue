@@ -18,10 +18,9 @@
 </template>
 
 <script>
-import pc from '../../../router/pc'
+import pc from '../../router/pc'
 
 export default {
-  name: 'nf-sidebar',
   props: {
     auth: Object,
     isCollapse: Boolean,

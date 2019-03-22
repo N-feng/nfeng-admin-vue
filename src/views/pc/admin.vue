@@ -2,8 +2,9 @@
 <div class="nf-main">
   <!--<img alt="Vue logo" src="../assets/logo.png">-->
   <!--<HelloWorld msg="Welcome to Your Vue.js App"/>-->
-  <nfHeader :auth="auth" :isCollapse="isCollapse" @collapseClick="isCollapse = !isCollapse"></nfHeader>
-  <nfSidebar :auth="auth" :isCollapse="isCollapse" @select="select"></nfSidebar>
+  <header-box-new :showBtnToggle="true" @toggleClick="isCollapse = !isCollapse" :showMenu="false"></header-box-new>
+  <header-box :auth="auth" :isCollapse="isCollapse" @collapseClick="isCollapse = !isCollapse"></header-box>
+  <sidebar-box :auth="auth" :isCollapse="isCollapse" @select="select"></sidebar-box>
   <div class="nf-main-wrapper" :class="{ 'is-collapse': isCollapse }">
     <div class="content-header">
       <nf-breadcrumb>
@@ -20,8 +21,9 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-import nfHeader from './components/nf-header.vue'
-import nfSidebar from './components/nf-sidebar.vue'
+import headerBox from '../../components/admin/header-box.vue'
+import headerBoxNew from '../../components/pc/header-box.vue'
+import sidebarBox from '../../components/admin/sidebar-box.vue'
 import AuthModel from '../../model/AuthModel'
 import {
   addClass,
@@ -32,8 +34,9 @@ import pc from '../../router/pc'
 export default {
   components: {
     // HelloWorld,
-    nfHeader,
-    nfSidebar,
+    headerBox,
+    sidebarBox,
+    headerBoxNew,
   },
   data() {
     return {

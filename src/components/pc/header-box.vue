@@ -1,44 +1,46 @@
 <template>
-  <div class="header-box">
+  <div class="header-box" :class="{ 'is-collapse': isCollapse }">
     <logo-box></logo-box>
-    <!-- <h2 class="logo">nfeng.net.cn</h2> -->
-    <input type="checkbox" id="chk">
-    <label for="chk" class="show-menu-btn">
-      <i class="fas fa-ellipsis-h"></i>
-    </label>
-    <a class="btn" @click="showMenu=!showMenu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </a>
-    <div class="menu" :class="{'show': showMenu}">
-      <a v-for="(item, key) in routers" :key="key" @click="routerClick(item)">{{item}}</a>
-      <label for="chk" class="hide-menu-btn">
-        <i class="fas fa-times"></i>
-      </label>
-    </div>
+    <menu-box :showBtnToggle="showBtnToggle" @toggleClick="toggleClick" v-if="showMenu"></menu-box>
   </div>
 </template>
 
 <script>
 import logoBox from './logo-box.vue'
+import menuBox from './menu-box.vue'
 
 export default {
-  components: { logoBox },
+  components: { logoBox, menuBox },
+  props: {
+    showBtnToggle: {
+      type: Boolean,
+      default: false,
+    },
+    showMenu: {
+      type: Boolean,
+      default: true,
+    },
+  },
   data() {
     return {
-      showMenu: false,
-      routers: ['Home', 'Works', 'Blog', 'Tools', 'Admin'],
+      isCollapse: false,
     }
   },
   methods: {
-    routerClick(item) {
-      this.$emit('routerClick', item)
-      this.$router.push({
-        name: item,
-        params: {},
-      })
+    toggleClick() {
+      this.isCollapse = !this.isCollapse
+      this.$emit('toggleClick')
     },
+    resize() {
+      const w = document.documentElement.clientWidth
+      this.isCollapse = w <= 800 ? 1 : 0
+    },
+  },
+  mounted() {
+    this.resize()
+    window.onresize = () => {
+      this.resize()
+    }
   },
 }
 </script>

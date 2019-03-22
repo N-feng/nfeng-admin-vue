@@ -7,27 +7,21 @@ import upload from '../views/img/upload.vue'
 // web 页面
 import Web from '../pc/web/public/index.vue'
 // import Simple from '../pc/web/public/simple.vue'
-// import Profile from '../pc/web/public/profile.vue'
 // admin 页面
 import Admin from '../pc/admin/public/index.vue'
 
 const routes = [
   {
     path: '/',
+    name: 'Web',
     component: Web,
-    // redirect: '/profile',
-    title: '欢迎页',
+    title: '主页',
   },
-  // {
-  //   path: '/profile',
-  //   component: Profile,
-  //   title: '个人介绍',
-  // },
   {
     path: '/admin',
     name: 'Admin',
     component: Admin,
-    redirect: '/user/list',
+    // redirect: '/user/list',
     title: '后台首页',
   },
   // {

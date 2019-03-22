@@ -1,126 +1,50 @@
 <template>
-    <div class="container" style="">
-        <nheader style="margin-bottom: 30px;"></nheader>
-        <div class="bg_1">
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
+  <div class="wrap">
+    <login-box :showLogin="showLogin" @closeClick="showLogin=false"></login-box>
+    <header-box style="position: absolute;"></header-box>
+    <section class="profile-box">
+      <div class="box">
+        <div class="content">
+          <img src="../../../assets/img/me.jpg" alt="" class="box-img">
+          <h1>Nfeng</h1>
+          <h5>Web Devlopoer - Web Designer</h5>
+          <p>A web developer is a programmer who specializes In, or is specifically engaged in, the development of World Wide Web applications, or applications that are run over HTTP from a web server to a web browser.</p>
+          <social-box></social-box>
         </div>
-        <div>这是一段文字</div>
-        <div class="bg_2">
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-            <p>这里可能也有文字</p>
-        </div>
-        <div>这是另外一段文字</div>
-        <div class="bg_3"></div>
-    </div>
+      </div>
+    </section>
+    <!-- <p>HTML (Hypertext Markup Language) is the set of markup symbols or codes inserted in a file intended for display on a World Wide Web browser page. The markup tells the Web browser how to display a Web page's words and images for the user. Each individual markup code is referred to as an element (but many people also refer to it as a tag). Some elements come in pairs that indicate when some display effect is to begin and when it is to end.</p> -->
+  </div>
 </template>
 
 <script>
-import nheader from '../../../components/pc/nheader.vue'
+import headerBox from '../../../components/pc/header-box.vue'
+import socialBox from '../../../components/pc/social-box.vue'
+import loginBox from '../../../components/admin/login-box.vue'
 
 export default {
-    components: { nheader },
-    data() {
-        return {
-            backgroundPositionY_1: '125px',
-            backgroundPositionY_2: '125px',
-            backgroundPositionY_3: '',
-        }
+  components: { headerBox, socialBox, loginBox },
+  data() {
+    return {
+      showLogin: false,
+    }
+  },
+  methods: {
+    routerClick(ev) {
+      if (ev === 'Admin') {
+        // this.showLogin = true
+        console.log(this.$router)
+      }
     },
-    mounted() {
-        const self = this
-        window.onscroll = function () {
-            const speed = 4.0
-            self.backgroundPositionY_1 = `${-(window.pageYOffset - 500) / speed}px`
-            self.backgroundPositionY_2 = `${-(window.pageYOffset - 720) / speed}px`
-        }
-    },
+  },
 }
 </script>
 
-<style scoped>
-.container {
-    width: 1366px;
-    height: 100%;
-    margin: 0 auto;
-}
-.bg_1 {
-    background-image: url(../../../assets/img/sea.jpg);
-    background-attachment: fixed;
-    /* width: 960px; */
-    height: 720px;
-    width: 100%;
-	/* height: 100%; */
-    /* display: flex; */
-    /* background-size: cover; */
-    background-repeat: no-repeat;
-    text-align: right;
-}
-.bg_2 {
-    background-image: url(../../../assets/img/winnower.jpeg);
-    background-attachment: fixed;
-    width: 960px;
-    height: 640px;
-    width: 100%;
-	/* height: 100%; */
-    /* display: flex; */
-    /* background-size: cover; */
-    background-repeat: no-repeat;
-    background-position-x: right;
-    background-position-y: center;
-}
-.bg_3 {
-    background-image: url(../../../assets/img/room.jpg);
-    background-attachment: fixed;
-    width: 960px;
-    height: 640px;
-    width: 100%;
-	/* height: 100%; */
-    display: flex;
-    /* background-size: cover; */
-    background-repeat: no-repeat;
-    background-position-y: bottom;
+<style lang="css" scoped>
+.wrap {
+  width: 100%;
+  height: 100%;
+  /* display: flex;
+  flex-direction: column; */
 }
 </style>
