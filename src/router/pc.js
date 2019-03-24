@@ -5,18 +5,18 @@ import Main from '../views/main/main.vue'
 import userList from '../views/user/list.vue'
 import upload from '../views/img/upload.vue'
 // web 页面
-import Web from '../pc/web/public/index.vue'
+// import Web from '../pc/web/public/index.vue'
 // import Simple from '../pc/web/public/simple.vue'
 // admin 页面
 // import Admin from '../pc/admin/public/index.vue'
 
 const routes = [
-  {
-    path: '/',
-    name: 'Web',
-    component: Web,
-    title: '主页',
-  },
+  // {
+  //   path: '/',
+  //   name: 'Web',
+  //   component: Web,
+  //   title: '主页',
+  // },
   // {
   //   path: '/admin',
   //   name: 'Admin',

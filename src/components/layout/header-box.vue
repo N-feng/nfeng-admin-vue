@@ -2,7 +2,7 @@
 <div class="header-box" :class="{ 'is-collapse': isCollapse }">
   <logo-box></logo-box>
   <navBox>
-    <toggle-box slot="toggle-box" @toggleClick="isCollapse = !isCollapse" v-if="false"></toggle-box>
+    <toggle-box slot="toggle-box" @toggleClick="toggleClick" v-if="false"></toggle-box>
     <menu-box slot="menu-box" v-if="showMenu"></menu-box>
     <custom-box slot="custom-box" v-if="!showMenu"></custom-box>
   </navBox>

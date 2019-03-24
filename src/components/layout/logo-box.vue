@@ -1,5 +1,5 @@
 <template>
-  <div class="logo-box" @click="routerClick">
+  <div class="logo-box" @click="logoClick">
     <a class="logo-mini"><b>N</b>F</a>
     <a class="logo-lg"><b>nfeng</b>.net.cn</a>
   </div>
@@ -8,12 +8,13 @@
 <script>
 export default {
   methods: {
-    routerClick() {
+    logoClick() {
       this.$router.push({
-        name: 'Web'
+        name: 'Web',
       })
-    }
-  }
+      this.$emit('logoClick')
+    },
+  },
 }
 </script>
 

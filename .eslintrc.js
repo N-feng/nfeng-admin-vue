@@ -3,22 +3,22 @@ module.exports = {
   env: {
     browser: true,
     commonjs: true,
-    es6: true
+    es6: true,
   },
   globals: {
     Vue: false,
     weex: false,
-    window: false
+    window: false,
   },
   parser: 'babel-eslint',
   extends: 'airbnb-base',
   plugins: ['html'],
   parserOptions: {
     ecmaVersion: 2017,
-    sourceType: 'module'
+    sourceType: 'module',
   },
   rules: {
-    "indent": ["error", 2], // 缩进 单位:空格
+    indent: ['error', 2], // 缩进 单位:空格
     'linebreak-style': 0, // 不校验换行符
     semi: ['error', 'never'], // 不使用分号
     'no-debugger': 0, // 不校验debugger
@@ -37,5 +37,6 @@ module.exports = {
     // "no-plusplus": 0, // 禁止使用++，--
     // 'array-callback-return': 0, // 强制数组方法的回调函数中有 return 语句
     // 'no-nested-ternary': 0, // 不允许使用嵌套的三元表达式
-  }
+    // "operator-linebreak": [2, "before", { "overrides": { "||": "after" } }],
+  },
 }
