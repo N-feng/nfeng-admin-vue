@@ -20,7 +20,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-import headerBox from '../../components/pc/header-box.vue'
+import headerBox from '../../components/layout/header-box.vue'
 import sidebarBox from '../../components/admin/sidebar-box.vue'
 import AuthModel from '../../model/AuthModel'
 import {

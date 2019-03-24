@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import headerBox from '../../components/pc/header-box.vue'
-import socialBox from '../../components/pc/social-box.vue'
+import headerBox from '../../components/layout/header-box.vue'
+import socialBox from '../../components/layout/social-box.vue'
 import loginBox from '../../components/admin/login-box.vue'
 
 export default {

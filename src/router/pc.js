@@ -8,7 +8,7 @@ import upload from '../views/img/upload.vue'
 import Web from '../pc/web/public/index.vue'
 // import Simple from '../pc/web/public/simple.vue'
 // admin 页面
-import Admin from '../pc/admin/public/index.vue'
+// import Admin from '../pc/admin/public/index.vue'
 
 const routes = [
   {
@@ -17,13 +17,13 @@ const routes = [
     component: Web,
     title: '主页',
   },
-  {
-    path: '/admin',
-    name: 'Admin',
-    component: Admin,
-    // redirect: '/user/list',
-    title: '后台首页',
-  },
+  // {
+  //   path: '/admin',
+  //   name: 'Admin',
+  //   component: Admin,
+  //   // redirect: '/user/list',
+  //   title: '后台首页',
+  // },
   // {
   //   path: '/profile',
   //   name: 'Profile',

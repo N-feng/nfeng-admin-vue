@@ -7,7 +7,7 @@ export const routerMap = [
   {
     path: '/',
     name: 'Web',
-    component: () => import('../views/pc/index'),
+    component: () => import('../views/pc/web'),
     title: '欢迎页',
   },
   {
