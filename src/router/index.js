@@ -17,6 +17,16 @@ export const routerMap = [
   },
 ]
 
+export function hasPath(path) {
+  let bool = false
+  routerMap.forEach((el) => {
+    if (el.path === path) {
+      bool = true
+    }
+  })
+  return bool
+}
+
 const router = new Router({
   // mode: 'history',
   // base: process.env.BASE_URL,

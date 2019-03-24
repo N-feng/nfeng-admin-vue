@@ -2,8 +2,7 @@
 <div class="nf-main">
   <!--<img alt="Vue logo" src="../assets/logo.png">-->
   <!--<HelloWorld msg="Welcome to Your Vue.js App"/>-->
-  <header-box-new :showBtnToggle="true" @toggleClick="isCollapse = !isCollapse" :showMenu="false"></header-box-new>
-  <header-box :auth="auth" :isCollapse="isCollapse" @collapseClick="isCollapse = !isCollapse"></header-box>
+  <header-box :showBtnToggle="true" @toggleClick="isCollapse = !isCollapse" :showMenu="false"></header-box>
   <sidebar-box :auth="auth" :isCollapse="isCollapse" @select="select"></sidebar-box>
   <div class="nf-main-wrapper" :class="{ 'is-collapse': isCollapse }">
     <div class="content-header">
@@ -21,8 +20,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-import headerBox from '../../components/admin/header-box.vue'
-import headerBoxNew from '../../components/pc/header-box.vue'
+import headerBox from '../../components/pc/header-box.vue'
 import sidebarBox from '../../components/admin/sidebar-box.vue'
 import AuthModel from '../../model/AuthModel'
 import {
@@ -36,7 +34,6 @@ export default {
     // HelloWorld,
     headerBox,
     sidebarBox,
-    headerBoxNew,
   },
   data() {
     return {

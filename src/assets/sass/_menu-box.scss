@@ -1,11 +1,8 @@
 .menu-box {
-  min-height: 50px;
-  margin-left: 230px;
-  transition: margin-left 0.3s ease-in-out;
+  display: inline-block;
   .menu-list {
     line-height: 50px;
     padding: 0 20px;
-    float: right;
     a {
       color: #fff;
       text-transform: uppercase;
@@ -16,17 +13,6 @@
       &:hover {
         color: #3498db;
       }
-    }
-  }
-  .menu-btn-toggle {
-    padding: 0 15px;
-    float: left;
-    cursor: pointer;
-    &:hover {
-      color: #3498db;
-    }
-    i {
-      line-height: 50px;
     }
   }
   .menu-btn-show,
@@ -83,7 +69,6 @@
 
 .is-collapse {
   .menu-box {
-    margin-left: 64px;
     .menu-list {
       position: fixed;
       width: 100%;

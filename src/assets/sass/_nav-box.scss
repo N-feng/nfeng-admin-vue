@@ -1,0 +1,12 @@
+.nav-box {
+    min-height: 50px;
+    margin-left: 230px;
+    transition: margin-left 0.3s ease-in-out;
+    text-align: right;
+}
+
+.is-collapse {
+  .nav-box {
+    margin-left: 64px;
+  }
+}

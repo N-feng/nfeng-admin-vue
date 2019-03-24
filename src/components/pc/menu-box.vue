@@ -1,8 +1,5 @@
 <template>
   <div class="menu-box">
-    <label class="menu-btn-toggle" v-if="showBtnToggle" @click="toggleClick">
-      <i class="fa fa-bars"></i>
-    </label>
     <input type="checkbox" id="chk">
     <label for="chk" class="menu-btn-show">
       <i class="fas fa-ellipsis-h"></i>
@@ -17,6 +14,8 @@
 </template>
 
 <script>
+import { hasPath } from '../../router'
+
 export default {
   data() {
     return {
@@ -24,22 +23,15 @@ export default {
       menuList: ['Works', 'Blog', 'Tools', 'Admin'],
     }
   },
-  props: {
-    showBtnToggle: {
-      type: Boolean,
-      default: false,
-    },
-  },
   methods: {
     routerClick(item) {
+      if (hasPath('/'+item)) {
+        this.$router.push({
+          name: item,
+          params: {},
+        })
+      }
       this.$emit('routerClick', item)
-      this.$router.push({
-        name: item,
-        params: {},
-      })
-    },
-    toggleClick() {
-      this.$emit('toggleClick')
     },
   },
 }
