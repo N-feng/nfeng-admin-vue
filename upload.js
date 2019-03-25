@@ -2,6 +2,7 @@ const fs = require('fs')
 const request = require('request')
 const http = require('http')
 const qs = require('querystring')
+const log = require('./log')
 
 /**
  * 上传文件函数
@@ -10,20 +11,20 @@ const qs = require('querystring')
  * @param {*} Authorization 上传凭证
  */
 function putFile(path, url, Authorization) {
-    fs.readFile(path, (err, data) => {
-        const options = {
-            method: 'PUT',
-            url: url,
-            headers: {
-                Authorization: Authorization,
-                'x-cos-acl': 'public-read',
-            },
-            body: data,
-        }
-        request(options, () => {
-            console.log(`${path} 上传成功!`)
-        })
+  fs.readFile(path, (err, data) => {
+    const options = {
+      method: 'PUT',
+      url,
+      headers: {
+        Authorization,
+        'x-cos-acl': 'public-read',
+      },
+      body: data,
+    }
+    request(options, () => {
+      log('green', `${path} 上传成功!`)
     })
+  })
 }
 
 /**
@@ -31,42 +32,42 @@ function putFile(path, url, Authorization) {
  * @param {*} option 参数
  */
 function uploadFile(option) {
-    const Key = option.name // 这是需要提交的数据
-    const param = {
-        Method: 'PUT',
-        Key: Key,
-    }
-    const content = qs.stringify(param)
+  const Key = option.name // 这是需要提交的数据
+  const param = {
+    Method: 'PUT',
+    Key,
+  }
+  const content = qs.stringify(param)
 
-    const options = {
-        hostname: 'nfeng.net.cn',
-        port: 80,
-        path: '/global/getSignature',
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        },
-    }
+  const options = {
+    hostname: 'nfeng.net.cn',
+    port: 80,
+    path: '/global/getSignature',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    },
+  }
 
-    const req = http.request(options, (res) => {
-        // console.log(`STATUS:${res.statusCode}`)
-        // console.log(`HEADRES:${JSON.stringify(res.headers)}`)
-        res.setEncoding('utf8')
-        res.on('data', (chunk) => {
-            const info = JSON.parse(chunk).data
-            const { url, Authorization } = info
-            putFile(Key, url, Authorization)
-        })
+  const req = http.request(options, (res) => {
+    // console.log(`STATUS:${res.statusCode}`)
+    // console.log(`HEADRES:${JSON.stringify(res.headers)}`)
+    res.setEncoding('utf8')
+    res.on('data', (chunk) => {
+      const info = JSON.parse(chunk).data
+      const { url, Authorization } = info
+      putFile(Key, url, Authorization)
     })
+  })
 
-    req.on('error', (e) => {
-        console.log(`problem with request:${e.message}`)
-    })
+  req.on('error', (e) => {
+    console.log(`problem with request:${e.message}`)
+  })
 
-    // write data to request body
-    req.write(content)
+  // write data to request body
+  req.write(content)
 
-    req.end()
+  req.end()
 }
 
 /**
@@ -75,13 +76,18 @@ function uploadFile(option) {
  * @param {*} callback 回调函数
  */
 function getFilePath(filePath, callback) {
-    fs.stat(filePath, (err, data) => {
-        // 判断是否是文件
-        if (data.isFile()) {
-            // 是文件
-            callback()
-        }
-    })
+  fs.stat(filePath, (err, data) => {
+    const size = Math.round(data.size / 1000)
+    if (size > 1000) {
+      log('cyan', `亲 这个文件${filePath} 大于1000kb了 这边建议您自己处理一下哦~`)
+      return
+    }
+    // 判断是否是文件
+    if (data.isFile()) {
+      // 是文件
+      callback()
+    }
+  })
 }
 
 /**
@@ -89,23 +95,23 @@ function getFilePath(filePath, callback) {
  * @param {*} dirPath 文件夹路径
  */
 function getFile(dirPath) {
-    fs.readdir(dirPath, (err, data) => {
-        data.forEach((item) => {
-            const filePath = dirPath + item
-            getFilePath(filePath, () => {
-                const option = {
-                    name: filePath,
-                }
-                uploadFile(option)
-            })
-        })
+  fs.readdir(dirPath, (err, data) => {
+    data.forEach((item) => {
+      const filePath = dirPath + item
+      getFilePath(filePath, () => {
+        const option = {
+          name: filePath,
+        }
+        uploadFile(option)
+      })
     })
+  })
 }
 
 function uploadByArr(arr) {
-    arr.forEach((el) => {
-        getFile(el)
-    })
+  arr.forEach((el) => {
+    getFile(el)
+  })
 }
 
 const arr = ['dist/', 'dist/css/', 'dist/js/', 'dist/img/']

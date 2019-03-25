@@ -1,10 +1,10 @@
 <template>
   <div class="wrap">
     <header-box style="position: absolute;" :isCollapse="isCollapse"></header-box>
-    <section class="web-box">
+    <section class="web-page">
       <div class="box">
         <div class="content">
-          <img src="../../assets/img/me.jpg" alt="" class="box-img">
+          <img src="https://cdn.nfeng.net.cn/upload/me.jpg" alt="" class="box-img">
           <h1>Nfeng</h1>
           <h5>Web Devlopoer - Web Designer</h5>
           <p>A web developer is a programmer who specializes In, or is specifically engaged in, the development of World Wide Web applications, or applications that are run over HTTP from a web server to a web browser.</p>

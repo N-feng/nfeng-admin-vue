@@ -15,7 +15,6 @@ import navBox from './nav-box.vue'
 import toggleBox from './toggle-box.vue'
 import menuBox from './menu-box.vue'
 import customBox from './custom-box.vue'
-import { maxWidth } from '../../utils'
 
 export default {
   components: {
@@ -33,7 +32,7 @@ export default {
     isCollapse: {
       type: Boolean,
       default: false,
-    }
+    },
   },
 }
 </script>
