@@ -1,4 +1,4 @@
-.profile-box {
+.web-box {
   background: url(./assets/img/winnower.jpeg) no-repeat 50% 50%;
   background-size: cover;
   width: 100%;
@@ -37,7 +37,7 @@
 }
 
 @media only screen and (max-width: 800px) {
-  .profile-box {
+  .web-box {
     .content {
       width: 80%;
       padding: 20px 15px;

@@ -7,13 +7,23 @@ export const routerMap = [
   {
     path: '/',
     name: 'Web',
-    component: () => import('../views/pc/web'),
+    component: () => import('../views/web/index'),
     title: '欢迎页',
   },
   {
     path: '/Admin',
     name: 'Admin',
-    component: () => import('../views/pc/admin'),
+    component: () => import('../views/admin/main'),
+    title: '后台',
+    redirect: '/Admin/landing',
+    children: [
+      {
+        path: 'landing',
+        name: 'landing',
+        component: () => import('../views/admin/landing'),
+        title: '后台首页',
+      },
+    ],
   },
 ]
 

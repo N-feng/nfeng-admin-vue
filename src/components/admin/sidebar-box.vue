@@ -19,6 +19,7 @@
 
 <script>
 import pc from '../../router/pc'
+import { maxWidth } from '../../utils'
 
 export default {
   props: {
@@ -33,7 +34,7 @@ export default {
   methods: {
     select() {
       this.$emit('select')
-    },
+    }
   },
 }
 </script>

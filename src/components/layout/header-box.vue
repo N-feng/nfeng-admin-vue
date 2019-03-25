@@ -1,12 +1,12 @@
 <template>
-<div class="header-box" :class="{ 'is-collapse': isCollapse }">
-  <logo-box></logo-box>
-  <navBox>
-    <toggle-box slot="toggle-box" @toggleClick="toggleClick" v-if="false"></toggle-box>
-    <menu-box slot="menu-box" v-if="showMenu"></menu-box>
-    <custom-box slot="custom-box" v-if="!showMenu"></custom-box>
-  </navBox>
-</div>
+  <div class="header-box" :class="{ 'is-collapse': isCollapse }">
+    <logo-box></logo-box>
+    <navBox>
+      <toggle-box slot="toggle-box" v-if="false"></toggle-box>
+      <menu-box slot="menu-box" v-if="showMenu"></menu-box>
+      <custom-box slot="custom-box" v-if="!showMenu"></custom-box>
+    </navBox>
+  </div>
 </template>
 
 <script>
@@ -15,6 +15,7 @@ import navBox from './nav-box.vue'
 import toggleBox from './toggle-box.vue'
 import menuBox from './menu-box.vue'
 import customBox from './custom-box.vue'
+import { maxWidth } from '../../utils'
 
 export default {
   components: {
@@ -29,26 +30,9 @@ export default {
       type: Boolean,
       default: true,
     },
-  },
-  data() {
-    return {
-      isCollapse: false,
-    }
-  },
-  methods: {
-    toggleClick() {
-      this.isCollapse = !this.isCollapse
-      this.$emit('toggleClick')
-    },
-    resize() {
-      const w = document.documentElement.clientWidth
-      this.isCollapse = w <= 800 ? 1 : 0
-    },
-  },
-  mounted() {
-    this.resize()
-    window.onresize = () => {
-      this.resize()
+    isCollapse: {
+      type: Boolean,
+      default: false,
     }
   },
 }

@@ -1,8 +1,7 @@
 <template>
   <div class="wrap">
-    <login-box :showLogin="showLogin" @closeClick="showLogin=false"></login-box>
-    <header-box style="position: absolute;"></header-box>
-    <section class="profile-box">
+    <header-box style="position: absolute;" :isCollapse="isCollapse"></header-box>
+    <section class="web-box">
       <div class="box">
         <div class="content">
           <img src="../../assets/img/me.jpg" alt="" class="box-img">
@@ -20,22 +19,25 @@
 <script>
 import headerBox from '../../components/layout/header-box.vue'
 import socialBox from '../../components/layout/social-box.vue'
-import loginBox from '../../components/admin/login-box.vue'
+import { maxWidth } from '../../utils'
 
 export default {
-  components: { headerBox, socialBox, loginBox },
+  components: {
+    headerBox,
+    socialBox,
+  },
   data() {
     return {
-      showLogin: false,
+      isCollapse: false,
     }
   },
   methods: {
-    routerClick(ev) {
-      if (ev === 'Admin') {
-        // this.showLogin = true
-        console.log(this.$router)
-      }
+    maxWidth(bool) {
+      this.isCollapse = bool
     },
+  },
+  mounted() {
+    maxWidth(800, this.maxWidth)
   },
 }
 </script>
@@ -44,7 +46,7 @@ export default {
 .wrap {
   width: 100%;
   height: 100%;
-  /* display: flex;
-  flex-direction: column; */
+  /* display: flex; */
+  /* flex-direction: column; */
 }
 </style>
