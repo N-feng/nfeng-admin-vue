@@ -96,6 +96,11 @@ function getFilePath(filePath, callback) {
  */
 function getFile(dirPath) {
   fs.readdir(dirPath, (err, data) => {
+    if (!data) {
+      log('cyan', `亲 没有这个文件夹${dirPath} 这边建议您检查一下哦~`)
+      return
+    }
+    log('green', `读取${dirPath} 文件夹成功!`)
     data.forEach((item) => {
       const filePath = dirPath + item
       getFilePath(filePath, () => {

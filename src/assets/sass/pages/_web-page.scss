@@ -1,62 +1,9 @@
 .web-page {
-  background: url(https://cdn.nfeng.net.cn/upload/winnower.jpeg) no-repeat 50% 50%;
-  background-size: cover;
+  background-color: black;
   width: 100%;
   height: 100%;
-  display: table;
-
-  .box {
-    width: 100%;
-    display: table-cell;
-    vertical-align: middle;
-  }
-  .content {
-    background: rgba(0, 0, 0, 0.4);
-    padding: 40px;
-    max-width: 500px;
-    margin: auto;
-    text-align: center;
-    color: white;
-    border-radius: 6px;
-  }
-  .box-img {
-    border-radius: 50%;
-    width: 200px;
-    height: 200px;
-  }
-  .content h1 {
-    font-size: 40px;
-    letter-spacing: 4px;
-    font-weight: 100;
-  }
-  .content h5 {
-    font-size: 20px;
-    letter-spacing: 3px;
-    font-weight: 100;
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .web-box {
-    .content {
-      width: 80%;
-      padding: 20px 15px;
-    }
-    .box-img {
-      width: 150px;
-      height: 150px;
-    }
-    .content h1 {
-      font-size: 32px;
-    }
-    .content h5 {
-      font-size: 16px;
-    }
-    .content p {
-      font-size: 13px;
-    }
-    h1, h5, p {
-      margin: 10px 0;
-    }
+  &::before {
+    content: "";
+    @extend %beforeBg;
   }
 }
