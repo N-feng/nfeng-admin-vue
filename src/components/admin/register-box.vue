@@ -1,7 +1,7 @@
 <template>
-  <nf-form class="login-box" ref="login-form" method="post" :model="auth" :rules="auth.rules">
+  <nf-form class="register-box" ref="register-form" method="post" :model="auth" :rules="auth.rules">
     <img src="https://cdn.nfeng.net.cn/upload/me.jpg" alt="" class="avatar">
-    <h1>Login Here</h1>
+    <h1>Sign Up</h1>
     <nf-form-item prop="username">
       <nf-input type="text" placeholder="Enter Username" v-model="auth.username"></nf-input>
     </nf-form-item>
@@ -9,10 +9,10 @@
       <nf-input type="password" placeholder="Enter Password" v-model="auth.password"></nf-input>
     </nf-form-item>
     <nf-form-item>
-      <nf-button type="primary" class="btn" @click="submit">Login</nf-button>
+      <nf-button type="primary" class="btn" @click="submit">Create Account</nf-button>
     </nf-form-item>
     <a>Lost your password?</a><br>
-    <a @click="registerClick">Don`t have an account</a>
+    <a @click="loginClick">Already have one?</a>
   </nf-form>
 </template>
 
@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     submit() {
-      this.$refs['login-form'].validate((valid) => {
+      this.$refs['register-form'].validate((valid) => {
         if (valid) {
           this.auth.login().then((res) => {
             console.log(res)
@@ -35,8 +35,8 @@ export default {
         }
       })
     },
-    registerClick() {
-      this.$emit('registerClick')
+    loginClick() {
+      this.$emit('loginClick')
     },
   },
 }

@@ -2,6 +2,7 @@ const path = require('path')
 
 // 转发地址
 const targetUrl = process.env.PROXY_URL
+console.log(`转发地址:${targetUrl}`)
 
 // vue.config.js
 module.exports = {

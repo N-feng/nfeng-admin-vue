@@ -4,8 +4,7 @@
   background: #000;
   position: relative;
   overflow: hidden;
-  &::after {
-    content: "";
+  &::before {
     @extend %beforeBg;
   }
   .page-content {
@@ -20,8 +19,7 @@
   }
   .page-content h1 {
     color: #fff;
-    font-size: 38px;
-    letter-spacing: 3px;
+    font-size: 36px;
     margin: 0 0 30px;
   }
   .page-content a {
@@ -29,7 +27,7 @@
     padding: 10px 24px;
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 16px;
     border-radius: 20px;
     display: inline-block;
     transition: 0.4s linear;
@@ -69,7 +67,7 @@
       font-size: 20px;
     }
     .page-content a {
-      font-size: 16px;
+      font-size: 14px;
     }
   }
 }

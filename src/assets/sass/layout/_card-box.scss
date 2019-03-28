@@ -1,12 +1,10 @@
 .card-box {
   background: white;
   color: #314652;
-  width: 400px;
-  max-width: 85vw;
   margin-top: 20px;
-  border-radius: 6px;
-  overflow: hidden;
   // box-shadow: 1px 1px 12px #909EAA;
+  overflow: hidden;
+  @extend %cardBox;
   @extend %center;
   .header {
     width: 100%;
