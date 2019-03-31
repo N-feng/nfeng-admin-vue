@@ -11,13 +11,24 @@ class AuthModel extends BaseModel {
     this.avatar = ''
     this.username = ''
     this.password = ''
+    this.checkPassword = ''
     this.userList = []
+    const validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请再次输入密码'))
+      } else {
+        callback()
+      }
+    }
     this.rules = {
       username: [
         { validator: 'isNonEmpty', message: 'Please enter your username' },
       ],
       password: [
         { validator: 'isNonEmpty', message: 'Please enter your password' },
+      ],
+      checkPassword: [
+        { validator: validatePass, trigger: 'blur' },
       ],
     }
   }
@@ -45,14 +56,16 @@ class AuthModel extends BaseModel {
     })
   }
 
-  register(callback) {
-    const url = auth.register
-    const param = {
-      user: this.user,
-      pass: this.pass,
-    }
-    post(url, param).then((res) => {
-      callback(res)
+  signup() {
+    return new Promise((resolve) => {
+      const url = auth.signup
+      const param = {
+        username: this.username,
+        password: this.password,
+      }
+      post(url, param).then((res) => {
+        resolve(res)
+      })
     })
   }
 

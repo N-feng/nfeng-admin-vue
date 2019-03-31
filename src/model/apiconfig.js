@@ -3,7 +3,7 @@ export const baseUrl = ''
 export const auth = {
   login: `${baseUrl}/auth/login`, // 登录
   logout: `${baseUrl}/auth/logOut`, // 退出
-  register: `${baseUrl}/auth/register`, // 注册
+  signup: `${baseUrl}/admin/signup`, // 注册
   delUser: `${baseUrl}/auth/delUser`, // 删除
   userInfo: `${baseUrl}/auth/getUserInfo`, // 用户信息
   userList: `${baseUrl}/admin/getUserList`, // 用户列表

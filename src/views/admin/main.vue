@@ -3,7 +3,7 @@
     <transition-box :show="showTransition" @closeClick="showTransition=false">
       <flip-box :showFlip="showFlip">
         <login-box slot="front" @registerClick="showFlip=true"></login-box>
-        <register-box slot="back" @loginClick="showFlip=false"></register-box>
+        <signup-box slot="back" @loginClick="showFlip=false"></signup-box>
       </flip-box>
     </transition-box>
     <header-box :showMenu="false" :isCollapse="isCollapse"></header-box>
@@ -24,10 +24,10 @@
 </template>
 
 <script>
-import transitionBox from '../../components/layout/transition-box.vue'
-import flipBox from '../../components/layout/flip-box.vue'
+import flipBox from '../../components/admin/flip-box.vue'
 import loginBox from '../../components/admin/login-box.vue'
-import registerBox from '../../components/admin/register-box.vue'
+import signupBox from '../../components/admin/signup-box.vue'
+import transitionBox from '../../components/admin/transition-box.vue'
 import headerBox from '../../components/layout/header-box.vue'
 import sidebarBox from '../../components/admin/sidebar-box.vue'
 import AuthModel from '../../model/AuthModel'
@@ -36,10 +36,10 @@ import { maxWidth } from '../../utils'
 
 export default {
   components: {
-    transitionBox,
     flipBox,
     loginBox,
-    registerBox,
+    signupBox,
+    transitionBox,
     headerBox,
     sidebarBox,
   },
@@ -50,7 +50,7 @@ export default {
       parentMenu: '',
       subMenu: '',
       showTransition: false,
-      showFlip: false,
+      showFlip: true,
     }
   },
   methods: {
