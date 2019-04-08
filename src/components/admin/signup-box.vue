@@ -20,27 +20,27 @@
 </template>
 
 <script>
-import AuthModel from '../../model/AuthModel'
+import AuthModel from '../../model/AuthModel';
 
 export default {
-  data() {
-    return {
-      auth: new AuthModel(),
-    }
-  },
-  methods: {
-    submit() {
-      this.$refs['signup-form'].validate((valid) => {
-        if (valid) {
-          this.auth.signup().then((res) => {
-            console.log(res)
-          })
-        }
-      })
+    data() {
+        return {
+            auth: new AuthModel(),
+        };
     },
-    loginClick() {
-      this.$emit('loginClick')
+    methods: {
+        submit() {
+            this.$refs['signup-form'].validate((valid) => {
+                if (valid) {
+                    this.auth.signup().then((res) => {
+                        console.log(res);
+                    });
+                }
+            });
+        },
+        loginClick() {
+            this.$emit('loginClick');
+        },
     },
-  },
-}
+};
 </script>
