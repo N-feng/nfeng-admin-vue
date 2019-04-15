@@ -9,7 +9,7 @@
       <nf-input type="password" placeholder="Enter Password" v-model="auth.password"></nf-input>
     </nf-form-item>
     <nf-form-item prop="checkPassword">
-      <nf-input type="checkPassword" placeholder="Enter checkPassword" v-model="auth.checkPassword"></nf-input>
+      <nf-input type="password" placeholder="Enter checkPassword" v-model="auth.checkPassword"></nf-input>
     </nf-form-item>
     <nf-form-item>
       <nf-button type="primary" class="btn" @click="submit">Create Account</nf-button>

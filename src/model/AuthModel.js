@@ -15,17 +15,24 @@ class AuthModel extends BaseModel {
         this.userList = [];
         const validatePass = (rule, value, callback) => {
             if (value === '') {
-                callback(new Error('请再次输入密码'));
+                callback('Please enter your checkPassword');
+            } else if (value !== this.password) {
+                callback('The two passwords do not match');
             } else {
                 callback();
             }
         };
         this.rules = {
             username: [
-                { validator: 'isNonEmpty', message: 'Please enter your username' },
+                { required: true, message: 'Please enter your username', trigger: 'blur' },
+                // {
+                //     pattern: /^(1\d{10})$/,
+                //     message: 'Please enter your username correctly',
+                //     trigger: 'blur',
+                // },
             ],
             password: [
-                { validator: 'isNonEmpty', message: 'Please enter your password' },
+                { required: true, message: 'Please enter your password', trigger: 'blur' },
             ],
             checkPassword: [
                 { validator: validatePass, trigger: 'blur' },
