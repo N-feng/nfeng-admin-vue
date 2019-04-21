@@ -1,26 +1,26 @@
 <template>
-  <div class="nf-main">
-    <transition-box :show="showTransition" @closeClick="showTransition=false">
-      <flip-box :showFlip="showFlip">
-        <login-box slot="front" @registerClick="showFlip=true"></login-box>
-        <signup-box slot="back" @loginClick="showFlip=false"></signup-box>
-      </flip-box>
-    </transition-box>
-    <header-box :showMenu="false" :isCollapse="isCollapse"></header-box>
-    <sidebar-box :auth="auth" :isCollapse="isCollapse"></sidebar-box>
-    <div class="nf-main-wrapper" :class="{ 'is-collapse': isCollapse }">
-      <!-- <div class="content-header">
-        <nf-breadcrumb>
-          <nf-breadcrumb-item :to="{ path: '/Admin' }">Admin</nf-breadcrumb-item>
-          <nf-breadcrumb-item>{{ parentMenu ? parentMenu.title : '' }}</nf-breadcrumb-item>
-          <nf-breadcrumb-item>{{ subMenu ? subMenu.title : '' }}</nf-breadcrumb-item>
-        </nf-breadcrumb>
-      </div> -->
-      <div class="content">
-        <router-view @loginClick="showTransition=true"></router-view>
-      </div>
+    <div class="nf-main">
+        <transition-box :show="showTransition" @closeClick="showTransition=false">
+            <flip-box :showFlip="showFlip">
+                <login-box slot="front" @registerClick="showFlip=true" @loginSuccess="showTransition=false"></login-box>
+                <signup-box slot="back" @loginClick="showFlip=false"></signup-box>
+            </flip-box>
+        </transition-box>
+        <header-box :showMenu="false" :isCollapse="isCollapse"></header-box>
+        <sidebar-box :auth="auth" :isCollapse="isCollapse"></sidebar-box>
+        <div class="nf-main-wrapper" :class="{ 'is-collapse': isCollapse }">
+            <!-- <div class="content-header">
+                <nf-breadcrumb>
+                <nf-breadcrumb-item :to="{ path: '/Admin' }">Admin</nf-breadcrumb-item>
+                <nf-breadcrumb-item>{{ parentMenu ? parentMenu.title : '' }}</nf-breadcrumb-item>
+                <nf-breadcrumb-item>{{ subMenu ? subMenu.title : '' }}</nf-breadcrumb-item>
+                </nf-breadcrumb>
+            </div> -->
+            <div class="content">
+                <router-view @loginClick="showTransition=true"></router-view>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -50,7 +50,7 @@ export default {
             parentMenu: '',
             subMenu: '',
             showTransition: true,
-            showFlip: true,
+            showFlip: false,
         };
     },
     methods: {
