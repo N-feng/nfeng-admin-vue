@@ -1,17 +1,17 @@
-import BaseModel from './BaseModel';
-import { auth } from './apiconfig';
 import { get, post } from '../nfeng-pc-vue/nfeng-service/api';
+import { auth } from './apiconfig';
+import message from '../nfeng-pc-vue/nfeng-components/message';
 /**
- * 登录 model
+ * 用户 model
  */
-class AuthModel extends BaseModel {
+class AuthModel {
     constructor() {
-        super();
         this.url = auth;
         this.avatar = '';
         this.username = '';
         this.password = '';
         this.checkPassword = '';
+        this.token = '';
         this.userList = [];
     }
 
@@ -36,9 +36,14 @@ class AuthModel extends BaseModel {
                 username: this.username,
                 password: this.password,
             };
-            get(url, param).then((res) => {
-                window.localStorage.setItem('usertoken', res.data.token);
+            post(url, param).then((res) => {
                 resolve(res);
+                const info = res.data;
+                window.localStorage.setItem('token', info.token);
+                message({
+                    type: 'success',
+                    message: res.msg,
+                });
             });
         });
     }

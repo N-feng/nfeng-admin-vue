@@ -1,12 +1,12 @@
 <template>
-    <nf-form class="login-box" ref="login-form" method="post" :model="authForm" :rules="rules">
+    <nf-form class="login-box" ref="login-form" method="post" :model="AuthModel" :rules="rules">
         <img src="https://cdn.nfeng.net.cn/upload/me.jpg" alt="" class="avatar">
         <h1>Login Here</h1>
         <nf-form-item prop="username">
-            <nf-input type="text" placeholder="Enter Username" v-model="authForm.username"></nf-input>
+            <nf-input type="text" placeholder="Enter Username" v-model="AuthModel.username"></nf-input>
         </nf-form-item>
         <nf-form-item prop="password">
-            <nf-input type="password" placeholder="Enter Password" v-model="authForm.password"></nf-input>
+            <nf-input type="password" placeholder="Enter Password" v-model="AuthModel.password"></nf-input>
         </nf-form-item>
         <nf-form-item>
             <nf-button type="primary" class="btn" @click="submit">Login</nf-button>
@@ -17,14 +17,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import AuthModel from '../../model/AuthModel';
 
 export default {
-    computed: {
-        ...mapGetters({
-            authForm: 'authForm',
-        }),
-    },
     data() {
         return {
             rules: {
@@ -35,13 +30,14 @@ export default {
                     { required: true, message: 'Please enter your password', trigger: 'blur' },
                 ],
             },
+            AuthModel: new AuthModel(),
         };
     },
     methods: {
         submit() {
             this.$refs['login-form'].validate((valid) => {
                 if (valid) {
-                    this.$store.dispatch('login', this.authForm).then((res) => {
+                    this.AuthModel.login().then((res) => {
                         this.$emit('loginSuccess', res);
                     });
                 }
