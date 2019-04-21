@@ -6,14 +6,15 @@
             <span class="s3"></span>
         </div>
         <div class="page-content">
-            <h1>Welcome, stranger</h1>
-            <a @click="loginClick">Login Now</a>
+            <h1>Welcome, {{AuthModel.username||`stranger`}}</h1>
+            <a @click="loginClick" v-if="!AuthModel.username">Login Now</a>
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    props: ['AuthModel'],
     methods: {
         loginClick() {
             this.$emit('loginClick');

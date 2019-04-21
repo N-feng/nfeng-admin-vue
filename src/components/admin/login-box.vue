@@ -1,6 +1,6 @@
 <template>
     <nf-form class="login-box" ref="login-form" method="post" :model="AuthModel" :rules="rules">
-        <img src="https://cdn.nfeng.net.cn/upload/me.jpg" alt="" class="avatar">
+        <img :src="AuthModel.avatar||`https://cdn.nfeng.net.cn/upload/me.jpg`" alt="" class="avatar">
         <h1>Login Here</h1>
         <nf-form-item prop="username">
             <nf-input type="text" placeholder="Enter Username" v-model="AuthModel.username"></nf-input>
@@ -17,9 +17,8 @@
 </template>
 
 <script>
-import AuthModel from '../../model/AuthModel';
-
 export default {
+    props: ['AuthModel'],
     data() {
         return {
             rules: {
@@ -30,7 +29,6 @@ export default {
                     { required: true, message: 'Please enter your password', trigger: 'blur' },
                 ],
             },
-            AuthModel: new AuthModel(),
         };
     },
     methods: {

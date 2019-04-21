@@ -2,12 +2,16 @@
     <div class="nf-main">
         <transition-box :show="showTransition" @closeClick="showTransition=false">
             <flip-box :showFlip="showFlip">
-                <login-box slot="front" @registerClick="showFlip=true" @loginSuccess="showTransition=false"></login-box>
+                <login-box 
+                    slot="front" 
+                    :AuthModel="AuthModel"
+                    @registerClick="showFlip=true" 
+                    @loginSuccess="showTransition=false"></login-box>
                 <signup-box slot="back" @loginClick="showFlip=false"></signup-box>
             </flip-box>
         </transition-box>
         <header-box :showMenu="false" :isCollapse="isCollapse"></header-box>
-        <sidebar-box :auth="auth" :isCollapse="isCollapse"></sidebar-box>
+        <sidebar-box :auth="AuthModel" :isCollapse="isCollapse"></sidebar-box>
         <div class="nf-main-wrapper" :class="{ 'is-collapse': isCollapse }">
             <!-- <div class="content-header">
                 <nf-breadcrumb>
@@ -17,7 +21,7 @@
                 </nf-breadcrumb>
             </div> -->
             <div class="content">
-                <router-view @loginClick="showTransition=true"></router-view>
+                <router-view @loginClick="showTransition=true" :AuthModel="AuthModel"></router-view>
             </div>
         </div>
     </div>
@@ -45,11 +49,11 @@ export default {
     },
     data() {
         return {
-            auth: new AuthModel(),
+            AuthModel: new AuthModel(),
             isCollapse: false,
             parentMenu: '',
             subMenu: '',
-            showTransition: true,
+            showTransition: false,
             showFlip: false,
         };
     },
@@ -61,17 +65,13 @@ export default {
     // ...前面的省略
     // 通过两个钩子函数来添加移除class改变颜色
     mounted() {
-    // document.getElementsByTagName("body")[0].className = "nf-main__page";
+        // document.getElementsByTagName("body")[0].className = "nf-main__page";
         addClass(document.body, 'skin-blue');
         maxWidth(800, this.maxWidth);
     },
     beforeDestroy() {
-    // document.body.removeAttribute("class", "nf-main__page");
+        // document.body.removeAttribute("class", "nf-main__page");
         removeClass(document.body, 'skin-blue');
-    },
-    created() {
-    // this.auth.getUserInfo();
-    // console.log(this.$route)
     },
 };
 </script>
