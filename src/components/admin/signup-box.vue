@@ -15,7 +15,7 @@
             <nf-button type="primary" class="btn" @click="submit">Create Account</nf-button>
         </nf-form-item>
         <a>Lost your password?</a><br>
-        <a @click="loginClick">Already have one?</a>
+        <a @click="hideFlip">Already have one?</a>
     </nf-form>
 </template>
 
@@ -65,8 +65,8 @@ export default {
                 }
             });
         },
-        loginClick() {
-            this.$emit('loginClick');
+        hideFlip() {
+            this.$emit('hideFlip');
         },
     },
 };

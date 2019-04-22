@@ -2,8 +2,9 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import WebIndex from '../views/web/index.vue';
 import AdminMain from '../views/admin/main.vue';
+import Login from '../views/admin/login.vue';
 import Landing from '../views/admin/landing.vue';
-import AuthList from '../views/admin/authList.vue';
+import UserList from '../views/admin/userlist.vue';
 import Page404 from '../views/public/404.vue';
 
 Vue.use(Router);
@@ -30,6 +31,12 @@ export const mainRouter = [
         title: '后台',
         redirect: '/system/landing',
     },
+    {
+        path: '/Login',
+        name: 'Login',
+        component: Login,
+        title: '登录',
+    },
 ];
 
 export const adminRouter = {
@@ -41,16 +48,16 @@ export const adminRouter = {
             path: 'landing',
             name: 'landing',
             component: Landing,
-            title: '登录页',
+            title: '登陆页',
         },
         {
-            path: 'authList',
-            name: 'authList',
-            component: AuthList,
+            path: 'userlist',
+            name: 'userlist',
+            component: UserList,
             title: '用户列表',
         },
         {
-            path: 'landing',
+            path: 'landinga',
             name: 'landing',
             component: Landing,
             title: '图片管理',

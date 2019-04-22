@@ -6,7 +6,7 @@ export const auth = {
     signup: `${baseUrl}/auth/signup`, // 注册
     delUser: `${baseUrl}/auth/delUser`, // 删除
     userInfo: `${baseUrl}/auth/getUserInfo`, // 用户信息
-    userList: `${baseUrl}/admin/getUserList`, // 用户列表
+    userList: `${baseUrl}/auth/getUserList`, // 用户列表
 };
 
 export const global = {

@@ -12,13 +12,14 @@
             <nf-button type="primary" class="btn" @click="submit">Login</nf-button>
         </nf-form-item>
         <a>Lost your password?</a><br>
-        <a @click="registerClick">Don`t have an account</a>
+        <a @click="showFlip">Don`t have an account</a>
     </nf-form>
 </template>
 
 <script>
+import AuthModel from '../../model/AuthModel';
+
 export default {
-    props: ['AuthModel'],
     data() {
         return {
             rules: {
@@ -29,20 +30,21 @@ export default {
                     { required: true, message: 'Please enter your password', trigger: 'blur' },
                 ],
             },
+            AuthModel: new AuthModel(),
         };
     },
     methods: {
         submit() {
             this.$refs['login-form'].validate((valid) => {
                 if (valid) {
-                    this.AuthModel.login().then((res) => {
-                        this.$emit('loginSuccess', res);
+                    this.AuthModel.login().then(() => {
+                        this.$router.push('/system/landing');
                     });
                 }
             });
         },
-        registerClick() {
-            this.$emit('registerClick');
+        showFlip() {
+            this.$emit('showFlip');
         },
     },
 };

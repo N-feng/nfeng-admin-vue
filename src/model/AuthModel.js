@@ -1,4 +1,4 @@
-import { get, post } from '../nfeng-pc-vue/nfeng-service/api';
+import { get, post } from '../../../nfeng-utils/vue-ajax';
 import { auth } from './apiconfig';
 import message from '../nfeng-pc-vue/nfeng-components/message';
 /**

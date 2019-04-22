@@ -6,8 +6,13 @@
             <span class="s3"></span>
         </div>
         <div class="page-content">
-            <h1>Welcome, {{AuthModel.username||`stranger`}}</h1>
-            <a @click="loginClick" v-if="!AuthModel.username">Login Now</a>
+            <template v-if="AuthModel">
+                <h1>Welcome, {{AuthModel.username}}</h1>
+            </template>
+            <template v-else>
+                <h1>Welcome, stranger</h1>
+                <a @click="showLogin">Login Now</a>
+            </template>
         </div>
     </div>
 </template>
@@ -16,8 +21,8 @@
 export default {
     props: ['AuthModel'],
     methods: {
-        loginClick() {
-            this.$emit('loginClick');
+        showLogin() {
+            this.$router.push('/Login');
         },
     },
 };
