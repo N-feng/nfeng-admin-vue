@@ -20,7 +20,7 @@
                 <nf-breadcrumb-item>{{ subMenu ? subMenu.title : '' }}</nf-breadcrumb-item>
                 </nf-breadcrumb>
             </div> -->
-            <div class="content">
+            <div class="nf-content">
                 <router-view @loginClick="showTransition=true" :AuthModel="AuthModel"></router-view>
             </div>
         </div>
@@ -32,7 +32,7 @@ import flipBox from '../../components/admin/flip-box.vue';
 import loginBox from '../../components/admin/login-box.vue';
 import signupBox from '../../components/admin/signup-box.vue';
 import transitionBox from '../../components/admin/transition-box.vue';
-import headerBox from '../../components/layout/header-box.vue';
+import headerBox from '../../components/box/header-box.vue';
 import sidebarBox from '../../components/admin/sidebar-box.vue';
 import AuthModel from '../../model/AuthModel';
 import { addClass, removeClass } from '../../nfeng-pc-vue/nfeng-utils/utils/dom';

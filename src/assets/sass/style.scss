@@ -1,14 +1,16 @@
 @import './common/reset.scss';
 @import './common/handle.scss';
 
-@import './layout/header-box.scss';
-@import './layout/social-box.scss';
-@import './layout/logo-box.scss';
-@import './layout/nav-box.scss';
-@import './layout/menu-box.scss';
-@import './layout/custom-box.scss';
-@import './layout/toggle-box.scss';
-@import './layout/card-box.scss';
+@import './box/header-box.scss';
+@import './box/social-box.scss';
+@import './box/logo-box.scss';
+@import './box/nav-box.scss';
+@import './box/menu-box.scss';
+@import './box/custom-box.scss';
+@import './box/toggle-box.scss';
+@import './box/card-box.scss';
+
+@import './layout/main.scss';
 
 @import './admin/flip-box.scss';
 @import './admin/login-box.scss';

@@ -23,17 +23,17 @@
 
 <script>
 export default {
-  data() {
-    return {
-      visible: false,
-    }
-  },
-  methods: {
-    logOut() {
-      console.log('logOut')
+    data() {
+        return {
+            visible: false,
+        };
     },
-  },
-}
+    methods: {
+        logOut() {
+            console.log('logOut');
+        },
+    },
+};
 </script>
 
 <style lang="css" scoped>

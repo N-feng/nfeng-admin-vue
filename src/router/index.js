@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import WebIndex from '../views/web/index.vue';
 import AdminMain from '../views/admin/main.vue';
 import Landing from '../views/admin/landing.vue';
+import AuthList from '../views/admin/authList.vue';
 import Page404 from '../views/public/404.vue';
 
 Vue.use(Router);
@@ -43,9 +44,9 @@ export const adminRouter = {
             title: '登录页',
         },
         {
-            path: 'landing',
-            name: 'landing',
-            component: Landing,
+            path: 'authList',
+            name: 'authList',
+            component: AuthList,
             title: '用户列表',
         },
         {
