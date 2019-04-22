@@ -32,7 +32,7 @@ import flipBox from '../../components/admin/flip-box.vue';
 import loginBox from '../../components/admin/login-box.vue';
 import signupBox from '../../components/admin/signup-box.vue';
 import transitionBox from '../../components/admin/transition-box.vue';
-import headerBox from '../../components/box/header-box.vue';
+import headerBox from '../../components/public/header-box.vue';
 import sidebarBox from '../../components/admin/sidebar-box.vue';
 import AuthModel from '../../model/AuthModel';
 import { addClass, removeClass } from '../../nfeng-pc-vue/nfeng-utils/utils/dom';

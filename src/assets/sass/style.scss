@@ -1,21 +1,19 @@
-@import './common/reset.scss';
-@import './common/handle.scss';
+@import './public/reset.scss';
+@import './public/handle.scss';
 
-@import './box/header-box.scss';
-@import './box/social-box.scss';
-@import './box/logo-box.scss';
-@import './box/nav-box.scss';
-@import './box/menu-box.scss';
-@import './box/custom-box.scss';
-@import './box/toggle-box.scss';
-@import './box/card-box.scss';
+@import './web/header-box.scss';
+@import './web/social-box.scss';
+@import './web/logo-box.scss';
+@import './web/nav-box.scss';
+@import './web/menu-box.scss';
+@import './web/custom-box.scss';
+@import './web/toggle-box.scss';
+@import './web/card-box.scss';
+@import './web/web-page.scss';
 
-@import './layout/main.scss';
-
+@import './admin/layout.scss';
 @import './admin/flip-box.scss';
 @import './admin/login-box.scss';
 @import './admin/signup-box.scss';
 @import './admin/transition-box.scss';
-
-@import './pages/landing-page.scss';
-@import './pages/web-page.scss';
+@import './admin/landing-page.scss';

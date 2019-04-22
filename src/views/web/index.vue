@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import headerBox from '../../components/box/header-box.vue';
-import cardBox from '../../components/box/card-box.vue';
+import headerBox from '../../components/public/header-box.vue';
+import cardBox from '../../components/web/card-box.vue';
 import { maxWidth } from '../../utils';
 
 export default {
