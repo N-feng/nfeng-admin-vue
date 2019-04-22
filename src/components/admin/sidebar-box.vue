@@ -1,41 +1,41 @@
 <template>
-  <aside class="nf-main-sidebar" :class="{ 'is-collapse': isCollapse }">
-    <nf-menu class="nf-menu" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b"
-        default-active="/user/list" :router="true" :collapse="isCollapse" @select="select">
-      <!-- 一级栏目 -->
-      <nf-submenu v-for="(item,key) in pc" :key="key" :index="key + ''">
-        <template slot="title">
-          <i class="el-icon-menu"></i>
-          <span>{{ item.title }}</span>
-        </template>
-        <nf-menu-item-group>
-          <!-- 二级栏目 -->
-          <nf-menu-item v-for="(el,index) in item.children" :key="index" :index="el.path">{{ el.title }}</nf-menu-item>
-        </nf-menu-item-group>
-      </nf-submenu>
-    </nf-menu>
-  </aside>
+    <aside class="nf-main-sidebar" :class="{ 'is-collapse': isCollapse }">
+        <nf-menu 
+            class="nf-menu" 
+            background-color="#545c64" 
+            text-color="#fff" 
+            active-text-color="#ffd04b"
+            default-active="/user/list" 
+            :router="true" 
+            :collapse="isCollapse" 
+            @select="select">
+            <nf-menu-item v-for="(el,key) in adminRouter.children" :key="key" :index="el.path">
+                <i :class="iconClass[key]"></i>
+                <span slot="title">{{ el.title }}</span>
+            </nf-menu-item>
+        </nf-menu>
+    </aside>
 </template>
 
 <script>
-import pc from '../../router/pc'
+import { adminRouter } from '../../router';
 
 export default {
-  props: {
-    auth: Object,
-    isCollapse: Boolean,
-  },
-  computed: {
-    pc() {
-      return pc
+    props: {
+        isCollapse: Boolean,
     },
-  },
-  methods: {
-    select() {
-      this.$emit('select')
+    data() {
+        return {
+            adminRouter,
+            iconClass: ['el-icon-location', 'el-icon-menu', 'el-icon-document', 'el-icon-setting'],
+        };
     },
-  },
-}
+    methods: {
+        select() {
+            this.$emit('select');
+        },
+    },
+};
 </script>
 
 <style scoped>

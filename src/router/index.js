@@ -1,46 +1,72 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import WebIndex from '../views/web/index.vue';
+import AdminMain from '../views/admin/main.vue';
+import Landing from '../views/admin/landing.vue';
+import Page404 from '../views/public/404.vue';
 
 Vue.use(Router);
 
-export const routerMap = [
+export const page404 = {
+    path: '*',
+    name: 'error-404',
+    meta: {
+        title: '404-页面不存在',
+    },
+    component: Page404,
+};
+
+export const mainRouter = [
     {
         path: '/',
         name: 'Web',
-        component: () => import('../views/web/index'),
+        component: WebIndex,
         title: '欢迎页',
     },
     {
         path: '/Admin',
         name: 'Admin',
-        component: () => import('../views/admin/main'),
         title: '后台',
-        redirect: '/Admin/landing',
-        children: [
-            {
-                path: 'landing',
-                name: 'landing',
-                component: () => import('../views/admin/landing'),
-                title: '后台首页',
-            },
-        ],
+        redirect: '/system/landing',
     },
 ];
 
-export function hasPath(path) {
-    let bool = false;
-    routerMap.forEach((el) => {
-        if (el.path === path) {
-            bool = true;
-        }
-    });
-    return bool;
-}
+export const adminRouter = {
+    path: '/system',
+    name: 'system',
+    component: AdminMain,
+    children: [
+        {
+            path: 'landing',
+            name: 'landing',
+            component: Landing,
+            title: '登录页',
+        },
+        {
+            path: 'landing',
+            name: 'landing',
+            component: Landing,
+            title: '用户列表',
+        },
+        {
+            path: 'landing',
+            name: 'landing',
+            component: Landing,
+            title: '图片管理',
+        },
+    ],
+};
+
+export const routers = [
+    adminRouter,
+    ...mainRouter,
+    page404,
+];
 
 const router = new Router({
     mode: 'history',
     // base: process.env.BASE_URL,
-    routes: routerMap,
+    routes: routers,
 });
 
 router.beforeEach((to, from, next) => {
