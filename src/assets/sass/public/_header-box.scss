@@ -1,3 +1,48 @@
+.header-box {
+  background: #34495e;
+  color: #fff;
+  width: 100%;
+  position: relative;
+  z-index: 5;
+  @include utils-clearfix;
+}
+
+.logo-box {
+  width: 230px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  padding: 0 15px;
+  float: left;
+  transition: width 0.3s ease-in-out;
+  a {
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    transition: 0.4s;
+    cursor: pointer;
+    &:hover {
+      color: #3498db;
+    }
+  }
+  .logo-mini {
+    display: none;
+  }
+}
+
+.nav-box {
+  min-height: 50px;
+  margin-left: 230px;
+  transition: margin-left 0.3s ease-in-out;
+  text-align: right;
+}
+
+.toggle-box {
+  float: left;
+  line-height: 50px;
+  padding: 0 15px;
+}
+
 .menu-box {
   display: inline-block;
   .menu-list {
@@ -36,38 +81,31 @@
   }
 }
 
-// @media only screen and (max-width: 800px) {
-//   .menu-box {
-//     margin-left: 64px;
-//     .menu-list {
-//       position: fixed;
-//       width: 100%;
-//       height: 100vh;
-//       background: #333;
-//       right: -100%;
-//       top: 0;
-//       text-align: center;
-//       overflow: hidden;
-//       padding: 80px 0;
-//       line-height: normal;
-//       transition: 0.7s;
-//       z-index: 1;
-//       a {
-//         display: block;
-//         padding: 20px;
-//       }
-//     }
-//     .menu-btn-show,
-//     .menu-btn-hide {
-//       display: block;
-//     }
-//     #chk:checked ~ .menu-list {
-//       right: 0;
-//     }
-//   }
-// }
+.custom-box {
+  line-height: 50px;
+  padding: 0 30px;
+  display: inline-block;
+  .custom-btn {
+    color: #fff;
+    outline: none;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+}
 
 .is-collapse {
+  .logo-box {
+    width: 64px;
+    .logo-mini {
+      display: block;
+    }
+    .logo-lg {
+      display: none;
+    }
+  }
+  .nav-box {
+    margin-left: 64px;
+  }
   .menu-box {
     .menu-list {
       position: fixed;
@@ -96,3 +134,4 @@
     }
   }
 }
+

@@ -1,4 +1,4 @@
-import { get, post } from '../../../nfeng-utils/vue-ajax';
+import { get, post } from '../utils/vue-ajax';
 import { auth } from './apiconfig';
 import message from '../nfeng-pc-vue/nfeng-components/message';
 /**
@@ -6,36 +6,38 @@ import message from '../nfeng-pc-vue/nfeng-components/message';
  */
 class AuthModel {
     constructor() {
-        this.url = auth;
         this.avatar = '';
         this.username = '';
         this.password = '';
         this.checkPassword = '';
         this.token = '';
-        this.userList = [];
+        this.list = [];
     }
 
     signup() {
-        console.log(this);
-        // return new Promise((resolve) => {
-        //     const url = auth.signup;
-        //     const param = {
-        //         username: this.username,
-        //         password: this.password,
-        //     };
-        //     post(url, param).then((res) => {
-        //         resolve(res);
-        //     });
-        // });
+        const url = auth.signup;
+        const param = {
+            username: this.username,
+            password: this.password,
+        };
+        return new Promise((resolve) => {
+            post(url, param).then((res) => {
+                resolve(res);
+                message({
+                    type: 'success',
+                    message: res.msg,
+                });
+            });
+        });
     }
 
     login() {
+        const url = auth.login;
+        const param = {
+            username: this.username,
+            password: this.password,
+        };
         return new Promise((resolve) => {
-            const url = auth.login;
-            const param = {
-                username: this.username,
-                password: this.password,
-            };
             post(url, param).then((res) => {
                 resolve(res);
                 const info = res.data;
@@ -48,20 +50,23 @@ class AuthModel {
         });
     }
 
-    logout(callback) {
-        const url = this.url.logout;
+    static logout() {
+        const url = auth.logout;
         const param = {};
-        get(url, param).then((res) => {
-            window.localStorage.removeItem('userToken');
-            callback(res);
+        post(url, param).then(() => {
+            window.localStorage.removeItem('token');
         });
     }
 
-    static delUser(param, callback) {
-        console.log(param);
-        const url = auth.delUser;
-        post(url, param).then((res) => {
-            callback(res);
+    static delete(username) {
+        const url = auth.delete;
+        const param = {
+            username,
+        };
+        return new Promise((resolve) => {
+            post(url, param).then((res) => {
+                resolve(res);
+            });
         });
     }
 
@@ -74,10 +79,10 @@ class AuthModel {
         });
     }
 
-    getUserList() {
-        const url = auth.userList;
-        get(url).then((res) => {
-            this.userList = res.data;
+    getList() {
+        const url = auth.list;
+        post(url).then((res) => {
+            this.list = res.data;
         });
     }
 }

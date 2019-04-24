@@ -14,10 +14,9 @@
                 <nf-button type="primary" @click="onSubmit" size="mini">查询</nf-button>
             </nf-form-item>
         </nf-form>
-        <nf-table :data="AuthModel.userList" border>
-            <nf-table-column label="user" prop="user"></nf-table-column>
-            <nf-table-column label="icon" prop="icon"></nf-table-column>
-            <nf-table-column label="操作" width="300">
+        <nf-table :data="AuthModel.list" border>
+            <nf-table-column label="user" prop="username"></nf-table-column>
+            <nf-table-column label="操作">
                 <template slot-scope="scope">
                     <nf-button @click="handleClick(scope.row)" type="text" size="small">删除</nf-button>
                 </template>
@@ -58,7 +57,7 @@ export default {
                 cancelButtonText: '取消',
                 type: 'warning',
             }).then(() => {
-                this.AuthModel.delUser(row, (res) => {
+                this.AuthModel.delete(row.username).then((res) => {
                     if (res.code === 200) {
                         this.$message({
                             type: 'success',
@@ -79,7 +78,7 @@ export default {
         },
     },
     created() {
-        this.AuthModel.getUserList();
+        this.AuthModel.getList();
     },
 };
 </script>

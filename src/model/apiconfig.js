@@ -4,9 +4,9 @@ export const auth = {
     login: `${baseUrl}/auth/login`, // 登录
     logout: `${baseUrl}/auth/logOut`, // 退出
     signup: `${baseUrl}/auth/signup`, // 注册
-    delUser: `${baseUrl}/auth/delUser`, // 删除
-    userInfo: `${baseUrl}/auth/getUserInfo`, // 用户信息
-    userList: `${baseUrl}/auth/getUserList`, // 用户列表
+    delete: `${baseUrl}/auth/delete`, // 删除
+    info: `${baseUrl}/auth/info`, // 用户信息
+    list: `${baseUrl}/auth/list`, // 用户列表
 };
 
 export const global = {

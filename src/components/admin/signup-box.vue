@@ -1,15 +1,15 @@
 <template>
-    <nf-form class="signup-box" ref="signup-form" method="post" :model="authForm" :rules="rules">
+    <nf-form class="signup-box" ref="signup-form" method="post" :model="AuthModel" :rules="rules">
         <!-- <img src="https://cdn.nfeng.net.cn/upload/me.jpg" alt="" class="avatar"> -->
         <h1>Sign Up</h1>
         <nf-form-item prop="username">
-            <nf-input type="text" placeholder="Enter Username" v-model="authForm.username"></nf-input>
+            <nf-input type="text" placeholder="Enter Username" v-model="AuthModel.username"></nf-input>
         </nf-form-item>
         <nf-form-item prop="password">
-            <nf-input type="password" placeholder="Enter Password" v-model="authForm.password"></nf-input>
+            <nf-input type="password" placeholder="Enter Password" v-model="AuthModel.password"></nf-input>
         </nf-form-item>
         <nf-form-item prop="checkPassword">
-            <nf-input type="password" placeholder="Enter checkPassword" v-model="authForm.checkPassword"></nf-input>
+            <nf-input type="password" placeholder="Enter checkPassword" v-model="AuthModel.checkPassword"></nf-input>
         </nf-form-item>
         <nf-form-item>
             <nf-button type="primary" class="btn" @click="submit">Create Account</nf-button>
@@ -20,19 +20,14 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import AuthModel from '../../model/AuthModel';
 
 export default {
-    computed: {
-        ...mapGetters({
-            authForm: 'authForm',
-        }),
-    },
     data() {
         const validatePass = (rule, value, callback) => {
             if (value === '') {
                 callback('Please enter your checkPassword');
-            } else if (value !== this.authForm.password) {
+            } else if (value !== this.AuthModel.password) {
                 callback('The two passwords do not match');
             } else {
                 callback();
@@ -55,13 +50,16 @@ export default {
                     { validator: validatePass, trigger: 'blur' },
                 ],
             },
+            AuthModel: new AuthModel(),
         };
     },
     methods: {
         submit() {
             this.$refs['signup-form'].validate((valid) => {
                 if (valid) {
-                    this.$store.dispatch('signup', this.authForm);
+                    this.AuthModel.signup().then(() => {
+                        this.hideFlip();
+                    });
                 }
             });
         },
