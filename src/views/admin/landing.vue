@@ -11,19 +11,23 @@
             </template>
             <template v-else>
                 <h1>Welcome, stranger</h1>
-                <a @click="showLogin">Login Now</a>
+                <router-link to="/auth/login">Login Now</router-link>
             </template>
         </div>
     </div>
 </template>
 
 <script>
+import AuthModel from '../../model/AuthModel';
+
 export default {
-    props: ['AuthModel'],
-    methods: {
-        showLogin() {
-            this.$router.push('/login');
-        },
+    data() {
+        return {
+            AuthModel: new AuthModel(),
+        };
+    },
+    created() {
+        this.AuthModel.getInfo();
     },
 };
 </script>

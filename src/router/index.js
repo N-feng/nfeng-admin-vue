@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import web from '../views/web/index.vue';
-import admin from '../views/admin/main.vue';
+import main from '../views/admin/main.vue';
 import login from '../views/admin/login.vue';
 import signup from '../views/admin/signup.vue';
 import landing from '../views/admin/landing.vue';
@@ -29,17 +29,17 @@ export const mainRouter = [
     {
         path: '/admin',
         name: 'admin',
-        title: '后台',
         redirect: '/system/landing',
+        title: '后台',
     },
     {
-        path: '/login',
+        path: '/auth/login',
         name: 'login',
         component: login,
         title: '登录',
     },
     {
-        path: '/signup',
+        path: '/auth/signup',
         name: 'signup',
         component: signup,
         title: '注册',
@@ -49,7 +49,8 @@ export const mainRouter = [
 export const adminRouter = {
     path: '/system',
     name: 'system',
-    component: admin,
+    component: main,
+    redirect: '/system/landing',
     children: [
         {
             path: 'landing',

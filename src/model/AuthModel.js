@@ -1,4 +1,4 @@
-import { get, post } from '../utils/vue-ajax';
+import { post } from '../utils/vue-ajax';
 import { auth } from './apiconfig';
 import message from '../nfeng-pc-vue/nfeng-components/message';
 /**
@@ -50,14 +50,6 @@ class AuthModel {
         });
     }
 
-    static logout() {
-        const url = auth.logout;
-        const param = {};
-        post(url, param).then(() => {
-            window.localStorage.removeItem('token');
-        });
-    }
-
     static delete(username) {
         const url = auth.delete;
         const param = {
@@ -70,12 +62,11 @@ class AuthModel {
         });
     }
 
-    getUserInfo() {
-        const url = auth.userInfo;
-        get(url).then((res) => {
+    getInfo() {
+        const url = auth.info;
+        post(url).then((res) => {
             const info = res.data;
-            this.user = info.user;
-            this.icon = info.icon;
+            this.username = info.username;
         });
     }
 

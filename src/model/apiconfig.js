@@ -2,7 +2,6 @@ export const baseUrl = '';
 
 export const auth = {
     login: `${baseUrl}/auth/login`, // 登录
-    logout: `${baseUrl}/auth/logOut`, // 退出
     signup: `${baseUrl}/auth/signup`, // 注册
     delete: `${baseUrl}/auth/delete`, // 删除
     info: `${baseUrl}/auth/info`, // 用户信息

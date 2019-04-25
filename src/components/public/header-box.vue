@@ -1,8 +1,8 @@
 <template>
     <div class="header-box" :class="{ 'is-collapse': isCollapse }">
-        <div class="logo-box" @click="routerClick('/')">
-            <a class="logo-mini"><b>N</b>F</a>
-            <a class="logo-lg"><b>nfeng</b>.net.cn</a>
+        <div class="logo-box">
+            <router-link class="logo-mini" to="/"><b>N</b>F</router-link>
+            <router-link class="logo-lg" to="/"><b>nfeng</b>.net.cn</router-link>
         </div>
         <div class="nav-box">
             <label class="toggle-box" @click="toggleClick" v-if="false">
@@ -17,7 +17,7 @@
                     <label for="chk" class="menu-btn-hide">
                         <i class="fas fa-times"></i>
                     </label>
-                    <a v-for="(item, key) in menuList" :key="key" @click="routerClick(item)">{{item}}</a>
+                    <router-link v-for="(item, key) in menuList" :key="key" :to="item">{{item}}</router-link>
                 </div>
             </div>
             <div class="custom-box" v-if="!showMenu">
@@ -65,13 +65,9 @@ export default {
         };
     },
     methods: {
-        routerClick(item) {
-            this.$router.push({
-                path: item,
-            });
-        },
         logout() {
-            console.log('logOut');
+            window.localStorage.removeItem('token');
+            this.$router.push('/auth/login');
         },
     },
 };

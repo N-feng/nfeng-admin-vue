@@ -17,7 +17,7 @@
                 <nf-button type="primary" class="btn" @click="submit">Create Account</nf-button>
             </nf-form-item>
             <a>Lost your password?</a><br>
-            <a @click="routerClick('/login')">Already have one?</a>
+            <router-link to="/auth/login">Already have one?</router-link>
         </nf-form>
     </div>
 </template>
@@ -64,11 +64,6 @@ export default {
                         this.hideFlip();
                     });
                 }
-            });
-        },
-        routerClick(item) {
-            this.$router.push({
-                path: item,
             });
         },
     },

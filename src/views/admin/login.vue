@@ -13,7 +13,7 @@
                 <nf-button type="primary" class="btn" @click="submit">Login</nf-button>
             </nf-form-item>
             <a>Lost your password?</a><br>
-            <a @click="routerClick('/signup')">Don`t have an account</a>
+            <router-link to="/auth/signup">Don`t have an account</router-link>
         </nf-form>
     </div>
 </template>
@@ -43,14 +43,6 @@ export default {
                         this.$router.push('/system/landing');
                     });
                 }
-            });
-        },
-        showFlip() {
-            this.$emit('showFlip');
-        },
-        routerClick(item) {
-            this.$router.push({
-                path: item,
             });
         },
     },
