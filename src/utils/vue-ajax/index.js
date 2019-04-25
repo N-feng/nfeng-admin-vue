@@ -10,7 +10,7 @@ function ajaxAction(type, url, param, resolve) {
                 resolve(res);
             } else if (res.code === 401) {
                 message.error(res.msg);
-                window.location.href = '/Login';
+                window.location.href = '/login';
             } else {
                 message.error(res.msg);
             }

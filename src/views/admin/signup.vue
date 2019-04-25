@@ -1,22 +1,25 @@
 <template>
-    <nf-form class="signup-box" ref="signup-form" method="post" :model="AuthModel" :rules="rules">
-        <!-- <img src="https://cdn.nfeng.net.cn/upload/me.jpg" alt="" class="avatar"> -->
-        <h1>Sign Up</h1>
-        <nf-form-item prop="username">
-            <nf-input type="text" placeholder="Enter Username" v-model="AuthModel.username"></nf-input>
-        </nf-form-item>
-        <nf-form-item prop="password">
-            <nf-input type="password" placeholder="Enter Password" v-model="AuthModel.password"></nf-input>
-        </nf-form-item>
-        <nf-form-item prop="checkPassword">
-            <nf-input type="password" placeholder="Enter checkPassword" v-model="AuthModel.checkPassword"></nf-input>
-        </nf-form-item>
-        <nf-form-item>
-            <nf-button type="primary" class="btn" @click="submit">Create Account</nf-button>
-        </nf-form-item>
-        <a>Lost your password?</a><br>
-        <a @click="hideFlip">Already have one?</a>
-    </nf-form>
+    <div class="signup-page">
+        <nf-form class="signup-form" ref="signup-form" method="post" :model="AuthModel" :rules="rules" autocomplete="off">
+            <!-- <img src="https://cdn.nfeng.net.cn/upload/me.jpg" alt="" class="avatar"> -->
+            <h1>Sign Up</h1>
+            <input type="password" style="position:absolute;top:-999px;">
+            <nf-form-item prop="username">
+                <nf-input type="text" placeholder="Enter Username" v-model="AuthModel.username" autocomplete="off"></nf-input>
+            </nf-form-item>
+            <nf-form-item prop="password">
+                <nf-input type="password" placeholder="Enter Password" v-model="AuthModel.password"></nf-input>
+            </nf-form-item>
+            <nf-form-item prop="checkPassword">
+                <nf-input type="password" placeholder="Enter checkPassword" v-model="AuthModel.checkPassword"></nf-input>
+            </nf-form-item>
+            <nf-form-item>
+                <nf-button type="primary" class="btn" @click="submit">Create Account</nf-button>
+            </nf-form-item>
+            <a>Lost your password?</a><br>
+            <a @click="routerClick('/login')">Already have one?</a>
+        </nf-form>
+    </div>
 </template>
 
 <script>
@@ -63,9 +66,12 @@ export default {
                 }
             });
         },
-        hideFlip() {
-            this.$emit('hideFlip');
+        routerClick(item) {
+            this.$router.push({
+                path: item,
+            });
         },
     },
 };
 </script>
+

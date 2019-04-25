@@ -22,7 +22,7 @@ export default {
     props: ['AuthModel'],
     methods: {
         showLogin() {
-            this.$router.push('/Login');
+            this.$router.push('/login');
         },
     },
 };

@@ -1,14 +1,14 @@
 @import './public/reset.scss';
 @import './public/handle.scss';
 @import './public/header-box.scss';
+@import './public/flip-box.scss';
+@import './public/transition-box.scss';
 
 @import './web/social-box.scss';
 @import './web/card-box.scss';
 @import './web/web-page.scss';
 
 @import './admin/layout.scss';
-@import './admin/flip-box.scss';
-@import './admin/login-box.scss';
-@import './admin/signup-box.scss';
-@import './admin/transition-box.scss';
+@import './admin/login-page.scss';
+@import './admin/signup-page.scss';
 @import './admin/landing-page.scss';
