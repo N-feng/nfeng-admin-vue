@@ -16,7 +16,12 @@ export const global = {
     deleteObject: `${baseUrl}/global/deleteObject`,
 };
 
+export const menu = {
+    getMenu: `${baseUrl}/menu/getMenu`,
+};
+
 export default {
     auth,
     global,
+    menu,
 };

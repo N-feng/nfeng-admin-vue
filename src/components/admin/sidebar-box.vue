@@ -5,11 +5,11 @@
             background-color="#545c64" 
             text-color="#fff" 
             active-text-color="#ffd04b"
-            default-active="/user/list" 
+            default-active="userlist" 
             :router="true" 
             :collapse="isCollapse" 
             @select="select">
-            <nf-menu-item v-for="(el,key) in adminRouter.children" :key="key" :index="el.path">
+            <nf-menu-item v-for="(el,key) in MenuModel.list" :key="key" :index="el.path">
                 <i :class="iconClass[key]"></i>
                 <span slot="title">{{ el.title }}</span>
             </nf-menu-item>
@@ -19,6 +19,7 @@
 
 <script>
 import { adminRouter } from '../../router';
+import MenuModel from '../../model/MenuModel';
 
 export default {
     props: {
@@ -28,12 +29,16 @@ export default {
         return {
             adminRouter,
             iconClass: ['el-icon-location', 'el-icon-menu', 'el-icon-document', 'el-icon-setting'],
+            MenuModel: new MenuModel(),
         };
     },
     methods: {
         select() {
             this.$emit('select');
         },
+    },
+    created() {
+        this.MenuModel.getMenu();
     },
 };
 </script>

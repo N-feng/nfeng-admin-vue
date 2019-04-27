@@ -4,16 +4,16 @@
             <img :src="AuthModel.avatar||`https://cdn.nfeng.net.cn/upload/me.jpg`" alt="" class="avatar">
             <h1>Login Here</h1>
             <nf-form-item prop="username">
-                <nf-input type="text" placeholder="Enter Username" v-model="AuthModel.username"></nf-input>
+                <nf-input type="text" placeholder="Username" v-model="AuthModel.username"></nf-input>
             </nf-form-item>
             <nf-form-item prop="password">
-                <nf-input type="password" placeholder="Enter Password" v-model="AuthModel.password"></nf-input>
+                <nf-input type="password" placeholder="Password" v-model="AuthModel.password"></nf-input>
             </nf-form-item>
             <nf-form-item>
                 <nf-button type="primary" class="btn" @click="submit">Login</nf-button>
             </nf-form-item>
             <a>Lost your password?</a><br>
-            <router-link to="/auth/signup">Don`t have an account</router-link>
+            <router-link to="/signup">Don`t have an account</router-link>
         </nf-form>
     </div>
 </template>

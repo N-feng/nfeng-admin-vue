@@ -5,19 +5,19 @@
             <h1>Sign Up</h1>
             <input type="password" style="position:absolute;top:-999px;">
             <nf-form-item prop="username">
-                <nf-input type="text" placeholder="Enter Username" v-model="AuthModel.username" autocomplete="off"></nf-input>
+                <nf-input type="text" placeholder="Username" v-model="AuthModel.username" autocomplete="off"></nf-input>
             </nf-form-item>
             <nf-form-item prop="password">
-                <nf-input type="password" placeholder="Enter Password" v-model="AuthModel.password"></nf-input>
+                <nf-input type="password" placeholder="Password" v-model="AuthModel.password"></nf-input>
             </nf-form-item>
             <nf-form-item prop="checkPassword">
-                <nf-input type="password" placeholder="Enter checkPassword" v-model="AuthModel.checkPassword"></nf-input>
+                <nf-input type="password" placeholder="checkPassword" v-model="AuthModel.checkPassword"></nf-input>
             </nf-form-item>
             <nf-form-item>
                 <nf-button type="primary" class="btn" @click="submit">Create Account</nf-button>
             </nf-form-item>
             <a>Lost your password?</a><br>
-            <router-link to="/auth/login">Already have one?</router-link>
+            <router-link to="/login">Already have one?</router-link>
         </nf-form>
     </div>
 </template>

@@ -11,7 +11,7 @@
             </template>
             <template v-else>
                 <h1>Welcome, stranger</h1>
-                <router-link to="/auth/login">Login Now</router-link>
+                <router-link to="/login">Login Now</router-link>
             </template>
         </div>
     </div>
