@@ -20,6 +20,10 @@ export const menu = {
     getMenu: `${baseUrl}/menu/getMenu`,
 };
 
+export const role = {
+    list: `${baseUrl}/role/list`,
+};
+
 export default {
     auth,
     global,

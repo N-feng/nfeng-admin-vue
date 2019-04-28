@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import AuthModel from '../../model/AuthModel';
+import AuthModel from '../../../model/AuthModel';
 
 export default {
     data() {

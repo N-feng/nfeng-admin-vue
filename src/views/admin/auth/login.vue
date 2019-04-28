@@ -13,13 +13,13 @@
                 <nf-button type="primary" class="btn" @click="submit">Login</nf-button>
             </nf-form-item>
             <a>Lost your password?</a><br>
-            <router-link to="/signup">Don`t have an account</router-link>
+            <router-link to="/auth/signup">Don`t have an account</router-link>
         </nf-form>
     </div>
 </template>
 
 <script>
-import AuthModel from '../../model/AuthModel';
+import AuthModel from '../../../model/AuthModel';
 
 export default {
     data() {
@@ -40,7 +40,7 @@ export default {
             this.$refs['login-form'].validate((valid) => {
                 if (valid) {
                     this.AuthModel.login().then(() => {
-                        this.$router.push('/system/landing');
+                        this.$router.push('/auth/landing');
                     });
                 }
             });

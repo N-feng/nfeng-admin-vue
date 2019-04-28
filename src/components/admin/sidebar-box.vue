@@ -9,7 +9,7 @@
             :router="true" 
             :collapse="isCollapse" 
             @select="select">
-            <nf-menu-item v-for="(el,key) in MenuModel.list" :key="key" :index="el.path">
+            <nf-menu-item v-for="(el,key) in RoleModel.menuList" :key="key" :index="el.path">
                 <i :class="iconClass[key]"></i>
                 <span slot="title">{{ el.title }}</span>
             </nf-menu-item>
@@ -18,8 +18,7 @@
 </template>
 
 <script>
-import { adminRouter } from '../../router';
-import MenuModel from '../../model/MenuModel';
+import RoleModel from '../../model/RoleModel';
 
 export default {
     props: {
@@ -27,9 +26,8 @@ export default {
     },
     data() {
         return {
-            adminRouter,
             iconClass: ['el-icon-location', 'el-icon-menu', 'el-icon-document', 'el-icon-setting'],
-            MenuModel: new MenuModel(),
+            RoleModel: new RoleModel(),
         };
     },
     methods: {
@@ -38,7 +36,7 @@ export default {
         },
     },
     created() {
-        this.MenuModel.getMenu();
+        this.RoleModel.getList();
     },
 };
 </script>

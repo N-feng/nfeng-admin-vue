@@ -17,13 +17,13 @@
                 <nf-button type="primary" class="btn" @click="submit">Create Account</nf-button>
             </nf-form-item>
             <a>Lost your password?</a><br>
-            <router-link to="/login">Already have one?</router-link>
+            <router-link to="/auth/login">Already have one?</router-link>
         </nf-form>
     </div>
 </template>
 
 <script>
-import AuthModel from '../../model/AuthModel';
+import AuthModel from '../../../model/AuthModel';
 
 export default {
     data() {

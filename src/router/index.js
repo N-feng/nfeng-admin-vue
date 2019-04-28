@@ -1,14 +1,14 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Page404 from '../views/public/404.vue';
 import web from '../views/web/index.vue';
-import main from '../views/admin/main.vue';
-import login from '../views/admin/login.vue';
-import signup from '../views/admin/signup.vue';
-import landing from '../views/admin/landing.vue';
-import userlist from '../views/admin/userlist.vue';
+import landing from '../views/admin/public/landing.vue';
+import main from '../views/admin/public/main.vue';
+import login from '../views/admin/auth/login.vue';
+import signup from '../views/admin/auth/signup.vue';
+import authList from '../views/admin/auth/list.vue';
 import roleList from '../views/admin/role/list.vue';
 import roleCreate from '../views/admin/role/create.vue';
-import Page404 from '../views/public/404.vue';
 
 Vue.use(Router);
 
@@ -31,58 +31,40 @@ export const mainRouter = [
     {
         path: '/admin',
         name: 'admin',
-        redirect: '/system/landing',
+        redirect: '/auth/landing',
         title: '后台',
     },
     {
-        path: '/login',
+        path: '/auth/login',
         name: 'login',
         title: '登录',
         component: login,
     },
     {
-        path: '/signup',
+        path: '/auth/signup',
         name: 'signup',
         title: '注册',
         component: signup,
     },
 ];
 
-export const adminRouter = {
-    path: '/system',
-    name: 'system',
-    redirect: '/system/landing',
+export const authRouter = {
+    path: '/auth',
+    name: 'auth',
+    redirect: '/auth/landing',
     component: main,
     children: [
         {
-            path: '/system/landing',
+            path: 'landing',
             name: 'landing',
             title: '登陆页',
             component: landing,
         },
         {
-            path: '/system/role',
-            name: 'role',
-            redirect: '/system/role/list',
-            title: '角色管理',
-        },
-        {
-            path: '/system/role/list',
-            name: 'roleList',
-            title: '角色列表',
-            component: roleList,
-        },
-        {
-            path: '/system/role/create',
-            name: 'roleCreate',
-            title: '角色创建',
-            component: roleCreate,
-        },
-        {
-            path: '/system/userlist',
-            name: 'userlist',
+            path: 'list',
+            name: 'list',
             title: '用户列表',
-            component: userlist,
+            component: authList,
         },
         {
             path: 'landinga',
@@ -96,12 +78,28 @@ export const adminRouter = {
 export const roleRouter = {
     path: '/role',
     name: 'role',
+    redirect: '/role/list',
+    title: '角色管理',
     component: main,
-    children: [],
+    children: [
+        {
+            path: 'list',
+            name: 'roleList',
+            title: '角色列表',
+            component: roleList,
+        },
+        {
+            path: 'create',
+            name: 'roleCreate',
+            title: '角色创建',
+            component: roleCreate,
+        },
+    ],
 };
 
 export const routers = [
-    adminRouter,
+    authRouter,
+    roleRouter,
     ...mainRouter,
     page404,
 ];

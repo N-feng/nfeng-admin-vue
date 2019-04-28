@@ -11,14 +11,14 @@
             </template>
             <template v-else>
                 <h1>Welcome, stranger</h1>
-                <router-link to="/login">Login Now</router-link>
+                <router-link to="/auth/login">Login Now</router-link>
             </template>
         </div>
     </div>
 </template>
 
 <script>
-import AuthModel from '../../model/AuthModel';
+import AuthModel from '../../../model/AuthModel';
 
 export default {
     data() {
