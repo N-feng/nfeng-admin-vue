@@ -40,11 +40,11 @@ export default {
             rules: {
                 username: [
                     { required: true, message: 'Please enter your username', trigger: 'blur' },
-                // {
-                //     pattern: /^(1\d{10})$/,
-                //     message: 'Please enter your username correctly',
-                //     trigger: 'blur',
-                // },
+                    // {
+                    //     pattern: /^(1\d{10})$/,
+                    //     message: 'Please enter your username correctly',
+                    //     trigger: 'blur',
+                    // },
                 ],
                 password: [
                     { required: true, message: 'Please enter your password', trigger: 'blur' },

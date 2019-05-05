@@ -1,7 +1,7 @@
 import { post } from '../utils/vue-ajax';
 import { role } from './apiconfig';
 
-function getMenuList(list) {
+function getSideList(list) {
     const arrLevelOne = [];
     const arrLevelTwo = [];
     // 组装一级菜单
@@ -24,26 +24,40 @@ function getMenuList(list) {
     return arrLevelOne;
 }
 
+function getPathList(list) {
+    const arr = [];
+    list.forEach((element) => {
+        arr.push(element.path);
+    });
+    return arr;
+}
+
 class RoleModel {
     constructor() {
-        this.rolename = '';
+        this.roleName = '';
         this.roleType = '';
-        this.rolemenu = '';
+        this.roleMenu = [];
         this.permissions = '';
 
-        this.roleTypeList = [];
-        this.roleMenuList = [];
+        this.typeList = [];
+        this.sideList = [];
         this.menuList = [];
+        this.pathList = [];
     }
 
     getList() {
         const url = role.list;
         post(url).then((res) => {
             const info = res.data;
-            this.roleTypeList = info.roleTypeList;
-            this.roleMenuList = info.roleMenuList;
-            this.menuList = getMenuList(info.roleMenuList);
+            this.typeList = info.typeList;
+            this.menuList = info.menuList;
+            this.sideList = getSideList(info.menuList);
+            this.pathList = getPathList(info.menuList);
         });
+    }
+
+    add() {
+        console.log(this);
     }
 }
 

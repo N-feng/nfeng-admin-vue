@@ -45,9 +45,12 @@ function getValidationMethod(rule) {
 }
 
 function validate(model, rules, callback) {
-    const objKeys = Object.keys(model);
+    if (!rules.length) {
+        callback();
+    }
     let value;
-    objKeys.forEach((key) => {
+    const keys = Object.keys(model);
+    keys.forEach((key) => {
         value = model[key];
     });
     rules.forEach((rule) => {
