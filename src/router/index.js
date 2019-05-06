@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import Page404 from '../views/public/404.vue';
 import web from '../views/web/index.vue';
 import landing from '../views/admin/public/landing.vue';
-import main from '../views/admin/public/main.vue';
+import main from '../components/admin/main-box.vue';
 import login from '../views/admin/auth/login.vue';
 import signup from '../views/admin/auth/signup.vue';
 import authList from '../views/admin/auth/list.vue';

@@ -1,9 +1,9 @@
 export const baseUrl = '';
 
 export const auth = {
-    login: `${baseUrl}/auth/login`, // 登录
     signup: `${baseUrl}/auth/signup`, // 注册
     delete: `${baseUrl}/auth/delete`, // 删除
+    login: `${baseUrl}/auth/login`, // 登录
     info: `${baseUrl}/auth/info`, // 用户信息
     list: `${baseUrl}/auth/list`, // 用户列表
 };
@@ -21,6 +21,9 @@ export const menu = {
 };
 
 export const role = {
+    add: `${baseUrl}/role/add`,
+    delete: `${baseUrl}/role/delete`,
+    option: `${baseUrl}/role/option`,
     list: `${baseUrl}/role/list`,
 };
 

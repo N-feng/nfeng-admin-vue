@@ -2,10 +2,10 @@
     <nf-box title="roleCreate" border>
         <nf-form label-width="100px" ref="role-form" :model="RoleModel" :rules="rules">
             <nf-form-item prop="roleName" label="RoleName:">
-                <nf-input v-model="RoleModel.roleName" type="text" placeholder="RoleName"></nf-input>
+                <nf-input v-model="RoleModel.roleName" type="text" placeholder="RoleName" size="small"></nf-input>
             </nf-form-item>
             <nf-form-item prop="roleType" label="RoleType:">
-                <nf-select v-model="RoleModel.roleType" placeholder="RoleType">
+                <nf-select v-model="RoleModel.roleType" placeholder="RoleType" size="small">
                     <nf-option v-for="(item,key) in RoleModel.typeList" :key="key" :label="item.name" :value="item.value"></nf-option>
                 </nf-select>
             </nf-form-item>
@@ -15,17 +15,17 @@
                     <nf-checkbox v-for="(item,key) in RoleModel.menuList" :label="item.path" :key="key">{{item.title}}</nf-checkbox>
                 </nf-checkbox-group>
             </nf-form-item>
-            <nf-form-item prop="permissions" label="Permissions:">
+            <!-- <nf-form-item prop="permissions" label="Permissions:">
                 <nf-select v-model="RoleModel.permissions" placeholder="Permissions">
                     <nf-option v-for="(item,key) in RoleModel.permissionsList" :key="key" :label="item.title" :value="item.path"></nf-option>
                 </nf-select>
-            </nf-form-item>
+            </nf-form-item> -->
         </nf-form>
         <div slot="footer">
             <router-link to="list">
-                <nf-button>Cancel</nf-button>
+                <nf-button size="small">Cancel</nf-button>
             </router-link>
-            <nf-button type="primary" class="pull-right" @click="submit">Submit</nf-button>
+            <nf-button type="primary" class="pull-right" @click="submit" size="small">Submit</nf-button>
         </div>
     </nf-box>
 </template>
@@ -55,9 +55,7 @@ export default {
     methods: {
         submit() {
             this.$refs['role-form'].validate((valid) => {
-                console.log(valid);
                 if (valid) {
-                    console.log(this.RoleModel);
                     this.RoleModel.add().then(() => {
                         this.$router.push('/role/list');
                     });
@@ -65,7 +63,7 @@ export default {
             });
         },
         handleCheckAllChange(val) {
-            this.RoleModel.rolemenu = val ? this.RoleModel.pathList : [];
+            this.RoleModel.roleMenu = val ? this.RoleModel.pathList : [];
             this.isIndeterminate = false;
         },
         handleCheckedCitiesChange(value) {
@@ -76,7 +74,7 @@ export default {
         },
     },
     created() {
-        this.RoleModel.getList();
+        this.RoleModel.getOption();
     },
 };
 </script>

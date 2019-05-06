@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import headerBox from '../../../components/public/header-box.vue';
-import sidebarBox from '../../../components/admin/sidebar-box.vue';
-import { addClass, removeClass } from '../../../nfeng-pc-vue/nfeng-utils/utils/dom';
-import { maxWidth } from '../../../utils';
+import headerBox from '../public/header-box.vue';
+import sidebarBox from './sidebar-box.vue';
+import { addClass, removeClass } from '../../nfeng-pc-vue/nfeng-utils/utils/dom';
+import { maxWidth } from '../../utils';
 
 export default {
     components: {

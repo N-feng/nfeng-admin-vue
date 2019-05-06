@@ -31,6 +31,18 @@ class AuthModel {
         });
     }
 
+    static delete(username) {
+        const url = auth.delete;
+        const param = {
+            username,
+        };
+        return new Promise((resolve) => {
+            post(url, param).then((res) => {
+                resolve(res);
+            });
+        });
+    }
+
     login() {
         const url = auth.login;
         const param = {
@@ -46,18 +58,6 @@ class AuthModel {
                     type: 'success',
                     message: res.msg,
                 });
-            });
-        });
-    }
-
-    static delete(username) {
-        const url = auth.delete;
-        const param = {
-            username,
-        };
-        return new Promise((resolve) => {
-            post(url, param).then((res) => {
-                resolve(res);
             });
         });
     }

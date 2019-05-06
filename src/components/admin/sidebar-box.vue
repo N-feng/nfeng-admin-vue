@@ -36,7 +36,7 @@ export default {
         },
     },
     created() {
-        this.RoleModel.getList();
+        this.RoleModel.getOption();
     },
 };
 </script>

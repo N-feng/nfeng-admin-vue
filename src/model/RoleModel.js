@@ -37,16 +37,45 @@ class RoleModel {
         this.roleName = '';
         this.roleType = '';
         this.roleMenu = [];
-        this.permissions = '';
+        this.permissions = [];
 
         this.typeList = [];
         this.sideList = [];
         this.menuList = [];
         this.pathList = [];
+
+        this.roleList = [];
     }
 
-    getList() {
-        const url = role.list;
+    add() {
+        const url = role.add;
+        const param = {
+            roleName: this.roleName,
+            roleType: this.roleType,
+            roleMenu: this.roleMenu,
+            permissions: this.permissions,
+        };
+        return new Promise((resolve) => {
+            post(url, param).then((res) => {
+                resolve(res);
+            });
+        });
+    }
+
+    static delete(roleName) {
+        const url = role.delete;
+        const param = {
+            roleName,
+        };
+        return new Promise((resolve) => {
+            post(url, param).then((res) => {
+                resolve(res);
+            });
+        });
+    }
+
+    getOption() {
+        const url = role.option;
         post(url).then((res) => {
             const info = res.data;
             this.typeList = info.typeList;
@@ -56,8 +85,12 @@ class RoleModel {
         });
     }
 
-    add() {
-        console.log(this);
+    getList() {
+        const url = role.list;
+        post(url).then((res) => {
+            const info = res.data;
+            this.roleList = info;
+        });
     }
 }
 

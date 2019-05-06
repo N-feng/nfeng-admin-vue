@@ -57,13 +57,13 @@ export default {
                 cancelButtonText: '取消',
                 type: 'warning',
             }).then(() => {
-                this.AuthModel.delete(row.username).then((res) => {
+                AuthModel.delete(row.username).then((res) => {
                     if (res.code === 200) {
                         this.$message({
                             type: 'success',
                             message: res.msg,
                         });
-                        this.auth.getUserList();
+                        this.AuthModel.getUserList();
                     }
                 });
             }).catch(() => {
