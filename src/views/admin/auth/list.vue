@@ -1,6 +1,11 @@
 <template>
     <nf-box title="userList" border>
-        <nf-form :inline="true" :model="formInline" class="demo-form-inline">
+        <div slot="header__tools">
+            <router-link to="/auth/signup">
+                <nf-button type="primary" size="mini">new</nf-button>
+            </router-link>
+        </div>
+        <!-- <nf-form :inline="true" :model="formInline" class="demo-form-inline">
             <nf-form-item label="审批人">
                 <nf-input v-model="formInline.user" placeholder="审批人" size="mini"></nf-input>
             </nf-form-item>
@@ -13,17 +18,18 @@
             <nf-form-item>
                 <nf-button type="primary" @click="onSubmit" size="mini">查询</nf-button>
             </nf-form-item>
-        </nf-form>
+        </nf-form> -->
         <nf-table :data="AuthModel.list" border>
             <nf-table-column label="user" prop="username"></nf-table-column>
+            <nf-table-column label="roleName" prop="roleName"></nf-table-column>
             <nf-table-column label="操作">
                 <template slot-scope="scope">
                     <nf-button @click="handleClick(scope.row)" type="text" size="small">删除</nf-button>
                 </template>
             </nf-table-column>
         </nf-table>
-        <nf-pagination class="mt10 tr" background :current-page="1" :page-size="100" layout="total, sizes, prev, pager, next, jumper"
-            :total="400"></nf-pagination>
+        <!-- <nf-pagination class="mt10 tr" background :current-page="1" :page-size="100" layout="total, sizes, prev, pager, next, jumper"
+            :total="400"></nf-pagination> -->
     </nf-box>
 </template>
 
@@ -63,7 +69,7 @@ export default {
                             type: 'success',
                             message: res.msg,
                         });
-                        this.AuthModel.getUserList();
+                        this.AuthModel.getList();
                     }
                 });
             }).catch(() => {

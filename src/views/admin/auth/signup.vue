@@ -13,6 +13,11 @@
             <nf-form-item prop="checkPassword">
                 <nf-input type="password" placeholder="checkPassword" v-model="AuthModel.checkPassword"></nf-input>
             </nf-form-item>
+            <!-- <nf-form-item prop="roleName">
+                <nf-select v-model="AuthModel.roleName" placeholder="RoleType">
+                    <nf-option v-for="(item,key) in RoleModel.roleList" :key="key" :label="item.roleName" :value="item.roleName"></nf-option>
+                </nf-select>
+            </nf-form-item> -->
             <nf-form-item>
                 <nf-button type="primary" class="btn" @click="submit">Create Account</nf-button>
             </nf-form-item>
@@ -24,6 +29,7 @@
 
 <script>
 import AuthModel from '../../../model/AuthModel';
+import RoleModel from '../../../model/RoleModel';
 
 export default {
     data() {
@@ -54,6 +60,7 @@ export default {
                 ],
             },
             AuthModel: new AuthModel(),
+            RoleModel: new RoleModel(),
         };
     },
     methods: {
@@ -61,11 +68,14 @@ export default {
             this.$refs['signup-form'].validate((valid) => {
                 if (valid) {
                     this.AuthModel.signup().then(() => {
-                        this.hideFlip();
+                        this.$router.push('/auth/login');
                     });
                 }
             });
         },
+    },
+    created() {
+        this.RoleModel.getList();
     },
 };
 </script>

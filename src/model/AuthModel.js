@@ -10,6 +10,8 @@ class AuthModel {
         this.username = '';
         this.password = '';
         this.checkPassword = '';
+        this.roleName = 'member';
+
         this.token = '';
         this.list = [];
     }
@@ -19,6 +21,7 @@ class AuthModel {
         const param = {
             username: this.username,
             password: this.password,
+            roleName: this.roleName,
         };
         return new Promise((resolve) => {
             post(url, param).then((res) => {
