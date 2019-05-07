@@ -68,9 +68,9 @@ export default {
         },
         handleCheckedCitiesChange(value) {
             const checkedCount = value.length;
-            this.checkAll = checkedCount === this.RoleModel.pathList.length;
-            this.isIndeterminate = checkedCount > 0
-                                    && checkedCount < this.RoleModel.pathList.length;
+            const { pathList } = this.RoleModel;
+            this.checkAll = checkedCount === pathList.length;
+            this.isIndeterminate = checkedCount > 0 && checkedCount < pathList.length;
         },
     },
     created() {
@@ -78,7 +78,7 @@ export default {
         if (this.$route.query.roleName) {
             this.RoleModel.getDetail(this.$route.query.roleName).then(() => {
                 this.checkAll = this.RoleModel.roleMenu.length === this.RoleModel.pathList.length;
-                this.isIndeterminate = this.RoleModel.roleMenu.length > 0;
+                this.isIndeterminate = this.RoleModel.roleMenu.length > 0 && !this.checkAll;
             });
         }
     },
