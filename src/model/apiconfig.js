@@ -1,4 +1,5 @@
-export const baseUrl = '';
+export const baseUrl = process.env.NODE_ENV === 'production' ? '/api' : '';
+console.log(`baseUrl:${baseUrl}`);
 
 export const auth = {
     signup: `${baseUrl}/auth/signup`, // 注册
