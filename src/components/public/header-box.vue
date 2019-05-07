@@ -36,7 +36,7 @@
                     </div>
                     <a class="custom-btn" href="javascript:;" slot="reference">
                         <img src="" alt="">
-                        <span>nfeng</span>
+                        <span>{{username}}</span>
                     </a>
                 </nf-popover>
             </div>
@@ -45,6 +45,8 @@
 </template>
 
 <script>
+import AuthModel from '../../model/AuthModel';
+
 export default {
     props: {
         showMenu: {
@@ -61,14 +63,18 @@ export default {
             visible: false,
             menuShow: false,
             menuList: ['Works', 'Blog', 'Tools', 'Admin'],
-
+            AuthModel: new AuthModel(),
+            username: '',
         };
     },
     methods: {
         logout() {
-            window.localStorage.removeItem('token');
+            AuthModel.logout();
             this.$router.push('/auth/login');
         },
+    },
+    created() {
+        this.username = window.localStorage.getItem('username');
     },
 };
 </script>

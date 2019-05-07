@@ -8,10 +8,17 @@
         <nf-table :data="RoleModel.roleList" border>
             <nf-table-column label="roleName" prop="roleName"></nf-table-column>
             <nf-table-column label="roleType" prop="roleType"></nf-table-column>
-            <nf-table-column label="roleMenu" prop="roleMenu"></nf-table-column>
+            <nf-table-column label="roleMenu">
+                <template slot-scope="scope">
+                    <span>{{scope.row.roleMenuList | formatList('title')}}</span>
+                </template>
+            </nf-table-column>
             <nf-table-column label="permissions" prop="permissions"></nf-table-column>
             <nf-table-column label="操作">
                 <template slot-scope="scope">
+                    <nf-button type="text" size="small">
+                        <router-link :to="{ path: 'create', query:{ roleName: scope.row.roleName }}">编辑</router-link>
+                    </nf-button>
                     <nf-button @click="handleClick(scope.row)" type="text" size="small">删除</nf-button>
                 </template>
             </nf-table-column>

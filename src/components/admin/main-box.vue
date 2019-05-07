@@ -1,7 +1,7 @@
 <template>
     <div class="nf-main">
         <header-box :showMenu="false" :isCollapse="isCollapse"></header-box>
-        <sidebar-box :isCollapse="isCollapse"></sidebar-box>
+        <sidebar-box :isCollapse="isCollapse" :menuList="AuthModel.menuList"></sidebar-box>
         <div class="nf-main-wrapper" :class="{ 'is-collapse': isCollapse }">
             <!-- <div class="content-header">
                 <nf-breadcrumb>
@@ -22,6 +22,7 @@ import headerBox from '../public/header-box.vue';
 import sidebarBox from './sidebar-box.vue';
 import { addClass, removeClass } from '../../nfeng-pc-vue/nfeng-utils/utils/dom';
 import { maxWidth } from '../../utils';
+import AuthModel from '../../model/AuthModel';
 
 export default {
     components: {
@@ -33,6 +34,7 @@ export default {
             isCollapse: false,
             parentMenu: '',
             subMenu: '',
+            AuthModel: new AuthModel(),
         };
     },
     methods: {
@@ -46,6 +48,7 @@ export default {
         // document.getElementsByTagName("body")[0].className = "nf-main__page";
         addClass(document.body, 'skin-blue');
         maxWidth(800, this.maxWidth);
+        this.AuthModel.getInfo();
     },
     beforeDestroy() {
         // document.body.removeAttribute("class", "nf-main__page");

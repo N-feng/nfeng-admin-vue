@@ -9,7 +9,7 @@
             :router="true" 
             :collapse="isCollapse" 
             @select="select">
-            <nf-menu-item v-for="(el,key) in RoleModel.menuList" :key="key" :index="el.path">
+            <nf-menu-item v-for="(el,key) in menuList" :key="key" :index="el.path">
                 <i :class="iconClass[key]"></i>
                 <span slot="title">{{ el.title }}</span>
             </nf-menu-item>
@@ -18,25 +18,20 @@
 </template>
 
 <script>
-import RoleModel from '../../model/RoleModel';
-
 export default {
     props: {
         isCollapse: Boolean,
+        menuList: Array,
     },
     data() {
         return {
             iconClass: ['el-icon-location', 'el-icon-menu', 'el-icon-document', 'el-icon-setting'],
-            RoleModel: new RoleModel(),
         };
     },
     methods: {
         select() {
             this.$emit('select');
         },
-    },
-    created() {
-        this.RoleModel.getOption();
     },
 };
 </script>

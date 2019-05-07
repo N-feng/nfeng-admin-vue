@@ -21,8 +21,9 @@ export const menu = {
 };
 
 export const role = {
-    add: `${baseUrl}/role/add`,
+    save: `${baseUrl}/role/save`,
     delete: `${baseUrl}/role/delete`,
+    detail: `${baseUrl}/role/detail`,
     option: `${baseUrl}/role/option`,
     list: `${baseUrl}/role/list`,
 };

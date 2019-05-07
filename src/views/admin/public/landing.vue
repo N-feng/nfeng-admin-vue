@@ -6,8 +6,8 @@
             <span class="s3"></span>
         </div>
         <div class="page-content">
-            <template v-if="AuthModel">
-                <h1>Welcome, {{AuthModel.username}}</h1>
+            <template v-if="username">
+                <h1>Welcome, {{username}}</h1>
             </template>
             <template v-else>
                 <h1>Welcome, stranger</h1>
@@ -18,16 +18,14 @@
 </template>
 
 <script>
-import AuthModel from '../../../model/AuthModel';
-
 export default {
     data() {
         return {
-            AuthModel: new AuthModel(),
+            username: '',
         };
     },
     created() {
-        this.AuthModel.getInfo();
+        this.username = window.localStorage.getItem('username');
     },
 };
 </script>

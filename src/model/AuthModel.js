@@ -1,9 +1,30 @@
 import { post } from '../utils/vue-ajax';
 import { auth } from './apiconfig';
 import message from '../nfeng-pc-vue/nfeng-components/message';
-/**
- * 用户 model
- */
+
+function getSideList(list) {
+    const arrLevelOne = [];
+    const arrLevelTwo = [];
+    // 组装一级菜单
+    list.forEach((element) => {
+        if (!element.parentId) {
+            arrLevelOne.push(element);
+        } else {
+            arrLevelTwo.push(element);
+        }
+    });
+    // 组装二级菜单
+    arrLevelOne.forEach((element) => {
+        element.children = [];
+        arrLevelTwo.forEach((item) => {
+            if (element.id === item.parentId) {
+                element.children.push(item);
+            }
+        });
+    });
+    return arrLevelOne;
+}
+
 class AuthModel {
     constructor() {
         this.avatar = '';
@@ -11,6 +32,7 @@ class AuthModel {
         this.password = '';
         this.checkPassword = '';
         this.roleName = 'member';
+        this.menuList = [];
 
         this.token = '';
         this.list = [];
@@ -57,6 +79,7 @@ class AuthModel {
                 resolve(res);
                 const info = res.data;
                 window.localStorage.setItem('token', info.token);
+                window.localStorage.setItem('username', info.username);
                 message({
                     type: 'success',
                     message: res.msg,
@@ -65,11 +88,20 @@ class AuthModel {
         });
     }
 
+    static logout() {
+        window.localStorage.removeItem('token');
+        window.localStorage.removeItem('username');
+    }
+
     getInfo() {
         const url = auth.info;
-        post(url).then((res) => {
-            const info = res.data;
-            this.username = info.username;
+        return new Promise((resolve) => {
+            post(url).then((res) => {
+                const info = res.data;
+                this.username = info.username;
+                this.menuList = getSideList(info.menuList);
+                resolve(res);
+            });
         });
     }
 

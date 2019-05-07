@@ -56,7 +56,7 @@ export default {
         submit() {
             this.$refs['role-form'].validate((valid) => {
                 if (valid) {
-                    this.RoleModel.add().then(() => {
+                    this.RoleModel.save().then(() => {
                         this.$router.push('/role/list');
                     });
                 }
@@ -75,6 +75,12 @@ export default {
     },
     created() {
         this.RoleModel.getOption();
+        if (this.$route.query.roleName) {
+            this.RoleModel.getDetail(this.$route.query.roleName).then(() => {
+                this.checkAll = this.RoleModel.roleMenu.length === this.RoleModel.pathList.length;
+                this.isIndeterminate = this.RoleModel.roleMenu.length > 0;
+            });
+        }
     },
 };
 </script>
