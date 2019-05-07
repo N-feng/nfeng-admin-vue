@@ -24,7 +24,7 @@
                 <nf-popover width="280" placement="bottom-end" popper-class="nf-user" v-model="visible">
                     <div class="nf-user__header">
                         <img src="" alt="" class="nf-user__img img-circle">
-                        <p>nfeng</p>
+                        <p>{{username}}</p>
                     </div>
                     <div class="nf-user__footer">
                         <div class="pull-left">
