@@ -1,18 +1,19 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Page404 from '../views/public/404.vue';
-import web from '../views/web/index.vue';
-import landing from '../views/admin/public/landing.vue';
-import main from '../components/admin/main-box.vue';
-import login from '../views/admin/auth/login.vue';
-import signup from '../views/admin/auth/signup.vue';
-import authList from '../views/admin/auth/list.vue';
-import roleList from '../views/admin/role/list.vue';
-import roleCreate from '../views/admin/role/create.vue';
+import Page404 from './views/public/404.vue';
+import web from './views/web/index.vue';
+import main from './components/admin/main-box.vue';
+import login from './views/admin/auth/login.vue';
+import signup from './views/admin/auth/signup.vue';
+import authList from './views/admin/auth/list.vue';
+import landing from './views/admin/public/landing.vue';
+import roleList from './views/admin/role/list.vue';
+import roleCreate from './views/admin/role/create.vue';
+import imgList from './views/admin/img/list.vue';
 
 Vue.use(Router);
 
-export const page404 = {
+const page404 = {
     path: '*',
     name: 'error-404',
     meta: {
@@ -21,7 +22,7 @@ export const page404 = {
     component: Page404,
 };
 
-export const mainRouter = [
+const mainRouter = [
     {
         path: '/',
         name: 'web',
@@ -48,7 +49,7 @@ export const mainRouter = [
     },
 ];
 
-export const authRouter = {
+const authRouter = {
     path: '/auth',
     name: 'auth',
     redirect: '/auth/landing',
@@ -66,16 +67,10 @@ export const authRouter = {
             title: '用户列表',
             component: authList,
         },
-        {
-            path: 'landinga',
-            name: 'landing',
-            title: '图片管理',
-            component: landing,
-        },
     ],
 };
 
-export const roleRouter = {
+const roleRouter = {
     path: '/role',
     name: 'role',
     redirect: '/role/list',
@@ -97,9 +92,26 @@ export const roleRouter = {
     ],
 };
 
-export const routers = [
+const imgRouter = {
+    path: '/img',
+    name: 'img',
+    redirect: '/img/list',
+    title: '图片管理',
+    component: main,
+    children: [
+        {
+            path: 'list',
+            name: 'list',
+            title: '图片列表',
+            component: imgList,
+        },
+    ],
+};
+
+const routers = [
     authRouter,
     roleRouter,
+    imgRouter,
     ...mainRouter,
     page404,
 ];

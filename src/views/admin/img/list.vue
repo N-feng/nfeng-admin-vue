@@ -10,19 +10,19 @@
 </template>
 
 <script>
-import cdn from '../../model/CdnModel'
+import cdn from '../../../model/CdnModel';
 
 export default {
     data() {
         return {
             fileList: [],
-        }
+        };
     },
     methods: {
         handleChange(file) {
             // cdn.getAuthorization(file)
             // cdn.getCdnUpload(file)
-            cdn.uploadFile(file.raw)
+            cdn.uploadFile(file.raw);
         },
         beforeRemove(file) {
             return new Promise((resolve) => {
@@ -35,28 +35,28 @@ export default {
                         this.$message({
                             type: 'success',
                             message: '删除成功!',
-                        })
-                        resolve()
-                    })
+                        });
+                        resolve();
+                    });
                 }).catch(() => {
                     this.$message({
                         type: 'info',
                         message: '已取消删除',
-                    })
-                })
-            })
+                    });
+                });
+            });
 
             // return cdn.deleteObject(file)
         },
         submitUpload() {
-            this.$refs.upload.submit()
+            this.$refs.upload.submit();
         },
     },
     mounted() {
         cdn.getBucketList().then((res) => {
-            this.fileList = res.data
-        })
+            this.fileList = res.data;
+        });
     },
-}
+};
 </script>
 

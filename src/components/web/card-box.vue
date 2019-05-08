@@ -19,6 +19,7 @@
 import socialBox from './social-box.vue';
 
 export default {
+    name: 'CardBox',
     components: {
         socialBox,
     },

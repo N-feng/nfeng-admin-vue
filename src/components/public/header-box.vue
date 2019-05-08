@@ -48,6 +48,7 @@
 import AuthModel from '../../model/AuthModel';
 
 export default {
+    name: 'HeaderBox',
     props: {
         showMenu: {
             type: Boolean,

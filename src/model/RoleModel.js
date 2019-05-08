@@ -1,4 +1,4 @@
-import { post } from '../utils/vue-ajax';
+import { post } from '../utils/ajax';
 import { role } from './apiconfig';
 
 function getPathList(list) {

@@ -7,15 +7,9 @@
 </template>
 
 <script>
-import headerBox from '../../components/public/header-box.vue';
-import cardBox from '../../components/web/card-box.vue';
 import { maxWidth } from '../../utils';
 
 export default {
-    components: {
-        headerBox,
-        cardBox,
-    },
     data() {
         return {
             isCollapse: false,
