@@ -32,7 +32,7 @@ const mainRouter = [
     {
         path: '/admin',
         name: 'admin',
-        redirect: '/landing',
+        redirect: '/public/landing',
         title: '后台',
     },
     {

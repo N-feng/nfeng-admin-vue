@@ -63,7 +63,8 @@ export default {
         return {
             visible: false,
             menuShow: false,
-            menuList: ['Works', 'Blog', 'Tools', 'Admin'],
+            // menuList: ['Works', 'Blog', 'Tools', 'Admin'],
+            menuList: ['Admin'],
             AuthModel: new AuthModel(),
             username: '',
         };
