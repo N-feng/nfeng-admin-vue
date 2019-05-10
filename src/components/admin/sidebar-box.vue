@@ -31,8 +31,7 @@ export default {
     },
     methods: {
         select(val) {
-            console.log(val);
-            this.$emit('select');
+            this.$emit('select', val);
         },
     },
     created() {

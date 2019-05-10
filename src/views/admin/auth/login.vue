@@ -40,7 +40,7 @@ export default {
             this.$refs['login-form'].validate((valid) => {
                 if (valid) {
                     this.AuthModel.login().then(() => {
-                        this.$router.push('/auth/landing');
+                        this.$router.push('/public/landing');
                     });
                 }
             });

@@ -3,10 +3,10 @@ import Router from 'vue-router';
 import Page404 from './views/public/404.vue';
 import web from './views/web/index.vue';
 import main from './components/admin/main-box.vue';
-import login from './views/admin/auth/login.vue';
-import signup from './views/admin/auth/signup.vue';
+import publicLanding from './views/admin/public/landing.vue';
+import authLogin from './views/admin/auth/login.vue';
+import authSignup from './views/admin/auth/signup.vue';
 import authList from './views/admin/auth/list.vue';
-import landing from './views/admin/public/landing.vue';
 import roleList from './views/admin/role/list.vue';
 import roleCreate from './views/admin/role/create.vue';
 import imgList from './views/admin/img/list.vue';
@@ -32,38 +32,47 @@ const mainRouter = [
     {
         path: '/admin',
         name: 'admin',
-        redirect: '/auth/landing',
+        redirect: '/landing',
         title: '后台',
     },
     {
         path: '/auth/login',
-        name: 'login',
+        name: 'authLogin',
         title: '登录',
-        component: login,
+        component: authLogin,
     },
     {
         path: '/auth/signup',
-        name: 'signup',
+        name: 'authSignup',
         title: '注册',
-        component: signup,
+        component: authSignup,
     },
 ];
+
+const publicRoter = {
+    path: '/public',
+    name: 'public',
+    redirect: '/public/landing',
+    component: main,
+    children: [
+        {
+            path: '/public/landing',
+            name: 'publicLanding',
+            title: '登陆页',
+            component: publicLanding,
+        },
+    ],
+};
 
 const authRouter = {
     path: '/auth',
     name: 'auth',
-    redirect: '/auth/landing',
+    redirect: '/auth/list',
     component: main,
     children: [
         {
-            path: 'landing',
-            name: 'landing',
-            title: '登陆页',
-            component: landing,
-        },
-        {
-            path: 'list',
-            name: 'list',
+            path: '/auth/list',
+            name: 'authList',
             title: '用户列表',
             component: authList,
         },
@@ -78,13 +87,13 @@ const roleRouter = {
     component: main,
     children: [
         {
-            path: 'list',
+            path: '/role/list',
             name: 'roleList',
             title: '角色列表',
             component: roleList,
         },
         {
-            path: 'create',
+            path: '/role/create',
             name: 'roleCreate',
             title: '角色创建',
             component: roleCreate,
@@ -100,8 +109,8 @@ const imgRouter = {
     component: main,
     children: [
         {
-            path: 'list',
-            name: 'list',
+            path: '/img/list',
+            name: 'imgList',
             title: '图片列表',
             component: imgList,
         },
@@ -109,6 +118,7 @@ const imgRouter = {
 };
 
 const routers = [
+    publicRoter,
     authRouter,
     roleRouter,
     imgRouter,
