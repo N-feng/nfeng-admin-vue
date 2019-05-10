@@ -8,18 +8,6 @@ export const auth = {
     list: `${baseUrl}/auth/list`, // 用户列表
 };
 
-export const global = {
-    getAuthorization: `${baseUrl}/global/getAuthorization`,
-    getCdnUpload: `${baseUrl}/global/getCdnUpload`,
-    getSignature: `${baseUrl}/global/getSignature`,
-    getBucketList: `${baseUrl}/global/getBucketList`,
-    deleteObject: `${baseUrl}/global/deleteObject`,
-};
-
-export const menu = {
-    getMenu: `${baseUrl}/menu/getMenu`,
-};
-
 export const role = {
     save: `${baseUrl}/role/save`,
     delete: `${baseUrl}/role/delete`,
@@ -28,8 +16,16 @@ export const role = {
     list: `${baseUrl}/role/list`,
 };
 
+export const img = {
+    getAuthorization: `${baseUrl}/img/getAuthorization`,
+    getCdnUpload: `${baseUrl}/img/getCdnUpload`,
+    getSignature: `${baseUrl}/img/getSignature`,
+    getList: `${baseUrl}/img/list`,
+    deleteObject: `${baseUrl}/img/deleteObject`,
+};
+
 export default {
     auth,
-    global,
-    menu,
+    role,
+    img,
 };

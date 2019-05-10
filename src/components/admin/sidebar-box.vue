@@ -5,7 +5,7 @@
             background-color="#545c64" 
             text-color="#fff" 
             active-text-color="#ffd04b"
-            default-active="userlist" 
+            :default-active="defaultActive" 
             :router="true" 
             :collapse="isCollapse" 
             @select="select">
@@ -26,12 +26,17 @@ export default {
     data() {
         return {
             iconClass: ['el-icon-location', 'el-icon-menu', 'el-icon-document', 'el-icon-setting'],
+            defaultActive: '',
         };
     },
     methods: {
-        select() {
+        select(val) {
+            console.log(val);
             this.$emit('select');
         },
+    },
+    created() {
+        this.defaultActive = window.location.pathname;
     },
 };
 </script>

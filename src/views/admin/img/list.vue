@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import cdn from '../../../model/ImgModel';
+import ImgModel from '../../../model/ImgModel';
 
 export default {
     data() {
@@ -22,7 +22,7 @@ export default {
         handleChange(file) {
             // cdn.getAuthorization(file)
             // cdn.getCdnUpload(file)
-            cdn.uploadFile(file.raw);
+            ImgModel.uploadFile(file.raw);
         },
         beforeRemove(file) {
             return new Promise((resolve) => {
@@ -31,7 +31,7 @@ export default {
                     cancelButtonText: '取消',
                     type: 'warning',
                 }).then(() => {
-                    cdn.deleteObject(file).then(() => {
+                    ImgModel.deleteObject(file).then(() => {
                         this.$message({
                             type: 'success',
                             message: '删除成功!',
@@ -53,7 +53,7 @@ export default {
         },
     },
     mounted() {
-        cdn.getBucketList().then((res) => {
+        ImgModel.getList().then((res) => {
             this.fileList = res.data;
         });
     },

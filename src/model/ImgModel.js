@@ -1,5 +1,5 @@
-import { global } from './apiconfig';
 import { post, get } from '../utils/ajax';
+import { img } from './apiconfig';
 
 function getBody(xhr) {
     const text = xhr.responseText || xhr.response;
@@ -17,14 +17,18 @@ function getBody(xhr) {
 /**
  * 自定义cdn上传对象
  */
-class cdn {
+class ImgModel {
+    constructor() {
+        this.list = [];
+    }
+
     static async getAuthorization(file) {
         const Key = `upload/${file.name}`; // 这里指定上传目录和文件名，可根据情况修改
         const param = {
             Method: 'PUT',
             Key,
         };
-        get(global.getAuthorization, param).then((res) => {
+        get(img.getAuthorization, param).then((res) => {
             console.log(res);
         });
     }
@@ -35,14 +39,14 @@ class cdn {
             Method: 'PUT',
             Key,
         };
-        get(global.getCdnUpload, param).then((res) => {
+        get(img.getCdnUpload, param).then((res) => {
             console.log(res);
         });
     }
 
     static async getSignature(param) {
         return new Promise((resolve) => {
-            post(global.getSignature, param).then((res) => {
+            post(img.getSignature, param).then((res) => {
                 resolve(res);
             });
         });
@@ -68,12 +72,12 @@ class cdn {
         });
     }
 
-    static async getBucketList() {
+    static async getList() {
         const param = {
-            Prefix: 'upload/',
+            prefix: 'upload/',
         };
         return new Promise((resolve) => {
-            get(global.getBucketList, param).then((res) => {
+            post(img.getList, param).then((res) => {
                 resolve(res);
             });
         });
@@ -83,8 +87,8 @@ class cdn {
         const param = {
             Key: `upload/${file.name}`,
         };
-        return get(global.deleteObject, param);
+        return get(img.deleteObject, param);
     }
 }
 
-export default cdn;
+export default ImgModel;
