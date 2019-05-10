@@ -69,6 +69,8 @@ export default {
             this.RoleModel.roleMenu = val ? this.menuListPath : [];
         },
         menuHandleCheckedChange(value) {
+            console.log(value);
+            console.log(this.menuListPath);
             const checkedCount = value.length;
             this.menuCheckAll = checkedCount === this.menuListPath.length;
         },

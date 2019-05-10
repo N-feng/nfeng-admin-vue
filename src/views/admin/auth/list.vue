@@ -1,10 +1,5 @@
 <template>
     <nf-box title="userList" border>
-        <div slot="header__tools">
-            <router-link to="/auth/signup">
-                <nf-button type="primary" size="mini">new</nf-button>
-            </router-link>
-        </div>
         <!-- <nf-form :inline="true" :model="formInline" class="demo-form-inline">
             <nf-form-item label="审批人">
                 <nf-input v-model="formInline.user" placeholder="审批人" size="mini"></nf-input>
