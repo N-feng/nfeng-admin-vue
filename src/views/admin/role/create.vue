@@ -10,16 +10,17 @@
                 </nf-select>
             </nf-form-item>
             <nf-form-item prop="roleMenu" label="RoleMenu:">
-                <nf-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</nf-checkbox>
-                <nf-checkbox-group v-model="RoleModel.roleMenu" @change="handleCheckedCitiesChange">
+                <nf-checkbox v-model="menuCheckAll" @change="menuHandleCheckAllChange">全选</nf-checkbox>
+                <nf-checkbox-group v-model="RoleModel.roleMenu" @change="menuHandleCheckedChange">
                     <nf-checkbox v-for="(item,key) in RoleModel.menuList" :label="item.path" :key="key">{{item.title}}</nf-checkbox>
                 </nf-checkbox-group>
             </nf-form-item>
-            <!-- <nf-form-item prop="permissions" label="Permissions:">
-                <nf-select v-model="RoleModel.permissions" placeholder="Permissions">
-                    <nf-option v-for="(item,key) in RoleModel.permissionsList" :key="key" :label="item.title" :value="item.path"></nf-option>
-                </nf-select>
-            </nf-form-item> -->
+            <nf-form-item prop="permissions" label="Permissions:">
+                <nf-checkbox v-model="permCheckAll" @change="permHandleCheckAllChange">全选</nf-checkbox>
+                <nf-checkbox-group v-model="RoleModel.permissions" @change="permHandleCheckedChange">
+                    <nf-checkbox v-for="(item,key) in RoleModel.permissionsList" :label="item.path" :key="key">{{item.title}}</nf-checkbox>
+                </nf-checkbox-group>
+            </nf-form-item>
         </nf-form>
         <div slot="footer">
             <router-link to="list">
@@ -48,8 +49,10 @@ export default {
                     { required: true, message: 'Please choose your roleMenu', trigger: 'change' },
                 ],
             },
-            checkAll: false,
-            isIndeterminate: false,
+            menuCheckAll: false,
+            menuListPath: [],
+            permCheckAll: false,
+            permListPath: [],
         };
     },
     methods: {
@@ -62,23 +65,32 @@ export default {
                 }
             });
         },
-        handleCheckAllChange(val) {
-            this.RoleModel.roleMenu = val ? this.RoleModel.pathList : [];
-            this.isIndeterminate = false;
+        menuHandleCheckAllChange(val) {
+            this.RoleModel.roleMenu = val ? this.menuListPath : [];
         },
-        handleCheckedCitiesChange(value) {
+        menuHandleCheckedChange(value) {
             const checkedCount = value.length;
-            const { pathList } = this.RoleModel;
-            this.checkAll = checkedCount === pathList.length;
-            this.isIndeterminate = checkedCount > 0 && checkedCount < pathList.length;
+            this.menuCheckAll = checkedCount === this.menuListPath.length;
+        },
+        permHandleCheckAllChange(val) {
+            this.RoleModel.permissions = val ? this.permListPath : [];
+        },
+        permHandleCheckedChange(value) {
+            const checkedCount = value.length;
+            this.permCheckAll = checkedCount === this.permListPath.length;
         },
     },
     created() {
-        this.RoleModel.getOption();
+        const p1 = this.RoleModel.getOption().then(() => {
+            this.menuListPath = RoleModel.getAllPath(this.RoleModel.menuList);
+            this.permListPath = RoleModel.getAllPath(this.RoleModel.permissionsList);
+        });
         if (this.$route.query.roleName) {
-            this.RoleModel.getDetail(this.$route.query.roleName).then(() => {
-                this.checkAll = this.RoleModel.roleMenu.length === this.RoleModel.pathList.length;
-                this.isIndeterminate = this.RoleModel.roleMenu.length > 0 && !this.checkAll;
+            const p2 = this.RoleModel.getDetail(this.$route.query.roleName);
+            Promise.all([p1, p2]).then(() => {
+                const { roleMenu, permissions } = this.RoleModel;
+                this.menuCheckAll = roleMenu.length === this.menuListPath.length;
+                this.permCheckAll = permissions.length === this.permListPath.length;
             });
         }
     },

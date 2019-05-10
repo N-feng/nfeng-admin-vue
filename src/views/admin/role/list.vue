@@ -10,10 +10,14 @@
             <nf-table-column label="roleType" prop="roleType"></nf-table-column>
             <nf-table-column label="roleMenu">
                 <template slot-scope="scope">
-                    <span>{{scope.row.roleMenuList | formatList('title')}}</span>
+                    <span>{{scope.row.roleMenuList | formatList(',', 'title')}}</span>
                 </template>
             </nf-table-column>
-            <nf-table-column label="permissions" prop="permissions"></nf-table-column>
+            <nf-table-column label="permissions">
+                <template slot-scope="scope">
+                    <span>{{scope.row.permissions | formatList}}</span>
+                </template>
+            </nf-table-column>
             <nf-table-column label="操作">
                 <template slot-scope="scope">
                     <nf-button type="text" size="small">

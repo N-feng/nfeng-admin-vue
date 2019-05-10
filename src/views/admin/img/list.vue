@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import cdn from '../../../model/CdnModel';
+import cdn from '../../../model/ImgModel';
 
 export default {
     data() {

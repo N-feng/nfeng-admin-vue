@@ -1,7 +1,7 @@
 <template>
     <div class="nf-main">
         <header-box :showMenu="false" :isCollapse="isCollapse"></header-box>
-        <sidebar-box :isCollapse="isCollapse" :menuList="AuthModel.menuList"></sidebar-box>
+        <sidebar-box :isCollapse="isCollapse" :menuList="menuList"></sidebar-box>
         <div class="nf-main-wrapper" :class="{ 'is-collapse': isCollapse }">
             <!-- <div class="content-header">
                 <nf-breadcrumb>
@@ -35,6 +35,7 @@ export default {
             parentMenu: '',
             subMenu: '',
             AuthModel: new AuthModel(),
+            menuList: [],
         };
     },
     methods: {
@@ -48,7 +49,9 @@ export default {
         // document.getElementsByTagName("body")[0].className = "nf-main__page";
         addClass(document.body, 'skin-blue');
         maxWidth(800, this.maxWidth);
-        this.AuthModel.getInfo();
+        this.AuthModel.getInfo().then(() => {
+            this.menuList = this.AuthModel.getSideList();
+        });
     },
     beforeDestroy() {
         // document.body.removeAttribute("class", "nf-main__page");

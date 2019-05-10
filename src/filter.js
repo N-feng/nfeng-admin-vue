@@ -1,9 +1,13 @@
 import Vue from 'vue';
 
-Vue.filter('formatList', (input, format) => {
+Vue.filter('formatList', (input, format = ',', key) => {
     let str = '';
     input.forEach((el, k) => {
-        str += k === 0 ? el[format] : `, ${el[format]}`;
+        if (k === 0) {
+            str += key ? el[key] : el;
+        } else {
+            str += key ? `${format} ${el[key]}` : `${format} ${el}`;
+        }
     });
     return str;
 });

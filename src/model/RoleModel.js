@@ -1,45 +1,28 @@
 import { post } from '../utils/ajax';
 import { role } from './apiconfig';
 
-function getPathList(list) {
-    const arr = [];
-    list.forEach((element) => {
-        arr.push(element.path);
-    });
-    return arr;
-}
-
 class RoleModel {
     constructor() {
         this.roleName = '';
         this.roleType = '';
         this.roleMenu = [];
         this.permissions = [];
-        this.roleMenuList = [];
 
         this.typeList = [];
         this.sideList = [];
         this.menuList = [];
-        this.pathList = [];
+        this.permissionsList = [];
 
         this.roleList = [];
     }
 
     save() {
-        this.roleMenu.forEach((item) => {
-            this.menuList.forEach((el) => {
-                if (item === el.path) {
-                    this.roleMenuList.push(el);
-                }
-            });
-        });
         const url = role.save;
         const param = {
             roleName: this.roleName,
             roleType: this.roleType,
             roleMenu: this.roleMenu,
             permissions: this.permissions,
-            roleMenuList: this.roleMenuList,
         };
         return new Promise((resolve) => {
             post(url, param).then((res) => {
@@ -79,12 +62,23 @@ class RoleModel {
 
     getOption() {
         const url = role.option;
-        post(url).then((res) => {
-            const info = res.data;
-            this.typeList = info.typeList;
-            this.menuList = info.menuList;
-            this.pathList = getPathList(info.menuList);
+        return new Promise((resolve) => {
+            post(url).then((res) => {
+                const info = res.data;
+                this.typeList = info.typeList;
+                this.menuList = info.menuList;
+                this.permissionsList = info.permissionsList;
+                resolve(res);
+            });
         });
+    }
+
+    static getAllPath(list) {
+        const arr = [];
+        list.forEach((element) => {
+            arr.push(element.path);
+        });
+        return arr;
     }
 
     getList() {

@@ -32,9 +32,7 @@ class AuthModel {
         this.password = '';
         this.checkPassword = '';
         this.roleName = 'member';
-        this.menuList = [];
-
-        this.token = '';
+        this.roleMenuList = [];
         this.list = [];
     }
 
@@ -99,10 +97,14 @@ class AuthModel {
             post(url).then((res) => {
                 const info = res.data;
                 this.username = info.username;
-                this.menuList = getSideList(info.menuList);
+                this.roleMenuList = info.roleMenuList;
                 resolve(res);
             });
         });
+    }
+
+    getSideList() {
+        return getSideList(this.roleMenuList);
     }
 
     getList() {
