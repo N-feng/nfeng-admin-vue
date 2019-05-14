@@ -18,9 +18,9 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    indent: ['error', 4], // 缩进 单位:空格
+    'indent': ['error', 4], // 缩进 单位:空格
     'linebreak-style': 0, // 不校验换行符
-    // semi: ['error', 'never'], // 不使用分号
+    'semi': ['error', 'never'], // 不使用分号
     'no-debugger': 0, // 不校验debugger
     'no-console': 0, // 不校验console
     'no-new': 0, // new Vue要用

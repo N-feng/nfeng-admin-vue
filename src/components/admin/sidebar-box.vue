@@ -25,19 +25,25 @@ export default {
     },
     data() {
         return {
-            iconClass: ['el-icon-location', 'el-icon-menu', 'el-icon-document', 'el-icon-setting'],
+            iconClass: [
+                'el-icon-location',
+                'el-icon-menu',
+                'el-icon-setting',
+                'el-icon-picture',
+                'el-icon-document',
+            ],
             defaultActive: '',
-        };
+        }
     },
     methods: {
         select(val) {
-            this.$emit('select', val);
+            this.$emit('select', val)
         },
     },
     created() {
-        this.defaultActive = window.location.pathname;
+        this.defaultActive = window.location.pathname
     },
-};
+}
 </script>
 
 <style scoped>

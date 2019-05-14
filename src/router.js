@@ -1,17 +1,18 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Page404 from './views/public/404.vue';
-import web from './views/web/index.vue';
-import main from './components/admin/main-box.vue';
-import publicLanding from './views/admin/public/landing.vue';
-import authLogin from './views/admin/auth/login.vue';
-import authSignup from './views/admin/auth/signup.vue';
-import authList from './views/admin/auth/list.vue';
-import roleList from './views/admin/role/list.vue';
-import roleCreate from './views/admin/role/create.vue';
-import imgList from './views/admin/img/list.vue';
+import Vue from 'vue'
+import Router from 'vue-router'
+import Page404 from './views/public/404.vue'
+import web from './views/web/index.vue'
+import main from './components/admin/main-box.vue'
+import publicLanding from './views/admin/public/landing.vue'
+import authLogin from './views/admin/auth/login.vue'
+import authSignup from './views/admin/auth/signup.vue'
+import authList from './views/admin/auth/list.vue'
+import roleList from './views/admin/role/list.vue'
+import roleCreate from './views/admin/role/create.vue'
+import imgList from './views/admin/img/list.vue'
+import taskList from './views/admin/task/list.vue'
 
-Vue.use(Router);
+Vue.use(Router)
 
 const page404 = {
     path: '*',
@@ -20,7 +21,7 @@ const page404 = {
         title: '404-页面不存在',
     },
     component: Page404,
-};
+}
 
 const mainRouter = [
     {
@@ -47,7 +48,7 @@ const mainRouter = [
         title: '注册',
         component: authSignup,
     },
-];
+]
 
 const publicRoter = {
     path: '/public',
@@ -62,7 +63,7 @@ const publicRoter = {
             component: publicLanding,
         },
     ],
-};
+}
 
 const authRouter = {
     path: '/auth',
@@ -77,7 +78,7 @@ const authRouter = {
             component: authList,
         },
     ],
-};
+}
 
 const roleRouter = {
     path: '/role',
@@ -99,7 +100,7 @@ const roleRouter = {
             component: roleCreate,
         },
     ],
-};
+}
 
 const imgRouter = {
     path: '/img',
@@ -115,25 +116,42 @@ const imgRouter = {
             component: imgList,
         },
     ],
-};
+}
+
+const taskRouter = {
+    path: '/task',
+    name: 'task',
+    redirect: '/task/list',
+    title: '任务管理',
+    component: main,
+    children: [
+        {
+            path: '/task/list',
+            name: 'taskList',
+            title: '任务列表',
+            component: taskList,
+        },
+    ],
+}
 
 const routers = [
     publicRoter,
     authRouter,
     roleRouter,
     imgRouter,
+    taskRouter,
     ...mainRouter,
     page404,
-];
+]
 
 const router = new Router({
     mode: 'history',
     // base: process.env.BASE_URL,
     routes: routers,
-});
+})
 
 router.beforeEach((to, from, next) => {
-    next();
-});
+    next()
+})
 
-export default router;
+export default router

@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import AuthModel from '../../../model/AuthModel';
+import AuthModel from '../../../model/AuthModel'
 
 export default {
     data() {
@@ -33,19 +33,19 @@ export default {
                 ],
             },
             AuthModel: new AuthModel(),
-        };
+        }
     },
     methods: {
         submit() {
             this.$refs['login-form'].validate((valid) => {
                 if (valid) {
                     this.AuthModel.login().then(() => {
-                        this.$router.push('/public/landing');
-                    });
+                        this.$router.push('/public/landing')
+                    })
                 }
-            });
+            })
         },
     },
-};
+}
 </script>
 
