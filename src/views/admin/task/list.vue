@@ -12,7 +12,7 @@
                     <nf-input v-model="form.name" autocomplete="off" type="textarea"></nf-input>
                 </nf-form-item>
                 <nf-form-item label="Set due date:">
-                    <nf-pickerdate v-model="value1" type="datetime" placeholder="选择日期时间"></nf-pickerdate>
+                    <el-date-picker v-model="value1" type="datetime" placeholder="选择日期时间"></el-date-picker>
                 </nf-form-item>
                 <nf-form-item label="Priority:">
                     <nf-select v-model="form.region" placeholder="请选择活动区域">
