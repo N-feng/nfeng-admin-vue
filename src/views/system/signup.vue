@@ -28,55 +28,54 @@
 </template>
 
 <script>
-import AuthModel from '../../../model/AuthModel'
-import RoleModel from '../../../model/RoleModel'
+import AuthModel from '../../model/AuthModel'
+import RoleModel from '../../model/RoleModel'
 
 export default {
-    data() {
-        const validatePass = (rule, value, callback) => {
-            if (value === '') {
-                callback('Please enter your checkPassword')
-            } else if (value !== this.AuthModel.password) {
-                callback('The two passwords do not match')
-            } else {
-                callback()
-            }
+  data() {
+    const validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback('Please enter your checkPassword')
+      } else if (value !== this.AuthModel.password) {
+        callback('The two passwords do not match')
+      } else {
+        callback()
+      }
+    }
+    return {
+      rules: {
+        username: [
+          { required: true, message: 'Please enter your username', trigger: 'blur' },
+          // {
+          //     pattern: /^(1\d{10})$/,
+          //     message: 'Please enter your username correctly',
+          //     trigger: 'blur',
+          // },
+        ],
+        password: [
+          { required: true, message: 'Please enter your password', trigger: 'blur' },
+        ],
+        checkPassword: [
+          { validator: validatePass, trigger: 'blur' },
+        ],
+      },
+      AuthModel: new AuthModel(),
+      RoleModel: new RoleModel(),
+    }
+  },
+  methods: {
+    submit() {
+      this.$refs['signup-form'].validate((valid) => {
+        if (valid) {
+          this.AuthModel.signup().then(() => {
+            this.$router.push('/auth/login')
+          })
         }
-        return {
-            rules: {
-                username: [
-                    { required: true, message: 'Please enter your username', trigger: 'blur' },
-                    // {
-                    //     pattern: /^(1\d{10})$/,
-                    //     message: 'Please enter your username correctly',
-                    //     trigger: 'blur',
-                    // },
-                ],
-                password: [
-                    { required: true, message: 'Please enter your password', trigger: 'blur' },
-                ],
-                checkPassword: [
-                    { validator: validatePass, trigger: 'blur' },
-                ],
-            },
-            AuthModel: new AuthModel(),
-            RoleModel: new RoleModel(),
-        }
+      })
     },
-    methods: {
-        submit() {
-            this.$refs['signup-form'].validate((valid) => {
-                if (valid) {
-                    this.AuthModel.signup().then(() => {
-                        this.$router.push('/auth/login')
-                    })
-                }
-            })
-        },
-    },
-    created() {
-        this.RoleModel.getList()
-    },
+  },
+  created() {
+    this.RoleModel.getList()
+  },
 }
 </script>
-

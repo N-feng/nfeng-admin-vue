@@ -11,7 +11,7 @@
             </template>
             <template v-else>
                 <h1>Welcome, stranger</h1>
-                <router-link to="/auth/login">Login Now</router-link>
+                <router-link to="/login">Login Now</router-link>
             </template>
         </div>
     </div>
@@ -19,16 +19,17 @@
 
 <script>
 export default {
-    data() {
-        return {
-            username: '',
-        }
+  computed: {
+    username() {
+      return this.$store.getters.username
     },
-    created() {
-        this.username = window.localStorage.getItem('username')
-    },
+  },
 }
 </script>
 
-<style lang="css" scoped>
+<style>
+    .ant-layout {
+        background: url(https://cdn.nfeng.net.cn/upload/winnower.jpeg) no-repeat 50% 50%;
+        background-size: cover;
+    }
 </style>

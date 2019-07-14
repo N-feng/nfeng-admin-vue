@@ -1,14 +1,15 @@
-const Layout = () => import('@/components/Layout')
+const Layout = () => import('@/components/Layout/web.vue')
 
 const web = {
-  path: '/',
+  path: '/web',
   name: 'web',
-  title: '欢迎页',
+  title: '前台',
   component: Layout,
-  redirect: '/home',
+  redirect: '/web/home',
   children: [{
     path: 'home',
     name: 'Home',
+    title: '欢迎页',
     component: () => import('@/views/web/Home.vue'),
   }],
 }
