@@ -4,7 +4,7 @@
             <router-link to="create">
                 <nf-button type="primary" size="mini">new</nf-button>
             </router-link>
-        </div> 
+        </div>
         <nf-table :data="RoleModel.roleList" border>
             <nf-table-column label="roleName" prop="roleName"></nf-table-column>
             <nf-table-column label="roleType" prop="roleType"></nf-table-column>
@@ -31,13 +31,13 @@
 </template>
 
 <script>
-import RoleModel from '../../../model/RoleModel';
+import RoleModel from '../../../model/RoleModel'
 
 export default {
     data() {
         return {
             RoleModel: new RoleModel(),
-        };
+        }
     },
     methods: {
         handleClick(row) {
@@ -51,21 +51,21 @@ export default {
                         this.$message({
                             type: 'success',
                             message: res.msg,
-                        });
-                        this.RoleModel.getList();
+                        })
+                        this.RoleModel.getList()
                     }
-                });
+                })
             }).catch(() => {
                 this.$message({
                     type: 'info',
                     message: '已取消删除',
-                });
-            });
+                })
+            })
         },
     },
     created() {
-        this.RoleModel.getList();
+        this.RoleModel.getList()
     },
-};
+}
 </script>
 

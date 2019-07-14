@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import RoleModel from '../../../model/RoleModel';
+import RoleModel from '../../../model/RoleModel'
 
 export default {
     data() {
@@ -53,47 +53,47 @@ export default {
             menuListPath: [],
             permCheckAll: false,
             permListPath: [],
-        };
+        }
     },
     methods: {
         submit() {
             this.$refs['role-form'].validate((valid) => {
                 if (valid) {
                     this.RoleModel.save().then(() => {
-                        this.$router.push('/role/list');
-                    });
+                        this.$router.push('/role/list')
+                    })
                 }
-            });
+            })
         },
         menuHandleCheckAllChange(val) {
-            this.RoleModel.roleMenu = val ? this.menuListPath : [];
+            this.RoleModel.roleMenu = val ? this.menuListPath : []
         },
         menuHandleCheckedChange(value) {
-            const checkedCount = value.length;
-            this.menuCheckAll = checkedCount === this.menuListPath.length;
+            const checkedCount = value.length
+            this.menuCheckAll = checkedCount === this.menuListPath.length
         },
         permHandleCheckAllChange(val) {
-            this.RoleModel.permissions = val ? this.permListPath : [];
+            this.RoleModel.permissions = val ? this.permListPath : []
         },
         permHandleCheckedChange(value) {
-            const checkedCount = value.length;
-            this.permCheckAll = checkedCount === this.permListPath.length;
+            const checkedCount = value.length
+            this.permCheckAll = checkedCount === this.permListPath.length
         },
     },
     created() {
         const p1 = this.RoleModel.getOption().then(() => {
-            this.menuListPath = RoleModel.getAllPath(this.RoleModel.menuList);
-            this.permListPath = RoleModel.getAllPath(this.RoleModel.permissionsList);
-        });
+            this.menuListPath = RoleModel.getAllPath(this.RoleModel.menuList)
+            this.permListPath = RoleModel.getAllPath(this.RoleModel.permissionsList)
+        })
         if (this.$route.query.roleName) {
-            const p2 = this.RoleModel.getDetail(this.$route.query.roleName);
+            const p2 = this.RoleModel.getDetail(this.$route.query.roleName)
             Promise.all([p1, p2]).then(() => {
-                const { roleMenu, permissions } = this.RoleModel;
-                this.menuCheckAll = roleMenu.length === this.menuListPath.length;
-                this.permCheckAll = permissions.length === this.permListPath.length;
-            });
+                const { roleMenu, permissions } = this.RoleModel
+                this.menuCheckAll = roleMenu.length === this.menuListPath.length
+                this.permCheckAll = permissions.length === this.permListPath.length
+            })
         }
     },
-};
+}
 </script>
 

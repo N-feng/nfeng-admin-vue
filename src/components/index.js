@@ -1,19 +1,21 @@
-import HeaderBox from './public/header-box.vue';
-import CardBox from './web/card-box.vue';
+import HeaderBox from './public/header-box.vue'
+import CardBox from './web/card-box.vue'
+import NfCard from './NfCard/index.vue'
 
 const components = [
-    HeaderBox,
-    CardBox,
-];
+  HeaderBox,
+  CardBox,
+  NfCard,
+]
 
 function install(Vue) {
-    if (install.installed) return;
+  if (install.installed) return
 
-    components.forEach((component) => {
-        Vue.component(component.name, component);
-    });
+  components.forEach((component) => {
+    Vue.component(component.name, component)
+  })
 }
 
 export default {
-    install,
-};
+  install,
+}

@@ -28,20 +28,20 @@
 </template>
 
 <script>
-import AuthModel from '../../../model/AuthModel';
-import RoleModel from '../../../model/RoleModel';
+import AuthModel from '../../../model/AuthModel'
+import RoleModel from '../../../model/RoleModel'
 
 export default {
     data() {
         const validatePass = (rule, value, callback) => {
             if (value === '') {
-                callback('Please enter your checkPassword');
+                callback('Please enter your checkPassword')
             } else if (value !== this.AuthModel.password) {
-                callback('The two passwords do not match');
+                callback('The two passwords do not match')
             } else {
-                callback();
+                callback()
             }
-        };
+        }
         return {
             rules: {
                 username: [
@@ -61,22 +61,22 @@ export default {
             },
             AuthModel: new AuthModel(),
             RoleModel: new RoleModel(),
-        };
+        }
     },
     methods: {
         submit() {
             this.$refs['signup-form'].validate((valid) => {
                 if (valid) {
                     this.AuthModel.signup().then(() => {
-                        this.$router.push('/auth/login');
-                    });
+                        this.$router.push('/auth/login')
+                    })
                 }
-            });
+            })
         },
     },
     created() {
-        this.RoleModel.getList();
+        this.RoleModel.getList()
     },
-};
+}
 </script>
 

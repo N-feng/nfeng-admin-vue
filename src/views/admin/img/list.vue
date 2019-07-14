@@ -10,19 +10,19 @@
 </template>
 
 <script>
-import ImgModel from '../../../model/ImgModel';
+import ImgModel from '../../../model/ImgModel'
 
 export default {
     data() {
         return {
             fileList: [],
-        };
+        }
     },
     methods: {
         handleChange(file) {
             // cdn.getAuthorization(file)
             // cdn.getCdnUpload(file)
-            ImgModel.uploadFile(file.raw);
+            ImgModel.uploadFile(file.raw)
         },
         beforeRemove(file) {
             return new Promise((resolve) => {
@@ -35,28 +35,28 @@ export default {
                         this.$message({
                             type: 'success',
                             message: '删除成功!',
-                        });
-                        resolve();
-                    });
+                        })
+                        resolve()
+                    })
                 }).catch(() => {
                     this.$message({
                         type: 'info',
                         message: '已取消删除',
-                    });
-                });
-            });
+                    })
+                })
+            })
 
             // return cdn.deleteObject(file)
         },
         submitUpload() {
-            this.$refs.upload.submit();
+            this.$refs.upload.submit()
         },
     },
     mounted() {
         ImgModel.getList().then((res) => {
-            this.fileList = res.data;
-        });
+            this.fileList = res.data
+        })
     },
-};
+}
 </script>
 

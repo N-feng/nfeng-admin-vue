@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import headerBox from '../public/header-box.vue';
-import sidebarBox from './sidebar-box.vue';
-import { addClass, removeClass } from '../../nfeng-pc-vue/nfeng-utils/utils/dom';
-import { maxWidth } from '../../utils';
-import AuthModel from '../../model/AuthModel';
+import headerBox from '../public/header-box.vue'
+import sidebarBox from './sidebar-box.vue'
+import { addClass, removeClass } from '../../utils/dom'
+import { maxWidth } from '../../utils'
+import AuthModel from '../../model/AuthModel'
 
 export default {
     components: {
@@ -36,28 +36,28 @@ export default {
             subMenu: '',
             AuthModel: new AuthModel(),
             menuList: [],
-        };
+        }
     },
     methods: {
         maxWidth(bool) {
-            this.isCollapse = bool;
+            this.isCollapse = bool
         },
     },
     // ...前面的省略
     // 通过两个钩子函数来添加移除class改变颜色
     mounted() {
         // document.getElementsByTagName("body")[0].className = "nf-main__page";
-        addClass(document.body, 'skin-blue');
-        maxWidth(800, this.maxWidth);
+        addClass(document.body, 'skin-blue')
+        maxWidth(800, this.maxWidth)
         this.AuthModel.getInfo().then(() => {
-            this.menuList = this.AuthModel.getSideList();
-        });
+            this.menuList = this.AuthModel.getSideList()
+        })
     },
     beforeDestroy() {
         // document.body.removeAttribute("class", "nf-main__page");
-        removeClass(document.body, 'skin-blue');
+        removeClass(document.body, 'skin-blue')
     },
-};
+}
 </script>
 
 <style lang="css" scoped>

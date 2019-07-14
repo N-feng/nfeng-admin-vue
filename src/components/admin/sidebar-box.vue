@@ -1,13 +1,13 @@
 <template>
     <aside class="nf-main-sidebar" :class="{ 'is-collapse': isCollapse }">
-        <nf-menu 
-            class="nf-menu" 
-            background-color="#545c64" 
-            text-color="#fff" 
+        <nf-menu
+            class="nf-menu"
+            background-color="#545c64"
+            text-color="#fff"
             active-text-color="#ffd04b"
-            :default-active="defaultActive" 
-            :router="true" 
-            :collapse="isCollapse" 
+            :default-active="defaultActive"
+            :router="true"
+            :collapse="isCollapse"
             @select="select">
             <nf-menu-item v-for="(el,key) in menuList" :key="key" :index="el.path">
                 <i :class="iconClass[key]"></i>
@@ -19,30 +19,30 @@
 
 <script>
 export default {
-    props: {
-        isCollapse: Boolean,
-        menuList: Array,
+  props: {
+    isCollapse: Boolean,
+    menuList: Array,
+  },
+  data() {
+    return {
+      iconClass: [
+        'el-icon-location',
+        'el-icon-menu',
+        'el-icon-setting',
+        'el-icon-picture',
+        'el-icon-document',
+      ],
+      defaultActive: '',
+    }
+  },
+  methods: {
+    select(val) {
+      this.$emit('select', val)
     },
-    data() {
-        return {
-            iconClass: [
-                'el-icon-location',
-                'el-icon-menu',
-                'el-icon-setting',
-                'el-icon-picture',
-                'el-icon-document',
-            ],
-            defaultActive: '',
-        }
-    },
-    methods: {
-        select(val) {
-            this.$emit('select', val)
-        },
-    },
-    created() {
-        this.defaultActive = window.location.pathname
-    },
+  },
+  created() {
+    this.defaultActive = window.location.pathname
+  },
 }
 </script>
 

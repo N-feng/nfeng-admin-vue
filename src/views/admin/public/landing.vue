@@ -22,12 +22,12 @@ export default {
     data() {
         return {
             username: '',
-        };
+        }
     },
     created() {
-        this.username = window.localStorage.getItem('username');
+        this.username = window.localStorage.getItem('username')
     },
-};
+}
 </script>
 
 <style lang="css" scoped>

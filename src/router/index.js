@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Page404 from './views/public/404.vue'
-import web from './views/web/index.vue'
-import main from './components/admin/main-box.vue'
-import publicLanding from './views/admin/public/landing.vue'
-import authLogin from './views/admin/auth/login.vue'
-import authSignup from './views/admin/auth/signup.vue'
-import authList from './views/admin/auth/list.vue'
-import roleList from './views/admin/role/list.vue'
-import roleCreate from './views/admin/role/create.vue'
-import imgList from './views/admin/img/list.vue'
-import taskList from './views/admin/task/list.vue'
+import Page404 from '../views/public/404.vue'
+import main from '../components/admin/main-box.vue'
+import publicLanding from '../views/admin/public/landing.vue'
+import authLogin from '../views/admin/auth/login.vue'
+import authSignup from '../views/admin/auth/signup.vue'
+import authList from '../views/admin/auth/list.vue'
+import roleList from '../views/admin/role/list.vue'
+import roleCreate from '../views/admin/role/create.vue'
+import imgList from '../views/admin/img/list.vue'
+import taskList from '../views/admin/task/list.vue'
+import web from './modules/web'
 
 Vue.use(Router)
 
@@ -24,11 +24,11 @@ const page404 = {
 }
 
 const mainRouter = [
+    web,
     {
-        path: '/',
-        name: 'web',
-        title: '欢迎页',
-        component: web,
+        path: '/web',
+        name: 'Web',
+        component: () => import('@/views/web/index.vue'),
     },
     {
         path: '/admin',

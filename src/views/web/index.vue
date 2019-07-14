@@ -7,23 +7,24 @@
 </template>
 
 <script>
-import { maxWidth } from '../../utils';
+import { maxWidth } from '../../utils'
 
 export default {
     data() {
         return {
             isCollapse: false,
-        };
+            current: ['mail'],
+        }
     },
     methods: {
         maxWidth(bool) {
-            this.isCollapse = bool;
+            this.isCollapse = bool
         },
     },
     mounted() {
-        maxWidth(800, this.maxWidth);
+        maxWidth(800, this.maxWidth)
     },
-};
+}
 </script>
 
 <style lang="css" scoped>

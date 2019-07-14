@@ -1,36 +1,36 @@
-import ajax from './ajax';
+import ajax from './ajax'
 
-import message from '../../nfeng-pc-vue/nfeng-components/message';
+// import message from '../../nfeng-pc-vue/nfeng-components/message';
 
 function ajaxAction(type, url, param, resolve) {
     ajax(type, url, param, (xhr) => {
         if (xhr.status === 200) {
-            const res = JSON.parse(xhr.responseText);
+            const res = JSON.parse(xhr.responseText)
             if (res.code === 200) {
-                resolve(res);
+                resolve(res)
             } else if (res.code === 401) {
-                message.error(res.msg);
-                window.location.href = '/auth/login';
+                // message.error(res.msg);
+                window.location.href = '/auth/login'
             } else {
-                message.error(res.msg);
+                // message.error(res.msg);
             }
         }
-    });
+    })
 }
 
 function post(url, param) {
     return new Promise((resolve, reject) => {
-        ajaxAction('post', url, param, resolve, reject);
-    });
+        ajaxAction('post', url, param, resolve, reject)
+    })
 }
 
 function get(url, param) {
     return new Promise((resolve, reject) => {
-        ajaxAction('get', url, param, resolve, reject);
-    });
+        ajaxAction('get', url, param, resolve, reject)
+    })
 }
 
 export {
     post,
     get,
-};
+}

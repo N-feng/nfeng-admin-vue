@@ -1,5 +1,9 @@
+@import "varible";
+@import "common";
+@import "font";
+@import 'handle';
+
 @import './public/reset.scss';
-@import './public/handle.scss';
 @import './public/header-box.scss';
 @import './public/flip-box.scss';
 @import './public/transition-box.scss';
@@ -12,3 +16,4 @@
 @import './admin/login-page.scss';
 @import './admin/signup-page.scss';
 @import './admin/landing-page.scss';
+

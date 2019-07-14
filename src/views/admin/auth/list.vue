@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import AuthModel from '../../../model/AuthModel';
+import AuthModel from '../../../model/AuthModel'
 
 export default {
     data() {
@@ -49,7 +49,7 @@ export default {
                 },
             ],
             AuthModel: new AuthModel(),
-        };
+        }
     },
     methods: {
         handleClick(row) {
@@ -63,25 +63,25 @@ export default {
                         this.$message({
                             type: 'success',
                             message: res.msg,
-                        });
-                        this.AuthModel.getList();
+                        })
+                        this.AuthModel.getList()
                     }
-                });
+                })
             }).catch(() => {
                 this.$message({
                     type: 'info',
                     message: '已取消删除',
-                });
-            });
+                })
+            })
         },
         onSubmit() {
-            console.log('submit!');
+            console.log('submit!')
         },
     },
     created() {
-        this.AuthModel.getList();
+        this.AuthModel.getList()
     },
-};
+}
 </script>
 
 <style scoped>

@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import AuthModel from '../../model/AuthModel';
+import AuthModel from '../../model/AuthModel'
 
 export default {
     name: 'HeaderBox',
@@ -67,18 +67,18 @@ export default {
             menuList: ['Admin'],
             AuthModel: new AuthModel(),
             username: '',
-        };
+        }
     },
     methods: {
         logout() {
-            AuthModel.logout();
-            this.$router.push('/auth/login');
+            AuthModel.logout()
+            this.$router.push('/auth/login')
         },
     },
     created() {
-        this.username = window.localStorage.getItem('username');
+        this.username = window.localStorage.getItem('username')
     },
-};
+}
 </script>
 
 <style lang="css" scoped>
