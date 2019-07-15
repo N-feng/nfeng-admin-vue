@@ -9,7 +9,7 @@ const web = {
   children: [{
     path: 'home',
     name: 'Home',
-    title: '欢迎页',
+    title: '前台欢迎页',
     component: () => import('@/views/web/Home.vue'),
   }],
 }

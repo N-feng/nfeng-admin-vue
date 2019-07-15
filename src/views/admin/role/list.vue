@@ -1,9 +1,7 @@
 <template>
   <div class="nf-main">
     <p class="nf-title">角色管理</p>
-    <router-link to="create">
-      <a-button type="primary">新增角色</a-button>
-    </router-link>
+    <a-button type="primary" @click="addRole">新增角色</a-button>
     <a-table class="mt20" :loading="loading" :columns="tableColumns" :dataSource="tableList" :pagination="pagination" :rowKey="record => record.roleName">
       <!-- <nf-table-column label="roleName" prop="roleName"></nf-table-column>
       <nf-table-column label="roleType" prop="roleType"></nf-table-column>
@@ -18,18 +16,25 @@
         </template>
       </nf-table-column> -->
       <span slot="action" slot-scope="text, record">
-        <router-link :to="{ path: 'edit', query:{ roleName: record.roleName }}" class="mr10">编辑</router-link>
+        <a href="javascript:;" @click="updateRole(record)" class="mr10">修改</a>
         <a href="javascript:;" @click="handleClick(scope.row)">删除</a>
       </span>
     </a-table>
+    <create ref="roleForm" :visible="visible" :roleForm="roleForm" :title="title" @cancel="visible = false" @create="handleCreate"></create>
   </div>
 </template>
 
 <script>
 import RoleModel from '../../../model/RoleModel'
-import { getRoleList } from '@/api/role'
+import {
+  getRoleList, getRoleDetail, addRole, saveRole,
+} from '@/api/role'
+import create from './create.vue'
 
 export default {
+  components: {
+    create,
+  },
   data() {
     return {
       RoleModel: new RoleModel(),
@@ -65,6 +70,13 @@ export default {
           scopedSlots: { customRender: 'action' },
         },
       ],
+      roleForm: {
+        roleName: '',
+        roleType: '',
+        roleMenu: '',
+      },
+      visible: false,
+      title: '',
     }
   },
   computed: {
@@ -104,6 +116,36 @@ export default {
         this.pagination.total = data.length
       }).finally(() => {
         this.loading = false
+      })
+    },
+    addRole() {
+      this.visible = true
+      this.title = '新增角色'
+    },
+    // 修改按钮
+    async updateRole(record) {
+      const { roleName } = record
+      await getRoleDetail(roleName).h_then(({ data }) => {
+        this.roleForm = data
+        this.visible = true
+        this.title = '修改角色'
+      })
+    },
+    handleCreate() {
+      const { form } = this.$refs.roleForm
+      form.validateFields((err, values) => {
+        if (err) {
+          return
+        }
+        console.log('Received values of form: ', values)
+        // form.resetFields()
+        if (this.title === '新增角色') {
+          addRole(values)
+        } else {
+          saveRole(values)
+        }
+        this.getRoleList()
+        this.visible = false
       })
     },
   },

@@ -1,8 +1,10 @@
+// 内容
 .nf-main {
   padding: 37px 40px;
   background: #fff;
 }
 
+// 标题
 .nf-title {
   font-size: 18px;
   padding-left: 14px;
@@ -12,3 +14,11 @@
   border-left: 5px solid #178fff;
   margin-bottom: 30px;
 }
+
+// 多选框组
+.ant-checkbox-wrapper {
+  margin-right: 8px;
+  & + .ant-checkbox-wrapper{
+    margin-left: 0;
+  }
+} 
