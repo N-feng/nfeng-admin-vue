@@ -9,6 +9,21 @@ const service = axios.create({
   timeout: 20000, // 请求超时时间
 })
 
+// 为Promise添加一些方法
+Promise.prototype.finally = function finallyFn(callback) {
+  const P = this.constructor
+  return this.then(
+    value => P.resolve(callback()).then(() => value),
+    reason => P.resolve(callback()).then(() => { throw reason }),
+  )
+}
+Promise.prototype.h_then = function then(success = () => { }, error = () => { }) {
+  return this.then(data => success(data)).catch((err) => {
+    console.log('err = ', err)
+    return error(err)
+  })
+}
+
 // request拦截器
 service.interceptors.request.use((config) => {
   if (store.getters.token) {

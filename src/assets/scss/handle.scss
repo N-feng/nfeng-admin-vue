@@ -23,3 +23,5 @@
   border-radius: 6px;
   box-sizing: border-box;
 }
+
+@include margin-init(60, 5, true true true true true);
