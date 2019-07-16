@@ -7,7 +7,3 @@ export function login(username, password) {
   }
   return post('/auth/login', data)
 }
-
-export function getMenu() {
-  return post('/auth/menu')
-}

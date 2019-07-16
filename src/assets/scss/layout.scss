@@ -14,6 +14,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
+  // layout 头部右侧菜单
+  .ant-dropdown-trigger {
+    width: 120px;
+    color: #888;
+    text-align: right;
+  }
 }
 
 // layout 头部logo

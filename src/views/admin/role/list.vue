@@ -1,8 +1,14 @@
 <template>
   <div class="nf-main">
     <p class="nf-title">角色管理</p>
-    <a-button type="primary" @click="addRole">新增角色</a-button>
-    <a-table class="mt20" :loading="loading" :columns="tableColumns" :dataSource="tableList" :pagination="pagination" :rowKey="record => record.roleName">
+    <a-button type="primary"
+              @click="addRole">新增角色</a-button>
+    <a-table class="mt20"
+             :loading="loading"
+             :columns="tableColumns"
+             :dataSource="tableList"
+             :pagination="pagination"
+             :rowKey="record => record.roleName">
       <!-- <nf-table-column label="roleName" prop="roleName"></nf-table-column>
       <nf-table-column label="roleType" prop="roleType"></nf-table-column>
       <nf-table-column label="roleMenu">
@@ -15,19 +21,45 @@
           <span>{{scope.row.permissions | formatList}}</span>
         </template>
       </nf-table-column> -->
-      <span slot="action" slot-scope="text, record">
-        <a href="javascript:;" @click="updateRole(record)" class="mr10">修改</a>
-        <a href="javascript:;" @click="handleClick(scope.row)">删除</a>
+      <span slot="roleMenu"
+            slot-scope="text, record">
+        <a-tag v-for="tag in record.roleMenu"
+               color="blue"
+               :key="tag">{{tag}}</a-tag>
+      </span>
+      <span slot="permissions"
+            slot-scope="text, record">
+        <a-tag v-for="tag in record.permissions"
+               color="blue"
+               :key="tag">{{tag}}</a-tag>
+      </span>
+      <span slot="action"
+            slot-scope="text, record">
+        <a href="javascript:;"
+           @click="updateRole(record)"
+           class="mr10">修改</a>
+        <a-popconfirm title="确认删除?"
+                      @confirm="handleDelete(record)"
+                      okText="确定"
+                      cancelText="取消"
+                      class="mr10"><a href="javascript:;">删除</a>
+        </a-popconfirm>
+
       </span>
     </a-table>
-    <create ref="roleForm" :visible="visible" :roleForm="roleForm" :title="title" @cancel="visible = false" @create="handleCreate"></create>
+    <create ref="roleForm"
+            :visible="visible"
+            :roleForm="roleForm"
+            :title="title"
+            @cancel="visible = false"
+            @create="handleCreate"></create>
   </div>
 </template>
 
 <script>
 import RoleModel from '../../../model/RoleModel'
 import {
-  getRoleList, getRoleDetail, addRole, saveRole,
+  getRoleList, getRoleDetail, addRole, updateRole, deleteRole,
 } from '@/api/role'
 import create from './create.vue'
 
@@ -51,29 +83,35 @@ export default {
         {
           title: '角色名称',
           dataIndex: 'roleName',
+          width: 150,
         },
         {
           title: '角色类型',
           dataIndex: 'roleType',
+          width: 150,
         },
-        // {
-        //   title: '角色菜单',
-        //   dataIndex: 'roleMenu',
-        // },
-        // {
-        //   title: '角色权限',
-        //   dataIndex: 'permissions',
-        // },
+        {
+          title: '角色菜单',
+          dataIndex: 'roleMenu',
+          scopedSlots: { customRender: 'roleMenu' },
+        },
+        {
+          title: '角色权限',
+          dataIndex: 'permissions',
+          scopedSlots: { customRender: 'permissions' },
+        },
         {
           title: '操作',
           dataIndex: 'action',
+          width: 150,
           scopedSlots: { customRender: 'action' },
         },
       ],
       roleForm: {
         roleName: '',
         roleType: '',
-        roleMenu: '',
+        roleMenu: [],
+        permissions: [],
       },
       visible: false,
       title: '',
@@ -85,28 +123,6 @@ export default {
     },
   },
   methods: {
-    handleClick(row) {
-      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning',
-      }).then(() => {
-        RoleModel.delete(row.roleName).then((res) => {
-          if (res.code === 200) {
-            this.$message({
-              type: 'success',
-              message: res.msg,
-            })
-            this.RoleModel.getList()
-          }
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除',
-        })
-      })
-    },
     // 分页查询
     getRoleList() {
       this.loading = true
@@ -118,9 +134,18 @@ export default {
         this.loading = false
       })
     },
+    // 新增按钮
     addRole() {
       this.visible = true
       this.title = '新增角色'
+      this.roleForm = {
+        roleName: '',
+        roleType: '',
+        roleMenu: [],
+        permissions: [],
+      }
+      const { form } = this.$refs.roleForm
+      form.resetFields()
     },
     // 修改按钮
     async updateRole(record) {
@@ -131,6 +156,7 @@ export default {
         this.title = '修改角色'
       })
     },
+    // 提交按钮
     handleCreate() {
       const { form } = this.$refs.roleForm
       form.validateFields((err, values) => {
@@ -140,12 +166,27 @@ export default {
         console.log('Received values of form: ', values)
         // form.resetFields()
         if (this.title === '新增角色') {
-          addRole(values)
+          addRole(values).h_then((res) => {
+            if (res.code === 200) {
+              this.save(res.msg)
+            }
+          })
         } else {
-          saveRole(values)
+          updateRole(values).h_then(({ msg }) => this.save(msg))
         }
+      })
+    },
+    // 保存处理
+    save(message) {
+      this.$message.success(message)
+      this.getRoleList()
+      this.visible = false
+    },
+    // 删除按钮
+    handleDelete(record) {
+      deleteRole(record).h_then(({ msg }) => {
+        this.$message.success(msg)
         this.getRoleList()
-        this.visible = false
       })
     },
   },

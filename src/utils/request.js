@@ -38,6 +38,14 @@ service.interceptors.response.use(
     const res = response.data
     if (res.code !== 200) {
       message.error(res.msg)
+      // 401:Token过期，失效等等;
+      if (res.code === 401) {
+        // 清除token，刷新页面
+        store.dispatch('FedLogOut').then(() => {
+          window.location.reload()// 为了重新实例化vue-router对象 避免bug
+        })
+      }
+      return Promise.reject('error')
     }
     return res
   },

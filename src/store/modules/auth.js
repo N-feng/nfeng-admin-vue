@@ -1,16 +1,20 @@
-import { login, getMenu } from '@/api/auth'
+import { login } from '@/api/auth'
 import {
   getToken,
   setToken,
+  removeToken,
   getName,
   setName,
+  setRoleName,
+  getRoleName,
+  removeRoleName,
 } from '@/utils/auth'
 
 const auth = {
   state: {
     token: getToken(),
     username: getName(),
-    menus: [],
+    roleName: getRoleName(),
   },
   mutations: {
     SET_TOKEN: (state, payload) => {
@@ -19,8 +23,8 @@ const auth = {
     SET_NAME: (state, payload) => {
       state.username = payload
     },
-    SET_MENUS: (state, payload) => {
-      state.menus = payload
+    SET_ROLENAME: (state, payload) => {
+      state.roleName = payload
     },
   },
   actions: {
@@ -30,14 +34,37 @@ const auth = {
         const { data } = res
         setToken(data.token)
         setName(data.username)
+        setRoleName(data.roleName)
         commit('SET_TOKEN', data.token)
         commit('SET_NAME', data.username)
+        commit('SET_ROLENAME', data.roleName)
       })
     },
-    getMenu({ commit }) {
-      return getMenu().then((res) => {
-        const { data } = res
-        commit('SET_MENUS', data)
+    // 登出
+    // LogOut({ commit, state }) {
+    //   return new Promise((resolve, reject) => {
+    //     logout(state.token)
+    //       .then(() => {
+    //         commit('SET_TOKEN', '')
+    //         commit('SET_USERID', '')
+    //         commit('SET_NAME', '')
+    //         removeName()
+    //         removeToken()
+    //         removeInnerUser()
+    //         resolve()
+    //       })
+    //       .catch((error) => {
+    //         reject(error)
+    //       })
+    //   })
+    // },
+    // 前端 登出
+    FedLogOut({ commit }) {
+      return new Promise((resolve) => {
+        commit('SET_TOKEN', '')
+        removeToken()
+        removeRoleName()
+        resolve()
       })
     },
   },
