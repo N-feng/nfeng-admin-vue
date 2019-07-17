@@ -1,13 +1,17 @@
 const system = [{
   path: '/login',
   name: 'login',
-  title: '登录',
+  meta: {
+    title: '登录',
+  },
   component: () => import('@/views/system/login.vue'),
 },
 {
   path: '/signup',
   name: 'signup',
-  title: '注册',
+  meta: {
+    title: '注册',
+  },
   component: () => import('@/views/system/signup.vue'),
 }, {
   path: '*',

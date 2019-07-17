@@ -17,7 +17,6 @@ export function addRole(roleData) {
   const {
     roleName, roleType, roleMenu, permissions,
   } = roleData
-  console.log(role)
   return post(role.add, {
     roleName, roleType, roleMenu, permissions,
   })

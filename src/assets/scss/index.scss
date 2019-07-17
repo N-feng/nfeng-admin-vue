@@ -4,6 +4,7 @@
 @import "font";
 @import 'handle';
 @import "layout";
+@import "reset";
 
 @import './public/reset.scss';
 @import './public/header-box.scss';
@@ -15,6 +16,5 @@
 @import './web/web-page.scss';
 
 @import './admin/layout.scss';
-@import './admin/signup-page.scss';
 @import './admin/landing-page.scss';
 

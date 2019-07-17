@@ -1,86 +1,81 @@
 <template>
-    <nf-box title="userList" border>
-        <!-- <nf-form :inline="true" :model="formInline" class="demo-form-inline">
-            <nf-form-item label="审批人">
-                <nf-input v-model="formInline.user" placeholder="审批人" size="mini"></nf-input>
-            </nf-form-item>
-            <nf-form-item label="活动区域">
-                <nf-select v-model="formInline.region" placeholder="活动区域" filterable size="mini">
-                    <nf-option label="区域一" value="shanghai"></nf-option>
-                    <nf-option label="区域二" value="beijing"></nf-option>
-                </nf-select>
-            </nf-form-item>
-            <nf-form-item>
-                <nf-button type="primary" @click="onSubmit" size="mini">查询</nf-button>
-            </nf-form-item>
-        </nf-form> -->
-        <nf-table :data="AuthModel.list" border>
-            <nf-table-column label="user" prop="username"></nf-table-column>
-            <nf-table-column label="roleName" prop="roleName"></nf-table-column>
-            <nf-table-column label="操作">
-                <template slot-scope="scope">
-                    <nf-button @click="handleClick(scope.row)" type="text" size="small">删除</nf-button>
-                </template>
-            </nf-table-column>
-        </nf-table>
-        <!-- <nf-pagination class="mt10 tr" background :current-page="1" :page-size="100" layout="total, sizes, prev, pager, next, jumper"
-            :total="400"></nf-pagination> -->
-    </nf-box>
+  <div class="nf-main">
+    <p class="nf-title">用户管理</p>
+    <a-table class="mt20"
+             :loading="loading"
+             :columns="tableColumns"
+             :dataSource="tableList"
+             :pagination="pagination"
+             :rowKey="record => record.username">
+      <span slot="action"
+            slot-scope="text, record">
+        <a-popconfirm title="确认删除?"
+                      @confirm="handleDelete(record)"
+                      okText="确定"
+                      cancelText="取消"
+                      class="mr10"><a href="javascript:;">删除</a>
+        </a-popconfirm>
+      </span>
+    </a-table>
+  </div>
 </template>
 
 <script>
-import AuthModel from '../../../model/AuthModel'
+import { getAuthList, deleteAuth } from '@/api/auth'
 
 export default {
-    data() {
-        return {
-            formInline: {
-                user: '',
-                region: '',
-            },
-            options: [
-                {
-                    label: '区域一',
-                    value: 'shanghai',
-                },
-                {
-                    label: '区域二',
-                    value: 'beijing',
-                },
-            ],
-            AuthModel: new AuthModel(),
-        }
-    },
-    methods: {
-        handleClick(row) {
-            this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-                confirmButtonText: '确定',
-                cancelButtonText: '取消',
-                type: 'warning',
-            }).then(() => {
-                AuthModel.delete(row.username).then((res) => {
-                    if (res.code === 200) {
-                        this.$message({
-                            type: 'success',
-                            message: res.msg,
-                        })
-                        this.AuthModel.getList()
-                    }
-                })
-            }).catch(() => {
-                this.$message({
-                    type: 'info',
-                    message: '已取消删除',
-                })
-            })
+  data() {
+    return {
+      loading: true,
+      pagination: {
+        size: 'small',
+        showQuickJumper: true,
+        showSizeChanger: true,
+        total: 500,
+        showTotal: total => `共${total}条`,
+      },
+      tableList: [],
+      tableColumns: [
+        {
+          title: '用户名称',
+          dataIndex: 'username',
         },
-        onSubmit() {
-            console.log('submit!')
+        {
+          title: '角色名称',
+          dataIndex: 'roleName',
         },
+        {
+          title: '操作',
+          dataIndex: 'action',
+          width: 150,
+          scopedSlots: { customRender: 'action' },
+        },
+      ],
+    }
+  },
+  methods: {
+    // 分页查询
+    getAuthList() {
+      this.loading = true
+      // console.log(this.fields)
+      getAuthList().h_then(({ data }) => {
+        this.tableList = data
+        this.pagination.total = data.length
+      }).finally(() => {
+        this.loading = false
+      })
     },
-    created() {
-        this.AuthModel.getList()
+    // 删除按钮
+    handleDelete(record) {
+      deleteAuth(record).h_then(({ msg }) => {
+        this.$message.success(msg)
+        this.getAuthList()
+      })
     },
+  },
+  created() {
+    this.getAuthList()
+  },
 }
 </script>
 

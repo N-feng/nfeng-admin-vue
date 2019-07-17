@@ -9,18 +9,6 @@
              :dataSource="tableList"
              :pagination="pagination"
              :rowKey="record => record.roleName">
-      <!-- <nf-table-column label="roleName" prop="roleName"></nf-table-column>
-      <nf-table-column label="roleType" prop="roleType"></nf-table-column>
-      <nf-table-column label="roleMenu">
-        <template slot-scope="scope">
-          <span>{{scope.row.roleMenuList | formatList(',', 'title')}}</span>
-        </template>
-      </nf-table-column>
-      <nf-table-column label="permissions">
-        <template slot-scope="scope">
-          <span>{{scope.row.permissions | formatList}}</span>
-        </template>
-      </nf-table-column> -->
       <span slot="roleMenu"
             slot-scope="text, record">
         <a-tag v-for="tag in record.roleMenu"
@@ -44,7 +32,6 @@
                       cancelText="取消"
                       class="mr10"><a href="javascript:;">删除</a>
         </a-popconfirm>
-
       </span>
     </a-table>
     <create ref="roleForm"
@@ -57,7 +44,6 @@
 </template>
 
 <script>
-import RoleModel from '../../../model/RoleModel'
 import {
   getRoleList, getRoleDetail, addRole, updateRole, deleteRole,
 } from '@/api/role'
@@ -69,7 +55,6 @@ export default {
   },
   data() {
     return {
-      RoleModel: new RoleModel(),
       loading: true,
       pagination: {
         size: 'small',
@@ -191,13 +176,8 @@ export default {
     },
   },
   created() {
-    // 获取入驻申请列表
+    // 获取角色列表
     this.getRoleList()
-    // this.RoleModel.getList()
-    // this.$store.dispatch('getRoleList').then((res) => {
-    //   const { data } = res
-    //   this.tableList = data
-    // })
   },
 }
 </script>

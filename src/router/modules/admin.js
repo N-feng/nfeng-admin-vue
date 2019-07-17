@@ -20,14 +20,33 @@ const admin = {
   ],
 }
 
+const auth = {
+  path: '/auth',
+  name: 'auth',
+  meta: {
+    title: '用户管理',
+  },
+  redirect: '/auth/list',
+  component: Layout,
+  children: [
+    {
+      path: '/auth/list',
+      name: 'authList',
+      meta: {
+        title: '用户列表',
+      },
+      component: () => import('@/views/admin/auth/list.vue'),
+    },
+  ],
+}
 
 const role = {
   path: '/role',
   name: 'role',
-  redirect: '/role/list',
   meta: {
     title: '角色管理',
   },
+  redirect: '/role/list',
   component: Layout,
   children: [
     {
@@ -38,23 +57,63 @@ const role = {
       },
       component: () => import('@/views/admin/role/list.vue'),
     },
+    // {
+    //   path: '/role/create',
+    //   name: 'roleCreate',
+    //   meta: {
+    //     title: '角色创建',
+    //   },
+    //   component: () => import('@/views/admin/role/create.vue'),
+    // },
+    // {
+    //   path: '/role/edit',
+    //   name: 'roleEdit',
+    //   meta: {
+    //     title: '角色编辑',
+    //   },
+    //   component: () => import('@/views/admin/role/create.vue'),
+    // },
+  ],
+}
+
+const img = {
+  path: '/img',
+  name: 'img',
+  meta: {
+    title: '图片管理',
+  },
+  redirect: '/img/list',
+  component: Layout,
+  children: [
     {
-      path: '/role/create',
-      name: 'roleCreate',
+      path: '/img/list',
+      name: 'imgList',
       meta: {
-        title: '角色创建',
+        title: '图片列表',
       },
-      component: () => import('@/views/admin/role/create.vue'),
-    },
-    {
-      path: '/role/edit',
-      name: 'roleEdit',
-      meta: {
-        title: '角色编辑',
-      },
-      component: () => import('@/views/admin/role/create.vue'),
+      component: () => import('@/views/admin/img/list.vue'),
     },
   ],
 }
 
-export default [admin, role]
+const task = {
+  path: '/task',
+  name: 'task',
+  meta: {
+    title: '任务管理',
+  },
+  redirect: '/task/list',
+  component: Layout,
+  children: [
+    {
+      path: '/task/list',
+      name: 'taskList',
+      meta: {
+        title: '任务列表',
+      },
+      component: () => import('@/views/admin/task/list.vue'),
+    },
+  ],
+}
+
+export default [admin, auth, role, img, task]

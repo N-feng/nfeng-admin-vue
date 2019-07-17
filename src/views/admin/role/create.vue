@@ -61,6 +61,7 @@ export default {
     menuList() {
       const arr = []
       admin.forEach((item) => {
+        arr.push(item.meta.title)
         item.children.forEach((item2) => {
           arr.push(item2.meta.title)
         })

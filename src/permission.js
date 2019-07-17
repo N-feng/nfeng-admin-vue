@@ -15,7 +15,7 @@ NProgress.configure({ showSpinner: false })
 //   return roles.some(role => permissionRoles.indexOf(role) >= 0)
 // }
 
-const whiteList = ['/login']// no redirect whitelist
+const whiteList = ['/login', '/signup']// no redirect whitelist
 
 router.beforeEach((to, from, next) => {
   // 进度条开始走起
@@ -24,7 +24,7 @@ router.beforeEach((to, from, next) => {
   if (getToken()) {
     // console.log(to.path)
     if (to.path === '/login') {
-      next({ path: '/' })
+      next({ path: '/admin' })
       NProgress.done()
     } else {
       next()

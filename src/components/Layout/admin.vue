@@ -6,20 +6,20 @@
           <router-link to="/web">nfeng.net.cn</router-link>
         </div>
         <a-menu theme="light"
-                v-model="current"
+                :selectedKeys="current"
                 mode="horizontal">
           <template v-for="item in menus">
             <a-menu-item :key="item.path"
                          v-if="item.children && !item.children.length">
-              <router-link :to="item.path">{{item.title}}</router-link>
+              <router-link :to="item.path">{{item.meta.title}}</router-link>
             </a-menu-item>
             <a-sub-menu :key="item.path"
                         v-else>
               <span slot="title"
-                    class="submenu-title-wrapper">{{item.title}}</span>
+                    class="submenu-title-wrapper">{{item.meta.title}}</span>
               <template v-for="item2 in item.children">
                 <a-menu-item :key="item2.path">
-                  <router-link :to="item2.path">{{item2.title}}</router-link>
+                  <router-link :to="item2.path">{{item2.meta.title}}</router-link>
                 </a-menu-item>
               </template>
             </a-sub-menu>
@@ -51,34 +51,22 @@
 </template>
 
 <script>
-import router from '@/router'
-import { getRoleDetail } from '@/api/role'
-import { getRoleName } from '@/utils/auth'
+import { getName } from '@/utils/auth'
 
 export default {
   name: 'adminLayout',
-  computed: {
-    username() {
-      return this.$store.getters.username
-    },
-    // menus() {
-    //   function filterItems(item) {
-    //     if (!item.hidden && item.path !== '/login') {
-    //       return true
-    //     }
-    //     return false
-    //   }
-    //   // return this.$route.path.indexOf('admin') === -1 ? router.options.routes.filter(filterItems) : this.$store.getters.menus
-    //   return router.options.routes.filter(filterItems)
-    // },
-    current() {
-      return [this.$route.name]
-    },
-  },
   data() {
     return {
-      menus: [],
+      username: getName(), // 用户名
     }
+  },
+  computed: {
+    menus() {
+      return this.$store.getters.menus
+    },
+    current() {
+      return [this.$route.path]
+    },
   },
   methods: {
     // 登出
@@ -89,19 +77,7 @@ export default {
     },
   },
   created() {
-    getRoleDetail(getRoleName()).h_then(({ data }) => {
-      // const menus = router.options.routes.filter((item) => {
-      //   data.roleMenu.forEach((item2) => {
-      //     if (item.meta.title === item2) {
-      //       return item
-      //     }
-      //   })
-      // })
-      console.log(data)
-      console.log(router)
-    })
-    // this.menus = getRoleDetail(getRoleName()).roleMenu
-    // console.log(getRoleDetail(getRoleName()))
+    this.$store.dispatch('getMenus')
   },
 }
 </script>

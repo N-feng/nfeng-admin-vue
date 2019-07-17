@@ -33,7 +33,7 @@
                   :disabled="hasErrors(form.getFieldsError())">Login</a-button>
       </a-form-item>
       <a>Lost your password?</a><br>
-      <router-link to="/auth/signup">Don`t have an account</router-link>
+      <router-link to="/signup">Don`t have an account</router-link>
     </a-form>
   </div>
 </template>
@@ -79,10 +79,14 @@ export default {
             // const redirectPath = this.$route.query.redirect || '/'
             // 组装登陆后的跳转地址
             const { path, query } = this.$route.query
-            this.$router.push({
-              path,
-              query: JSON.parse(query),
-            })
+            if (query) {
+              this.$router.push({
+                path,
+                query: query ? JSON.parse(query) : '',
+              })
+            } else {
+              this.$router.push('/admin')
+            }
             // this.$router.replace({ path: redirectPath })
           })
         }
