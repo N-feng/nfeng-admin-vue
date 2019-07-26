@@ -9,6 +9,9 @@
              :rowKey="record => record.username">
       <span slot="action"
             slot-scope="text, record">
+        <a href="javascript:;"
+           @click="updateAuth(record)"
+           class="mr10">修改</a>
         <a-popconfirm title="确认删除?"
                       @confirm="handleDelete(record)"
                       okText="确定"
@@ -17,13 +20,26 @@
         </a-popconfirm>
       </span>
     </a-table>
+    <create ref="roleForm"
+            :visible="visible"
+            :roleForm="roleForm"
+            :title="title"
+            @cancel="visible = false"
+            @create="handleCreate"></create>
   </div>
 </template>
 
 <script>
 import { getAuthList, deleteAuth } from '@/api/auth'
+import create from './create.vue'
+import {
+  getRoleDetail, addRole, updateRole,
+} from '@/api/role'
 
 export default {
+  components: {
+    create,
+  },
   data() {
     return {
       loading: true,
@@ -41,7 +57,7 @@ export default {
           dataIndex: 'username',
         },
         {
-          title: '角色名称',
+          title: '用户角色',
           dataIndex: 'roleName',
         },
         {
@@ -51,6 +67,14 @@ export default {
           scopedSlots: { customRender: 'action' },
         },
       ],
+      roleForm: {
+        roleName: '',
+        roleType: '',
+        roleMenu: [],
+        permissions: [],
+      },
+      visible: false,
+      title: '',
     }
   },
   methods: {
@@ -63,6 +87,35 @@ export default {
         this.pagination.total = data.length
       }).finally(() => {
         this.loading = false
+      })
+    },
+    // 修改按钮
+    async updateAuth(record) {
+      const { roleName } = record
+      await getRoleDetail(roleName).h_then(({ data }) => {
+        this.roleForm = data
+        this.visible = true
+        this.title = '修改角色'
+      })
+    },
+    // 提交按钮
+    handleCreate() {
+      const { form } = this.$refs.roleForm
+      form.validateFields((err, values) => {
+        if (err) {
+          return
+        }
+        console.log('Received values of form: ', values)
+        // form.resetFields()
+        if (this.title === '新增角色') {
+          addRole(values).h_then((res) => {
+            if (res.code === 200) {
+              this.save(res.msg)
+            }
+          })
+        } else {
+          updateRole(values).h_then(({ msg }) => this.save(msg))
+        }
       })
     },
     // 删除按钮

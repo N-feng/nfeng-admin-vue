@@ -6,8 +6,8 @@ const admin = {
   meta: {
     title: '后台管理',
   },
-  component: Layout,
   redirect: '/admin/landing',
+  component: Layout,
   children: [
     {
       path: '/admin/landing',

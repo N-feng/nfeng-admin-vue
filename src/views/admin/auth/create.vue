@@ -8,12 +8,13 @@
            @ok="() => { $emit('create') }">
     <a-form :form="form">
       <a-form-item v-bind="formItemLayout"
-                   label="角色名称">
+                   label="用户名称">
         <a-input v-decorator="['roleName', { rules: rules.roleName, initialValue: roleForm.roleName }]"
-                 placeholder="请输入"></a-input>
+                 placeholder="请输入"
+                 disabled></a-input>
       </a-form-item>
       <a-form-item v-bind="formItemLayout"
-                   label="角色类型">
+                   label="用户角色">
         <a-select v-decorator="['roleType', { rules: rules.roleType, initialValue: roleForm.roleType }]"
                   placeholder="请选择">
           <a-select-option v-for="item in typeList"
@@ -21,20 +22,6 @@
                            :value="item.value">{{item.name}}</a-select-option>
         </a-select>
       </a-form-item>
-      <nf-checkbox :form="form"
-                   :formItemLayout="formItemLayout"
-                   label="角色菜单"
-                   field="roleMenu"
-                   :rules="rules.roleMenu"
-                   :checkedList="roleForm.roleMenu"
-                   :plainOptions="menuList"></nf-checkbox>
-      <nf-checkbox :form="form"
-                   :formItemLayout="formItemLayout"
-                   label="角色权限"
-                   field="permissions"
-                   :rules="rules.permissions"
-                   :checkedList="roleForm.permissions"
-                   :plainOptions="permissionsList"></nf-checkbox>
     </a-form>
   </a-modal>
 </template>
@@ -42,10 +29,8 @@
 <script>
 import router from '@/router'
 import config from '@/api/config'
-import NfCheckbox from './NfCheckbox/index.vue'
 
 export default {
-  components: { NfCheckbox },
   props: {
     visible: {
       type: Boolean,

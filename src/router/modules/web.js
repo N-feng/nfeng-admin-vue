@@ -4,7 +4,7 @@ const web = {
   path: '/web',
   name: 'web',
   meta: {
-    title: '前台',
+    title: '前台展示',
   },
   component: Layout,
   redirect: '/web/home',

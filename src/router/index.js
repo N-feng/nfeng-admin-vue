@@ -7,12 +7,14 @@ import admin from './modules/admin'
 Vue.use(Router)
 
 const mainRouter = [
+  {
+    path: '/',
+    redirect: '/web',
+    meta: {
+      title: '前台跳转',
+    },
+  },
   web,
-  // {
-  //   path: '/web',
-  //   name: 'Web',
-  //   component: () => import('@/views/web/index.vue'),
-  // },
   ...admin,
   ...system,
 ]
