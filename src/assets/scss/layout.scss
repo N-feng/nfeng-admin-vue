@@ -23,18 +23,6 @@
   }
 }
 
-// layout 头部logo
-.logo {
-  display: flex;
-  align-items: center;
-  text-transform: uppercase;
-}
-
-.logo a {
-  //transition: 0.4s;
-  text-decoration: none;
-}
-
 // layout 头部菜单调整
 .ant-menu-horizontal {
   border-bottom: none;

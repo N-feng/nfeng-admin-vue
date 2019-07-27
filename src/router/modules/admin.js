@@ -17,62 +17,22 @@ const admin = {
       },
       component: () => import('@/views/admin/landing/index.vue'),
     },
-  ],
-}
-
-const auth = {
-  path: '/auth',
-  name: 'auth',
-  meta: {
-    title: '用户管理',
-  },
-  redirect: '/auth/list',
-  component: Layout,
-  children: [
     {
       path: '/auth/list',
       name: 'authList',
       meta: {
-        title: '用户列表',
+        title: '用户管理',
       },
       component: () => import('@/views/admin/auth/list.vue'),
     },
-  ],
-}
-
-const role = {
-  path: '/role',
-  name: 'role',
-  meta: {
-    title: '角色管理',
-  },
-  redirect: '/role/list',
-  component: Layout,
-  children: [
     {
       path: '/role/list',
       name: 'roleList',
       meta: {
-        title: '角色列表',
+        title: '角色管理',
       },
       component: () => import('@/views/admin/role/list.vue'),
     },
-    // {
-    //   path: '/role/create',
-    //   name: 'roleCreate',
-    //   meta: {
-    //     title: '角色创建',
-    //   },
-    //   component: () => import('@/views/admin/role/create.vue'),
-    // },
-    // {
-    //   path: '/role/edit',
-    //   name: 'roleEdit',
-    //   meta: {
-    //     title: '角色编辑',
-    //   },
-    //   component: () => import('@/views/admin/role/create.vue'),
-    // },
   ],
 }
 
@@ -116,4 +76,4 @@ const task = {
   ],
 }
 
-export default [admin, auth, role, img, task]
+export default [admin, img, task]

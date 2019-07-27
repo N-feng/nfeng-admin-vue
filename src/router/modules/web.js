@@ -9,7 +9,7 @@ const web = {
   component: Layout,
   redirect: '/web/home',
   children: [{
-    path: 'home',
+    path: '/web/home',
     name: 'Home',
     meta: {
       title: '前台欢迎页',

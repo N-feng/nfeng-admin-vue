@@ -2,9 +2,7 @@
   <a-layout>
     <a-layout-header>
       <div class="header-content">
-        <div class="logo fs16">
-          <router-link to="/web">nfeng.net.cn</router-link>
-        </div>
+        <div class="nf-logo fs16">nfeng.net.cn</div>
         <a-menu theme="light"
                 :selectedKeys="current"
                 mode="horizontal">

@@ -20,9 +20,9 @@
         </a-popconfirm>
       </span>
     </a-table>
-    <create ref="roleForm"
+    <create ref="authForm"
             :visible="visible"
-            :roleForm="roleForm"
+            :authForm="authForm"
             :title="title"
             @cancel="visible = false"
             @create="handleCreate"></create>
@@ -30,11 +30,10 @@
 </template>
 
 <script>
-import { getAuthList, deleteAuth } from '@/api/auth'
-import create from './create.vue'
 import {
-  getRoleDetail, addRole, updateRole,
-} from '@/api/role'
+  getAuthList, getAuthDetail, deleteAuth, updateUser,
+} from '@/api/auth'
+import create from './create.vue'
 
 export default {
   components: {
@@ -67,11 +66,9 @@ export default {
           scopedSlots: { customRender: 'action' },
         },
       ],
-      roleForm: {
+      authForm: {
+        username: '',
         roleName: '',
-        roleType: '',
-        roleMenu: [],
-        permissions: [],
       },
       visible: false,
       title: '',
@@ -91,32 +88,30 @@ export default {
     },
     // 修改按钮
     async updateAuth(record) {
-      const { roleName } = record
-      await getRoleDetail(roleName).h_then(({ data }) => {
-        this.roleForm = data
+      const { username } = record
+      await getAuthDetail(username).h_then(({ data }) => {
+        this.authForm = data
         this.visible = true
-        this.title = '修改角色'
+        this.title = '修改用户'
       })
     },
     // 提交按钮
     handleCreate() {
-      const { form } = this.$refs.roleForm
+      const { form } = this.$refs.authForm
       form.validateFields((err, values) => {
         if (err) {
           return
         }
         console.log('Received values of form: ', values)
         // form.resetFields()
-        if (this.title === '新增角色') {
-          addRole(values).h_then((res) => {
-            if (res.code === 200) {
-              this.save(res.msg)
-            }
-          })
-        } else {
-          updateRole(values).h_then(({ msg }) => this.save(msg))
-        }
+        updateUser(values).h_then(({ msg }) => this.save(msg))
       })
+    },
+    // 保存处理
+    save(message) {
+      this.$message.success(message)
+      this.getAuthList()
+      this.visible = false
     },
     // 删除按钮
     handleDelete(record) {

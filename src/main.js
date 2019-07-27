@@ -3,7 +3,7 @@ import Antd from 'ant-design-vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'ant-design-vue/dist/antd.css'
-import '@/assets/scss/index.scss'
+// import '@/assets/scss/index.scss'
 // import './assets/less/index.less'
 import './permission' // 权限控制
 import App from './App.vue'

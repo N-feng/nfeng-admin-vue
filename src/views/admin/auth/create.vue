@@ -9,17 +9,17 @@
     <a-form :form="form">
       <a-form-item v-bind="formItemLayout"
                    label="用户名称">
-        <a-input v-decorator="['roleName', { rules: rules.roleName, initialValue: roleForm.roleName }]"
+        <a-input v-decorator="['username', { initialValue: authForm.username }]"
                  placeholder="请输入"
                  disabled></a-input>
       </a-form-item>
       <a-form-item v-bind="formItemLayout"
                    label="用户角色">
-        <a-select v-decorator="['roleType', { rules: rules.roleType, initialValue: roleForm.roleType }]"
+        <a-select v-decorator="['roleName', { initialValue: authForm.roleName }]"
                   placeholder="请选择">
-          <a-select-option v-for="item in typeList"
-                           :key="item.value"
-                           :value="item.value">{{item.name}}</a-select-option>
+          <a-select-option v-for="item in roleList"
+                           :key="item.roleName"
+                           :value="item.roleName">{{item.roleName}}</a-select-option>
         </a-select>
       </a-form-item>
     </a-form>
@@ -29,6 +29,7 @@
 <script>
 import router from '@/router'
 import config from '@/api/config'
+import { getRoleList } from '@/api/role'
 
 export default {
   props: {
@@ -38,7 +39,7 @@ export default {
     title: {
       type: String,
     },
-    roleForm: {
+    authForm: {
       type: Object,
     },
   },
@@ -65,26 +66,22 @@ export default {
   },
   data() {
     return {
-      rules: {
-        roleName: [
-          { required: true, message: '请输入角色名称' },
-        ],
-        roleType: [
-          { required: true, message: '请输入角色类型' },
-        ],
-        roleMenu: [
-          { required: true, message: '请选择角色菜单' },
-        ],
-      },
       formItemLayout: {
         labelCol: { span: 7 },
         wrapperCol: { span: 13 },
       },
-      typeList: [
-        { name: '会员', value: 'member' },
-        { name: '管理', value: 'admin' },
-      ],
+      roleList: [],
     }
+  },
+  methods: {
+    getRoleList() {
+      getRoleList().h_then(({ data }) => {
+        this.roleList = data
+      })
+    },
+  },
+  created() {
+    this.getRoleList()
   },
   beforeCreate() {
     this.form = this.$form.createForm(this)

@@ -2,8 +2,10 @@ export const auth = {
   signup: '/auth/signup', // 注册
   delete: '/auth/delete', // 删除
   login: '/auth/login', // 登录
+  detail: '/auth/detail', // 用户详情
   info: '/auth/info', // 用户信息
   list: '/auth/list', // 用户列表
+  updateUser: '/auth/updateUser', // 修改用户
 }
 
 export const role = {

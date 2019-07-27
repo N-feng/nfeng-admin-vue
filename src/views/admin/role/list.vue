@@ -45,7 +45,7 @@
 
 <script>
 import {
-  getRoleList, getRoleDetail, addRole, updateRole, deleteRole,
+  getRoleList, addRole, getRoleDetail, updateRole, deleteRole,
 } from '@/api/role'
 import create from './create.vue'
 
