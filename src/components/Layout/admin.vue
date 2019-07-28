@@ -8,7 +8,7 @@
                 mode="horizontal">
           <template v-for="item in menus">
             <a-menu-item :key="item.path"
-                         v-if="item.children && !item.children.length">
+                         v-if="!item.children.length">
               <router-link :to="item.path">{{item.meta.title}}</router-link>
             </a-menu-item>
             <a-sub-menu :key="item.path"
@@ -25,8 +25,7 @@
         </a-menu>
         <a-dropdown>
           <a class="ant-dropdown-link"
-             href="javascript:;">
-            {{username}}
+             href="javascript:;">Welcome, {{ username }}
             <a-icon type="down" />
           </a>
           <a-menu slot="overlay">
@@ -39,7 +38,8 @@
       </div>
     </a-layout-header>
     <a-layout-content>
-      <a-breadcrumb :style="{ margin: '16px 0' }">
+      <a-breadcrumb :style="{ margin: '16px 0' }"
+                    v-if="!isHome">
         <a-breadcrumb-item v-for="item in $route.matched"
                            :key="item.name">{{item.meta.title}}</a-breadcrumb-item>
       </a-breadcrumb>
@@ -65,13 +65,14 @@ export default {
     current() {
       return [this.$route.path]
     },
+    isHome() {
+      return this.$route.name === 'landing'
+    },
   },
   methods: {
     // 登出
     logout() {
-      this.$store.dispatch('FedLogOut').h_then(() => {
-        this.$router.replace({ name: 'login' })
-      })
+      this.$store.dispatch('FedLogOut')
     },
   },
   created() {

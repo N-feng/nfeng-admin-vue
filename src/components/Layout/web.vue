@@ -9,6 +9,19 @@
             <router-link to="/admin">后台管理</router-link>
           </a-menu-item>
         </a-menu>
+        <a-dropdown>
+          <a class="ant-dropdown-link"
+             href="javascript:;">Welcome, {{ username || 'stranger' }}
+            <a-icon type="down" />
+          </a>
+          <a-menu slot="overlay"
+                  v-if="username">
+            <a-menu-item>
+              <a href="javascript:;"
+                 @click="logout">退出登录</a>
+            </a-menu-item>
+          </a-menu>
+        </a-dropdown>
       </div>
     </a-layout-header>
     <a-layout-content>
@@ -18,8 +31,21 @@
 </template>
 
 <script>
+import { getName } from '@/utils/auth'
+
 export default {
   name: 'webLayout',
+  data() {
+    return {
+      username: getName(), // 用户名
+    }
+  },
+  methods: {
+    // 登出
+    logout() {
+      this.$store.dispatch('FedLogOut')
+    },
+  },
 }
 </script>
 

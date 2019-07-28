@@ -1,6 +1,6 @@
 const Layout = () => import('@/components/Layout/admin.vue')
 
-const admin = {
+export const admin = {
   path: '/admin',
   name: 'admin',
   meta: {

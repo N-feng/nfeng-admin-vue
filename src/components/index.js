@@ -1,11 +1,9 @@
-import HeaderBox from './public/header-box.vue'
-import CardBox from './web/card-box.vue'
 import NfCard from './NfCard/index.vue'
+import NfCheckbox from './NfCheckbox/index.vue'
 
 const components = [
-  HeaderBox,
-  CardBox,
   NfCard,
+  NfCheckbox,
 ]
 
 function install(Vue) {

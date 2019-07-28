@@ -7,6 +7,7 @@ import {
   removeToken,
   getName,
   setName,
+  removeName,
   setRoleName,
   getRoleName,
   removeRoleName,
@@ -79,6 +80,8 @@ const auth = {
       return new Promise((resolve) => {
         commit('SET_TOKEN', '')
         removeToken()
+        // console.log(removeName)
+        removeName()
         removeRoleName()
         resolve()
       })

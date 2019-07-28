@@ -1,7 +1,6 @@
 // layout
 .ant-layout {
-  /*background: transparent;*/
-  height: 100%;
+  background: transparent;
 }
 
 // layout 头部
@@ -17,7 +16,7 @@
   
   // layout 头部右侧菜单
   .ant-dropdown-trigger {
-    width: 120px;
+    // width: 180px;
     color: #888;
     text-align: right;
   }

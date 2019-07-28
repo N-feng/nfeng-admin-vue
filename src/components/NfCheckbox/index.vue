@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  name: 'NfCheckbox',
   data() {
     return {
       indeterminate: false,
@@ -63,6 +64,9 @@ export default {
       obj[this.field] = e.target.checked ? this.plainOptions : []
       this.form.setFieldsValue(obj)
     },
+  },
+  created() {
+    this.onChange(this.checkedList)
   },
 }
 </script>

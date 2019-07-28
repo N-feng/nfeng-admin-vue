@@ -42,10 +42,8 @@
 <script>
 import router from '@/router'
 import config from '@/api/config'
-import NfCheckbox from './NfCheckbox/index.vue'
 
 export default {
-  components: { NfCheckbox },
   props: {
     visible: {
       type: Boolean,

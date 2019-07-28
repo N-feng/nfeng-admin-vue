@@ -23,6 +23,10 @@ export function setName(name) {
   return localStorage.setItem(NameKey, name)
 }
 
+export function removeName() {
+  return localStorage.removeItem(NameKey)
+}
+
 export function setRoleName(val) {
   return localStorage.setItem(RoleNameKey, val)
 }

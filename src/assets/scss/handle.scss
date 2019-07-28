@@ -5,23 +5,4 @@
   transform: translate(-50%, -50%);
 }
 
-%beforeBg {
-  content: "";
-  background: url(https://cdn.nfeng.net.cn/upload/winnower.jpeg) no-repeat 50% 50%;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  opacity: .85;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-%cardBox {
-  width: 400px;
-  max-width: 85vw;
-  border-radius: 6px;
-  box-sizing: border-box;
-}
-
 @include margin-init(60, 5, true true true true true);
