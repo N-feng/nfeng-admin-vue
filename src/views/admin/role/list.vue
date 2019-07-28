@@ -34,9 +34,9 @@
         </a-popconfirm>
       </span>
     </a-table>
-    <create ref="roleForm"
+    <create ref="dialogForm"
             :visible="visible"
-            :roleForm="roleForm"
+            :dialogForm="dialogForm"
             :title="title"
             @cancel="visible = false"
             @create="handleCreate"></create>
@@ -92,7 +92,7 @@ export default {
           scopedSlots: { customRender: 'action' },
         },
       ],
-      roleForm: {
+      dialogForm: {
         roleName: '',
         roleType: '',
         roleMenu: [],
@@ -109,7 +109,7 @@ export default {
   },
   methods: {
     // 分页查询
-    getRoleList() {
+    getList() {
       this.loading = true
       // console.log(this.fields)
       getRoleList().h_then(({ data }) => {
@@ -123,27 +123,27 @@ export default {
     addRole() {
       this.visible = true
       this.title = '新增角色'
-      this.roleForm = {
+      this.dialogForm = {
         roleName: '',
         roleType: '',
         roleMenu: [],
         permissions: [],
       }
-      const { form } = this.$refs.roleForm
+      const { form } = this.$refs.dialogForm
       form.resetFields()
     },
     // 修改按钮
     async updateRole(record) {
       const { roleName } = record
       await getRoleDetail(roleName).h_then(({ data }) => {
-        this.roleForm = data
+        this.dialogForm = data
         this.visible = true
         this.title = '修改角色'
       })
     },
     // 提交按钮
     handleCreate() {
-      const { form } = this.$refs.roleForm
+      const { form } = this.$refs.dialogForm
       form.validateFields((err, values) => {
         if (err) {
           return
@@ -164,20 +164,20 @@ export default {
     // 保存处理
     save(message) {
       this.$message.success(message)
-      this.getRoleList()
+      this.getList()
       this.visible = false
     },
     // 删除按钮
     handleDelete(record) {
       deleteRole(record).h_then(({ msg }) => {
         this.$message.success(msg)
-        this.getRoleList()
+        this.getList()
       })
     },
   },
   created() {
     // 获取角色列表
-    this.getRoleList()
+    this.getList()
   },
 }
 </script>

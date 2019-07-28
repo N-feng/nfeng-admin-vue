@@ -60,10 +60,11 @@ export default {
   },
   computed: {
     menus() {
-      return this.$store.getters.menus
+      return this.$store.getters.globalList.menus
     },
     current() {
-      return [this.$route.path]
+      // 为了匹配高亮
+      return this.$route.meta.rename ? [this.$route.meta.rename] : [this.$route.name]
     },
     isHome() {
       return this.$route.name === 'landing'

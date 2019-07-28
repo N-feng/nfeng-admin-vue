@@ -1,37 +1,34 @@
 import { post } from '@/utils/request'
 import { auth } from './config'
 
-export function getAuthList() {
-  return post(auth.list)
-}
-
-export function getAuthDetail(username) {
-  return post(auth.detail, { username })
-}
+const baseUrl = '/admin'
 
 export function signup(username, password, roleName) {
-  const data = {
-    username,
-    password,
-    roleName,
-  }
-  return post(auth.signup, data)
+  const url = `${baseUrl}/auth/signup` // 注册
+  const data = { username, password, roleName }
+  return post(url, data)
 }
 
 export function login(username, password) {
-  const data = {
-    username,
-    password,
-  }
-  return post(auth.login, data)
+  const url = `${baseUrl}/auth/login` // 登录
+  const data = { username, password }
+  return post(url, data)
 }
 
 export function deleteAuth(authData) {
   const { username } = authData
-  return post(auth.delete, { username })
+  return post(auth.authDelete, { username })
 }
 
 export function updateUser(authData) {
   const { username, roleName } = authData
-  return post(auth.updateUser, { username, roleName })
+  return post(auth.authUpdate, { username, roleName })
+}
+
+export function getAuthDetail(username) {
+  return post(auth.authDetail, { username })
+}
+
+export function getAuthList() {
+  return post(auth.authList)
 }

@@ -1,20 +1,31 @@
+const baseUrl = '/admin'
+
+export const global = {
+  getMenus: `${baseUrl}/global/menus`,
+  getRoleNameList: `${baseUrl}/global/roleNameList`,
+}
+
 export const auth = {
-  signup: '/auth/signup', // 注册
-  delete: '/auth/delete', // 删除
-  login: '/auth/login', // 登录
-  detail: '/auth/detail', // 用户详情
-  info: '/auth/info', // 用户信息
-  list: '/auth/list', // 用户列表
-  updateUser: '/auth/updateUser', // 修改用户
+  authDelete: `${baseUrl}/auth/delete`, // 删除
+  authUpdate: `${baseUrl}/auth/update`, // 修改用户
+  authDetail: `${baseUrl}/auth/detail`, // 用户详情
+  authList: `${baseUrl}/auth/list`, // 用户列表
 }
 
 export const role = {
-  add: '/role/add',
-  update: '/role/update',
-  delete: '/role/delete',
-  detail: '/role/detail',
-  option: '/role/option',
-  list: '/role/list',
+  roleAdd: `${baseUrl}/role/add`,
+  roleDelete: `${baseUrl}/role/delete`,
+  roleUpdate: `${baseUrl}/role/update`,
+  roleDetail: `${baseUrl}/role/detail`,
+  roleList: `${baseUrl}/role/list`,
+}
+
+export const task = {
+  add: `${baseUrl}/task/add`,
+  delete: `${baseUrl}/task/delete`,
+  update: `${baseUrl}/task/update`,
+  detail: `${baseUrl}/task/detail`,
+  list: `${baseUrl}/task/list`,
 }
 
 export const img = {
@@ -26,7 +37,9 @@ export const img = {
 }
 
 export default {
+  ...global,
   ...auth,
   ...role,
   ...img,
+  ...task,
 }

@@ -10,7 +10,7 @@
       <span slot="action"
             slot-scope="text, record">
         <a href="javascript:;"
-           @click="updateAuth(record)"
+           @click="update(record.username)"
            class="mr10">修改</a>
         <a-popconfirm title="确认删除?"
                       @confirm="handleDelete(record)"
@@ -20,9 +20,9 @@
         </a-popconfirm>
       </span>
     </a-table>
-    <create ref="authForm"
+    <create ref="dialogForm"
             :visible="visible"
-            :authForm="authForm"
+            :dialogForm="dialogForm"
             :title="title"
             @cancel="visible = false"
             @create="handleCreate"></create>
@@ -66,17 +66,14 @@ export default {
           scopedSlots: { customRender: 'action' },
         },
       ],
-      authForm: {
-        username: '',
-        roleName: '',
-      },
+      dialogForm: {},
       visible: false,
       title: '',
     }
   },
   methods: {
     // 分页查询
-    getAuthList() {
+    getList() {
       this.loading = true
       // console.log(this.fields)
       getAuthList().h_then(({ data }) => {
@@ -87,17 +84,16 @@ export default {
       })
     },
     // 修改按钮
-    async updateAuth(record) {
-      const { username } = record
+    async update(username) {
       await getAuthDetail(username).h_then(({ data }) => {
-        this.authForm = data
+        this.dialogForm = data
         this.visible = true
         this.title = '修改用户'
       })
     },
     // 提交按钮
     handleCreate() {
-      const { form } = this.$refs.authForm
+      const { form } = this.$refs.dialogForm
       form.validateFields((err, values) => {
         if (err) {
           return
@@ -110,19 +106,19 @@ export default {
     // 保存处理
     save(message) {
       this.$message.success(message)
-      this.getAuthList()
+      this.getList()
       this.visible = false
     },
     // 删除按钮
     handleDelete(record) {
       deleteAuth(record).h_then(({ msg }) => {
         this.$message.success(msg)
-        this.getAuthList()
+        this.getList()
       })
     },
   },
   created() {
-    this.getAuthList()
+    this.getList()
   },
 }
 </script>

@@ -1,6 +1,4 @@
 import { login, signup } from '@/api/auth'
-import { getRoleDetail } from '@/api/role'
-import router from '@/router'
 import {
   getToken,
   setToken,
@@ -9,7 +7,6 @@ import {
   setName,
   removeName,
   setRoleName,
-  getRoleName,
   removeRoleName,
 } from '@/utils/auth'
 
@@ -17,8 +14,6 @@ const auth = {
   state: {
     token: getToken(),
     username: getName(),
-    roleName: getRoleName(),
-    menus: [],
   },
   mutations: {
     SET_TOKEN: (state, payload) => {
@@ -29,9 +24,6 @@ const auth = {
     },
     SET_ROLENAME: (state, payload) => {
       state.roleName = payload
-    },
-    SET_MENUS: (state, payload) => {
-      state.menus = router.options.routes.filter(item => payload.roleMenu.some(ele => ele === item.meta.title))
     },
   },
   actions: {
@@ -84,13 +76,6 @@ const auth = {
         removeName()
         removeRoleName()
         resolve()
-      })
-    },
-    // 获取菜单
-    getMenus({ commit }) {
-      getRoleDetail(getRoleName()).h_then(({ data }) => {
-        commit('SET_MENUS', data)
-        // 过滤一级栏目
       })
     },
   },

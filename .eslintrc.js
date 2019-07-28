@@ -8,9 +8,9 @@ module.exports = {
   },
   // 启用 airbnb 规则
   extends: [
-      'plugin:vue/essential',
-      '@vue/airbnb',
-      // 'airbnb-base',
+    'plugin:vue/essential',
+    '@vue/airbnb',
+    // 'airbnb-base',
   ],
   globals: {
     // Vue: false,
@@ -43,13 +43,13 @@ module.exports = {
     // 'consistent-return': 0, // 要求 return 语句要么总是指定返回的值，要么不指定
     // 'no-multi-assign': 0, // 不允许在单个语句中使用多个分配
     // 'no-unused-expressions': 0, // 禁止出现未使用过的表达式
-    // "object-shorthand": 0, // 强制对象字面量缩写语法
-    // "func-names": 0, // 函数表达式必须有名字
-    // "no-plusplus": 0, // 禁止使用++，--
+    // 'object-shorthand': 0, // 强制对象字面量缩写语法
+    // 'func-names': 0, // 函数表达式必须有名字
+    // 'no-plusplus': 0, // 禁止使用++，--
     // 'array-callback-return': 0, // 强制数组方法的回调函数中有 return 语句
     // 'no-nested-ternary': 0, // 不允许使用嵌套的三元表达式
-    // "operator-linebreak": [2, "before", { "overrides": { "||": "after" } }],
-    // 'class-methods-use-this': ["error", { "exceptMethods": ["myMethod"] }], // 强制类方法使用 this
+    // 'operator-linebreak': [2, 'before', { 'overrides': { '||': 'after' } }],
+    // 'class-methods-use-this': ['error', { 'exceptMethods': ['myMethod'] }], // 强制类方法使用 this
     'import/prefer-default-export': 0, // 禁用强制使用默认导出
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }], // 禁止引入未添加到依赖中的库
     'max-len': [0, 80, 4],//字符串最大长度

@@ -70,6 +70,7 @@ const task = {
       name: 'taskList',
       meta: {
         title: '任务列表',
+        rename: '/task',
       },
       component: () => import('@/views/admin/task/list.vue'),
     },

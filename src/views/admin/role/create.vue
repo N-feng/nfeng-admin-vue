@@ -9,12 +9,12 @@
     <a-form :form="form">
       <a-form-item v-bind="formItemLayout"
                    label="角色名称">
-        <a-input v-decorator="['roleName', { rules: rules.roleName, initialValue: roleForm.roleName }]"
+        <a-input v-decorator="['roleName', formConfig.roleName]"
                  placeholder="请输入"></a-input>
       </a-form-item>
       <a-form-item v-bind="formItemLayout"
                    label="角色类型">
-        <a-select v-decorator="['roleType', { rules: rules.roleType, initialValue: roleForm.roleType }]"
+        <a-select v-decorator="['roleType', formConfig.roleType]"
                   placeholder="请选择">
           <a-select-option v-for="item in typeList"
                            :key="item.value"
@@ -25,16 +25,14 @@
                    :formItemLayout="formItemLayout"
                    label="角色菜单"
                    field="roleMenu"
-                   :rules="rules.roleMenu"
-                   :checkedList="roleForm.roleMenu"
-                   :plainOptions="menuList"></nf-checkbox>
+                   :plainOptions="menuList"
+                   :formConfig="formConfig.roleMenu"></nf-checkbox>
       <nf-checkbox :form="form"
                    :formItemLayout="formItemLayout"
                    label="角色权限"
                    field="permissions"
-                   :rules="rules.permissions"
-                   :checkedList="roleForm.permissions"
-                   :plainOptions="permissionsList"></nf-checkbox>
+                   :plainOptions="permissionsList"
+                   :formConfig="formConfig.permissions"></nf-checkbox>
     </a-form>
   </a-modal>
 </template>
@@ -51,21 +49,23 @@ export default {
     title: {
       type: String,
     },
-    roleForm: {
+    dialogForm: {
       type: Object,
     },
   },
   computed: {
     menuList() {
       const arr = []
-      router.options.routes.forEach((item) => {
-        arr.push(item.meta.title)
-        if (item.children) {
-          item.children.forEach((item2) => {
-            arr.push(item2.meta.title)
-          })
-        }
-      })
+      router.options.routes
+        .filter(item => item.path !== '/')
+        .forEach((item) => {
+          arr.push(item.meta.title)
+          if (item.children) {
+            item.children.forEach((item2) => {
+              arr.push(item2.meta.title)
+            })
+          }
+        })
       return arr
     },
     permissionsList() {
@@ -75,20 +75,29 @@ export default {
     globalList() {
       return this.$store.getters.globalList
     },
+    formConfig() {
+      return {
+        roleName: {
+          rules: [{ required: true, message: '请输入角色名称' }],
+          initialValue: this.dialogForm.roleName,
+        },
+        roleType: {
+          rules: [{ required: true, message: '请选择角色类型' }],
+          initialValue: this.dialogForm.roleType,
+        },
+        roleMenu: {
+          rules: [{ required: true, message: '请选择角色菜单' }],
+          initialValue: this.dialogForm.roleMenu,
+        },
+        permissions: {
+          rules: [{ required: true, message: '请选择角色权限' }],
+          initialValue: this.dialogForm.permissions,
+        },
+      }
+    },
   },
   data() {
     return {
-      rules: {
-        roleName: [
-          { required: true, message: '请输入角色名称' },
-        ],
-        roleType: [
-          { required: true, message: '请输入角色类型' },
-        ],
-        roleMenu: [
-          { required: true, message: '请选择角色菜单' },
-        ],
-      },
       formItemLayout: {
         labelCol: { span: 7 },
         wrapperCol: { span: 13 },

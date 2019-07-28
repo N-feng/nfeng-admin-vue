@@ -4,7 +4,7 @@
     <a-checkbox :indeterminate="indeterminate"
                 @change="onCheckAllChange"
                 :checked="checkAll">全部</a-checkbox>
-    <a-checkbox-group v-decorator="[field, { rules, initialValue: checkedList }]"
+    <a-checkbox-group v-decorator="[field, formConfig]"
                       :options="plainOptions"
                       @change="onChange">
     </a-checkbox-group>
@@ -21,8 +21,8 @@ export default {
     }
   },
   watch: {
-    checkedList(val) {
-      this.onChange(val)
+    formConfig(val) {
+      this.onChange(val.initialValue)
     },
   },
   props: {
@@ -38,14 +38,11 @@ export default {
     field: {
       type: String,
     },
-    rules: {
-      type: Array,
-    },
-    checkedList: {
-      type: Array,
-    },
     plainOptions: {
       type: Array,
+    },
+    formConfig: {
+      type: Object,
     },
   },
   methods: {
@@ -66,7 +63,7 @@ export default {
     },
   },
   created() {
-    this.onChange(this.checkedList)
+    this.onChange(this.formConfig.initialValue)
   },
 }
 </script>
