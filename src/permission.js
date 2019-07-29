@@ -35,7 +35,9 @@ router.beforeEach((to, from, next) => {
     // console.log(to)
     // next(`/login?redirect=${to.fullPath}`) // 否则全部重定向到登录页
     // 组装多个查询参数登陆地址
-    const url = `/login?path=${to.path}&query=${JSON.stringify(to.query)}`
+    const { name, query } = to
+    console.log(query)
+    const url = `/login?name=${name}&query=${JSON.stringify(query)}`
     next(url)
     NProgress.done()
   }

@@ -78,11 +78,11 @@ export default {
             // 登录后跳转
             // const redirectPath = this.$route.query.redirect || '/'
             // 组装登陆后的跳转地址
-            const { path, query } = this.$route.query
+            const { name, query } = this.$route.query
             if (query) {
               this.$router.push({
-                path,
-                query: query ? JSON.parse(query) : '',
+                name,
+                query: JSON.parse(query),
               })
             } else {
               this.$router.push('/admin')

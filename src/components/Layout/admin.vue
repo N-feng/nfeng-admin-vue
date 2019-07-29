@@ -5,20 +5,17 @@
         <div class="nf-logo fs16">nfeng.net.cn</div>
         <a-menu theme="light"
                 :selectedKeys="current"
-                mode="horizontal">
+                mode="horizontal"
+                @click="handleClick">
           <template v-for="item in menus">
-            <a-menu-item :key="item.path"
-                         v-if="!item.children.length">
-              <router-link :to="item.path">{{item.meta.title}}</router-link>
-            </a-menu-item>
+            <a-menu-item :key="item.name"
+                         v-if="!item.children.length">{{item.meta.title}}</a-menu-item>
             <a-sub-menu :key="item.path"
                         v-else>
               <span slot="title"
                     class="submenu-title-wrapper">{{item.meta.title}}</span>
               <template v-for="item2 in item.children">
-                <a-menu-item :key="item2.path">
-                  <router-link :to="item2.path">{{item2.meta.title}}</router-link>
-                </a-menu-item>
+                <a-menu-item :key="item2.name">{{item2.meta.title}}</a-menu-item>
               </template>
             </a-sub-menu>
           </template>
@@ -71,9 +68,22 @@ export default {
     },
   },
   methods: {
+    // 菜单选择
+    handleClick(e) {
+      this.$router.push({ name: e.key })
+    },
     // 登出
     logout() {
-      this.$store.dispatch('FedLogOut')
+      const { name, query } = this.$route
+      this.$store.dispatch('FedLogOut').h_then(() => {
+        this.$router.push({
+          name: 'login',
+          query: {
+            name,
+            query: JSON.stringify(query),
+          },
+        })
+      })
     },
   },
   created() {
