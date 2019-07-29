@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import web from './modules/web'
-import system from './modules/system'
-import admin from './modules/admin'
+import Web from './modules/Web'
+import System from './modules/System'
+import Admin from './modules/Admin'
 
 Vue.use(Router)
 
@@ -14,9 +14,9 @@ const mainRouter = [
       title: '前台跳转',
     },
   },
-  web,
-  ...admin,
-  ...system,
+  Web,
+  ...Admin,
+  ...System,
 ]
 
 const routers = [

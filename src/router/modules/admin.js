@@ -56,11 +56,11 @@ const img = {
   ],
 }
 
-const task = {
-  path: '/task',
-  name: 'task',
+const other = {
+  path: '/other',
+  name: 'other',
   meta: {
-    title: '任务管理',
+    title: '拓展功能',
   },
   redirect: '/task/list',
   component: Layout,
@@ -69,12 +69,11 @@ const task = {
       path: '/task/list',
       name: 'taskList',
       meta: {
-        title: '任务列表',
-        rename: 'task',
+        title: '任务管理',
       },
       component: () => import('@/views/admin/task/list.vue'),
     },
   ],
 }
 
-export default [admin, img, task]
+export default [admin, img, other]

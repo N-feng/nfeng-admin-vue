@@ -57,7 +57,7 @@ export default {
     menuList() {
       const arr = []
       router.options.routes
-        .filter(item => item.path !== '/')
+        .filter(item => item.name === 'web' || item.name === 'admin' || item.name === 'other')
         .forEach((item) => {
           arr.push(item.meta.title)
           if (item.children) {
