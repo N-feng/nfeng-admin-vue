@@ -32,8 +32,10 @@ export const img = {
   getAuthorization: '/img/getAuthorization',
   getCdnUpload: '/img/getCdnUpload',
   getSignature: '/img/getSignature',
-  getList: '/img/list',
   deleteObject: '/img/deleteObject',
+  imgAdd: `${baseUrl}/img/add`,
+  imgList: `${baseUrl}/img/list`,
+  imgDelete: `${baseUrl}/img/delete`,
 }
 
 export default {

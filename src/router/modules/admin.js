@@ -36,26 +36,6 @@ export const admin = {
   ],
 }
 
-const img = {
-  path: '/img',
-  name: 'img',
-  meta: {
-    title: '图片管理',
-  },
-  redirect: '/img/list',
-  component: Layout,
-  children: [
-    {
-      path: '/img/list',
-      name: 'imgList',
-      meta: {
-        title: '图片列表',
-      },
-      component: () => import('@/views/admin/img/list.vue'),
-    },
-  ],
-}
-
 const other = {
   path: '/other',
   name: 'other',
@@ -73,7 +53,15 @@ const other = {
       },
       component: () => import('@/views/admin/task/list.vue'),
     },
+    {
+      path: '/img/list',
+      name: 'imgList',
+      meta: {
+        title: '图片管理',
+      },
+      component: () => import('@/views/admin/img/list.vue'),
+    },
   ],
 }
 
-export default [admin, img, other]
+export default [admin, other]
