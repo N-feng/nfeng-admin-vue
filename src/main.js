@@ -1,22 +1,18 @@
 import Vue from 'vue'
 import Antd from 'ant-design-vue'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
 import 'ant-design-vue/dist/antd.css'
-// import '@/assets/scss/index.scss'
-// import './assets/less/index.less'
 import './permission' // 权限控制
 import App from './App.vue'
 import router from './router'
 import store from './store'
 import components from './components'
-// import nfUi from './nfeng-pc-vue/nfeng-components'
-import './filter'
+import Api, { get, post } from './utils/request'
 
-Vue.use(ElementUI)
 Vue.use(Antd)
 Vue.use(components)
-// Vue.use(nfUi)
+Vue.prototype.$get = get
+Vue.prototype.$post = post
+Vue.prototype.$api = Api
 
 Vue.config.productionTip = false
 
