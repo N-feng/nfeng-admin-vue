@@ -30,7 +30,7 @@ export default {
   position: relative;
   overflow: hidden;
   .page-content {
-    @extend %center;
+    // @extend %center;
     z-index: 1;
     width: 100%;
     max-width: 800px;

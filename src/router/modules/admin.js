@@ -61,6 +61,22 @@ const other = {
       },
       component: () => import('@/views/admin/img/list.vue'),
     },
+    {
+      path: '/note/list',
+      name: 'noteList',
+      meta: {
+        title: '笔记管理',
+      },
+      component: () => import('@/views/admin/note/list.vue'),
+    },
+    {
+      path: '/note/create',
+      name: 'noteCreate',
+      meta: {
+        title: '笔记创建',
+      },
+      component: () => import('@/views/admin/note/create.vue'),
+    },
   ],
 }
 

@@ -1,4 +1,4 @@
-const baseUrl = '/admin'
+export const baseUrl = '/api'
 
 export const global = {
   getMenus: `${baseUrl}/global/menus`,

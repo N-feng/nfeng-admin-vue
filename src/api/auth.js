@@ -1,7 +1,5 @@
 import { post } from '@/utils/request'
-import { auth } from './config'
-
-const baseUrl = '/admin'
+import { baseUrl, auth } from './config'
 
 export function signup(username, password, roleName) {
   const url = `${baseUrl}/auth/signup` // 注册

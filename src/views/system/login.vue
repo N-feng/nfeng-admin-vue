@@ -102,7 +102,6 @@ export default {
   height: 100vh;
   background-image: linear-gradient(45deg, #9fbaa8, #31354c);
 }
-
 .login-form {
   background: white;
   color: #232945;
@@ -112,7 +111,7 @@ export default {
   border-radius: 6px;
   box-sizing: border-box;
   max-width: 85vw;
-  @extend %center;
+  // @extend %center;
   .avatar {
     width: 100px;
     height: 100px;

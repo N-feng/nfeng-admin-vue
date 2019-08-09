@@ -7,6 +7,7 @@ import router from './router'
 import store from './store'
 import components from './components'
 import Api, { get, post } from './utils/request'
+// import 'nfeng-scss/index.scss'
 
 Vue.use(Antd)
 Vue.use(components)

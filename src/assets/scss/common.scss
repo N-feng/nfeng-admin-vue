@@ -29,11 +29,3 @@
   border-left: 5px solid #178fff;
   margin-bottom: 30px;
 }
-
-// 多选框组
-.ant-checkbox-wrapper {
-  margin-right: 8px;
-  & + .ant-checkbox-wrapper{
-    margin-left: 0;
-  }
-} 
