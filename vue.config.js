@@ -24,7 +24,7 @@ module.exports = {
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'scss',
-      patterns: [resolve('./node_modules/nfeng-scss/index.scss')],
+      patterns: [resolve('./node_modules/nfeng-scss/index.scss'), resolve('./src/assets/scss/index.scss')],
     },
   },
 }

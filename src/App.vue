@@ -24,7 +24,7 @@ export default {
 <style lang="scss">
 /*@import "./nfeng-pc-vue/nfeng-sass/style.scss";*/
 /*@import "assets/scss/index.scss";*/
-#app {
-  height: 100%;
-}
+// #app {
+//   height: 100%;
+// }
 </style>
