@@ -26,7 +26,7 @@ export default {
       /**
        * 解析的数据
        */
-      markedown: '# Marked in browser\n\nRendered by **marked**.',
+      markedown: '# Marked in browser\n\nRendered by **marked**.\n\n```\nconst aaa = "123"\n```',
     }
   },
   methods: {

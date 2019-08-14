@@ -1,7 +1,8 @@
-
 import marked from 'marked'
+import hljs from './hljs'
 import defaultTools from './tools'
 
+hljs.initHighlightingOnLoad()
 const renderer = new marked.Renderer()
 
 marked.setOptions({
@@ -12,15 +13,19 @@ marked.setOptions({
   pedantic: false,
   sanitize: false,
   smartLists: true,
-  // highlight(code) {
-  //   return hljs.highlightAuto(code).value
-  // },
+  highlight(code) {
+    return hljs.highlightAuto(code).value
+  },
 })
 
 export default {
   name: 'NfMarkdown',
   props: {
     value: {},
+    theme: { // 默认主题
+      type: String,
+      default: 'Light',
+    },
     toolbars: { // 工具栏
       type: Object,
       default() {
@@ -77,6 +82,7 @@ export default {
   methods: {
     init() {
       this.textareaValue = this.value
+      this.themeName = this.theme
       this.html = marked(this.textareaValue)
     },
     insertContent(initStr) { // 插入文本

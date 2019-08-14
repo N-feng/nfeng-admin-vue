@@ -1,7 +1,6 @@
 
 @import './theme.scss';
-
-$line-height: 22px;
+@import './light.scss';
 
 .markdown {
   border: 1px solid #ccc;
@@ -25,12 +24,12 @@ $line-height: 22px;
     position: relative;
     cursor: pointer;
 
-    &:after {
+    &:before {
       display: block;
       content: attr(name);
       position: absolute;
       z-index: 999999999999;
-      top: 32px;
+      bottom: 32px;
       left: 20px;
       background: #e6e6e6;
       color: #333;
@@ -42,11 +41,11 @@ $line-height: 22px;
       transition: all 0.3s 0.3s;
       transform: scale(0);
       opacity: 0;
-      transform-origin: top;
+      transform-origin: bottom;
     }
 
     &:hover {
-      &:after {
+      &:before {
         transform: scale(1);
         opacity: 1;
       }
@@ -69,6 +68,44 @@ $line-height: 22px;
       color: #0084ff;
     }
   }
+
+  .shift-theme {
+    &:hover ul {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+  }
+
+  ul {
+    transform: scale(0);
+    transition: all 0.3s;
+    left: -50%;
+    width: 160px;
+    transform-origin: top center;
+    list-style: none;
+    margin: 0;
+    padding: 6px 0;
+    box-sizing: border-box;
+    border: 1px solid $border;
+    background: #fff;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 9999999;
+
+    li {
+      line-height: 30px;
+      padding: 0 12px;
+      padding-left: 12px;
+      font-size: 13px;
+      cursor: pointer;
+      user-select: none;
+
+      &:hover, &.active {
+        background: $background;
+      }
+    }
+  }
+
 }
 
 .markdown-editor {

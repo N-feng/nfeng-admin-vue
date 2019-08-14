@@ -100,26 +100,20 @@
         <span @click="insertEnd('\nheader 1 | header 2\n---|---\nrow 1 col 1 | row 1 col 2\nrow 2 col 1 | row 2 col 2')"
               class="iconfont icon-table"></span>
       </li>
-      <!-- <li v-if="tools.print"
-          name="打印">
-        <span class="iconfont icon-dayin"
-              @click="print"></span>
-      </li> -->
-      <!-- <li v-if="tools.theme"
+      <li v-if="tools.theme"
           class="shift-theme"
           name="代码块主题">
         <div>
-          <span class="iconfont icon-yanse"
-                @click="themeSlideDown=!themeSlideDown"></span>
-          <ul :class="{active:themeSlideDown}"
-              @mouseleave="themeSlideDown=false">
-            <li @click="setThemes('Light')">Light</li>
+          <span class="iconfont icon-yanse"></span>
+          <ul>
+            <li :class="{'active': themeName === 'Light'}"
+                @click="themeName = 'Light'">Light</li>
             <li @click="setThemes('Dark')">VS Code</li>
             <li @click="setThemes('OneDark')">Atom OneDark</li>
             <li @click="setThemes('GitHub')">GitHub</li>
           </ul>
         </div>
-      </li> -->
+      </li>
       <!-- <li name="导入本地文件"
           class="import-file"
           v-show="tools.importmd">
