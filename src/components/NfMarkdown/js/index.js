@@ -2,7 +2,6 @@ import marked from 'marked'
 import hljs from './hljs'
 import { saveFile } from './utils'
 import defaultTools from './tools'
-import tools from '../components/tools.vue'
 
 hljs.initHighlightingOnLoad()
 const renderer = new marked.Renderer()
@@ -22,7 +21,6 @@ marked.setOptions({
 
 export default {
   name: 'NfMarkdown',
-  components: { tools },
   props: {
     value: {},
     theme: { // 默认主题
@@ -167,6 +165,15 @@ export default {
         range.moveStart('character', position)
         range.select()
       }
+    },
+    insertMid(str) { // 插入之后光标在中间
+      const point = this.getCursortPosition()
+      const value = this.textareaValue
+      const lastChart = value.substring(point - 1, point)
+      const exOff = lastChart !== '\n' && value !== '' ? 1 : 0 // 外偏移量(编辑框内换行等)
+      const newPoint = point + str.length / 2 + exOff // 光标新位置
+      this.insertContent(str)
+      this.setCaretPosition(newPoint)
     },
     insertEnd(str) { // 插入之后光标在最后
       const point = this.getCursortPosition()
