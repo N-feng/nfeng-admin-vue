@@ -1,6 +1,8 @@
 import marked from 'marked'
 import hljs from './hljs'
+import { saveFile } from './utils'
 import defaultTools from './tools'
+import tools from '../components/tools.vue'
 
 hljs.initHighlightingOnLoad()
 const renderer = new marked.Renderer()
@@ -20,6 +22,7 @@ marked.setOptions({
 
 export default {
   name: 'NfMarkdown',
+  components: { tools },
   props: {
     value: {},
     theme: { // 默认主题
@@ -32,6 +35,10 @@ export default {
         return {}
       },
     },
+    exportFileName: { // 默认导出文件名称
+      type: String,
+      default: '未命名文件',
+    },
   },
   data() {
     return {
@@ -39,8 +46,15 @@ export default {
       timeoutId: null,
       indexLenth: 100,
       html: '',
+      preview: 1, // 是否是预览状态
+      isFullscreen: false, // 是否是全屏
       scrollHeight: null,
       themeName: '', // 主题名称
+      themeSlideDown: false,
+      scrolling: true, // 同步滚动
+      previewImgModal: false,
+      previewImgSrc: '',
+      previewImgMode: '',
       titleLevel: {
         1: '#  ',
         2: '##  ',
@@ -77,6 +91,7 @@ export default {
       const height3 = this.$refs.preview.scrollHeight
       this.scrollHeight = Math.max(height1, height2, height3)
       this.indexLenth = parseInt(this.scrollHeight / 22, 0) - 1
+      this.addImageClickListener()
     },
   },
   methods: {
@@ -86,9 +101,7 @@ export default {
       this.html = marked(this.textareaValue)
     },
     insertContent(initStr) { // 插入文本
-      const {
-        preview,
-      } = this
+      const { preview } = this
       if (preview === 2) {
         return
       }
@@ -155,16 +168,7 @@ export default {
         range.select()
       }
     },
-    insertMid(str) {
-      const point = this.getCursortPosition()
-      const value = this.textareaValue
-      const lastChart = value.substring(point - 1, point)
-      const exOff = lastChart !== '\n' && value !== '' ? 1 : 0 // 外偏移量(编辑框内换行等)
-      const newPoint = point + str.length / 2 + exOff // 光标新位置
-      this.insertContent(str)
-      this.setCaretPosition(newPoint)
-    },
-    insertEnd(str) {
+    insertEnd(str) { // 插入之后光标在最后
       const point = this.getCursortPosition()
       const value = this.textareaValue
       const lastChart = value.substring(point - 1, point)
@@ -175,49 +179,31 @@ export default {
         this.setCaretPosition(point + str.length)
       }
     },
-    insertStrong() { // 粗体
-      const point = this.getCursortPosition()
-      const value = this.textareaValue
-      const lastChart = value.substring(point - 1, point)
-      this.insertContent('****')
-      if (lastChart !== '\n' && value !== '') {
-        this.setCaretPosition(point + 3)
-      } else {
-        this.setCaretPosition(point + 2)
-      }
+    setThemes(name) { // 设置主题
+      this.themeName = name
+      this.themeSlideDown = false
     },
-    insertItalic() { // 斜体
-      const point = this.getCursortPosition()
-      const value = this.textareaValue
-      const lastChart = value.substring(point - 1, point)
-      this.insertContent('**')
-      if (lastChart !== '\n' && value !== '') {
-        this.setCaretPosition(point + 2)
-      } else {
-        this.setCaretPosition(point + 1)
-      }
+    exportFile() { // 导出为.md格式
+      saveFile(this.value, `${this.exportFileName}.md`)
     },
-    insertOverline() { // overline
-      const point = this.getCursortPosition()
-      const value = this.textareaValue
-      const lastChart = value.substring(point - 1, point)
-      this.insertContent('~~~~')
-      if (lastChart !== '\n' && value !== '') {
-        this.setCaretPosition(point + 3)
-      } else {
-        this.setCaretPosition(point + 2)
+    importFile(e) { // 导入本地文件
+      const file = e.target.files[0]
+      if (!file) {
+        return
       }
-    },
-    insertTitle(level) { // 插入标题
-      const titleLevel = {
-        1: '#  ',
-        2: '##  ',
-        3: '###  ',
-        4: '####  ',
-        5: '#####  ',
-        6: '######  ',
+      const { type } = file
+      if (type !== 'text/markdown') {
+        this.$Notice.error('文件格式有误!')
+        return
       }
-      this.insertContent(titleLevel[level])
+      const reader = new FileReader()
+      reader.readAsText(file, {
+        encoding: 'utf-8',
+      })
+      reader.onload = () => {
+        this.textareaValue = reader.result
+        e.target.value = ''
+      }
     },
     handleInput(e) {
       const { value } = e.target
@@ -225,6 +211,32 @@ export default {
         sanitize: false,
         // ...this.markedOptions
       })
+    },
+    addImageClickListener() { // 监听查看大图
+      setTimeout(() => {
+        const imgs = this.$refs.preview.querySelectorAll('img')
+        imgs.forEach((item) => {
+          item.onclick = () => {
+            const src = item.getAttribute('src')
+            this.previewImage(src)
+          }
+        })
+      }, 600)
+    },
+    previewImage(src) { // 预览图片
+      const img = new Image()
+      img.src = src
+      img.onload = () => {
+        const width = img.naturalWidth
+        const height = img.naturalHeight
+        if ((height / width) > 1.4) {
+          this.previewImgMode = 'horizontal'
+        } else {
+          this.previewImgMode = 'vertical'
+        }
+        this.previewImgSrc = src
+        this.previewImgModal = true
+      }
     },
   },
   created() {
