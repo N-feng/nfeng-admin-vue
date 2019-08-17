@@ -8,189 +8,191 @@
         <slot name="title" />
       </li>
       <li>
-        <span @click="insertMid('****')"
-              class="iconfont icon-strong"
-              name="粗体"></span>
+        <span class="iconfont icon-strong"
+              name="粗体"
+              @click="insertMid('****')"></span>
       </li>
       <li v-show="tools.italic">
-        <span @click="insertMid('**')"
-              class="iconfont icon-italic"
-              name="斜体"></span>
+        <span class="iconfont icon-italic"
+              name="斜体"
+              @click="insertMid('**')"></span>
       </li>
       <li v-show="tools.overline">
-        <span @click="insertMid('~~~~')"
-              class="iconfont icon-overline"
-              name="删除线"></span>
+        <span class="iconfont icon-overline"
+              name="删除线"
+              @click="insertMid('~~~~')"></span>
       </li>
       <li v-show="tools.h1">
-        <span @click="insertEnd(titleLevel[1])"
-              style="font-size: 16px;"
-              name="标题1">h1</span>
+        <span style="font-size: 16px;"
+              name="标题1"
+              @click="insertEnd(titleLevel[1])">h1</span>
       </li>
       <li v-show="tools.h2">
-        <span @click="insertEnd(titleLevel[2])"
-              style="font-size: 16px;"
-              name="标题2">h2</span>
+        <span style="font-size: 16px;"
+              name="标题2"
+              @click="insertEnd(titleLevel[2])">h2</span>
       </li>
       <li v-show="tools.h3">
-        <span @click="insertEnd(titleLevel[3])"
-              style="font-size: 16px;"
-              name="标题3">h3</span>
+        <span style="font-size: 16px;"
+              name="标题3"
+              @click="insertEnd(titleLevel[3])">h3</span>
       </li>
       <li v-show="tools.h4">
-        <span @click="insertEnd(titleLevel[4])"
-              style="font-size: 16px;"
-              name="标题4">h4</span>
+        <span style="font-size: 16px;"
+              name="标题4"
+              @click="insertEnd(titleLevel[4])">h4</span>
       </li>
       <li v-show="tools.h5">
-        <span @click="insertEnd(titleLevel[5])"
-              style="font-size: 16px;"
-              name="标题5">h5</span>
+        <span style="font-size: 16px;"
+              name="标题5"
+              @click="insertEnd(titleLevel[5])">h5</span>
       </li>
       <li v-show="tools.h6">
-        <span @click="insertEnd(titleLevel[6])"
-              style="font-size: 16px;"
-              name="标题6">h6</span>
+        <span style="font-size: 16px;"
+              name="标题6"
+              @click="insertEnd(titleLevel[6])">h6</span>
       </li>
       <li v-show="tools.hr">
-        <span @click="insertEnd('----')"
-              class="iconfont icon-horizontal"
-              name="分割线"></span>
+        <span class="iconfont icon-horizontal"
+              name="分割线"
+              @click="insertEnd('----')"></span>
       </li>
       <li v-show="tools.quote">
-        <span @click="insertEnd('>  ')"
-              class="iconfont icon-quote"
-              name="引用"></span>
+        <span class="iconfont icon-quote"
+              name="引用"
+              @click="insertEnd('>  ')"></span>
       </li>
       <li v-show="tools.ul">
-        <span @click="insertEnd('-  ')"
-              class="iconfont icon-ul"
-              name="无序列表"></span>
+        <span class="iconfont icon-ul"
+              name="无序列表"
+              @click="insertEnd('-  ')"></span>
       </li>
       <li v-show="tools.ol">
-        <span @click="insertEnd('1. ')"
-              class="iconfont icon-ol"
-              name="有序列表"></span>
+        <span class="iconfont icon-ol"
+              name="有序列表"
+              @click="insertEnd('1. ')"></span>
       </li>
       <li v-show="tools.code">
-        <span @click="insertMid('```\n\n```')"
-              class="iconfont icon-code"
-              name="代码块"></span>
+        <span class="iconfont icon-code"
+              name="代码块"
+              @click="insertMid('```\n\n```')"></span>
       </li>
       <li v-show="tools.notChecked">
-        <span @click="insertEnd('- [ ]  ')"
-              class="iconfont icon-checked-false"
-              name="未完成列表"></span>
+        <span class="iconfont icon-checked-false"
+              name="未完成列表"
+              @click="insertEnd('- [ ]  ')"></span>
       </li>
       <li v-show="tools.checked">
-        <span @click="insertEnd('- [x]  ')"
-              class="iconfont icon-checked"
-              name="已完成列表"></span>
+        <span class="iconfont icon-checked"
+              name="已完成列表"
+              @click="insertEnd('- [x]  ')"></span>
       </li>
       <li v-show="tools.link">
-        <span @click="insertEnd('[插入链接](href)')"
-              class="iconfont icon-link"
-              name="链接"></span>
+        <span class="iconfont icon-link"
+              name="链接"
+              @click="insertEnd('[插入链接](href)')"></span>
       </li>
       <li v-show="tools.image">
-        <span @click="insertEnd('![image](imgUrl)')"
-              class="iconfont icon-img"
-              name="图片"></span>
+        <span class="iconfont icon-img"
+              name="图片"
+              @click="insertEnd('![image](imgUrl)')"></span>
       </li>
       <li v-show="tools.table">
-        <span @click="insertEnd('\nheader 1 | header 2\n---|---\nrow 1 col 1 | row 1 col 2\nrow 2 col 1 | row 2 col 2')"
-              class="iconfont icon-table"
-              name="表格"></span>
+        <span class="iconfont icon-table"
+              name="表格"
+              @click="insertEnd('\nheader 1 | header 2\n---|---\nrow 1 col 1 | row 1 col 2\nrow 2 col 1 | row 2 col 2')"></span>
       </li>
-      <li v-show="tools.theme"
-          class="shift-theme">
-        <span @click="themeSlideDown = !themeSlideDown"
-              class="iconfont icon-yanse"
-              name="代码块主题"></span>
+      <li class="shift-theme"
+          v-show="tools.theme">
+        <span class="iconfont icon-yanse"
+              name="代码块主题"
+              @click="themeSlideDown = !themeSlideDown"></span>
         <ul :class="{ active: themeSlideDown }"
             @mouseleave="themeSlideDown = false">
-          <li @click="setThemes('Light')"
-              :class="{'active': themeName === 'Light'}">Light</li>
-          <li @click="setThemes('Dark')"
-              :class="{'active': themeName === 'Dark'}">VS Code</li>
-          <li @click="setThemes('OneDark')"
-              :class="{'active': themeName === 'OneDark'}">Atom OneDark</li>
-          <li @click="setThemes('GitHub')"
-              :class="{'active': themeName === 'GitHub'}">GitHub</li>
+          <li :class="{'active': themeName === 'Light'}"
+              @click="setThemes('Light')">Light</li>
+          <li :class="{'active': themeName === 'Dark'}"
+              @click="setThemes('Dark')">VS Code</li>
+          <li :class="{'active': themeName === 'OneDark'}"
+              @click="setThemes('OneDark')">Atom OneDark</li>
+          <li :class="{'active': themeName === 'GitHub'}"
+              @click="setThemes('GitHub')">GitHub</li>
         </ul>
       </li>
-      <li v-show="tools.importmd"
-          class="import-file">
-        <span @click="$refs['file'].click()"
-              class="iconfont icon-daoru"
-              name="导入本地文件"></span>
+      <li class="import-file"
+          v-show="tools.importmd">
+        <span class="iconfont icon-daoru"
+              name="导入本地文件"
+              @click="$refs['file'].click()"></span>
         <input ref="file"
                type="file"
-               @change="importFile"
-               accept="text/markdown" />
+               accept="text/markdown"
+               @change="importFile" />
       </li>
       <li v-show="tools.exportmd">
-        <span @click="exportFile"
-              class="iconfont icon-download"
-              name="保存到本地"></span>
+        <span class="iconfont icon-download"
+              name="保存到本地"
+              @click="exportFile"></span>
       </li>
       <li v-show="tools.shift && preview == 2">
-        <span @click="preview = 3"
-              class="iconfont icon-md"
-              name="全屏编辑"></span>
+        <span class="iconfont icon-md"
+              name="全屏编辑"
+              @click="preview = 3"></span>
       </li>
       <li v-show="tools.shift && preview == 3">
-        <span @click="preview = 1"
-              class="iconfont icon-group"
-              name="分屏显示"></span>
+        <span class="iconfont icon-group"
+              name="分屏显示"
+              @click="preview = 1"></span>
       </li>
       <li v-show="tools.shift && preview == 1">
-        <span @click="preview = 2"
-              class="iconfont icon-preview"
-              name="预览"></span>
+        <span class="iconfont icon-preview"
+              name="预览"
+              @click="preview = 2"></span>
       </li>
       <li>
-        <span @click="scrolling=!scrolling"
+        <span class="iconfont icon-on"
               v-show="scrolling"
-              class="iconfont icon-on"
-              name="同步滚动:开"></span>
-        <span @click="scrolling=!scrolling"
+              name="同步滚动:开"
+              @click="scrolling = !scrolling"></span>
+        <span class="iconfont icon-off"
               v-show="!scrolling"
-              class="iconfont icon-off"
-              name="同步滚动:关"></span>
+              name="同步滚动:关"
+              @click="scrolling = !scrolling"></span>
       </li>
       <li class="empty"></li>
       <li v-show="tools.fullscreen && !isFullscreen">
-        <span @click="isFullscreen = !isFullscreen"
-              class="iconfont icon-full-screen"
-              name="全屏"></span>
+        <span class="iconfont icon-full-screen"
+              name="全屏"
+              @click="isFullscreen = !isFullscreen"></span>
       </li>
       <li v-show="tools.fullscreen && isFullscreen">
-        <span @click="isFullscreen = !isFullscreen"
-              class="iconfont icon-exit-full-screen"
-              name="退出全屏"></span>
+        <span class="iconfont icon-exit-full-screen"
+              name="退出全屏"
+              @click="isFullscreen = !isFullscreen"></span>
       </li>
     </ul>
 
     <!-- 编辑器 -->
     <div class="markdown-content">
-      <div v-show="preview === 1 || preview === 3"
-           class="markdown-editor">
-        <ul class="index"
-            ref="index"
-            :style="{height:scrollHeight?`${scrollHeight}px`:'100%'}">
+      <div class="markdown-editor"
+           v-show="preview === 1 || preview === 3"
+           ref="editor"
+           @scroll="editorScroll"
+           @mouseenter="mousescrollSide('markdown')">
+        <ul>
           <li v-for="(item, index) in indexLenth"
               :key="index">{{ index + 1 }}</li>
         </ul>
-        <textarea ref="textarea"
+        <textarea :style="{height:scrollHeight?`${scrollHeight}px`:'100%'}"
                   v-model="textareaValue"
-                  @input="handleInput"
-                  :style="{height:scrollHeight?`${scrollHeight}px`:'100%'}"></textarea>
+                  ref="textarea"></textarea>
       </div>
-      <div v-show="preview === 1 || preview === 2"
+      <div class="markdown-preview"
+           :class="`${themeName}`"
+           v-show="preview === 1 || preview === 2"
            ref="preview"
-           class="markdown-preview"
-           :class="`${themeName}`">
+           @scroll="previewScroll"
+           @mouseenter="mousescrollSide('preview')">
         <div v-html="html"></div>
       </div>
     </div>

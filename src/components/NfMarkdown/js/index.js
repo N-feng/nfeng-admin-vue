@@ -37,6 +37,12 @@ export default {
       type: String,
       default: '未命名文件',
     },
+    markedOptions: {
+      type: Object,
+      default() {
+        return {}
+      },
+    },
   },
   data() {
     return {
@@ -47,6 +53,7 @@ export default {
       preview: 1, // 是否是预览状态
       isFullscreen: false, // 是否是全屏
       scrollHeight: null,
+      scrollSide: 'markdown', // 哪个半栏在滑动
       themeName: '', // 主题名称
       themeSlideDown: false,
       scrolling: true, // 同步滚动
@@ -80,16 +87,21 @@ export default {
       this.timeoutId = setTimeout(() => {
         this.html = marked(val, {
           sanitize: false,
-          // ...this.markedOptions
+          ...this.markedOptions,
         })
       }, 30)
-      this.indexLenth = this.value.split('\n').length
-      const height1 = this.indexLenth * 22
-      const height2 = this.$refs.textarea.scrollHeight
-      const height3 = this.$refs.preview.scrollHeight
-      this.scrollHeight = Math.max(height1, height2, height3)
-      this.indexLenth = parseInt(this.scrollHeight / 22, 0) - 1
+      setTimeout(() => {
+        this.scrollHeight = this.$refs.textarea.scrollHeight
+        this.indexLenth = parseInt(this.scrollHeight / 22, 0)
+      }, 600)
       this.addImageClickListener()
+    },
+    isFullscreen() {
+      this.textareaValue = ''
+      this.scrollHeight = null
+      setTimeout(() => {
+        this.init()
+      }, 30)
     },
   },
   methods: {
@@ -151,7 +163,7 @@ export default {
         textDom.value += value
         textDom.focus()
       }
-      // this.$emit('input', textDom.value)
+      this.$emit('input', textDom.value)
     },
     setCaretPosition(position) { // 设置光标位置
       const textDom = this.$refs.textarea
@@ -209,15 +221,9 @@ export default {
       })
       reader.onload = () => {
         this.textareaValue = reader.result
+        this.$emit('input', this.textareaValue)
         e.target.value = ''
       }
-    },
-    handleInput(e) {
-      const { value } = e.target
-      this.html = marked(value, {
-        sanitize: false,
-        // ...this.markedOptions
-      })
     },
     addImageClickListener() { // 监听查看大图
       setTimeout(() => {
@@ -244,6 +250,35 @@ export default {
         this.previewImgSrc = src
         this.previewImgModal = true
       }
+    },
+    editorScroll() {
+      const { scrolling } = this
+      if (!scrolling) {
+        return
+      }
+      if (this.scrollSide === 'markdown') {
+        const { editor, preview } = this.$refs
+        const editorScrollHeight = editor.scrollHeight
+        const editorScrollTop = editor.scrollTop
+        const previewScrollHeight = preview.scrollHeight
+        preview.scrollTop = parseInt(editorScrollTop / editorScrollHeight * previewScrollHeight, 0)
+      }
+    },
+    previewScroll() {
+      const { scrolling } = this
+      if (!scrolling) {
+        return
+      }
+      if (this.scrollSide === 'preview') {
+        const { editor, preview } = this.$refs
+        const editorScrollHeight = editor.scrollHeight
+        const previewScrollHeight = preview.scrollHeight
+        const previewScrollTop = preview.scrollTop
+        editor.scrollTop = parseInt(previewScrollTop / previewScrollHeight * editorScrollHeight, 0)
+      }
+    },
+    mousescrollSide(side) { // 设置究竟是哪个半边在主动滑动
+      this.scrollSide = side
     },
   },
   created() {
