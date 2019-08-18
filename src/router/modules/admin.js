@@ -73,6 +73,7 @@ const other = {
       path: '/note/create',
       name: 'noteCreate',
       meta: {
+        rename: 'noteList',
         title: '笔记创建',
       },
       component: () => import('@/views/admin/note/create.vue'),

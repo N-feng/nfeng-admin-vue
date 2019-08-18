@@ -21,11 +21,11 @@ export const role = {
 }
 
 export const task = {
-  add: `${baseUrl}/task/add`,
-  delete: `${baseUrl}/task/delete`,
-  update: `${baseUrl}/task/update`,
-  detail: `${baseUrl}/task/detail`,
-  list: `${baseUrl}/task/list`,
+  taskAdd: `${baseUrl}/task/add`,
+  taskDelete: `${baseUrl}/task/delete`,
+  taskUpdate: `${baseUrl}/task/update`,
+  taskDetail: `${baseUrl}/task/detail`,
+  taskList: `${baseUrl}/task/list`,
 }
 
 export const img = {
@@ -34,10 +34,19 @@ export const img = {
   imgDelete: `${baseUrl}/img/delete`,
 }
 
+export const note = {
+  noteAdd: `${baseUrl}/note/add`,
+  noteDelete: `${baseUrl}/note/delete`,
+  noteUpdate: `${baseUrl}/note/update`,
+  noteDetail: `${baseUrl}/note/detail`,
+  noteList: `${baseUrl}/note/list`,
+}
+
 export default {
   ...global,
   ...auth,
   ...role,
   ...img,
   ...task,
+  ...note,
 }

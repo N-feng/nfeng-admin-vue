@@ -22,7 +22,10 @@ marked.setOptions({
 export default {
   name: 'NfMarkdown',
   props: {
-    value: {},
+    value: {
+      type: String,
+      default: '',
+    },
     theme: { // 默认主题
       type: String,
       default: 'Light',
@@ -82,6 +85,9 @@ export default {
     },
   },
   watch: {
+    value() {
+      this.init()
+    },
     textareaValue(val) {
       clearTimeout(this.timeoutId)
       this.timeoutId = setTimeout(() => {
@@ -95,18 +101,21 @@ export default {
         this.indexLenth = parseInt(this.scrollHeight / 22, 0)
       }, 600)
       this.addImageClickListener()
+      this.$emit('input', val)
+      this.$emit('change', val)
     },
     isFullscreen() {
+      const val = this.textareaValue
       this.textareaValue = ''
       this.scrollHeight = null
       setTimeout(() => {
-        this.init()
+        this.init(val)
       }, 30)
     },
   },
   methods: {
-    init() {
-      this.textareaValue = this.value
+    init(val) {
+      this.textareaValue = this.value || val || ''
       this.themeName = this.theme
       this.html = marked(this.textareaValue)
     },
@@ -163,7 +172,7 @@ export default {
         textDom.value += value
         textDom.focus()
       }
-      this.$emit('input', textDom.value)
+      // this.$emit('input', textDom.value)
     },
     setCaretPosition(position) { // 设置光标位置
       const textDom = this.$refs.textarea
@@ -221,7 +230,7 @@ export default {
       })
       reader.onload = () => {
         this.textareaValue = reader.result
-        this.$emit('input', this.textareaValue)
+        // this.$emit('input', this.textareaValue)
         e.target.value = ''
       }
     },
