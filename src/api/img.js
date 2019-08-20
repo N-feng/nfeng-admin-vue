@@ -1,4 +1,4 @@
-import service, { post, get } from '@/utils/request'
+import service, { post } from '@/utils/request'
 import { img } from './config'
 
 export function addImg(e) {
@@ -17,10 +17,6 @@ export function addImg(e) {
 
 export function deleteImg(fileName) {
   return post(img.imgDelete, { fileName })
-}
-
-export function getImg(fileName) {
-  return get(img.imgGet, { params: { fileName } })
 }
 
 export function getImgList() {

@@ -1,14 +1,14 @@
 import { post } from '@/utils/request'
-import { baseUrl, auth } from './config'
+import { auth } from './config'
 
 export function signup(username, password, roleName) {
-  const url = `${baseUrl}/auth/signup` // 注册
+  const url = '/auth/signup' // 注册
   const data = { username, password, roleName }
   return post(url, data)
 }
 
 export function login(username, password) {
-  const url = `${baseUrl}/auth/login` // 登录
+  const url = '/auth/login' // 登录
   const data = { username, password }
   return post(url, data)
 }
