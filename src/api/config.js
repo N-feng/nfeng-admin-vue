@@ -30,8 +30,9 @@ export const task = {
 
 export const img = {
   imgAdd: `${baseUrl}/img/add`,
-  imgList: `${baseUrl}/img/list`,
   imgDelete: `${baseUrl}/img/delete`,
+  imgGet: `${baseUrl}/img/get`,
+  imgList: `${baseUrl}/img/list`,
 }
 
 export const note = {

@@ -9,6 +9,10 @@
              :dataSource="tableList"
              :pagination="pagination"
              :rowKey="record => record.noteId">
+      <span slot="createTime"
+            slot-scope="text, record">{{record.createTime | timeTransfer}}</span>
+      <span slot="updateTime"
+            slot-scope="text, record">{{record.updateTime | timeTransfer}}</span>
       <span slot="action"
             slot-scope="text, record">
         <a href="javascript:;"
@@ -52,12 +56,12 @@ export default {
         {
           title: '创建时间',
           dataIndex: 'createTime',
-          // scopedSlots: { customRender: 'roleMenu' },
+          scopedSlots: { customRender: 'createTime' },
         },
         {
           title: '更新时间',
           dataIndex: 'updateTime',
-          // scopedSlots: { customRender: 'permissions' },
+          scopedSlots: { customRender: 'updateTime' },
         },
         {
           title: '操作',

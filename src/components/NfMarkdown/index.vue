@@ -196,15 +196,10 @@
         <div v-html="html"></div>
       </div>
     </div>
+
     <!-- 预览图片 -->
-    <div class="img-preview"
-         :class="{active:previewImgModal}">
-      <span class="close"
-            @click="previewImgModal = false">关闭</span>
-      <img :class="[previewImgMode]"
-           :src="previewImgSrc"
-           alt="">
-    </div>
+    <nf-viewImg ref="viewImg"></nf-viewImg>
+
   </div>
 </template>
 
@@ -217,4 +212,8 @@ export default markdown
 <style lang="scss">
 @import "./font/iconfont.css";
 @import "./scss/index.scss";
+</style>
+
+<style lang="scss" scoped>
+@import "./scss/preview-img.scss";
 </style>

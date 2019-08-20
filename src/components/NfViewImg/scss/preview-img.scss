@@ -1,0 +1,41 @@
+.preview-img {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, .5);
+  display: none;
+  opacity: 0;
+  transition: opacity .3s .1s;
+  justify-content: center;
+  align-items: center;
+  &.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #fff;
+    padding: 10px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  img {
+    display: block;
+    &.vertical {
+      height: 80%;
+      width: auto;
+    }
+    &.horizontal {
+      width: 80%;
+      height: auto;
+    }
+  }
+
+}

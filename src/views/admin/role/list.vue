@@ -68,12 +68,12 @@ export default {
         {
           title: '角色名称',
           dataIndex: 'roleName',
-          width: 150,
+          // width: 150,
         },
         {
           title: '角色类型',
           dataIndex: 'roleType',
-          width: 150,
+          // width: 150,
         },
         {
           title: '角色菜单',

@@ -60,9 +60,6 @@ export default {
       themeName: '', // 主题名称
       themeSlideDown: false,
       scrolling: true, // 同步滚动
-      previewImgModal: false,
-      previewImgSrc: '',
-      previewImgMode: '',
       titleLevel: {
         1: '#  ',
         2: '##  ',
@@ -240,25 +237,10 @@ export default {
         imgs.forEach((item) => {
           item.onclick = () => {
             const src = item.getAttribute('src')
-            this.previewImage(src)
+            this.$refs.viewImg.previewImage(src)
           }
         })
       }, 600)
-    },
-    previewImage(src) { // 预览图片
-      const img = new Image()
-      img.src = src
-      img.onload = () => {
-        const width = img.naturalWidth
-        const height = img.naturalHeight
-        if ((height / width) > 1.4) {
-          this.previewImgMode = 'horizontal'
-        } else {
-          this.previewImgMode = 'vertical'
-        }
-        this.previewImgSrc = src
-        this.previewImgModal = true
-      }
     },
     editorScroll() {
       const { scrolling } = this
