@@ -1,8 +1,22 @@
 <template>
   <div class="nf-main">
+
     <div class="nf-title">笔记管理</div>
+
     <a-button type="primary"
               @click="$router.push({ name: 'noteCreate' })">笔记创建</a-button>
+    <a-button class="ml20"
+              type="primary"
+              @click="drawerVisible = true">图片管理</a-button>
+
+    <a-drawer title="图片管理"
+              :width="720"
+              :closable="false"
+              @close="drawerVisible = false"
+              :visible="drawerVisible">
+      <imgList></imgList>
+    </a-drawer>
+
     <a-table class="mt20"
              :loading="loading"
              :columns="tableColumns"
@@ -26,13 +40,16 @@
         </a-popconfirm>
       </span>
     </a-table>
+
   </div>
 </template>
 
 <script>
 import { getNoteList, deleteNote } from '@/api/note'
+// import imgList from '@/views/admin/img/list.vue'
 
 export default {
+  // components: { imgList },
   data() {
     return {
       loading: true,
@@ -70,6 +87,7 @@ export default {
           scopedSlots: { customRender: 'action' },
         },
       ],
+      drawerVisible: false,
     }
   },
   methods: {

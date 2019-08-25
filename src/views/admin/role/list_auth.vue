@@ -1,6 +1,8 @@
 <template>
-  <div class="nf-main">
-    <p class="nf-title">用户管理</p>
+  <div>
+
+    <!-- <div class="nf-title">用户管理</div> -->
+
     <a-table class="mt20"
              :loading="loading"
              :columns="tableColumns"
@@ -20,12 +22,14 @@
         </a-popconfirm>
       </span>
     </a-table>
-    <create ref="dialogForm"
-            :visible="visible"
-            :dialogForm="dialogForm"
-            :title="title"
-            @cancel="visible = false"
-            @create="handleCreate"></create>
+
+    <create-auth ref="dialogForm"
+                 :visible="visible"
+                 :dialogForm="dialogForm"
+                 :title="title"
+                 @cancel="visible = false"
+                 @create="handleCreate"></create-auth>
+
   </div>
 </template>
 
@@ -33,11 +37,11 @@
 import {
   getAuthList, getAuthDetail, deleteAuth, updateUser,
 } from '@/api/auth'
-import create from './create.vue'
+import createAuth from './create_auth.vue'
 
 export default {
   components: {
-    create,
+    createAuth,
   },
   data() {
     return {
@@ -86,6 +90,7 @@ export default {
     // 修改按钮
     async update(username) {
       await getAuthDetail(username).h_then(({ data }) => {
+        console.log(data)
         this.dialogForm = data
         this.visible = true
         this.title = '修改用户'

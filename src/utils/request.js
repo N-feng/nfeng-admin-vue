@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { message } from 'ant-design-vue'
 import store from '@/store'
-import { getToken } from '@/utils/auth'
+// import { getToken } from '@/utils/auth'
 
 // 创建axios实例
 const service = axios.create({
@@ -25,12 +25,12 @@ Promise.prototype.h_then = function then(success = () => { }, error = () => { })
 }
 
 // request拦截器
-service.interceptors.request.use((config) => {
-  if (store.getters.token) {
-    config.headers.token = getToken()
-  }
-  return config
-})
+// service.interceptors.request.use((config) => {
+//   if (store.getters.token) {
+//     config.headers.token = getToken()
+//   }
+//   return config
+// })
 
 // respone拦截器
 service.interceptors.response.use(

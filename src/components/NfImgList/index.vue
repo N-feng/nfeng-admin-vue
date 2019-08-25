@@ -1,5 +1,5 @@
 <template>
-  <div class="nf-main">
+  <div>
 
     <div class="nf-title">图片管理</div>
 
@@ -56,6 +56,7 @@ import {
 } from '@/api/img'
 
 export default {
+  name: 'imgList',
   data() {
     return {
       fileList: [],

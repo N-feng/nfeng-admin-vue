@@ -9,13 +9,13 @@
     <a-form :form="form">
       <a-form-item v-bind="formItemLayout"
                    label="用户名称">
-        <a-input v-decorator="['username', { initialValue: formConfig.username }]"
+        <a-input v-decorator="['username', formConfig.username]"
                  placeholder="请输入"
                  disabled></a-input>
       </a-form-item>
       <a-form-item v-bind="formItemLayout"
                    label="用户角色">
-        <a-select v-decorator="['roleName', { initialValue: formConfig.roleName }]"
+        <a-select v-decorator="['roleName', formConfig.roleName]"
                   placeholder="请选择">
           <a-select-option v-for="item in globalList.roleNameList"
                            :key="item"

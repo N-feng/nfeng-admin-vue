@@ -1,8 +1,22 @@
 <template>
   <div class="nf-main">
-    <p class="nf-title">角色管理</p>
+
+    <div class="nf-title">角色管理</div>
+
     <a-button type="primary"
               @click="addRole">新增角色</a-button>
+    <a-button class="ml20"
+              type="primary"
+              @click="drawerVisible = true">用户管理</a-button>
+
+    <a-drawer title="用户管理"
+              :width="720"
+              :closable="false"
+              @close="drawerVisible = false"
+              :visible="drawerVisible">
+      <list-note></list-note>
+    </a-drawer>
+
     <a-table class="mt20"
              :loading="loading"
              :columns="tableColumns"
@@ -34,12 +48,14 @@
         </a-popconfirm>
       </span>
     </a-table>
-    <create ref="dialogForm"
-            :visible="visible"
-            :dialogForm="dialogForm"
-            :title="title"
-            @cancel="visible = false"
-            @create="handleCreate"></create>
+
+    <create-role ref="dialogForm"
+                 :visible="visible"
+                 :dialogForm="dialogForm"
+                 :title="title"
+                 @cancel="visible = false"
+                 @create="handleCreate"></create-role>
+
   </div>
 </template>
 
@@ -47,11 +63,13 @@
 import {
   getRoleList, addRole, getRoleDetail, updateRole, deleteRole,
 } from '@/api/role'
-import create from './create.vue'
+import createRole from './create_role.vue'
+import listNote from './list_auth.vue'
 
 export default {
   components: {
-    create,
+    createRole,
+    listNote,
   },
   data() {
     return {
@@ -100,6 +118,7 @@ export default {
       },
       visible: false,
       title: '',
+      drawerVisible: false,
     }
   },
   computed: {

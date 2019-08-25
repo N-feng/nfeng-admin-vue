@@ -17,21 +17,21 @@ export const admin = {
       },
       component: () => import('@/views/admin/landing/index.vue'),
     },
-    {
-      path: '/auth/list',
-      name: 'authList',
-      meta: {
-        title: '用户管理',
-      },
-      component: () => import('@/views/admin/auth/list.vue'),
-    },
+    // {
+    //   path: '/auth/list',
+    //   name: 'authList',
+    //   meta: {
+    //     title: '用户管理',
+    //   },
+    //   component: () => import('@/views/admin/auth/list.vue'),
+    // },
     {
       path: '/role/list',
       name: 'roleList',
       meta: {
         title: '角色管理',
       },
-      component: () => import('@/views/admin/role/list.vue'),
+      component: () => import('@/views/admin/role/list_role.vue'),
     },
   ],
 }
@@ -53,14 +53,14 @@ const other = {
       },
       component: () => import('@/views/admin/task/list.vue'),
     },
-    {
-      path: '/img/list',
-      name: 'imgList',
-      meta: {
-        title: '图片管理',
-      },
-      component: () => import('@/views/admin/img/list.vue'),
-    },
+    // {
+    //   path: '/img/list',
+    //   name: 'imgList',
+    //   meta: {
+    //     title: '图片管理',
+    //   },
+    //   component: () => import('@/views/admin/img/list.vue'),
+    // },
     {
       path: '/note/list',
       name: 'noteList',

@@ -32,11 +32,9 @@ router.beforeEach((to, from, next) => {
   } else if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
     next()
   } else {
-    // console.log(to)
     // next(`/login?redirect=${to.fullPath}`) // 否则全部重定向到登录页
     // 组装多个查询参数登陆地址
     const { name, query } = to
-    console.log(query)
     const url = `/login?name=${name}&query=${JSON.stringify(query)}`
     next(url)
     NProgress.done()

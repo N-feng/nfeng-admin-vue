@@ -51,7 +51,7 @@ export default {
     return {
       textareaValue: '', // 输入框内容
       timeoutId: null,
-      indexLenth: 100,
+      indexLenth: 16,
       html: '',
       preview: 1, // 是否是预览状态
       isFullscreen: false, // 是否是全屏
@@ -93,10 +93,7 @@ export default {
           ...this.markedOptions,
         })
       }, 30)
-      setTimeout(() => {
-        this.scrollHeight = this.$refs.textarea.scrollHeight
-        this.indexLenth = parseInt(this.scrollHeight / 22, 0)
-      }, 600)
+      this.resize()
       this.addImageClickListener()
       this.$emit('input', val)
       this.$emit('change', val)
@@ -106,15 +103,16 @@ export default {
       this.textareaValue = ''
       this.scrollHeight = null
       setTimeout(() => {
-        this.init(val)
+        this.textareaValue = val
       }, 30)
     },
   },
   methods: {
-    init(val) {
-      this.textareaValue = this.value || val || ''
+    init() {
+      this.textareaValue = this.value
       this.themeName = this.theme
       this.html = marked(this.textareaValue)
+      this.resize()
     },
     insertContent(initStr) { // 插入文本
       const { preview } = this
@@ -270,6 +268,12 @@ export default {
     },
     mousescrollSide(side) { // 设置究竟是哪个半边在主动滑动
       this.scrollSide = side
+    },
+    resize() {
+      setTimeout(() => {
+        this.scrollHeight = this.$refs.textarea.scrollHeight
+        this.indexLenth = parseInt(this.scrollHeight / 22, 0)
+      }, 600)
     },
   },
   created() {

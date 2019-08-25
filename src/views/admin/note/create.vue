@@ -88,7 +88,9 @@ export default {
   },
   created() {
     this.createForm.noteId = this.$route.query.noteId
-    this.getDetail()
+    if (this.createForm.noteId) {
+      this.getDetail()
+    }
   },
 }
 </script>
