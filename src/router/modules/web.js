@@ -7,10 +7,10 @@ const web = {
     title: '前台展示',
   },
   component: Layout,
-  redirect: '/web/home',
+  redirect: '/web/index',
   children: [{
-    path: '/web/home',
-    name: 'Home',
+    path: '/web/index',
+    name: 'webIndex',
     meta: {
       title: '前台欢迎页',
     },
