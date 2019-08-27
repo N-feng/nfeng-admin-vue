@@ -56,8 +56,9 @@ export default {
   computed: {
     menuList() {
       const arr = []
+      // console.log(router.options.routes)
       router.options.routes
-        .filter(item => item.name === 'web' || item.name === 'admin' || item.name === 'other')
+        .filter(item => item.name === 'admin' || item.name === 'manage' || item.name === 'expand')
         .forEach((item) => {
           arr.push(item.meta.title)
           if (item.children) {

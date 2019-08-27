@@ -2,7 +2,8 @@
   <a-layout>
     <a-layout-header>
       <div class="header-content">
-        <div class="nf-logo fs16">nfeng.net.cn</div>
+        <router-link to="/"
+                     class="nf-logo fs16">nfeng.net.cn</router-link>
         <a-menu theme="light"
                 :selectedKeys="current"
                 mode="horizontal"
@@ -64,7 +65,8 @@ export default {
       return this.$route.meta.rename ? [this.$route.meta.rename] : [this.$route.name]
     },
     isHome() {
-      return this.$route.name === 'landing'
+      // console.log(this.$route.name)
+      return this.$route.name === 'adminIndex'
     },
   },
   methods: {

@@ -4,18 +4,18 @@ export const admin = {
   path: '/admin',
   name: 'admin',
   meta: {
-    title: '后台管理',
+    title: '首页',
   },
-  redirect: '/admin/landing',
+  redirect: '/admin/index',
   component: Layout,
   children: [
     {
-      path: '/admin/landing',
-      name: 'landing',
+      path: '/admin/index',
+      name: 'adminIndex',
       meta: {
-        title: '后台欢迎页',
+        title: '登陆页',
       },
-      component: () => import('@/views/admin/landing/index.vue'),
+      component: () => import('@/views/admin/index.vue'),
     },
     // {
     //   path: '/auth/list',
@@ -25,9 +25,21 @@ export const admin = {
     //   },
     //   component: () => import('@/views/admin/auth/list.vue'),
     // },
+  ],
+}
+
+const manage = {
+  path: '/manage',
+  name: 'manage',
+  meta: {
+    title: '后台管理',
+  },
+  redirect: '/manage/role',
+  component: Layout,
+  children: [
     {
-      path: '/role/list',
-      name: 'roleList',
+      path: '/manage/role',
+      name: 'manageRole',
       meta: {
         title: '角色管理',
       },
@@ -36,18 +48,18 @@ export const admin = {
   ],
 }
 
-const other = {
-  path: '/other',
-  name: 'other',
+const expand = {
+  path: '/expand',
+  name: 'expand',
   meta: {
     title: '拓展功能',
   },
-  redirect: '/task/list',
+  redirect: '/expand/task',
   component: Layout,
   children: [
     {
-      path: '/task/list',
-      name: 'taskList',
+      path: '/expand/task',
+      name: 'expandTask',
       meta: {
         title: '任务管理',
       },
@@ -62,7 +74,7 @@ const other = {
     //   component: () => import('@/views/admin/img/list.vue'),
     // },
     {
-      path: '/note/list',
+      path: '/expand/noteList',
       name: 'noteList',
       meta: {
         title: '笔记管理',
@@ -70,7 +82,7 @@ const other = {
       component: () => import('@/views/admin/note/list.vue'),
     },
     {
-      path: '/note/create',
+      path: '/expand/noteCreate',
       name: 'noteCreate',
       meta: {
         rename: 'noteList',
@@ -81,4 +93,4 @@ const other = {
   ],
 }
 
-export default [admin, other]
+export default [admin, manage, expand]
