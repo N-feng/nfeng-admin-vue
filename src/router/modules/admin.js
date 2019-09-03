@@ -4,7 +4,7 @@ export const admin = {
   path: '/admin',
   name: 'admin',
   meta: {
-    title: '首页',
+    title: '后台管理',
   },
   redirect: '/admin/index',
   component: Layout,
@@ -13,7 +13,7 @@ export const admin = {
       path: '/admin/index',
       name: 'adminIndex',
       meta: {
-        title: '登陆页',
+        title: '首页',
       },
       component: () => import('@/views/admin/index.vue'),
     },
@@ -25,18 +25,6 @@ export const admin = {
     //   },
     //   component: () => import('@/views/admin/auth/list.vue'),
     // },
-  ],
-}
-
-const manage = {
-  path: '/manage',
-  name: 'manage',
-  meta: {
-    title: '后台管理',
-  },
-  redirect: '/manage/role',
-  component: Layout,
-  children: [
     {
       path: '/manage/role',
       name: 'manageRole',
@@ -45,18 +33,6 @@ const manage = {
       },
       component: () => import('@/views/admin/role/list_role.vue'),
     },
-  ],
-}
-
-const expand = {
-  path: '/expand',
-  name: 'expand',
-  meta: {
-    title: '拓展功能',
-  },
-  redirect: '/expand/task',
-  component: Layout,
-  children: [
     {
       path: '/expand/task',
       name: 'expandTask',
@@ -93,4 +69,4 @@ const expand = {
   ],
 }
 
-export default [admin, manage, expand]
+export default admin

@@ -25,7 +25,7 @@
                    :formItemLayout="formItemLayout"
                    label="角色菜单"
                    field="roleMenu"
-                   :plainOptions="menuList"
+                   :plainOptions="menus"
                    :formConfig="formConfig.roleMenu"></nf-checkbox>
       <nf-checkbox :form="form"
                    :formItemLayout="formItemLayout"
@@ -54,20 +54,18 @@ export default {
     },
   },
   computed: {
-    menuList() {
-      const arr = []
-      // console.log(router.options.routes)
+    menus() {
+      const menus = []
       router.options.routes
-        .filter(item => item.name === 'admin' || item.name === 'manage' || item.name === 'expand')
+        .filter(item => item.name === 'admin')
         .forEach((item) => {
-          arr.push(item.meta.title)
           if (item.children) {
             item.children.forEach((item2) => {
-              arr.push(item2.meta.title)
+              menus.push(item2.meta.title)
             })
           }
         })
-      return arr
+      return menus
     },
     permissionsList() {
       const arr = Object.values(config)

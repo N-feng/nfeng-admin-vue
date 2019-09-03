@@ -15,13 +15,11 @@ const mainRouter = [
     },
   },
   Web,
-  ...Admin,
+  Admin,
   ...System,
 ]
 
-const routers = [
-  ...mainRouter,
-]
+const routers = [...mainRouter]
 
 const router = new Router({
   mode: 'history',
