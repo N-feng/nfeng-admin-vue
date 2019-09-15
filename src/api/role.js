@@ -1,4 +1,4 @@
-import { post } from '@/utils/request'
+import { post } from '@/utils/ajax'
 import { role } from './config'
 
 export function addRole(roleData) {

@@ -1,4 +1,4 @@
-import service, { post } from '@/utils/request'
+import service, { post } from '@/utils/ajax'
 import { img } from './config'
 
 export function addImg(e) {

@@ -3,7 +3,7 @@
   <a-layout-header>
     <div class="header-content">
       <router-link to="/" class="nf-logo fs16">nfeng.net.cn</router-link>
-      <a-menu theme="light" mode="horizontal" @click="handleClick">
+      <a-menu theme="light" :selectedKeys="current" mode="horizontal" @click="handleClick">
         <template v-for="item in menus">
           <a-menu-item :key="item.name">{{item.meta.title}}</a-menu-item>
         </template>
@@ -61,6 +61,12 @@ export default {
           menus.push(item)
         })
       return menus
+    },
+    current() {
+      // 为了匹配高亮
+      return this.$route.meta.rename
+        ? [this.$route.meta.rename]
+        : [this.$route.name]
     },
   },
   methods: {

@@ -1,8 +1,7 @@
 import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
+import 'nprogress/nprogress.css' // Progress 进度条样式
 import router from './router'
-import { getToken } from '@/utils/auth'
-
+// import store from './store'
 
 NProgress.configure({ showSpinner: false })
 
@@ -15,30 +14,28 @@ NProgress.configure({ showSpinner: false })
 //   return roles.some(role => permissionRoles.indexOf(role) >= 0)
 // }
 
-const whiteList = ['/login', '/signup', '/web/home']// no redirect whitelist
+// const whiteList = ['/login', '/signup'] // no redirect whitelist
 
 router.beforeEach((to, from, next) => {
   // 进度条开始走起
   NProgress.start()
   // 如果有token
-  if (getToken()) {
-    // console.log(to.path)
-    if (to.path === '/login') {
-      next({ path: '/admin' })
-      NProgress.done()
-    } else {
-      next()
-    }
-  } else if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
-    next()
-  } else {
-    // next(`/login?redirect=${to.fullPath}`) // 否则全部重定向到登录页
-    // 组装多个查询参数登陆地址
-    const { name, query } = to
-    const url = `/login?name=${name}&query=${JSON.stringify(query)}`
-    next(url)
-    NProgress.done()
-  }
+  // if (store.getters.token) {
+  //   if (to.path === '/login') {
+  //     next({ path: '/admin' })
+  //     NProgress.done()
+  //   } else {
+  //     next()
+  //   }
+  // } else if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
+  //   next()
+  // } else { // 组装多个查询参数登陆地址
+  //   const { name, query } = to
+  //   const url = `/login?name=${name}&query=${JSON.stringify(query)}`
+  //   next(url)
+  //   NProgress.done()
+  // }
+  next()
 })
 
 router.afterEach(() => {

@@ -26,8 +26,8 @@ export const admin = {
     //   component: () => import('@/views/admin/auth/list.vue'),
     // },
     {
-      path: '/manage/role',
-      name: 'manageRole',
+      path: '/admin/role',
+      name: 'adminRole',
       meta: {
         title: '角色管理',
       },

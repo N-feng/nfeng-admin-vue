@@ -37,12 +37,12 @@ service.interceptors.response.use(
   (response) => {
     const res = response.data
     if (res.code !== 200) {
-      message.error(res.msg)
       // 401:Token过期，失效等等;
       if (res.code === 401) {
+        message.error('登录超时,请重新登录')
         // 清除token，刷新页面
         store.dispatch('FedLogOut').then(() => {
-          window.location.reload()// 为了重新实例化vue-router对象 避免bug
+          // window.location.reload()// 为了重新实例化vue-router对象 避免bug
         })
       }
       return Promise.reject('error')
@@ -51,6 +51,8 @@ service.interceptors.response.use(
   },
   (error) => {
     console.log(`err${error}`)// for debug
+    message.error(error.message)
+    return Promise.reject(error)
   },
 )
 

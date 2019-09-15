@@ -1,4 +1,4 @@
-import { post } from '@/utils/request'
+import { post } from '@/utils/ajax'
 import { global } from '@/api/config'
 
 export function getMenus(roleName) {
