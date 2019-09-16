@@ -1,24 +1,24 @@
-<template lang="html">
-<div class="nf-main mt35">
-  <div class="nf-title">{{$route.meta.title}}</div>
-  <a-table class="mt20"
-           :loading="loading"
-           :columns="tableColumns"
-           :dataSource="tableList"
-           :pagination="pagination"
-           :rowKey="record => record.noteId">
-    <span slot="createTime"
-          slot-scope="text, record">{{record.createTime | timeTransfer}}</span>
-    <span slot="updateTime"
-          slot-scope="text, record">{{record.updateTime | timeTransfer}}</span>
-    <span slot="action"
-          slot-scope="text, record">
-      <a href="javascript:;"
-         @click="$router.push({name: 'webNotePreview', query: {noteId: record.noteId}})"
-         class="mr10">查看</a>
-    </span>
-  </a-table>
-</div>
+<template>
+  <div class="nf-main mt35 mb35">
+    <div class="nf-title">{{$route.meta.title}}</div>
+    <a-table class="mt20"
+             :loading="loading"
+             :columns="tableColumns"
+             :dataSource="tableList"
+             :pagination="pagination"
+             :rowKey="record => record.noteId">
+      <span slot="createTime"
+            slot-scope="text, record">{{record.createTime | timeTransfer}}</span>
+      <span slot="updateTime"
+            slot-scope="text, record">{{record.updateTime | timeTransfer}}</span>
+      <span slot="action"
+            slot-scope="text, record">
+        <a href="javascript:;"
+           @click="$router.push({name: 'webNotePreview', query: {noteId: record.noteId}})"
+           class="mr10">查看</a>
+      </span>
+    </a-table>
+  </div>
 </template>
 
 <script>

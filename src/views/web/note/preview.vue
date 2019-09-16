@@ -1,8 +1,8 @@
-<template lang="html">
-<div class="nf-main mt35">
-  <div class="nf-title">{{$route.meta.title}}</div>
-  <nf-md-preview></nf-md-preview>
-</div>
+<template>
+  <div class="nf-main mt35 mb35">
+    <div class="nf-title">{{createForm.title}}</div>
+    <nf-md-preview :data="createForm.content"></nf-md-preview>
+  </div>
 </template>
 
 <script>
