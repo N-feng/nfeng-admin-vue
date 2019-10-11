@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
 import './permission' // 权限控制
+// import utils from 'nfeng-utils'
+import utils from './utils'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -12,6 +14,7 @@ import { timeTransfer } from './utils/filter'
 
 Vue.use(Antd)
 Vue.use(components)
+Vue.use(utils)
 Vue.prototype.$get = get
 Vue.prototype.$post = post
 Vue.prototype.$api = Api

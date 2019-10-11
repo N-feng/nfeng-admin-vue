@@ -15,6 +15,7 @@
     "marked": "^0.7.0",
     "moment": "^2.24.0",
     "nfeng-scss": "^1.0.2",
+    "nfeng-utils": "^1.0.2",
     "nprogress": "^0.2.0",
     "request": "^2.88.0",
     "vue": "^2.5.17",

@@ -1,6 +1,6 @@
 <template>
   <div class="landing-page">
-    <div class="page-content">
+    <div class="page-content center">
       <template v-if="username">
         <h1>Welcome, {{username}}</h1>
       </template>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import utils from '@/utils/index'
+// import utils from 'nfeng-utils'
 
 export default {
   computed: {
@@ -40,17 +40,25 @@ export default {
       },
       stature: '172cm',
     }
-    const c = utils.jquery.extend(a, b)
+    console.log(this.$utils)
+    // const c = utils.jquery.extend(a, b)
     a.name = 'test'
     b.company.address = '北京'
     console.log(`a:${JSON.stringify(a)}`)
     console.log(`b:${JSON.stringify(b)}`)
-    console.log(`c:${JSON.stringify(c)}`)
+    // console.log(`c:${JSON.stringify(c)}`)
   },
 }
 </script>
 
 <style lang="scss" scoped>
+// %center {
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+// }
+
 .landing-page {
   width: 100%;
   height: 100%;
@@ -58,7 +66,7 @@ export default {
   position: relative;
   overflow: hidden;
   .page-content {
-    @extend %center;
+    // @extend %center;
     z-index: 1;
     width: 100%;
     max-width: 800px;

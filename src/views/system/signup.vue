@@ -159,7 +159,7 @@ export default {
   border-radius: 6px;
   box-sizing: border-box;
   max-width: 85vw;
-  @extend %center;
+  // @extend %center;
   .avatar {
     width: 100px;
     height: 100px;
