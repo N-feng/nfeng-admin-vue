@@ -3,9 +3,9 @@
     <a-form class="login-form"
             :form="form"
             @submit="handleSubmit">
-      <img src="https://cdn.nfeng.net.cn/upload/me.jpg"
+      <!-- <img src="https://cdn.nfeng.net.cn/upload/me.jpg"
            alt=""
-           class="avatar">
+           class="avatar"> -->
       <h1>Login Here</h1>
       <a-form-item :validate-status="userNameError() ? 'error' : ''"
                    :help="userNameError() || ''">

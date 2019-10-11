@@ -1,7 +1,7 @@
 <template>
   <div class="card-box">
     <div class="header">
-      <img src="https://cdn.nfeng.net.cn/upload/me.jpg"
+      <img src="https://cdn.nfeng.net.cn/upload/me.jpeg"
            alt="">
     </div>
     <div class="content">
@@ -39,7 +39,7 @@ export default {
 .card-box {
   background: white;
   color: #314652;
-  margin: 65px auto;
+  margin: 60px auto;
   // box-shadow: 1px 1px 12px #909EAA;
   overflow: hidden;
   width: 400px;
