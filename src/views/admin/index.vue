@@ -22,24 +22,30 @@ export default {
     },
   },
   created() {
-    const oldObj = {
-      a: 1,
-      b: 2,
-      c: 3,
+    const a = {
+      name: 'zhangshan',
+      age: 28,
+      company: {
+        name: '腾讯',
+        address: '深圳',
+        size: 10000,
+      },
     }
-    // const oldObj2 = {
-    //   a: '2a',
-    //   d: 4,
-    //   e: 5,
-    //   f: 6,
-    // }
-    const newObj = utils.jquery.extend(true, oldObj)
-    newObj.b = 'b'
-    oldObj.a = 'a'
-    // oldObj2.e = 'e'
-    // console.log(newObj)
-    // console.log(oldObj)
-    // console.log(oldObj2)
+    const b = {
+      name: 'lisi',
+      age: 30,
+      company: {
+        name: '阿里巴巴',
+        address: '杭州',
+      },
+      stature: '172cm',
+    }
+    const c = utils.jquery.extend(a, b)
+    a.name = 'test'
+    b.company.address = '北京'
+    console.log(`a:${JSON.stringify(a)}`)
+    console.log(`b:${JSON.stringify(b)}`)
+    console.log(`c:${JSON.stringify(c)}`)
   },
 }
 </script>

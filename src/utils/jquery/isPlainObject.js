@@ -8,13 +8,10 @@ const ObjectFuntionString = fnToString.call(Object)
 // 判断数据类型
 // 判断是否为纯正的数据对象
 export default function isPlainObject(obj) {
-  console.log(obj)
-  console.log(toString.call(obj))
   // 排除 undefined、null 和 非 object 情况
-  if (!obj || toString.call(obj) !== '[object object]') {
+  if (!obj || toString.call(obj) !== '[object Object]') {
     return false
   }
-  console.log('here')
 
   const proto = getProto(obj)
 
