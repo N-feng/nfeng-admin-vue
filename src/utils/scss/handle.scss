@@ -5,6 +5,17 @@
   transform: translate(-50%, -50%);
 }
 
+.center-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.space-box {
+  display: flex;
+  justify-content: space-between;
+}
+
 .fl {
   float: left;
 }

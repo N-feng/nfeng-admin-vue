@@ -30,3 +30,7 @@ export function getAuthDetail(username) {
 export function getAuthList() {
   return post(auth.authList)
 }
+
+export function getMenus(roleName) {
+  return post(auth.getMenus, { roleName })
+}

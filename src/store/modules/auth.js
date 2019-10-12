@@ -1,4 +1,4 @@
-import { login, signup } from '@/api/auth'
+import { login, signup, getMenus } from '@/api/auth'
 import {
   getToken,
   setToken,
@@ -8,10 +8,12 @@ import {
   removeName,
   setRoleName,
   removeRoleName,
+  getRoleName,
 } from '@/utils/auth'
 
 const auth = {
   state: {
+    menus: [],
     token: getToken(),
     username: getName(),
   },
@@ -24,6 +26,9 @@ const auth = {
     },
     SET_ROLENAME: (state, payload) => {
       state.roleName = payload
+    },
+    SET_MENUS: (state, payload) => {
+      state.menus = payload
     },
   },
   actions: {
@@ -71,11 +76,18 @@ const auth = {
     FedLogOut({ commit }) {
       return new Promise((resolve) => {
         commit('SET_TOKEN', '')
+        commit('SET_NAME', '')
+        commit('SET_MENUS', [])
         removeToken()
-        // console.log(removeName)
         removeName()
         removeRoleName()
         resolve()
+      })
+    },
+    // 获取菜单
+    getMenus({ commit }) {
+      getMenus(getRoleName()).h_then(({ data }) => {
+        commit('SET_MENUS', data)
       })
     },
   },

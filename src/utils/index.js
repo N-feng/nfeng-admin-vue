@@ -1,9 +1,13 @@
 import './scss/index.scss'
-// import tools from './tools/index'
+import tool from './tool'
+import tree from './tree'
+import array from './array'
 import jquery from './jquery'
 
 const utils = {
-  // tools,
+  tool,
+  tree,
+  array,
   jquery,
 }
 

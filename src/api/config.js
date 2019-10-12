@@ -1,5 +1,4 @@
 export const global = {
-  getMenus: '/global/menus',
   getRoleNameList: '/global/roleNameList',
 }
 
@@ -8,6 +7,7 @@ export const auth = {
   authUpdate: '/auth/update', // 修改用户
   authDetail: '/auth/detail', // 用户详情
   authList: '/auth/list', // 用户列表
+  getMenus: '/global/menus',
 }
 
 export const role = {

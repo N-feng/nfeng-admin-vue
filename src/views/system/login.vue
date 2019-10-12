@@ -1,6 +1,6 @@
 <template>
   <div class="login-page">
-    <a-form class="login-form"
+    <a-form class="login-form center"
             :form="form"
             @submit="handleSubmit">
       <!-- <img src="https://cdn.nfeng.net.cn/upload/me.jpg"

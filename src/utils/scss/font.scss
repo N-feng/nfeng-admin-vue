@@ -1,0 +1,51 @@
+.fb {
+  font-weight: bold;
+}
+
+.fs12 {
+  font-size: 12px;
+}
+
+.fs14 {
+  font-size: 14px;
+}
+
+.fs16 {
+  font-size: 16px;
+}
+
+.fs-sm {
+  @extend .fs12;
+}
+
+.fm-lg {
+  @extend .fs16;
+}
+
+.tc {
+  text-align: center;
+}
+
+.tr {
+  text-align: right;
+}
+
+.c000 {
+  color: #000;
+}
+
+.c333 {
+  color: #333;
+}
+
+.c666 {
+  color: #666;
+}
+
+.c999 {
+  color: #999;
+}
+
+.cfff {
+  color: #fff;
+}

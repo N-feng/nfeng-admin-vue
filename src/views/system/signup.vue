@@ -1,6 +1,6 @@
 <template>
   <div class="signup-page">
-    <a-form class="signup-form"
+    <a-form class="signup-form center"
             :form="form"
             @submit="handleSubmit"
             autocomplete="off">
