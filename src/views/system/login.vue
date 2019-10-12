@@ -49,10 +49,10 @@ export default {
       form: this.$form.createForm(this),
       rules: {
         username: [
-          { required: true, message: '请输入帐号' },
+          { required: true, message: 'Please input username' },
         ],
         password: [
-          { required: true, message: '请输入密码' },
+          { required: true, message: 'Please input password' },
         ],
       },
     }

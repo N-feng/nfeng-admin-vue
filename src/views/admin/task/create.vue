@@ -2,35 +2,33 @@
   <a-modal width="558px"
            :visible="visible"
            :title="title"
-           okText="确认"
-           cancelText="取消"
            @cancel="() => { $emit('cancel') }"
            @ok="() => { $emit('create') }">
     <a-form :form="form">
       <a-form-item v-bind="formItemLayout"
-                   label="任务名称">
+                   label="title">
         <a-input v-decorator="['title', formConfig.title]"
-                 placeholder="请输入"></a-input>
+                 placeholder="Please input title"></a-input>
       </a-form-item>
       <a-form-item v-bind="formItemLayout"
-                   label="任务描述">
+                   label="description">
         <a-textarea v-decorator="['description', formConfig.description]"
                     :autosize="{ minRows: 2, maxRows: 6 }"
-                    placeholder="请输入" />
+                    placeholder="Please input description" />
       </a-form-item>
       <a-form-item v-bind="formItemLayout"
-                   label="任务日期">
+                   label="date">
         <a-date-picker v-decorator="['date', formConfig.date]"
                        show-time
                        format="YYYY-MM-DD HH:mm:ss" />
       </a-form-item>
       <a-form-item v-bind="formItemLayout"
-                   label="任务优先级">
+                   label="priority">
         <a-select v-decorator="['priority', formConfig.priority]"
-                  placeholder="请选择">
+                  placeholder="Please select priority">
           <a-select-option v-for="item in priorityList"
                            :key="item.value"
-                           :value="item.value">{{item.name}}</a-select-option>
+                           :value="item.value">{{item.value}}</a-select-option>
         </a-select>
       </a-form-item>
     </a-form>
@@ -72,19 +70,19 @@ export default {
     formConfig() {
       return {
         title: {
-          rules: [{ required: true, message: '请输入任务名称' }],
+          rules: [{ required: true, message: 'Please input title' }],
           initialValue: this.dialogForm.title,
         },
         description: {
-          rules: [{ required: true, message: '请输入任务描述' }],
+          rules: [{ required: true, message: 'Please input description' }],
           initialValue: this.dialogForm.description,
         },
         date: {
-          rules: [{ type: 'object', required: true, message: '请选择任务日期' }],
+          rules: [{ type: 'object', required: true, message: 'Please select date' }],
           initialValue: this.dialogForm.date ? this.moment(this.dialogForm.date, this.timeFormat) : null,
         },
         priority: {
-          rules: [{ required: true, message: '请选择任务优先级' }],
+          rules: [{ required: true, message: 'Please select priority' }],
           initialValue: this.dialogForm.priority,
         },
       }

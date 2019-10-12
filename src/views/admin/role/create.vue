@@ -2,34 +2,34 @@
   <a-modal width="558px"
            :visible="visible"
            :title="title"
-           okText="确认"
-           cancelText="取消"
+           okText="OK"
+           cancelText="Cancel"
            @cancel="() => { $emit('cancel') }"
            @ok="() => { $emit('create') }">
     <a-form :form="form">
       <a-form-item v-bind="formItemLayout"
-                   label="角色名称">
+                   label="roleName">
         <a-input v-decorator="['roleName', formConfig.roleName]"
-                 placeholder="请输入"></a-input>
+                 placeholder="Please input roleName"></a-input>
       </a-form-item>
       <a-form-item v-bind="formItemLayout"
-                   label="角色类型">
+                   label="roleType">
         <a-select v-decorator="['roleType', formConfig.roleType]"
-                  placeholder="请选择">
+                  placeholder="Please select roleType">
           <a-select-option v-for="item in typeList"
                            :key="item.value"
-                           :value="item.value">{{item.name}}</a-select-option>
+                           :value="item.value">{{item.value}}</a-select-option>
         </a-select>
       </a-form-item>
       <nf-checkbox :form="form"
                    :formItemLayout="formItemLayout"
-                   label="角色菜单"
+                   label="roleMenu"
                    field="roleMenu"
                    :plainOptions="menus"
                    :formConfig="formConfig.roleMenu"></nf-checkbox>
       <nf-checkbox :form="form"
                    :formItemLayout="formItemLayout"
-                   label="角色权限"
+                   label="permissions"
                    field="permissions"
                    :plainOptions="permissionsList"
                    :formConfig="formConfig.permissions"></nf-checkbox>
@@ -77,19 +77,19 @@ export default {
     formConfig() {
       return {
         roleName: {
-          rules: [{ required: true, message: '请输入角色名称' }],
+          rules: [{ required: true, message: 'Please input roleName' }],
           initialValue: this.dialogForm.roleName,
         },
         roleType: {
-          rules: [{ required: true, message: '请选择角色类型' }],
+          rules: [{ required: true, message: 'Please select roleType' }],
           initialValue: this.dialogForm.roleType,
         },
         roleMenu: {
-          rules: [{ required: true, message: '请选择角色菜单' }],
+          rules: [{ required: true, message: 'Please select roleMenu' }],
           initialValue: this.dialogForm.roleMenu,
         },
         permissions: {
-          rules: [{ required: true, message: '请选择角色权限' }],
+          rules: [{ required: true, message: 'Please select permissions' }],
           initialValue: this.dialogForm.permissions,
         },
       }

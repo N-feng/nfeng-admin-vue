@@ -70,7 +70,7 @@ export default {
       if (value === this.form.getFieldValue('password')) {
         callback()
       } else {
-        callback('密码不一致')
+        callback('Please confirm your password!')
       }
     }
     return {
@@ -78,17 +78,17 @@ export default {
       form: this.$form.createForm(this),
       rules: {
         username: [
-          { required: true, message: '请输入帐号' },
+          { required: true, message: 'Please input username' },
         ],
         password: [
-          { required: true, message: '请输入密码' },
+          { required: true, message: 'Please input password' },
         ],
         checkPassword: [
-          { required: true, message: '请确认密码' },
+          { required: true, message: 'Please confirm your password!' },
           { validator: validatePass },
         ],
         roleName: [
-          { required: true, message: '请选择角色' },
+          { required: true, message: 'Please select role' },
         ],
       },
       roleList: [],

@@ -1,6 +1,7 @@
 <template>
-  <a-layout>
-    <a-layout-header>
+  <a-layout id="components-layout-demo-top"
+            class="nf-bg">
+    <a-layout-header class="bgfff">
       <div class="header-content space-box">
         <router-link to="/"
                      class="nf-logo fs16">nfeng.net.cn</router-link>
@@ -9,33 +10,38 @@
                 mode="horizontal"
                 @click="handleClick">
           <template v-for="item in menus">
-            <a-sub-menu :key="item.path"
+            <!-- <a-sub-menu :key="item.path"
                         v-if="item.children">
               <span slot="title"
                     class="submenu-title-wrapper">{{item.meta.title}}</span>
               <template v-for="item2 in item.children">
                 <a-menu-item :key="item2.name">{{item2.meta.title}}</a-menu-item>
               </template>
-            </a-sub-menu>
-            <a-menu-item :key="item.name"
-                         v-else>{{item.meta.title}}</a-menu-item>
+            </a-sub-menu> -->
+            <a-menu-item :key="item.name">{{item.meta.title}}</a-menu-item>
           </template>
         </a-menu>
-        <a-dropdown v-if="username">
+        <a-dropdown>
           <a class="ant-dropdown-link"
-             href="javascript:;">Welcome, {{ username }}
+             href="javascript:;">Welcome, {{ username || 'stranger' }}
             <a-icon type="down" />
           </a>
           <a-menu slot="overlay">
             <a-menu-item>
+              <router-link to="/web">The front page</router-link>
+            </a-menu-item>
+            <a-menu-item v-if="username">
               <a href="javascript:;"
-                 @click="logout">退出登录</a>
+                 @click="logout">Logout Now</a>
+            </a-menu-item>
+            <a-menu-item v-else>
+              <router-link to="/login">Login Now</router-link>
             </a-menu-item>
           </a-menu>
         </a-dropdown>
       </div>
     </a-layout-header>
-    <a-layout-content>
+    <a-layout-content class="pl50 pr50">
       <a-breadcrumb :style="{ margin: '16px 0' }"
                     v-if="!isHome">
         <a-breadcrumb-item v-for="item in $route.matched"
@@ -93,6 +99,7 @@ export default {
     logout() {
       // const { name, query } = this.$route
       this.$store.dispatch('FedLogOut').h_then(() => {
+        this.$router.replace({ name: 'adminIndex' })
         // this.$router.push({
         //   name: 'login',
         //   query: {
@@ -112,4 +119,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#components-layout-demo-top {
+  height: 100%;
+  overflow: auto;
+}
 </style>

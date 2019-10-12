@@ -3,7 +3,7 @@
                :label="label">
     <a-checkbox :indeterminate="indeterminate"
                 @change="onCheckAllChange"
-                :checked="checkAll">全部</a-checkbox>
+                :checked="checkAll">Check all</a-checkbox>
     <a-checkbox-group v-decorator="[field, formConfig]"
                       :options="plainOptions"
                       @change="onChange">

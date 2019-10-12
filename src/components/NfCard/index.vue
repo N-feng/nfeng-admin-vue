@@ -1,5 +1,5 @@
 <template>
-  <div class="card-box">
+  <div class="card-box center">
     <div class="header">
       <img src="https://cdn.nfeng.net.cn/upload/me.jpeg"
            alt="">
@@ -10,15 +10,17 @@
       <span>A web developer is a programmer who specializes In, or is specifically engaged in, the development of World Wide Web applications, or applications that are run over HTTP from a web server to a web browser.</span>
       <div class="social-box">
         <a class="btn"
-           href="#">
+           href="https://www.facebook.com/wx18718366141"
+           target="_blank">
           <i class="fab fa-facebook-f"></i>
         </a>
         <a class="btn"
-           href="#">
+           href="https://twitter.com/wx18718366141"
+           target="_blank">
           <i class="fab fa-twitter"></i>
         </a>
         <a class="btn"
-           href="#">
+           href="mailto:nf308561157@gmail.com">
           <i class="fab fa-google"></i>
         </a>
       </div>
@@ -39,7 +41,7 @@ export default {
 .card-box {
   background: white;
   color: #314652;
-  margin: 60px auto;
+  // margin: 60px auto;
   // box-shadow: 1px 1px 12px #909EAA;
   overflow: hidden;
   width: 400px;

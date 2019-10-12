@@ -1,5 +1,7 @@
 <template>
-  <nf-card></nf-card>
+  <div class="center-page">
+    <nf-card></nf-card>
+  </div>
 </template>
 
 <script>

@@ -2,6 +2,10 @@
   <div class="nf-main mt35 mb35">
     <div class="nf-title">{{createForm.title}}</div>
     <nf-md-preview :data="createForm.content"></nf-md-preview>
+    <div class="tr">
+      <a-button class="ml10"
+                @click="$router.push({name: 'webNoteList'})">cancel</a-button>
+    </div>
   </div>
 </template>
 

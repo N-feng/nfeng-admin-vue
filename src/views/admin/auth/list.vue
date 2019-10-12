@@ -13,12 +13,10 @@
             slot-scope="text, record">
         <a href="javascript:;"
            @click="update(record.username)"
-           class="mr10">修改</a>
-        <a-popconfirm title="确认删除?"
+           class="mr10">Edit</a>
+        <a-popconfirm title="Are you sure delete this item?"
                       @confirm="handleDelete(record)"
-                      okText="确定"
-                      cancelText="取消"
-                      class="mr10"><a href="javascript:;">删除</a>
+                      class="mr10"><a href="javascript:;">Delete</a>
         </a-popconfirm>
       </span>
     </a-table>
@@ -51,20 +49,20 @@ export default {
         showQuickJumper: true,
         showSizeChanger: true,
         total: 500,
-        showTotal: total => `共${total}条`,
+        showTotal: total => `Total ${total} items`,
       },
       tableList: [],
       tableColumns: [
         {
-          title: '用户名称',
+          title: 'username',
           dataIndex: 'username',
         },
         {
-          title: '用户角色',
+          title: 'roleName',
           dataIndex: 'roleName',
         },
         {
-          title: '操作',
+          title: 'action',
           dataIndex: 'action',
           width: 150,
           scopedSlots: { customRender: 'action' },
@@ -93,7 +91,7 @@ export default {
         console.log(data)
         this.dialogForm = data
         this.visible = true
-        this.title = '修改用户'
+        this.title = 'Edit Auth'
       })
     },
     // 提交按钮

@@ -1,24 +1,23 @@
 <template>
-  <div class="nf-main">
-    <div class="nf-title">笔记创建</div>
+  <div class="nf-main mb40">
+    <div class="nf-title">new note</div>
     <a-form :form="form">
-      <a-form-item label="笔记标题">
-        <a-input v-decorator="['title', formConfig.noteTitle]"
-                 placeholder="请输入"></a-input>
+      <a-form-item>
+        <a-input v-decorator="['title', formConfig.title]"
+                 placeholder="Please input title"></a-input>
       </a-form-item>
-      <a-form-item label="笔记内容"
-                   :validate-status="validateStatus"
+      <a-form-item :validate-status="validateStatus"
                    :help="help"
                    required>
         <nf-markdown v-model="createForm.content"
                      @change="changeHandle"></nf-markdown>
       </a-form-item>
-      <a-form-item class="tr">
+      <div class="tr">
         <a-button type="primary"
-                  @click="save">保存</a-button>
+                  @click="save">save</a-button>
         <a-button class="ml10"
-                  @click="$router.push({name: 'noteList'})">取消</a-button>
-      </a-form-item>
+                  @click="$router.push({name: 'NoteManagerList'})">cancel</a-button>
+      </div>
     </a-form>
   </div>
 </template>
@@ -41,12 +40,12 @@ export default {
   computed: {
     formConfig() {
       return {
-        noteTitle: {
-          rules: [{ required: true, message: '请输入笔记标题' }],
+        title: {
+          rules: [{ required: true, message: 'Please input title' }],
           initialValue: this.createForm.title,
         },
-        noteContent: {
-          rules: [{ required: true, message: '请输入笔记内容' }],
+        content: {
+          rules: [{ required: true, message: 'Pleate input content' }],
           initialValue: this.createForm.content,
         },
       }
@@ -56,7 +55,7 @@ export default {
     save() {
       const { content } = this.createForm
       const value = content
-      this.help = value ? '' : '请输入笔记内容'
+      this.help = value ? '' : 'Pleate input content'
       this.validateStatus = value ? '' : 'error'
       this.form.validateFields((err, values) => {
         if (!err && !this.help) {
@@ -66,7 +65,7 @@ export default {
           fn(params).h_then(({ code, msg }) => {
             if (code === 200) {
               this.$message.success(msg)
-              this.$router.push({ name: 'noteList' })
+              this.$router.push({ name: 'NoteManagerList' })
             }
           })
         }
@@ -74,7 +73,7 @@ export default {
     },
     changeHandle(val) {
       const value = val
-      this.help = value ? '' : '请输入笔记内容'
+      this.help = value ? '' : 'Pleate input content'
       this.validateStatus = value ? '' : 'error'
     },
     getDetail() {

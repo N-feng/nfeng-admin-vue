@@ -5,7 +5,7 @@ const web = {
   path: '/web',
   name: 'web',
   meta: {
-    title: '前台',
+    title: 'The front desk',
   },
   component: Layout,
   redirect: '/web/index',
@@ -14,7 +14,7 @@ const web = {
       path: '/web/index',
       name: 'webIndex',
       meta: {
-        title: '首页',
+        title: 'WebIndex',
       },
       component: () => import('@/views/web/index.vue'),
     },
@@ -23,7 +23,7 @@ const web = {
       name: 'webNote',
       redirect: '/note/list',
       meta: {
-        title: '学习笔记',
+        title: 'Notes',
       },
       component: NfRouterView,
       children: [

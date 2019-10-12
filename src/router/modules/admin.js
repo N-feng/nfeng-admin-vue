@@ -1,10 +1,11 @@
 const Layout = () => import('@/components/Layout/admin.vue')
+const NfRouterView = () => import('@/components/NfRouterView')
 
 export const admin = {
   path: '/admin',
   name: 'admin',
   meta: {
-    title: '后台管理',
+    title: 'adminManager',
   },
   redirect: '/admin/index',
   component: Layout,
@@ -13,7 +14,7 @@ export const admin = {
       path: '/admin/index',
       name: 'adminIndex',
       meta: {
-        title: '首页',
+        title: 'AdminIndex',
       },
       component: () => import('@/views/admin/index.vue'),
     },
@@ -29,7 +30,7 @@ export const admin = {
       path: '/admin/role',
       name: 'adminRole',
       meta: {
-        title: '角色管理',
+        title: 'RoleManager',
       },
       component: () => import('@/views/admin/role/list.vue'),
     },
@@ -37,7 +38,7 @@ export const admin = {
       path: '/expand/task',
       name: 'expandTask',
       meta: {
-        title: '任务管理',
+        title: 'TaskManager',
       },
       component: () => import('@/views/admin/task/list.vue'),
     },
@@ -50,21 +51,33 @@ export const admin = {
     //   component: () => import('@/views/admin/img/list.vue'),
     // },
     {
-      path: '/expand/noteList',
-      name: 'noteList',
+      path: 'note',
+      name: 'NoteManager',
       meta: {
-        title: '笔记管理',
+        title: 'NoteManager',
       },
-      component: () => import('@/views/admin/note/list.vue'),
-    },
-    {
-      path: '/expand/noteCreate',
-      name: 'noteCreate',
-      meta: {
-        rename: 'noteList',
-        title: '笔记创建',
-      },
-      component: () => import('@/views/admin/note/create.vue'),
+      redirect: '/admin/note/list',
+      component: NfRouterView,
+      children: [
+        {
+          path: 'list',
+          name: 'NoteManagerList',
+          meta: {
+            title: 'NoteManagerList',
+            rename: 'NoteManager',
+          },
+          component: () => import('@/views/admin/note/list.vue'),
+        },
+        {
+          path: 'create',
+          name: 'NoteManagerCreate',
+          meta: {
+            title: 'NoteManagerCreate',
+            rename: 'NoteManager',
+          },
+          component: () => import('@/views/admin/note/create.vue'),
+        },
+      ],
     },
   ],
 }

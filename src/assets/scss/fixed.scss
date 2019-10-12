@@ -1,12 +1,12 @@
 // layout
-.ant-layout {
-  background: transparent;
-}
+// .ant-layout {
+//   background: transparent;
+// }
 
 // layout 头部
-.ant-layout-header {
-  background: #fff;
-}
+// .ant-layout-header {
+//   background: #fff;
+// }
 
 // layout 头部内部布局
 .header-content {
@@ -48,14 +48,19 @@
 }
 
 // layer 内容
-.ant-layout-content {
-  padding: 0 50px;
-}
+// .ant-layout-content {
+//   padding: 0 50px;
+// }
 
-// 多选框组
+// 多选框组调整
 .ant-checkbox-wrapper {
   margin-right: 8px;
   & + .ant-checkbox-wrapper{
     margin-left: 0;
   }
-} 
+}
+
+// 列表标签调整
+.ant-tag {
+  margin-bottom: 8px;
+}

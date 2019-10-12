@@ -2,21 +2,19 @@
   <a-modal width="558px"
            :visible="visible"
            :title="title"
-           okText="确认"
-           cancelText="取消"
            @cancel="() => { $emit('cancel') }"
            @ok="() => { $emit('create') }">
     <a-form :form="form">
       <a-form-item v-bind="formItemLayout"
-                   label="用户名称">
+                   label="username">
         <a-input v-decorator="['username', formConfig.username]"
-                 placeholder="请输入"
+                 placeholder="Please input username"
                  disabled></a-input>
       </a-form-item>
       <a-form-item v-bind="formItemLayout"
-                   label="用户角色">
+                   label="roleName">
         <a-select v-decorator="['roleName', formConfig.roleName]"
-                  placeholder="请选择">
+                  placeholder="Please select roleName">
           <a-select-option v-for="item in globalList.roleNameList"
                            :key="item"
                            :value="item">{{item}}</a-select-option>

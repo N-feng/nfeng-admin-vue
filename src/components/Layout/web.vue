@@ -1,49 +1,59 @@
 <template>
-<a-layout>
-  <a-layout-header>
-    <div class="header-content">
-      <router-link to="/" class="nf-logo fs16">nfeng.net.cn</router-link>
-      <a-menu theme="light" :selectedKeys="current" mode="horizontal" @click="handleClick">
-        <template v-for="item in menus">
-          <a-menu-item :key="item.name">{{item.meta.title}}</a-menu-item>
-        </template>
-        <!-- <a-menu-item>
+  <a-layout id="components-layout-demo-top"
+            class="nf-bg">
+    <a-layout-header class="bgfff">
+      <div class="header-content space-box">
+        <router-link to="/"
+                     class="nf-logo fs16">nfeng.net.cn</router-link>
+        <a-menu theme="light"
+                :selectedKeys="current"
+                mode="horizontal"
+                @click="handleClick">
+          <template v-for="item in menus">
+            <a-menu-item :key="item.name">{{item.meta.title}}</a-menu-item>
+          </template>
+          <!-- <a-menu-item>
           <router-link to="/admin">学习笔记</router-link>
         </a-menu-item>
         <a-menu-item>
           <router-link to="/admin">后台管理</router-link>
         </a-menu-item> -->
-      </a-menu>
-      <a-dropdown>
-        <a class="ant-dropdown-link" href="javascript:;">Welcome, {{ username || 'stranger' }}
+        </a-menu>
+        <a-dropdown>
+          <a class="ant-dropdown-link"
+             href="javascript:;">Welcome, {{ username || 'stranger' }}
             <a-icon type="down" />
           </a>
-        <a-menu slot="overlay" v-if="username">
-          <a-menu-item>
-            <a href="javascript:;" @click="logout">退出登录</a>
-          </a-menu-item>
-        </a-menu>
-      </a-dropdown>
-    </div>
-  </a-layout-header>
-  <a-layout-content>
-    <router-view />
-  </a-layout-content>
-</a-layout>
+          <a-menu slot="overlay">
+            <a-menu-item>
+              <router-link to="/admin">Admin Manager</router-link>
+            </a-menu-item>
+            <a-menu-item v-if="username">
+              <a href="javascript:;"
+                 @click="logout">Logout Now</a>
+            </a-menu-item>
+            <a-menu-item v-else>
+              <router-link to="/login">Login Now</router-link>
+            </a-menu-item>
+          </a-menu>
+        </a-dropdown>
+      </div>
+    </a-layout-header>
+    <a-layout-content class="pl50 pr50">
+      <router-view />
+    </a-layout-content>
+  </a-layout>
 </template>
 
 <script>
-import { getName } from '@/utils/auth'
 import router from '@/router'
 
 export default {
   name: 'webLayout',
-  data() {
-    return {
-      username: getName(), // 用户名
-    }
-  },
   computed: {
+    username() {
+      return this.$store.getters.username
+    },
     menus() {
       const menus = []
       router.options.routes
@@ -55,11 +65,11 @@ export default {
             })
           }
         })
-      router.options.routes
-        .filter(item => item.name === 'admin')
-        .forEach((item) => {
-          menus.push(item)
-        })
+      // router.options.routes
+      //   .filter(item => item.name === 'admin')
+      //   .forEach((item) => {
+      //     menus.push(item)
+      //   })
       return menus
     },
     current() {
@@ -83,4 +93,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#components-layout-demo-top {
+  height: 100%;
+  overflow: auto;
+}
 </style>

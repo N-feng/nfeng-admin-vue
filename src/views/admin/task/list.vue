@@ -1,8 +1,8 @@
 <template>
   <div class="nf-main">
-    <div class="nf-title">任务管理</div>
+    <div class="nf-title">TaskManager</div>
     <a-button type="primary"
-              @click="handleAdd">新增任务</a-button>
+              @click="handleAdd">new task</a-button>
     <a-table class="mt20"
              :loading="loading"
              :columns="tableColumns"
@@ -25,12 +25,10 @@
             slot-scope="text, record">
         <a href="javascript:;"
            @click="update(record.taskId)"
-           class="mr10">修改</a>
-        <a-popconfirm title="确认删除?"
+           class="mr10">Edit</a>
+        <a-popconfirm title="Are you sure delete this item?"
                       @confirm="handleDelete(record.taskId)"
-                      okText="确定"
-                      cancelText="取消"
-                      class="mr10"><a href="javascript:;">删除</a>
+                      class="mr10"><a href="javascript:;">Delete</a>
         </a-popconfirm>
       </span>
     </a-table>
@@ -63,25 +61,25 @@ export default {
       tableList: [],
       tableColumns: [
         {
-          title: '任务名称',
+          title: 'title',
           dataIndex: 'title',
         },
         {
-          title: '任务描述',
+          title: 'description',
           dataIndex: 'description',
         },
         {
-          title: '任务日期',
+          title: 'date',
           dataIndex: 'date',
           // scopedSlots: { customRender: 'roleMenu' },
         },
         {
-          title: '任务优先级',
+          title: 'priority',
           dataIndex: 'priority',
           // scopedSlots: { customRender: 'permissions' },
         },
         {
-          title: '操作',
+          title: 'action',
           dataIndex: 'action',
           width: 150,
           scopedSlots: { customRender: 'action' },
@@ -118,12 +116,12 @@ export default {
           ...fieldsValues,
           date: fieldsValues.date.format('YYYY-MM-DD HH:mm:ss'),
         }
-        if (this.title === '修改任务') {
+        if (this.title === 'edit task') {
           values.taskId = this.dialogForm.taskId
         }
         console.log('Received values of form: ', values)
         form.resetFields()
-        const submit = this.title === '新增任务' ? addTask : updateTask
+        const submit = this.title === 'new task' ? addTask : updateTask
         submit(values).h_then(({ msg }) => {
           this.$message.success(msg)
           this.getList()
@@ -134,7 +132,7 @@ export default {
     // 新增按钮
     handleAdd() {
       this.visible = true
-      this.title = '新增任务'
+      this.title = 'new task'
       this.dialogForm = {
         title: '',
         description: '',
@@ -156,7 +154,7 @@ export default {
       await getTask(taskId).h_then(({ data }) => {
         this.dialogForm = data
         this.visible = true
-        this.title = '修改任务'
+        this.title = 'edit task'
       })
     },
   },

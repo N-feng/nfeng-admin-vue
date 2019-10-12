@@ -1,12 +1,8 @@
 <template>
-  <div class="landing-page">
+  <div class="landing-page center-page">
     <div class="page-content center">
-      <template v-if="username">
-        <h1>Welcome, {{username}}</h1>
-      </template>
-      <template v-else>
-        <h1>Welcome, stranger</h1>
-        <router-link to="/login">Login Now</router-link>
+      <template>
+        <h1>Welcome, {{ username || 'stranger' }}</h1>
       </template>
     </div>
   </div>
@@ -24,11 +20,6 @@ export default {
 
 <style lang="scss" scoped>
 .landing-page {
-  width: 100%;
-  height: 100%;
-  min-height: 380px;
-  position: relative;
-  overflow: hidden;
   .page-content {
     // @extend %center;
     z-index: 1;

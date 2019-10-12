@@ -15,7 +15,7 @@
             slot-scope="text, record">
         <a href="javascript:;"
            @click="$router.push({name: 'webNotePreview', query: {noteId: record.noteId}})"
-           class="mr10">查看</a>
+           class="mr10">Preview</a>
       </span>
     </a-table>
   </div>
@@ -33,12 +33,12 @@ export default {
         showQuickJumper: true,
         showSizeChanger: true,
         total: 500,
-        showTotal: total => `共${total}条`,
+        showTotal: total => `Total ${total} items`,
       },
       tableList: [],
       tableColumns: [
         {
-          title: '笔记标题',
+          title: 'title',
           dataIndex: 'title',
         },
         // {
@@ -46,17 +46,17 @@ export default {
         //   dataIndex: 'content',
         // },
         {
-          title: '创建时间',
+          title: 'createTime',
           dataIndex: 'createTime',
           scopedSlots: { customRender: 'createTime' },
         },
         {
-          title: '更新时间',
+          title: 'updateTime',
           dataIndex: 'updateTime',
           scopedSlots: { customRender: 'updateTime' },
         },
         {
-          title: '操作',
+          title: 'action',
           dataIndex: 'action',
           // width: 150,
           scopedSlots: { customRender: 'action' },

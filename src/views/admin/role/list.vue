@@ -1,15 +1,15 @@
 <template>
   <div class="nf-main">
 
-    <div class="nf-title">角色管理</div>
+    <div class="nf-title">RoleManager</div>
 
     <a-button type="primary"
-              @click="addRole">新增角色</a-button>
+              @click="addRole">new role</a-button>
     <a-button class="ml20"
               type="primary"
-              @click="drawerVisible = true">用户管理</a-button>
+              @click="drawerVisible = true">AuthManager</a-button>
 
-    <a-drawer title="用户管理"
+    <a-drawer title="AuthManager"
               :width="720"
               :closable="false"
               @close="drawerVisible = false"
@@ -39,12 +39,10 @@
             slot-scope="text, record">
         <a href="javascript:;"
            @click="updateRole(record)"
-           class="mr10">修改</a>
-        <a-popconfirm title="确认删除?"
+           class="mr10">Edit</a>
+        <a-popconfirm title="Are you sure delete this item?"
                       @confirm="handleDelete(record)"
-                      okText="确定"
-                      cancelText="取消"
-                      class="mr10"><a href="javascript:;">删除</a>
+                      class="mr10"><a href="javascript:;">Delete</a>
         </a-popconfirm>
       </span>
     </a-table>
@@ -79,32 +77,33 @@ export default {
         showQuickJumper: true,
         showSizeChanger: true,
         total: 500,
-        showTotal: total => `共${total}条`,
+        showTotal: total => `Total ${total} items`,
       },
       tableList: [],
       tableColumns: [
         {
-          title: '角色名称',
+          title: 'roleName',
           dataIndex: 'roleName',
           // width: 150,
         },
         {
-          title: '角色类型',
+          title: 'roleType',
           dataIndex: 'roleType',
           // width: 150,
         },
         {
-          title: '角色菜单',
+          title: 'roleMenu',
           dataIndex: 'roleMenu',
+          width: 250,
           scopedSlots: { customRender: 'roleMenu' },
         },
         {
-          title: '角色权限',
+          title: 'permissions',
           dataIndex: 'permissions',
           scopedSlots: { customRender: 'permissions' },
         },
         {
-          title: '操作',
+          title: 'action',
           dataIndex: 'action',
           width: 150,
           scopedSlots: { customRender: 'action' },
@@ -141,7 +140,7 @@ export default {
     // 新增按钮
     addRole() {
       this.visible = true
-      this.title = '新增角色'
+      this.title = 'new role'
       this.dialogForm = {
         roleName: '',
         roleType: '',
@@ -157,7 +156,7 @@ export default {
       await getRoleDetail(roleName).h_then(({ data }) => {
         this.dialogForm = data
         this.visible = true
-        this.title = '修改角色'
+        this.title = 'edit role'
       })
     },
     // 提交按钮

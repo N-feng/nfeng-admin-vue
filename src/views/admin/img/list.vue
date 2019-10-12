@@ -1,41 +1,34 @@
 <template>
   <div>
 
-    <div class="nf-title">图片管理</div>
+    <div class="nf-title">ImgManager</div>
 
     <a-upload accept="image/*"
               :fileList="[]"
               :customRequest="customRequest">
-      <a-button type="primary">上传图片</a-button>
+      <a-button type="primary">upload img</a-button>
     </a-upload>
 
     <a-list class="mt20"
             :dataSource="fileList">
       <a-list-item slot="renderItem"
                    slot-scope="item">
+        <input class="hide-input"
+               :value="item.url"
+               :id="item.url">
         <a slot="actions"
-           @click="$refs.viewImg.previewImage(item.url)">预览</a>
+           @click="copyText(item.url)">Copy</a>
+        <a slot="actions"
+           @click="$refs.viewImg.previewImage(item.url)">Preview</a>
         <a slot="actions"
            :href="`/api/img/get?fileName=${item.name}`"
-           target="_blank">下载</a>
+           target="_blank">Download</a>
         <a-popconfirm slot="actions"
-                      title="确认删除?"
+                      title="Are you sure delete this item?"
                       @confirm="handleDelete(item.name)"
-                      okText="确定"
-                      cancelText="取消"
-                      class="mr10"><a href="javascript:;">删除</a>
+                      class="mr10"><a href="javascript:;">Delete</a>
         </a-popconfirm>
         <a-list-item-meta>
-          <span slot="description">
-            <a-input-search type="text"
-                            :value="item.url"
-                            readOnly
-                            :ref="item.name"
-                            @search="copyText(item.name)">
-              <a-button slot="enterButton"
-                        icon="copy">复制</a-button>
-            </a-input-search>
-          </span>
           <a slot="title"
              :href="item.url"
              target="_blank">{{item.name}}</a>
@@ -81,14 +74,14 @@ export default {
         this.getList()
       })
     },
-    copyText(name) {
-      const { input } = this.$refs[name].$refs
+    copyText(url) {
+      const input = document.getElementById(url)
       input.select()
       try {
         document.execCommand('copy') // 执行浏览器复制命令
-        this.$message.success('复制成功~')
+        this.$message.success('copy success')
       } catch (e) {
-        this.$message.error('复制失败~')
+        this.$message.error('copy fail')
       }
     },
   },
@@ -97,3 +90,13 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.hide-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -10;
+}
+</style>
