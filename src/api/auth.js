@@ -1,4 +1,4 @@
-import { post } from '@/utils/ajax'
+import { post } from '@/utils/request'
 import { auth } from './config'
 
 export function signup(username, password, roleName) {

@@ -37,7 +37,7 @@
 import {
   getAuthList, getAuthDetail, deleteAuth, updateUser,
 } from '@/api/auth'
-import createAuth from './create_auth.vue'
+import createAuth from './create.vue'
 
 export default {
   components: {

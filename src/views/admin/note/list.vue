@@ -46,10 +46,10 @@
 
 <script>
 import { getNoteList, deleteNote } from '@/api/note'
-// import imgList from '@/views/admin/img/list.vue'
+import imgList from '@/views/admin/img/list.vue'
 
 export default {
-  // components: { imgList },
+  components: { imgList },
   data() {
     return {
       loading: true,

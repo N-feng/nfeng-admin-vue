@@ -1,4 +1,4 @@
-import { post } from '@/utils/ajax'
+import { post } from '@/utils/request'
 import { global } from '@/api/config'
 
 export function getRoleNameList() {

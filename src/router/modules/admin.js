@@ -31,7 +31,7 @@ export const admin = {
       meta: {
         title: '角色管理',
       },
-      component: () => import('@/views/admin/role/list_role.vue'),
+      component: () => import('@/views/admin/role/list.vue'),
     },
     {
       path: '/expand/task',

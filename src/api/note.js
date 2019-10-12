@@ -1,4 +1,4 @@
-import { post } from '@/utils/ajax'
+import { post } from '@/utils/request'
 import { note } from './config'
 
 export function addNote(params) {

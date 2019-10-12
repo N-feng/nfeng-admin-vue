@@ -8,7 +8,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import components from './components'
-import Api, { get, post } from './utils/ajax'
+import Api, { get, post } from './utils/request'
 import { timeTransfer } from './utils/filter'
 // import 'nfeng-scss/index.scss'
 

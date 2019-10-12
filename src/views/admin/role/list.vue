@@ -63,8 +63,8 @@
 import {
   getRoleList, addRole, getRoleDetail, updateRole, deleteRole,
 } from '@/api/role'
-import createRole from './create_role.vue'
-import listNote from './list_auth.vue'
+import createRole from './create.vue'
+import listNote from '../auth/list.vue'
 
 export default {
   components: {
