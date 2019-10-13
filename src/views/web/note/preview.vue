@@ -4,7 +4,7 @@
     <nf-md-preview :data="createForm.content"></nf-md-preview>
     <div class="tr">
       <a-button class="ml10"
-                @click="$router.push({name: 'webNoteList'})">cancel</a-button>
+                @click="$router.push({name: 'webNote'})">cancel</a-button>
     </div>
   </div>
 </template>

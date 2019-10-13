@@ -3,11 +3,13 @@
 
     <div class="nf-title">NoteManager</div>
 
-    <a-button type="primary"
-              @click="$router.push({ name: 'NoteManagerCreate' })">new note</a-button>
-    <a-button class="ml20"
-              type="primary"
-              @click="drawerVisible = true">ImgManager</a-button>
+    <div>
+      <a-button type="primary"
+                @click="$router.push({ name: 'NoteManagerCreate' })">new note</a-button>
+      <a-button class="ml20"
+                type="primary"
+                @click="drawerVisible = true">ImgManager</a-button>
+    </div>
 
     <a-drawer title="ImgManager"
               :width="720"

@@ -10,15 +10,16 @@
                 mode="horizontal"
                 @click="handleClick">
           <template v-for="item in menus">
-            <!-- <a-sub-menu :key="item.path"
+            <a-sub-menu :key="item.name"
                         v-if="item.children">
               <span slot="title"
                     class="submenu-title-wrapper">{{item.meta.title}}</span>
               <template v-for="item2 in item.children">
                 <a-menu-item :key="item2.name">{{item2.meta.title}}</a-menu-item>
               </template>
-            </a-sub-menu> -->
-            <a-menu-item :key="item.name">{{item.meta.title}}</a-menu-item>
+            </a-sub-menu>
+            <a-menu-item :key="item.name"
+                         v-else>{{item.meta.title}}</a-menu-item>
           </template>
         </a-menu>
         <a-dropdown>
@@ -62,32 +63,23 @@ export default {
       return this.$store.getters.username
     },
     menus() {
-      const menus = []
-      router.options.routes
-        .filter(item => item.name === 'admin')
-        .forEach((item) => {
-          if (item.children) {
-            item.children.forEach((item2) => {
-              if (
-                this.$store.getters.menus.some(
-                  item3 => item3 === item2.meta.title,
-                )
-              ) {
-                menus.push(item2)
-              }
-            })
-          }
-        })
-      return menus
+      const { menus } = this.$store.getters
+      const adminRouter = router.options.routes
+        .filter(item => item.name === 'admin')[0].children
+      const openTreeMenuData = this.$utils.tree.openTreeMenu(adminRouter)
+      const filterOpenTreeMenuData = openTreeMenuData.filter(item => menus.indexOf(item.id) !== -1)
+      return this.$utils.tree.translateDataToTree(filterOpenTreeMenuData)
     },
     current() {
+      // return [this.$route.name]
       // 为了匹配高亮
       return this.$route.meta.rename
         ? [this.$route.meta.rename]
         : [this.$route.name]
     },
     isHome() {
-      return this.$route.name === 'adminIndex'
+      // console.log(this.$route.name)
+      return this.$route.name === 'Landing'
     },
   },
   methods: {

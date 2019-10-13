@@ -61,7 +61,33 @@ export const opentree = (tree) => {
   return result
 }
 
+// 平铺菜单树结构
+export const openTreeMenu = (tree) => {
+  const result = []
+  const flat = (nodes) => {
+    if (nodes && nodes.length > 0) {
+      nodes.forEach((node) => {
+        const {
+          path, name, parentName, redirect, meta,
+        } = node
+        result.push({
+          id: node.name,
+          parentId: parentName,
+          path,
+          name,
+          redirect,
+          meta,
+        })
+        flat(node.children)
+      })
+    }
+  }
+  flat(tree)
+  return result
+}
+
 export default {
   translateDataToTree,
   opentree,
+  openTreeMenu,
 }

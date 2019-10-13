@@ -55,22 +55,11 @@ export default {
       return this.$store.getters.username
     },
     menus() {
-      const menus = []
-      router.options.routes
-        .filter(item => item.name === 'web')
-        .forEach((item) => {
-          if (item.children) {
-            item.children.forEach((item2) => {
-              menus.push(item2)
-            })
-          }
-        })
-      // router.options.routes
-      //   .filter(item => item.name === 'admin')
-      //   .forEach((item) => {
-      //     menus.push(item)
-      //   })
-      return menus
+      const menus = ['Landing', 'Notes']
+      const webRouter = router.options.routes
+        .filter(item => item.name === 'web')[0].children
+      const filterData = webRouter.filter(item => menus.indexOf(item.meta && item.meta.title) !== -1)
+      return filterData
     },
     current() {
       // 为了匹配高亮

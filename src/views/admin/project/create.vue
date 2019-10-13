@@ -1,10 +1,14 @@
 <template>
   <div class="nf-main">
-    <div class="nf-title">new note</div>
+    <div class="nf-title">new project</div>
     <a-form :form="form">
       <a-form-item>
         <a-input v-decorator="['title', formConfig.title]"
                  placeholder="Please input title"></a-input>
+      </a-form-item>
+      <a-form-item>
+        <a-input v-decorator="['description', formConfig.description]"
+                 placeholder="Please input description"></a-input>
       </a-form-item>
       <a-form-item :validate-status="validateStatus"
                    :help="help"
@@ -12,30 +16,40 @@
         <nf-markdown v-model="createForm.content"
                      @change="changeHandle"></nf-markdown>
       </a-form-item>
+      <a-upload accept="image/*"
+                :showUploadList="false"
+                :customRequest="customRequest">
+        <a-button type="primary">upload logo img</a-button>
+      </a-upload>
       <div class="tr">
         <a-button type="primary"
                   @click="save">save</a-button>
         <a-button class="ml10"
-                  @click="$router.push({name: 'NoteManagerList'})">cancel</a-button>
+                  @click="$router.push({name: 'ProjectManagerList'})">cancel</a-button>
       </div>
     </a-form>
   </div>
 </template>
 
 <script>
-import { addNote, updateNote, getNote } from '@/api/note'
+import { addProject } from '@/api/project'
 
 export default {
   data() {
     return {
       createForm: {
-        noteId: '',
+        projectId: '',
         title: '',
+        description: '',
         content: '',
+        logo: '',
       },
       validateStatus: '',
       help: '',
     }
+  },
+  beforeCreate() {
+    this.form = this.$form.createForm(this)
   },
   computed: {
     formConfig() {
@@ -43,6 +57,10 @@ export default {
         title: {
           rules: [{ required: true, message: 'Please input title' }],
           initialValue: this.createForm.title,
+        },
+        description: {
+          rules: [{ required: true, message: 'Please input description' }],
+          initialValue: this.createForm.description,
         },
         content: {
           rules: [{ required: true, message: 'Pleate input content' }],
@@ -60,44 +78,18 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err && !this.help) {
           console.log('Received values of form: ', values)
-          const params = Object.assign({}, this.createForm, values)
-          const fn = this.createForm.noteId ? updateNote : addNote
-          fn(params).h_then(({ code, msg }) => {
-            if (code === 200) {
-              this.$message.success(msg)
-              this.$router.push({ name: 'NoteManagerList' })
-            }
-          })
+          console.log(this.createForm)
+          const params = this.$utils.jquery.extend({}, this.createForm, values)
+          addProject(params)
         }
       })
     },
+    customRequest() {},
     changeHandle(val) {
       const value = val
       this.help = value ? '' : 'Pleate input content'
       this.validateStatus = value ? '' : 'error'
     },
-    getDetail() {
-      getNote(this.createForm.noteId).h_then(({ data }) => {
-        Object.assign(this.createForm, data)
-      })
-    },
-  },
-  beforeCreate() {
-    this.form = this.$form.createForm(this)
-  },
-  created() {
-    this.createForm.noteId = this.$route.query.noteId
-    if (this.createForm.noteId) {
-      this.getDetail()
-    }
   },
 }
 </script>
-
-<style lang="scss">
-.has-error {
-  .markdown {
-    border-color: red;
-  }
-}
-</style>

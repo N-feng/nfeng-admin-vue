@@ -1,12 +1,14 @@
 <template>
   <!-- 预览图片 -->
   <div class="preview-img"
-       :class="{active:previewImgModal}">
+       :class="{active:previewImgModal}"
+       @click="previewImgModal = false">
     <span class="close"
           @click="previewImgModal = false">关闭</span>
     <img :class="[previewImgMode]"
          :src="previewImgSrc"
-         alt="">
+         alt=""
+         @click="hide">
   </div>
 </template>
 
@@ -35,6 +37,9 @@ export default {
         this.previewImgSrc = src
         this.previewImgModal = true
       }
+    },
+    hide(event) {
+      event.stopPropagation()
     },
   },
 }

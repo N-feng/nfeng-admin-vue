@@ -55,17 +55,15 @@ export default {
   },
   computed: {
     menus() {
-      const menus = []
-      router.options.routes
-        .filter(item => item.name === 'admin')
-        .forEach((item) => {
-          if (item.children) {
-            item.children.forEach((item2) => {
-              menus.push(item2.meta.title)
-            })
-          }
-        })
-      return menus
+      function flatten(data) {
+        return data.reduce((arr, {
+          meta,
+          children = [],
+        }) => arr.concat([meta.title], flatten(children)), [])
+      }
+      const adminRouter = router.options.routes
+        .filter(item => item.name === 'admin')[0].children
+      return flatten(adminRouter)
     },
     permissionsList() {
       const arr = Object.values(config)

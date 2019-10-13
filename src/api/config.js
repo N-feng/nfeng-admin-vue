@@ -41,6 +41,10 @@ export const note = {
   noteList: '/note/list',
 }
 
+export const project = {
+  projectAdd: '/project/add',
+}
+
 export default {
   ...global,
   ...auth,
@@ -48,4 +52,5 @@ export default {
   ...img,
   ...task,
   ...note,
+  ...project,
 }

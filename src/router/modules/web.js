@@ -1,5 +1,4 @@
 const Layout = () => import('@/components/Layout/web.vue')
-const NfRouterView = () => import('@/components/NfRouterView')
 
 const web = {
   path: '/web',
@@ -11,41 +10,28 @@ const web = {
   redirect: '/web/index',
   children: [
     {
-      path: '/web/index',
+      path: 'index',
       name: 'webIndex',
       meta: {
-        title: 'WebIndex',
+        title: 'Landing',
       },
       component: () => import('@/views/web/index.vue'),
     },
     {
-      path: '/note',
+      path: 'note',
       name: 'webNote',
-      redirect: '/note/list',
       meta: {
         title: 'Notes',
       },
-      component: NfRouterView,
-      children: [
-        {
-          path: 'list',
-          name: 'webNoteList',
-          meta: {
-            title: '笔记列表',
-            rename: 'webNote',
-          },
-          component: () => import('@/views/web/note/index.vue'),
-        },
-        {
-          path: 'preview',
-          name: 'webNotePreview',
-          meta: {
-            title: '笔记查看',
-            rename: 'webNote',
-          },
-          component: () => import('@/views/web/note/preview.vue'),
-        },
-      ],
+      component: () => import('@/views/web/note/index.vue'),
+    },
+    {
+      path: 'notePreview',
+      name: 'webNotePreview',
+      meta: {
+        rename: 'webNote',
+      },
+      component: () => import('@/views/web/note/preview.vue'),
     },
   ],
 }
