@@ -198,7 +198,7 @@
     </div>
 
     <!-- 预览图片 -->
-    <nf-viewImg ref="viewImg"></nf-viewImg>
+    <NfImgView ref="viewImg"></NfImgView>
 
   </div>
 </template>

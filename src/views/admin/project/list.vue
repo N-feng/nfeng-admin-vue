@@ -12,11 +12,22 @@
             itemLayout="vertical"
             size="large"
             :pagination="pagination"
-            :dataSource="listData">
+            :dataSource="tableList">
       <!-- <div slot="footer"><b>ant design vue</b> footer part</div> -->
       <a-list-item slot="renderItem"
                    slot-scope="item"
                    key="item.title">
+        <template slot="actions">
+          <a href="javascript:;"
+             @click="$router.push({name: 'ProjectManagerCreate', query: {projectId: item.projectId}})"
+             class="mr10">Edit</a>
+          <a-popconfirm title="Are you sure delete this item?"
+                        @confirm="handleDelete(item.projectId)"
+                        class="mr10"><a href="javascript:;">Delete</a>
+          </a-popconfirm>
+          <span>createTime:{{item.createTime | timeTransfer}}</span>
+          <span>updateTime:{{item.updateTime | timeTransfer}}</span>
+        </template>
         <!-- <template slot="actions"
                   v-for="{type, text} in actions">
           <span :key="type">
@@ -28,12 +39,12 @@
         <img slot="extra"
              width="272"
              alt="logo"
-             src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />
+             :src="item.logo || 'https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png'" />
         <a-list-item-meta :description="item.description">
           <a slot="title"
              :href="item.href">{{item.title}}</a>
           <a-avatar slot="avatar"
-                    :src="item.avatar" />
+                    src="https://cdn.nfeng.net.cn/upload/github.png" />
         </a-list-item-meta>
         {{item.content}}
       </a-list-item>
@@ -42,33 +53,54 @@
 </template>
 
 <script>
-const listData = []
-for (let i = 0; i < 23; i += 1) {
-  listData.push({
-    href: 'https://vue.ant.design/',
-    title: `ant design vue part ${i}`,
-    avatar: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-    description: 'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    content: 'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-  })
-}
+import { getProjectList, deleteProject } from '@/api/project'
 
 export default {
   data() {
     return {
-      listData,
+      loading: true,
       pagination: {
         onChange: (page) => {
           console.log(page)
         },
-        pageSize: 3,
+        pageSize: 10,
+        size: 'small',
+        showQuickJumper: true,
+        // showSizeChanger: true,
+        total: 500,
+        showTotal: total => `Total ${total} items`,
       },
-      actions: [
-        { type: 'star-o', text: '156' },
-        { type: 'like-o', text: '156' },
-        { type: 'message', text: '2' },
-      ],
+      tableList: [],
+      // actions: [
+      //   { type: 'star-o', text: '156' },
+      //   { type: 'like-o', text: '156' },
+      //   { type: 'message', text: '2' },
+      // ],
     }
+  },
+  methods: {
+    // 分页查询
+    getList() {
+      this.loading = true
+      // console.log(this.fields)
+      getProjectList().h_then(({ data }) => {
+        this.tableList = data
+        this.pagination.total = data.length
+      }).finally(() => {
+        this.loading = false
+      })
+    },
+    // 删除按钮
+    handleDelete(taskId) {
+      deleteProject(taskId).h_then(({ msg }) => {
+        this.$message.success(msg)
+        this.getList()
+      })
+    },
+  },
+  created() {
+    // 获取列表
+    this.getList()
   },
 }
 </script>

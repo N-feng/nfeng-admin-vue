@@ -43,6 +43,10 @@ export const note = {
 
 export const project = {
   projectAdd: '/project/add',
+  projectDelete: '/project/delete',
+  projectUpdate: '/project/update',
+  projectDetail: '/project/detail',
+  projectList: '/project/list',
 }
 
 export default {

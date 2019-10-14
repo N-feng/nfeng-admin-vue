@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'NfViewImg',
+  name: 'NfImgView',
   data() {
     return {
       previewImgModal: false,

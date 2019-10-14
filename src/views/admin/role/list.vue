@@ -3,19 +3,10 @@
 
     <div class="nf-title">RoleManager</div>
 
-    <a-button type="primary"
-              @click="addRole">new role</a-button>
-    <a-button class="ml20"
-              type="primary"
-              @click="drawerVisible = true">AuthManager</a-button>
-
-    <a-drawer title="AuthManager"
-              :width="720"
-              :closable="false"
-              @close="drawerVisible = false"
-              :visible="drawerVisible">
-      <list-note></list-note>
-    </a-drawer>
+    <div>
+      <a-button type="primary"
+                @click="addRole">new role</a-button>
+    </div>
 
     <a-table class="mt20"
              :loading="loading"
@@ -62,12 +53,10 @@ import {
   getRoleList, addRole, getRoleDetail, updateRole, deleteRole,
 } from '@/api/role'
 import createRole from './create.vue'
-import listNote from '../auth/list.vue'
 
 export default {
   components: {
     createRole,
-    listNote,
   },
   data() {
     return {
@@ -117,7 +106,6 @@ export default {
       },
       visible: false,
       title: '',
-      drawerVisible: false,
     }
   },
   computed: {

@@ -29,6 +29,15 @@ export const admin = {
           component: () => import('@/views/admin/index.vue'),
         },
         {
+          path: 'auth',
+          name: 'AuthManager',
+          parentName: 'AdminManager',
+          meta: {
+            title: 'AuthManager',
+          },
+          component: () => import('@/views/admin/auth/list.vue'),
+        },
+        {
           path: 'role',
           name: 'RoleManager',
           parentName: 'AdminManager',
@@ -75,6 +84,14 @@ export const admin = {
             rename: 'NoteManagerList',
           },
           component: () => import('@/views/admin/note/create.vue'),
+        },
+        {
+          path: 'imgList',
+          name: 'ImgManagerList',
+          parentName: 'NoteManager',
+          meta: {
+            title: 'ImgManagerList',
+          },
         },
       ],
     },

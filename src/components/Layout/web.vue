@@ -58,7 +58,7 @@ export default {
       const menus = ['Landing', 'Notes']
       const webRouter = router.options.routes
         .filter(item => item.name === 'web')[0].children
-      const filterData = webRouter.filter(item => menus.indexOf(item.meta && item.meta.title) !== -1)
+      const filterData = webRouter.filter(item => menus.includes(item.meta && item.meta.title))
       return filterData
     },
     current() {

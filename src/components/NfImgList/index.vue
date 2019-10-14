@@ -38,7 +38,7 @@
       </a-list-item>
     </a-list>
 
-    <nf-viewImg ref="viewImg"></nf-viewImg>
+    <NfImgView ref="viewImg"></NfImgView>
 
   </div>
 </template>
@@ -49,7 +49,7 @@ import {
 } from '@/api/img'
 
 export default {
-  name: 'imgList',
+  name: 'NfImgList',
   data() {
     return {
       fileList: [],

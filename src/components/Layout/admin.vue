@@ -1,6 +1,7 @@
 <template>
   <a-layout id="components-layout-demo-top"
             class="nf-bg">
+
     <a-layout-header class="bgfff">
       <div class="header-content space-box">
         <router-link to="/"
@@ -42,6 +43,7 @@
         </a-dropdown>
       </div>
     </a-layout-header>
+
     <a-layout-content class="pl50 pr50">
       <a-breadcrumb :style="{ margin: '16px 0' }"
                     v-if="!isHome">
@@ -50,6 +52,15 @@
       </a-breadcrumb>
       <router-view />
     </a-layout-content>
+
+    <a-drawer title="ImgManager"
+              :width="720"
+              :closable="false"
+              @close="drawerVisible = false"
+              :visible="drawerVisible">
+      <NfImgList></NfImgList>
+    </a-drawer>
+
   </a-layout>
 </template>
 
@@ -58,6 +69,11 @@ import router from '@/router'
 
 export default {
   name: 'adminLayout',
+  data() {
+    return {
+      drawerVisible: false,
+    }
+  },
   computed: {
     username() {
       return this.$store.getters.username
@@ -67,7 +83,7 @@ export default {
       const adminRouter = router.options.routes
         .filter(item => item.name === 'admin')[0].children
       const openTreeMenuData = this.$utils.tree.openTreeMenu(adminRouter)
-      const filterOpenTreeMenuData = openTreeMenuData.filter(item => menus.indexOf(item.id) !== -1)
+      const filterOpenTreeMenuData = openTreeMenuData.filter(item => menus.includes(item.id))
       return this.$utils.tree.translateDataToTree(filterOpenTreeMenuData)
     },
     current() {
@@ -85,13 +101,18 @@ export default {
   methods: {
     // 菜单选择
     handleClick(e) {
-      this.$router.push({ name: e.key })
+      const name = e.key
+      if (name === 'ImgManagerList') {
+        this.drawerVisible = true
+      } else {
+        this.$router.push({ name })
+      }
     },
     // 登出
     logout() {
       // const { name, query } = this.$route
       this.$store.dispatch('FedLogOut').h_then(() => {
-        this.$router.replace({ name: 'adminIndex' })
+        this.$router.replace({ name: 'admin' })
         // this.$router.push({
         //   name: 'login',
         //   query: {

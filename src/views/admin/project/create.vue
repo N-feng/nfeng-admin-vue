@@ -16,12 +16,22 @@
         <nf-markdown v-model="createForm.content"
                      @change="changeHandle"></nf-markdown>
       </a-form-item>
-      <a-upload accept="image/*"
-                :showUploadList="false"
-                :customRequest="customRequest">
-        <a-button type="primary">upload logo img</a-button>
-      </a-upload>
-      <div class="tr">
+      <div>
+        <a-upload accept="image/*"
+                  listType="picture-card"
+                  class="avatar-uploader"
+                  :showUploadList="false"
+                  :customRequest="customRequest">
+          <img v-if="createForm.logo"
+               :src="createForm.logo"
+               alt="logo">
+          <div v-else>
+            <a-icon :type="loading ? 'loading' : 'plus'" />
+            <div class="ant-upload-text">Upload Logo</div>
+          </div>
+        </a-upload>
+      </div>
+      <div class="mt20 tc">
         <a-button type="primary"
                   @click="save">save</a-button>
         <a-button class="ml10"
@@ -32,7 +42,8 @@
 </template>
 
 <script>
-import { addProject } from '@/api/project'
+import { addProject, getProject, updateProject } from '@/api/project'
+import { addImg } from '@/api/img'
 
 export default {
   data() {
@@ -46,10 +57,8 @@ export default {
       },
       validateStatus: '',
       help: '',
+      loading: false,
     }
-  },
-  beforeCreate() {
-    this.form = this.$form.createForm(this)
   },
   computed: {
     formConfig() {
@@ -78,18 +87,59 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err && !this.help) {
           console.log('Received values of form: ', values)
-          console.log(this.createForm)
           const params = this.$utils.jquery.extend({}, this.createForm, values)
-          addProject(params)
+          const fn = this.createForm.projectId ? updateProject : addProject
+          fn(params).h_then(({ code, msg }) => {
+            if (code === 200) {
+              this.$message.success(msg)
+              this.$router.push({ name: 'ProjectManagerList' })
+            }
+          })
         }
       })
     },
-    customRequest() {},
+    customRequest(e) {
+      this.loading = true
+      addImg(e).h_then(({ data }) => {
+        this.loading = false
+        this.createForm.logo = data
+      })
+    },
     changeHandle(val) {
       const value = val
       this.help = value ? '' : 'Pleate input content'
       this.validateStatus = value ? '' : 'error'
     },
+    getDetail() {
+      getProject(this.createForm.projectId).h_then(({ data }) => {
+        Object.assign(this.createForm, data)
+      })
+    },
+  },
+  beforeCreate() {
+    this.form = this.$form.createForm(this)
+  },
+  created() {
+    this.createForm.projectId = this.$route.query.projectId
+    if (this.createForm.projectId) {
+      this.getDetail()
+    }
   },
 }
 </script>
+
+<style>
+.avatar-uploader > .ant-upload {
+  width: 128px;
+  height: 128px;
+}
+.ant-upload-select-picture-card i {
+  font-size: 32px;
+  color: #999;
+}
+
+.ant-upload-select-picture-card .ant-upload-text {
+  margin-top: 8px;
+  color: #666;
+}
+</style>

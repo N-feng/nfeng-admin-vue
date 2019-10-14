@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="nf-main">
 
-    <!-- <div class="nf-title">用户管理</div> -->
+    <div class="nf-title">AuthManager</div>
 
     <a-table class="mt20"
              :loading="loading"

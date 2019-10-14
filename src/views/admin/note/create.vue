@@ -12,7 +12,7 @@
         <nf-markdown v-model="createForm.content"
                      @change="changeHandle"></nf-markdown>
       </a-form-item>
-      <div class="tr">
+      <div class="tc">
         <a-button type="primary"
                   @click="save">save</a-button>
         <a-button class="ml10"

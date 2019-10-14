@@ -6,25 +6,15 @@
     <div>
       <a-button type="primary"
                 @click="$router.push({ name: 'NoteManagerCreate' })">new note</a-button>
-      <a-button class="ml20"
-                type="primary"
-                @click="drawerVisible = true">ImgManager</a-button>
     </div>
-
-    <a-drawer title="ImgManager"
-              :width="720"
-              :closable="false"
-              @close="drawerVisible = false"
-              :visible="drawerVisible">
-      <imgList></imgList>
-    </a-drawer>
 
     <a-table class="mt20"
              :loading="loading"
              :columns="tableColumns"
              :dataSource="tableList"
              :pagination="pagination"
-             :rowKey="record => record.noteId">
+             :rowKey="record => record.noteId"
+             @change="handleTableChange">
       <span slot="createTime"
             slot-scope="text, record">{{record.createTime | timeTransfer}}</span>
       <span slot="updateTime"
@@ -46,10 +36,8 @@
 
 <script>
 import { getNoteList, deleteNote } from '@/api/note'
-import imgList from '@/views/admin/img/list.vue'
 
 export default {
-  components: { imgList },
   data() {
     return {
       loading: true,
@@ -87,7 +75,6 @@ export default {
           scopedSlots: { customRender: 'action' },
         },
       ],
-      drawerVisible: false,
     }
   },
   methods: {
@@ -102,8 +89,12 @@ export default {
         this.loading = false
       })
     },
-    addNote() {
-      this.$router.push({ name: 'NoteManagerCreate' })
+    // 分页
+    handleTableChange(pagination) {
+      console.log(pagination)
+      // this.fields.page = pagination.current
+      // this.fields.pageSize = pagination.pageSize
+      // this.getCustomerList()
     },
     // 删除按钮
     handleDelete(taskId) {
@@ -114,7 +105,7 @@ export default {
     },
   },
   created() {
-    // 获取任务列表
+    // 获取列表
     this.getList()
   },
 }
