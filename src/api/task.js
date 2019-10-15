@@ -1,4 +1,4 @@
-import { post } from '@/utils/request'
+import { post } from '@/nfeng-utils/request'
 import { task } from './config'
 
 export function addTask(params) {

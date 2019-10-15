@@ -9,7 +9,7 @@ import {
   setRoleName,
   removeRoleName,
   getRoleName,
-} from '@/utils/auth'
+} from '@/nfeng-utils/auth'
 
 const auth = {
   state: {

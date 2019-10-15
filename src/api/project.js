@@ -1,4 +1,4 @@
-import { post } from '@/utils/request'
+import { post } from '@/nfeng-utils/request'
 import { project } from './config'
 
 export function addProject(params) {

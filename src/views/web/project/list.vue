@@ -53,7 +53,7 @@
 
 <script>
 import { getProjectList, deleteProject } from '@/api/project'
-import { timeTransfer } from '@/utils/filter'
+import { timeTransfer } from '@/nfeng-utils/filter'
 
 export default {
   data() {

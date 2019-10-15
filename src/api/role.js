@@ -1,4 +1,4 @@
-import { post } from '@/utils/request'
+import { post } from '@/nfeng-utils/request'
 import { role } from './config'
 
 export function addRole(roleData) {
