@@ -1,15 +1,29 @@
 <template>
-  <div>
+  <div class="nf-main">
 
     <div class="nf-title">ImgManager</div>
 
     <a-upload accept="image/*"
-              :fileList="[]"
-              :customRequest="customRequest">
-      <a-button type="primary">upload img</a-button>
+              listType="picture-card"
+              :fileList="fileList"
+              :customRequest="customRequest"
+              :remove="handleRemove"
+              @preview="handlePreview">
+      <div>
+        <a-icon type="plus" />
+        <div class="ant-upload-text">Upload</div>
+      </div>
     </a-upload>
 
-    <a-list class="mt20"
+    <a-modal :visible="previewVisible"
+             :footer="null"
+             @cancel="previewVisible = false">
+      <img alt="example"
+           style="width: 100%"
+           :src="previewImage" />
+    </a-modal>
+
+    <!-- <a-list class="mt20"
             :dataSource="fileList">
       <a-list-item slot="renderItem"
                    slot-scope="item">
@@ -36,9 +50,9 @@
                     :src="item.url" />
         </a-list-item-meta>
       </a-list-item>
-    </a-list>
+    </a-list> -->
 
-    <NfImgView ref="viewImg"></NfImgView>
+    <!-- <NfImgView ref="viewImg"></NfImgView> -->
 
   </div>
 </template>
@@ -50,16 +64,27 @@ import {
 
 export default {
   name: 'NfImgList',
+  computed: {
+    fileList: {
+      get() {
+        return this.tableList.map((item) => {
+          item.uid = item.name
+          return item
+        })
+      },
+    },
+  },
   data() {
     return {
-      fileList: [],
-      imgSrc: '',
+      tableList: [],
+      previewVisible: false,
+      previewImage: '',
     }
   },
   methods: {
     getList() {
       getImgList().h_then(({ data }) => {
-        this.fileList = data
+        this.tableList = data
       })
     },
     customRequest(e) {
@@ -83,6 +108,23 @@ export default {
       } catch (e) {
         this.$message.error('copy fail')
       }
+    },
+    handlePreview(file) {
+      this.previewImage = file.url || file.thumbUrl
+      this.previewVisible = true
+      console.log(this.previewImage)
+    },
+    handleRemove(file) {
+      console.log(file)
+      const self = this
+      this.$confirm({
+        title: `Do you want to delete these items:${file.name}?`,
+        content: 'When clicked the OK button, this dialog will be closed after 1 second',
+        onOk() {
+          self.handleDelete(file.name)
+        },
+        onCancel() {},
+      })
     },
   },
   created() {

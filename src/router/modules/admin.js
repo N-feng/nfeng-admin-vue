@@ -16,11 +16,11 @@ export const admin = {
       meta: {
         title: 'AdminManager',
       },
-      redirect: '/admin/system/landing',
+      redirect: '/admin/system/Landing',
       component: NfRouterView,
       children: [
         {
-          path: 'landing',
+          path: 'Landing',
           name: 'Landing',
           parentName: 'AdminManager',
           meta: {
@@ -29,7 +29,7 @@ export const admin = {
           component: () => import('@/views/admin/index.vue'),
         },
         {
-          path: 'auth',
+          path: 'AuthManager',
           name: 'AuthManager',
           parentName: 'AdminManager',
           meta: {
@@ -38,7 +38,7 @@ export const admin = {
           component: () => import('@/views/admin/auth/list.vue'),
         },
         {
-          path: 'role',
+          path: 'RoleManager',
           name: 'RoleManager',
           parentName: 'AdminManager',
           meta: {
@@ -47,7 +47,7 @@ export const admin = {
           component: () => import('@/views/admin/role/list.vue'),
         },
         {
-          path: 'task',
+          path: 'TaskManager',
           name: 'TaskManager',
           parentName: 'AdminManager',
           meta: {
@@ -55,30 +55,19 @@ export const admin = {
           },
           component: () => import('@/views/admin/task/list.vue'),
         },
-      ],
-    },
-    {
-      path: 'note',
-      name: 'NoteManager',
-      meta: {
-        title: 'NoteManager',
-      },
-      redirect: '/admin/note/list',
-      component: NfRouterView,
-      children: [
         {
-          path: 'list',
+          path: 'NoteManagerList',
           name: 'NoteManagerList',
-          parentName: 'NoteManager',
+          parentName: 'AdminManager',
           meta: {
             title: 'NoteManagerList',
           },
           component: () => import('@/views/admin/note/list.vue'),
         },
         {
-          path: 'create',
+          path: 'NoteManagerCreate',
           name: 'NoteManagerCreate',
-          parentName: 'NoteManager',
+          parentName: 'AdminManager',
           meta: {
             title: 'NoteManagerCreate',
             rename: 'NoteManagerList',
@@ -86,37 +75,27 @@ export const admin = {
           component: () => import('@/views/admin/note/create.vue'),
         },
         {
-          path: 'imgList',
+          path: 'ImgManagerList',
           name: 'ImgManagerList',
-          parentName: 'NoteManager',
+          parentName: 'AdminManager',
           meta: {
             title: 'ImgManagerList',
           },
+          component: () => import('@/views/admin/img/list.vue'),
         },
-      ],
-    },
-    {
-      path: 'project',
-      name: 'ProjectManager',
-      meta: {
-        title: 'ProjectManager',
-      },
-      redirect: '/admin/project/list',
-      component: NfRouterView,
-      children: [
         {
-          path: 'list',
+          path: 'ProjectManagerList',
           name: 'ProjectManagerList',
-          parentName: 'ProjectManager',
+          parentName: 'AdminManager',
           meta: {
             title: 'ProjectManagerList',
           },
           component: () => import('@/views/admin/project/list.vue'),
         },
         {
-          path: 'create',
+          path: 'ProjectManagerCreate',
           name: 'ProjectManagerCreate',
-          parentName: 'ProjectManager',
+          parentName: 'AdminManager',
           meta: {
             title: 'ProjectManagerCreate',
             rename: 'ProjectManagerList',
@@ -125,6 +104,28 @@ export const admin = {
         },
       ],
     },
+    // {
+    //   path: 'note',
+    //   name: 'NoteManager',
+    //   meta: {
+    //     title: 'NoteManager',
+    //   },
+    //   redirect: '/admin/note/list',
+    //   component: NfRouterView,
+    //   children: [
+    //   ],
+    // },
+    // {
+    //   path: 'project',
+    //   name: 'ProjectManager',
+    //   meta: {
+    //     title: 'ProjectManager',
+    //   },
+    //   redirect: '/admin/project/list',
+    //   component: NfRouterView,
+    //   children: [
+    //   ],
+    // },
   ],
 }
 

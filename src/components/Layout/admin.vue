@@ -2,13 +2,15 @@
   <a-layout id="components-layout-demo-top"
             class="nf-bg">
 
-    <a-layout-header class="bgfff">
+    <a-layout-header>
       <div class="header-content space-box">
-        <router-link to="/"
-                     class="nf-logo fs16">nfeng.net.cn</router-link>
-        <a-menu theme="light"
-                :selectedKeys="current"
+        <a class="nf-logo media-hide">nfeng.net.cn</a>
+        <a class="nf-logo media-show">nf</a>
+        <!-- <router-link to="/"
+                     class="nf-logo fs16">nfeng.net.cn</router-link> -->
+        <a-menu :selectedKeys="current"
                 mode="horizontal"
+                theme="dark"
                 @click="handleClick">
           <template v-for="item in menus">
             <a-sub-menu :key="item.name"
@@ -24,11 +26,11 @@
           </template>
         </a-menu>
         <a-dropdown>
-          <a class="ant-dropdown-link"
-             href="javascript:;">Welcome, {{ username || 'stranger' }}
+          <a><span class="media-hide">Welcome, </span>{{ username || 'stranger' }}
             <a-icon type="down" />
           </a>
-          <a-menu slot="overlay">
+          <a-menu slot="overlay"
+                  theme="dark">
             <a-menu-item>
               <router-link to="/web">The front page</router-link>
             </a-menu-item>
@@ -44,7 +46,7 @@
       </div>
     </a-layout-header>
 
-    <a-layout-content class="pl50 pr50">
+    <a-layout-content>
       <a-breadcrumb :style="{ margin: '16px 0' }"
                     v-if="!isHome">
         <a-breadcrumb-item v-for="item in $route.matched"
@@ -52,14 +54,6 @@
       </a-breadcrumb>
       <router-view />
     </a-layout-content>
-
-    <a-drawer title="ImgManager"
-              :width="720"
-              :closable="false"
-              @close="drawerVisible = false"
-              :visible="drawerVisible">
-      <NfImgList></NfImgList>
-    </a-drawer>
 
   </a-layout>
 </template>
@@ -69,11 +63,6 @@ import router from '@/router'
 
 export default {
   name: 'adminLayout',
-  data() {
-    return {
-      drawerVisible: false,
-    }
-  },
   computed: {
     username() {
       return this.$store.getters.username
@@ -102,11 +91,7 @@ export default {
     // 菜单选择
     handleClick(e) {
       const name = e.key
-      if (name === 'ImgManagerList') {
-        this.drawerVisible = true
-      } else {
-        this.$router.push({ name })
-      }
+      this.$router.push({ name })
     },
     // 登出
     logout() {
@@ -132,8 +117,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#components-layout-demo-top {
-  height: 100%;
-  overflow: auto;
-}
+@import "@/assets/scss/layout.scss";
 </style>

@@ -3,7 +3,6 @@ import NfCheckbox from './NfCheckbox/index.vue'
 import NfMarkdown from './NfMarkdown/index.vue'
 import NfMdPreview from './NfMdPreview/index.vue'
 import NfImgView from './NfImgView/index.vue'
-import NfImgList from './NfImgList/index.vue'
 
 const components = [
   NfCard,
@@ -11,7 +10,6 @@ const components = [
   NfMarkdown,
   NfMdPreview,
   NfImgView,
-  NfImgList,
 ]
 
 function install(Vue) {

@@ -53,7 +53,7 @@ export default {
       timeoutId: null,
       indexLenth: 16,
       html: '',
-      preview: 1, // 是否是预览状态
+      preview: 3, // 是否是预览状态
       isFullscreen: false, // 是否是全屏
       scrollHeight: null,
       scrollSide: 'markdown', // 哪个半栏在滑动
@@ -203,6 +203,7 @@ export default {
       }
     },
     setThemes(name) { // 设置主题
+      console.log(name)
       this.themeName = name
       this.themeSlideDown = false
     },

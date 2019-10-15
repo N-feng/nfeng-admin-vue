@@ -3,7 +3,7 @@
     <div class="nf-title">TaskManager</div>
     <a-button type="primary"
               @click="handleAdd">new task</a-button>
-    <a-table class="mt20"
+    <a-table class="mt20 oa"
              :loading="loading"
              :columns="tableColumns"
              :dataSource="tableList"
@@ -81,7 +81,7 @@ export default {
         {
           title: 'action',
           dataIndex: 'action',
-          width: 150,
+          // width: 150,
           scopedSlots: { customRender: 'action' },
         },
       ],

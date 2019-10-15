@@ -1,7 +1,7 @@
 <template>
   <div class="nf-main mt35 mb35">
     <div class="nf-title">{{$route.meta.title}}</div>
-    <a-table class="mt20"
+    <a-table class="mt20 oa"
              :loading="loading"
              :columns="tableColumns"
              :dataSource="tableList"

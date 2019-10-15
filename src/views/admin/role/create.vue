@@ -2,6 +2,7 @@
   <a-modal width="558px"
            :visible="visible"
            :title="title"
+           centered
            okText="OK"
            cancelText="Cancel"
            @cancel="() => { $emit('cancel') }"
@@ -96,8 +97,8 @@ export default {
   data() {
     return {
       formItemLayout: {
-        labelCol: { span: 7 },
-        wrapperCol: { span: 13 },
+        labelCol: { span: 5 },
+        wrapperCol: { span: 14 },
       },
       typeList: [
         { name: '会员', value: 'member' },
@@ -110,3 +111,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.ant-form:not(.ant-form-inline):not(.ant-form-vertical) {
+  max-width: 600px;
+}
+</style>

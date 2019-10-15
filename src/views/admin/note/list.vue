@@ -8,7 +8,7 @@
                 @click="$router.push({ name: 'NoteManagerCreate' })">new note</a-button>
     </div>
 
-    <a-table class="mt20"
+    <a-table class="mt20 oa"
              :loading="loading"
              :columns="tableColumns"
              :dataSource="tableList"

@@ -23,7 +23,7 @@ const web = {
       meta: {
         title: 'Notes',
       },
-      component: () => import('@/views/web/note/index.vue'),
+      component: () => import('@/views/web/note/list.vue'),
     },
     {
       path: 'notePreview',

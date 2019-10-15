@@ -1,25 +1,36 @@
 <template>
-  <div class="nf-main">
-    <div class="nf-title">new note</div>
-    <a-form :form="form">
-      <a-form-item>
-        <a-input v-decorator="['title', formConfig.title]"
-                 placeholder="Please input title"></a-input>
-      </a-form-item>
-      <a-form-item :validate-status="validateStatus"
-                   :help="help"
-                   required>
-        <nf-markdown v-model="createForm.content"
-                     @change="changeHandle"></nf-markdown>
-      </a-form-item>
-      <div class="tc">
-        <a-button type="primary"
-                  @click="save">save</a-button>
-        <a-button class="ml10"
-                  @click="$router.push({name: 'NoteManagerList'})">cancel</a-button>
-      </div>
-    </a-form>
+  <div>
+    <div class="nf-main">
+      <div class="nf-title">new note</div>
+      <a-form class="oa"
+              :form="form">
+        <a-form-item label="title"
+                     v-bind="formItemLayout">
+          <a-input v-decorator="['title', formConfig.title]"
+                   placeholder="Please input title"></a-input>
+        </a-form-item>
+        <a-form-item label="content"
+                     :label-col="formItemLayout.labelCol"
+                     :wrapper-col="{ span: 19 }"
+                     :validate-status="validateStatus"
+                     :help="help"
+                     required>
+          <nf-markdown v-model="createForm.content"
+                       @change="changeHandle"></nf-markdown>
+        </a-form-item>
+        <a-form-item :wrapper-col="{ span: 12, offset: formItemLayout.labelCol.span }">
+
+        </a-form-item>
+      </a-form>
+    </div>
+    <div class="nf-bottom-fixed">
+      <a-button type="primary"
+                @click="save">save</a-button>
+      <a-button class="ml10"
+                @click="$router.push({name: 'NoteManagerList'})">cancel</a-button>
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -28,6 +39,10 @@ import { addNote, updateNote, getNote } from '@/api/note'
 export default {
   data() {
     return {
+      formItemLayout: {
+        labelCol: { span: 5 },
+        wrapperCol: { span: 14 },
+      },
       createForm: {
         noteId: '',
         title: '',
@@ -94,10 +109,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.has-error {
-  .markdown {
-    border-color: red;
-  }
+<style lang="scss" scoped>
+.ant-form:not(.ant-form-inline):not(.ant-form-vertical) {
+  max-width: 600px;
 }
 </style>

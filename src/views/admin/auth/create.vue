@@ -2,6 +2,7 @@
   <a-modal width="558px"
            :visible="visible"
            :title="title"
+           centered
            @cancel="() => { $emit('cancel') }"
            @ok="() => { $emit('create') }">
     <a-form :form="form">
@@ -55,8 +56,8 @@ export default {
   data() {
     return {
       formItemLayout: {
-        labelCol: { span: 7 },
-        wrapperCol: { span: 13 },
+        labelCol: { span: 5 },
+        wrapperCol: { span: 14 },
       },
     }
   },
@@ -68,3 +69,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.ant-form:not(.ant-form-inline):not(.ant-form-vertical) {
+  max-width: 600px;
+}
+</style>

@@ -8,7 +8,7 @@
                 @click="$router.push({ name: 'ProjectManagerCreate' })">new project</a-button>
     </div>
 
-    <a-list class="mt20"
+    <a-list class="mt20 oa"
             itemLayout="vertical"
             size="large"
             :pagination="pagination"
@@ -25,8 +25,6 @@
                         @confirm="handleDelete(item.projectId)"
                         class="mr10"><a href="javascript:;">Delete</a>
           </a-popconfirm>
-          <span>createTime:{{item.createTime | timeTransfer}}</span>
-          <span>updateTime:{{item.updateTime | timeTransfer}}</span>
         </template>
         <!-- <template slot="actions"
                   v-for="{type, text} in actions">
@@ -36,15 +34,15 @@
             {{text}}
           </span>
         </template> -->
-        <img slot="extra"
+        <!-- <img slot="extra"
              width="272"
              alt="logo"
-             :src="item.logo || 'https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png'" />
-        <a-list-item-meta :description="item.description">
+             :src="item.logo || 'https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png'" /> -->
+        <a-list-item-meta :description="`createTime:${timeTransfer(item.createTime)}`">
           <a slot="title"
              :href="item.href">{{item.title}}</a>
           <a-avatar slot="avatar"
-                    src="https://cdn.nfeng.net.cn/upload/github.png" />
+                    :src="item.logo || 'https://cdn.nfeng.net.cn/upload/github.png'" />
         </a-list-item-meta>
         {{item.content}}
       </a-list-item>
@@ -54,6 +52,7 @@
 
 <script>
 import { getProjectList, deleteProject } from '@/api/project'
+import { timeTransfer } from '@/utils/filter'
 
 export default {
   data() {
@@ -79,6 +78,7 @@ export default {
     }
   },
   methods: {
+    timeTransfer,
     // 分页查询
     getList() {
       this.loading = true

@@ -8,7 +8,7 @@
                 @click="addRole">new role</a-button>
     </div>
 
-    <a-table class="mt20"
+    <a-table class="mt20 oa"
              :loading="loading"
              :columns="tableColumns"
              :dataSource="tableList"
@@ -83,7 +83,7 @@ export default {
         {
           title: 'roleMenu',
           dataIndex: 'roleMenu',
-          width: 250,
+          // width: 250,
           scopedSlots: { customRender: 'roleMenu' },
         },
         {
@@ -94,7 +94,7 @@ export default {
         {
           title: 'action',
           dataIndex: 'action',
-          width: 150,
+          // width: 150,
           scopedSlots: { customRender: 'action' },
         },
       ],

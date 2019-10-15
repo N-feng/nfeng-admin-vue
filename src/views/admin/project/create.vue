@@ -1,43 +1,52 @@
 <template>
-  <div class="nf-main">
-    <div class="nf-title">new project</div>
-    <a-form :form="form">
-      <a-form-item>
-        <a-input v-decorator="['title', formConfig.title]"
-                 placeholder="Please input title"></a-input>
-      </a-form-item>
-      <a-form-item>
-        <a-input v-decorator="['description', formConfig.description]"
-                 placeholder="Please input description"></a-input>
-      </a-form-item>
-      <a-form-item :validate-status="validateStatus"
-                   :help="help"
-                   required>
-        <nf-markdown v-model="createForm.content"
-                     @change="changeHandle"></nf-markdown>
-      </a-form-item>
-      <div>
-        <a-upload accept="image/*"
-                  listType="picture-card"
-                  class="avatar-uploader"
-                  :showUploadList="false"
-                  :customRequest="customRequest">
-          <img v-if="createForm.logo"
-               :src="createForm.logo"
-               alt="logo">
-          <div v-else>
-            <a-icon :type="loading ? 'loading' : 'plus'" />
-            <div class="ant-upload-text">Upload Logo</div>
-          </div>
-        </a-upload>
-      </div>
-      <div class="mt20 tc">
-        <a-button type="primary"
-                  @click="save">save</a-button>
-        <a-button class="ml10"
-                  @click="$router.push({name: 'ProjectManagerList'})">cancel</a-button>
-      </div>
-    </a-form>
+  <div>
+    <div class="nf-main">
+      <div class="nf-title">new project</div>
+      <a-form class="oa"
+              :form="form">
+        <a-form-item label="title"
+                     v-bind="formItemLayout">
+          <a-input v-decorator="['title', formConfig.title]"
+                   placeholder="Please input title"></a-input>
+        </a-form-item>
+        <a-form-item label="description"
+                     v-bind="formItemLayout">
+          <a-input v-decorator="['description', formConfig.description]"
+                   placeholder="Please input description"></a-input>
+        </a-form-item>
+        <a-form-item label="content"
+                     :label-col="formItemLayout.labelCol"
+                     :wrapper-col="{ span: 19 }"
+                     :validate-status="validateStatus"
+                     :help="help"
+                     required>
+          <nf-markdown v-model="createForm.content"
+                       @change="changeHandle"></nf-markdown>
+        </a-form-item>
+        <a-form-item label="logo"
+                     v-bind="formItemLayout">
+          <a-upload accept="image/*"
+                    listType="picture-card"
+                    class="avatar-uploader"
+                    :showUploadList="false"
+                    :customRequest="customRequest">
+            <img v-if="createForm.logo"
+                 :src="createForm.logo"
+                 alt="logo">
+            <div v-else>
+              <a-icon :type="loading ? 'loading' : 'plus'" />
+              <div class="ant-upload-text">Upload Logo</div>
+            </div>
+          </a-upload>
+        </a-form-item>
+      </a-form>
+    </div>
+    <div class="nf-bottom-fixed">
+      <a-button type="primary"
+                @click="save">save</a-button>
+      <a-button class="ml10"
+                @click="$router.push({name: 'ProjectManagerList'})">cancel</a-button>
+    </div>
   </div>
 </template>
 
@@ -48,6 +57,10 @@ import { addImg } from '@/api/img'
 export default {
   data() {
     return {
+      formItemLayout: {
+        labelCol: { span: 5 },
+        wrapperCol: { span: 14 },
+      },
       createForm: {
         projectId: '',
         title: '',
@@ -128,7 +141,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .avatar-uploader > .ant-upload {
   width: 128px;
   height: 128px;
@@ -141,5 +154,9 @@ export default {
 .ant-upload-select-picture-card .ant-upload-text {
   margin-top: 8px;
   color: #666;
+}
+
+.ant-form:not(.ant-form-inline):not(.ant-form-vertical) {
+  max-width: 600px;
 }
 </style>

@@ -1,13 +1,15 @@
 <template>
   <a-layout id="components-layout-demo-top"
             class="nf-bg">
-    <a-layout-header class="bgfff">
+    <a-layout-header>
       <div class="header-content space-box">
-        <router-link to="/"
-                     class="nf-logo fs16">nfeng.net.cn</router-link>
-        <a-menu theme="light"
-                :selectedKeys="current"
+        <a class="nf-logo media-hide">nfeng.net.cn</a>
+        <a class="nf-logo media-show">nf</a>
+        <!-- <router-link to="/"
+                     class="nf-logo fs16">nfeng.net.cn</router-link> -->
+        <a-menu :selectedKeys="current"
                 mode="horizontal"
+                theme="dark"
                 @click="handleClick">
           <template v-for="item in menus">
             <a-menu-item :key="item.name">{{item.meta.title}}</a-menu-item>
@@ -20,8 +22,7 @@
         </a-menu-item> -->
         </a-menu>
         <a-dropdown>
-          <a class="ant-dropdown-link"
-             href="javascript:;">Welcome, {{ username || 'stranger' }}
+          <a><span class="media-hide">Welcome, </span>{{ username || 'stranger' }}
             <a-icon type="down" />
           </a>
           <a-menu slot="overlay">
@@ -39,7 +40,7 @@
         </a-dropdown>
       </div>
     </a-layout-header>
-    <a-layout-content class="pl50 pr50">
+    <a-layout-content>
       <router-view />
     </a-layout-content>
   </a-layout>
@@ -82,8 +83,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#components-layout-demo-top {
-  height: 100%;
-  overflow: auto;
-}
+@import "@/assets/scss/layout.scss";
 </style>

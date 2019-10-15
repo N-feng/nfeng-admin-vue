@@ -7,7 +7,7 @@
       <li>
         <slot name="title" />
       </li>
-      <li>
+      <li v-show="tools.strong">
         <span class="iconfont icon-strong"
               name="粗体"
               @click="insertMid('****')"></span>
@@ -149,7 +149,7 @@
               name="预览"
               @click="preview = 2"></span>
       </li>
-      <li>
+      <li v-show="tools.scrolling">
         <span class="iconfont icon-on"
               v-show="scrolling"
               name="同步滚动:开"
