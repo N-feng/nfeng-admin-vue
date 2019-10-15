@@ -56,7 +56,7 @@ export default {
       return this.$store.getters.username
     },
     menus() {
-      const menus = ['Landing', 'Notes']
+      const menus = ['Landing', 'Note', 'Project']
       const webRouter = router.options.routes
         .filter(item => item.name === 'web')[0].children
       const filterData = webRouter.filter(item => menus.includes(item.meta && item.meta.title))

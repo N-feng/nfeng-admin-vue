@@ -1,5 +1,5 @@
 <template>
-  <div class="nf-main">
+  <div class="nf-main mt35 mb35">
 
     <div class="nf-title">ProjectManager</div>
 
@@ -17,7 +17,7 @@
       <a-list-item slot="renderItem"
                    slot-scope="item"
                    key="item.title">
-        <template slot="actions">
+        <!-- <template slot="actions">
           <a href="javascript:;"
              @click="$router.push({name: 'ProjectManagerCreate', query: {projectId: item.projectId}})"
              class="mr10">Edit</a>
@@ -25,7 +25,7 @@
                         @confirm="handleDelete(item.projectId)"
                         class="mr10"><a href="javascript:;">Delete</a>
           </a-popconfirm>
-        </template>
+        </template> -->
         <!-- <template slot="actions"
                   v-for="{type, text} in actions">
           <span :key="type">

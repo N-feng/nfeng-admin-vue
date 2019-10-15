@@ -21,7 +21,7 @@ const web = {
       path: 'note',
       name: 'webNote',
       meta: {
-        title: 'Notes',
+        title: 'Note',
       },
       component: () => import('@/views/web/note/list.vue'),
     },
@@ -32,6 +32,14 @@ const web = {
         rename: 'webNote',
       },
       component: () => import('@/views/web/note/preview.vue'),
+    },
+    {
+      path: 'project',
+      name: 'webProject',
+      meta: {
+        title: 'Project',
+      },
+      component: () => import('@/views/web/project/list.vue'),
     },
   ],
 }

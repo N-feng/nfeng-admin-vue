@@ -9,10 +9,10 @@
           <a-input v-decorator="['title', formConfig.title]"
                    placeholder="Please input title"></a-input>
         </a-form-item>
-        <a-form-item label="description"
+        <a-form-item label="link"
                      v-bind="formItemLayout">
-          <a-input v-decorator="['description', formConfig.description]"
-                   placeholder="Please input description"></a-input>
+          <a-input v-decorator="['link', formConfig.link]"
+                   placeholder="Please input link"></a-input>
         </a-form-item>
         <a-form-item label="content"
                      :label-col="formItemLayout.labelCol"
@@ -64,7 +64,7 @@ export default {
       createForm: {
         projectId: '',
         title: '',
-        description: '',
+        link: '',
         content: '',
         logo: '',
       },
@@ -80,9 +80,9 @@ export default {
           rules: [{ required: true, message: 'Please input title' }],
           initialValue: this.createForm.title,
         },
-        description: {
-          rules: [{ required: true, message: 'Please input description' }],
-          initialValue: this.createForm.description,
+        link: {
+          rules: [{ required: true, message: 'Please input link' }],
+          initialValue: this.createForm.link,
         },
         content: {
           rules: [{ required: true, message: 'Pleate input content' }],
