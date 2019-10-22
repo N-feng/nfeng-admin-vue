@@ -11,7 +11,7 @@ export function getToken() {
 
 export function setToken(token) {
   // return localStorage.setItem(TokenKey, token)
-  return Cookies.set(TokenKey, token)
+  return Cookies.set(TokenKey, token, { sameSite: 'lax' })
 }
 
 export function removeToken() {

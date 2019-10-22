@@ -30,7 +30,7 @@ export const img = {
   imgAdd: '/img/add',
   imgDelete: '/img/delete',
   imgList: '/img/list',
-  imgGet: '/img/get',
+  imgFind: '/img/find',
 }
 
 export const note = {

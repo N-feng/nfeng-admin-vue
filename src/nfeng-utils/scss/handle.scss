@@ -32,8 +32,13 @@
   float: right;
 }
 
-.hide {
+.hide,
+.dn {
   display: none;
+}
+
+.di {
+  display: inline-block;
 }
 
 .oa {

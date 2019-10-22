@@ -100,7 +100,7 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err && !this.help) {
           console.log('Received values of form: ', values)
-          const params = this.$utils.jquery.extend({}, this.createForm, values)
+          const params = this.$jquery.extend({}, this.createForm, values)
           const fn = this.createForm.projectId ? updateProject : addProject
           fn(params).h_then(({ code, msg }) => {
             if (code === 200) {

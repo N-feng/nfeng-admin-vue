@@ -12,7 +12,11 @@ const utils = {
 }
 
 function install(Vue) {
+  Vue.prototype.$tool = tool
+  Vue.prototype.$tree = tree
   Vue.prototype.$utils = utils
+  Vue.prototype.$jquery = jquery
+  Vue.prototype.$array = array
 }
 
 /* istanbul ignore if */
@@ -21,6 +25,10 @@ function install(Vue) {
 // }
 
 export default {
-  utils,
+  tool,
+  tree,
+  array,
+  jquery,
+  // utils,
   install,
 }

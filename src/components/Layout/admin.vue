@@ -71,9 +71,9 @@ export default {
       const { menus } = this.$store.getters
       const adminRouter = router.options.routes
         .filter(item => item.name === 'admin')[0].children
-      const openTreeMenuData = this.$utils.tree.openTreeMenu(adminRouter)
+      const openTreeMenuData = this.$tree.openTreeMenu(adminRouter)
       const filterOpenTreeMenuData = openTreeMenuData.filter(item => menus.includes(item.id))
-      return this.$utils.tree.translateDataToTree(filterOpenTreeMenuData)
+      return this.$tree.translateDataToTree(filterOpenTreeMenuData)
     },
     current() {
       // return [this.$route.name]
