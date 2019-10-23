@@ -72,6 +72,7 @@ export default {
       const adminRouter = router.options.routes
         .filter(item => item.name === 'admin')[0].children
       const openTreeMenuData = this.$tree.openTreeMenu(adminRouter)
+      // console.log(openTreeMenuData)
       const filterOpenTreeMenuData = openTreeMenuData.filter(item => menus.includes(item.id))
       return this.$tree.translateDataToTree(filterOpenTreeMenuData)
     },

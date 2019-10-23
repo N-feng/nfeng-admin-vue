@@ -1,5 +1,5 @@
-// var a = [1,2,3];
-// var b = [2,4,5];
+// const a = [1,2,3]
+// const b = [2,4,5]
 
 // 并集 [1,2,3,4,5]
 export function union(a, b) {

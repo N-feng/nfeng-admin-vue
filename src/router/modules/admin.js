@@ -51,8 +51,8 @@ export const admin = {
       component: () => import('@/views/admin/img/list.vue'),
     },
     {
-      path: 'NoteManagerList',
-      name: 'NoteManagerList',
+      path: 'NoteManager',
+      name: 'NoteManager',
       meta: {
         title: 'NoteManager',
       },
