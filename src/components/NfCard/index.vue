@@ -10,12 +10,12 @@
       <span>A web developer is a programmer who specializes In, or is specifically engaged in, the development of World Wide Web applications, or applications that are run over HTTP from a web server to a web browser.</span>
       <div class="social-box">
         <a class="btn"
-           href="https://www.facebook.com/wx18718366141"
+           href="https://www.facebook.com/imnfeng"
            target="_blank">
           <i class="fab fa-facebook-f"></i>
         </a>
         <a class="btn"
-           href="https://twitter.com/wx18718366141"
+           href="https://twitter.com/imnfeng"
            target="_blank">
           <i class="fab fa-twitter"></i>
         </a>
