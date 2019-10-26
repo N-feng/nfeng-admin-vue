@@ -25,8 +25,7 @@
     padding: 0 !important;
     margin: 0 !important;
   }
-
-
+  
   .hljs-literal,
   .hljs-name,
   .hljs-symbol {
@@ -127,7 +126,8 @@
     display: inline-block;
     width: 100%;
   }
-.hljs-comment{
-  font-style: normal;
-}
+
+  .hljs-comment{
+    font-style: normal;
+  }
 }

@@ -45,7 +45,7 @@
       <a-button type="primary"
                 @click="save">save</a-button>
       <a-button class="ml10"
-                @click="$router.push({name: 'ProjectManagerList'})">cancel</a-button>
+                @click="$router.push({name: 'ProjectManager'})">cancel</a-button>
     </div>
   </div>
 </template>
@@ -105,7 +105,7 @@ export default {
           fn(params).h_then(({ code, msg }) => {
             if (code === 200) {
               this.$message.success(msg)
-              this.$router.push({ name: 'ProjectManagerList' })
+              this.$router.push({ name: 'ProjectManager' })
             }
           })
         }

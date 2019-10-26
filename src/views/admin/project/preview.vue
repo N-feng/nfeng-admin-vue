@@ -6,19 +6,19 @@
     </div>
     <div class="nf-bottom-fixed">
       <a-button class="ml10"
-                @click="$router.push({name: 'webNote'})">cancel</a-button>
+                @click="$router.push({name: 'ProjectManager'})">cancel</a-button>
     </div>
   </div>
 </template>
 
 <script>
-import { getNote } from '@/api/note'
+import { getProject } from '@/api/project'
 
 export default {
   data() {
     return {
       createForm: {
-        noteId: '',
+        projectId: '',
         title: '',
         content: '',
       },
@@ -26,14 +26,14 @@ export default {
   },
   methods: {
     getDetail() {
-      getNote(this.createForm.noteId).h_then(({ data }) => {
+      getProject(this.createForm.projectId).h_then(({ data }) => {
         Object.assign(this.createForm, data)
       })
     },
   },
   created() {
-    this.createForm.noteId = this.$route.query.noteId
-    if (this.createForm.noteId) {
+    this.createForm.projectId = this.$route.query.projectId
+    if (this.createForm.projectId) {
       this.getDetail()
     }
   },

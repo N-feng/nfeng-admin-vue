@@ -1,12 +1,18 @@
 <template>
-  <div class="markdown-preview">
+  <div class="markdown-preview"
+       :class="`${themeName}`"
+       ref="preview"
+       @scroll="$emit('previewScroll')"
+       @mouseenter="$emit('mousescrollSide')">
     <div v-html="html"></div>
+    <!-- 预览图片 -->
+    <nf-img-preview ref="nfImgPreview"></nf-img-preview>
   </div>
 </template>
 
 <script>
 import marked from 'marked'
-import hljs from '../NfMarkdown/js/hljs'
+import hljs from './js/hljs'
 
 hljs.initHighlightingOnLoad()
 const renderer = new marked.Renderer()
@@ -25,7 +31,7 @@ marked.setOptions({
 })
 
 export default {
-  name: 'NfMdPreview',
+  name: 'nfMdPreview',
   props: {
     data: {
       type: String,
@@ -36,17 +42,52 @@ export default {
         return {}
       },
     },
-  },
-  computed: {
-    html() {
-      return marked(this.data, {
-        sanitize: false,
-        ...this.markedOptions,
-      })
+    themeName: {
+      type: String,
+      default: 'Light',
     },
+  },
+  data() {
+    return {
+      html: '',
+    }
+  },
+  // computed: {
+  //   html() {
+  //     return marked(this.data, {
+  //       sanitize: false,
+  //       ...this.markedOptions,
+  //     })
+  //   },
+  // },
+  watch: {
+    data() {
+      this.init()
+    },
+  },
+  methods: {
+    init() {
+      this.html = marked(this.data)
+      this.addImageClickListener()
+    },
+    addImageClickListener() { // 监听查看大图
+      setTimeout(() => {
+        const imgs = this.$refs.preview.querySelectorAll('img')
+        imgs.forEach((item) => {
+          item.onclick = () => {
+            const src = item.getAttribute('src')
+            this.$refs.nfImgPreview.show(src)
+          }
+        })
+      }, 600)
+    },
+  },
+  created() {
+    this.init()
   },
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss">
+@import "./scss/index.scss";
 </style>

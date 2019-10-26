@@ -1,10 +1,3 @@
-
-@import './theme.scss';
-@import './light.scss';
-@import './dark.scss';
-@import './one-dark.scss';
-@import './gitHub.scss';
-
 .has-error {
   .markdown {
     border-color: red;
@@ -13,7 +6,7 @@
 
 .markdown {
   border: 1px solid #ccc;
-  background: $background;
+  background: #f7f7f7;
   height: 400px;
   display: flex;
   flex-direction: column;
@@ -64,7 +57,7 @@
     position: relative;
 
     &:hover {
-      background: $background;
+      background: #f7f7f7;
       color: #0084ff;
       &::after {
         transform: scale(1);
@@ -84,7 +77,7 @@
       font-size: 12px;
       line-height: 20px;
       padding: 0 6px;
-      border: 1px solid $border;
+      border: 1px solid #dddee1;
       transition: all 0.3s 0.3s;
       transform: scale(0);
       opacity: 0;
@@ -102,7 +95,7 @@
       list-style: none;
       margin: 0;
       padding: 6px 0;
-      border: 1px solid $border;
+      border: 1px solid #dddee1;
       background: #fff;
       border-radius: 4px;
       position: absolute;
@@ -116,7 +109,7 @@
         user-select: none;
 
         &:hover, &.active {
-          background: $background;
+          background: #f7f7f7;
         }
       }
       &.active  {
@@ -137,12 +130,12 @@
   flex: 1;
   display: flex;
   overflow-y: scroll;
-  padding-right: 11px;
+  // padding-right: 11px;
 
   > ul {
     width: 36px;
     height: 100%;
-    line-height: $line-height;
+    line-height: 22px;
     padding: 8px 0 0;
     margin: 0;
 
@@ -158,84 +151,12 @@
     min-height: 100%;
     outline: none;
     border: 0;
-    line-height: $line-height;
+    line-height: 22px;
     caret-color: #ccc;
     color: #669acc;
     font-size: 14px;
     resize: none;
     padding: 8px 10px;
     overflow: hidden;
-  }
-}
-
-.markdown-preview {
-  flex: 1;
-  // width: 50%;
-  overflow-y: scroll;
-  padding-right: 11px;
-
-  > div {
-    padding: 8px 15px;
-    background: #fff;
-    min-height: 100%;
-  }
-
-  img {
-    display: block;
-    width: 90%;
-    margin: 20px auto;
-    cursor: pointer;
-  }
-
-  table {
-    width: 100%;
-    border: 1px solid $border;
-    border-bottom: 0;
-    background: #fff;
-    border-spacing: 0;
-    border-collapse: collapse;
-    margin: 20px 0;
-
-    tr {
-      -webkit-transition: background 0.1s;
-      transition: background 0.1s;
-      text-align: nav;
-
-    }
-
-    tr td,
-    tr th {
-      padding: 0 8px;
-      font-size: 14px;
-      line-height: 39px;
-      color: #333;
-      border-bottom: 1px solid $border;
-      cursor: pointer;
-    }
-
-    th {
-      background: #f8f8f9;
-      text-align: left;
-      font-weight: bold;
-    }
-
-    tr:nth-of-type(even) {
-      td {
-        background: #f8f8f9;
-      }
-    }
-
-    tr {
-      &:hover {
-        td {
-          background: #eaf5f6;
-        }
-      }
-    }
-
-    td,
-    th {
-      border: 1px solid $border;
-    }
   }
 }

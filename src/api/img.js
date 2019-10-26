@@ -1,4 +1,4 @@
-import service, { post } from '@/nfeng-utils/request'
+import service, { get } from '@/nfeng-utils/request'
 import { img } from './config'
 
 export function addImg(e) {
@@ -15,10 +15,10 @@ export function addImg(e) {
   })
 }
 
-export function deleteImg(fileName) {
-  return post(img.imgDelete, { fileName })
+export function deleteImg({ imgId }) {
+  return get(img.imgDelete, { params: { imgId } })
 }
 
 export function getImgList() {
-  return post(img.imgList)
+  return get(img.imgList)
 }

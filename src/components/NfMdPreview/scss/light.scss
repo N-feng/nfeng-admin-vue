@@ -18,10 +18,9 @@
     overflow-x: auto !important;
     margin: 20px 0 !important;
     code {
-      line-height: $line-height !important;
+      line-height: 22px !important;
       font-family: Consolas !important;
       font-size: 13px;
-      line-height: $line-height !important;
       color: #444;
     }
   }
@@ -85,7 +84,7 @@
   pre {
     padding: 0;
     margin: 0;
-    background: $background !important;
+    background: #f7f7f7 !important;
   }
   code {
     display: inline-block;

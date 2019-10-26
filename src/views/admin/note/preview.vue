@@ -6,7 +6,7 @@
     </div>
     <div class="nf-bottom-fixed">
       <a-button class="ml10"
-                @click="$router.push({name: 'webNote'})">cancel</a-button>
+                @click="$router.push({name: 'NoteManager'})">cancel</a-button>
     </div>
   </div>
 </template>

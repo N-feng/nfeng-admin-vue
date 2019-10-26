@@ -63,13 +63,22 @@ export const admin = {
       name: 'NoteManagerCreate',
       meta: {
         title: 'NoteManagerCreate',
-        rename: 'NoteManagerList',
+        rename: 'NoteManager',
       },
       component: () => import('@/views/admin/note/create.vue'),
     },
     {
-      path: 'ProjectManagerList',
-      name: 'ProjectManagerList',
+      path: 'NoteManagerPreview',
+      name: 'NoteManagerPreview',
+      meta: {
+        title: 'NoteManagerPreview',
+        rename: 'NoteManager',
+      },
+      component: () => import('@/views/admin/note/preview.vue'),
+    },
+    {
+      path: 'ProjectManager',
+      name: 'ProjectManager',
       meta: {
         title: 'ProjectManager',
       },
@@ -80,9 +89,18 @@ export const admin = {
       name: 'ProjectManagerCreate',
       meta: {
         title: 'ProjectManagerCreate',
-        rename: 'ProjectManagerList',
+        rename: 'ProjectManager',
       },
       component: () => import('@/views/admin/project/create.vue'),
+    },
+    {
+      path: 'ProjectManagerPreview',
+      name: 'ProjectManagerPreview',
+      meta: {
+        title: 'ProjectManagerPreview',
+        rename: 'ProjectManager',
+      },
+      component: () => import('@/views/admin/project/preview.vue'),
     },
     // {
     //   path: 'system',

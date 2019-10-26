@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="nf-main">
+
       <div class="nf-title">new note</div>
+
       <a-form class="oa"
               :form="form">
         <a-form-item label="title"

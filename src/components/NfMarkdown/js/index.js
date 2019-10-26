@@ -1,26 +1,26 @@
-import marked from 'marked'
-import hljs from './hljs'
+// import marked from 'marked'
+// import hljs from './hljs'
 import { saveFile } from './utils'
 import defaultTools from './tools'
 
-hljs.initHighlightingOnLoad()
-const renderer = new marked.Renderer()
+// hljs.initHighlightingOnLoad()
+// const renderer = new marked.Renderer()
 
-marked.setOptions({
-  renderer,
-  gfm: true,
-  tables: true,
-  breaks: false,
-  pedantic: false,
-  sanitize: false,
-  smartLists: true,
-  highlight(code) {
-    return hljs.highlightAuto(code).value
-  },
-})
+// marked.setOptions({
+//   renderer,
+//   gfm: true,
+//   tables: true,
+//   breaks: false,
+//   pedantic: false,
+//   sanitize: false,
+//   smartLists: true,
+//   highlight(code) {
+//     return hljs.highlightAuto(code).value
+//   },
+// })
 
 export default {
-  name: 'NfMarkdown',
+  name: 'nfMarkdown',
   props: {
     value: {
       type: String,
@@ -40,19 +40,19 @@ export default {
       type: String,
       default: '未命名文件',
     },
-    markedOptions: {
-      type: Object,
-      default() {
-        return {}
-      },
-    },
+    // markedOptions: {
+    //   type: Object,
+    //   default() {
+    //     return {}
+    //   },
+    // },
   },
   data() {
     return {
       textareaValue: '', // 输入框内容
       timeoutId: null,
       indexLenth: 16,
-      html: '',
+      // html: '',
       preview: 3, // 是否是预览状态
       isFullscreen: false, // 是否是全屏
       scrollHeight: null,
@@ -86,15 +86,15 @@ export default {
       this.init()
     },
     textareaValue(val) {
-      clearTimeout(this.timeoutId)
-      this.timeoutId = setTimeout(() => {
-        this.html = marked(val, {
-          sanitize: false,
-          ...this.markedOptions,
-        })
-      }, 30)
+      // clearTimeout(this.timeoutId)
+      // this.timeoutId = setTimeout(() => {
+      //   this.html = marked(val, {
+      //     sanitize: false,
+      //     ...this.markedOptions,
+      //   })
+      // }, 30)
       this.resize()
-      this.addImageClickListener()
+      // this.addImageClickListener()
       this.$emit('input', val)
       this.$emit('change', val)
     },
@@ -111,7 +111,7 @@ export default {
     init() {
       this.textareaValue = this.value
       this.themeName = this.theme
-      this.html = marked(this.textareaValue)
+      // this.html = marked(this.textareaValue)
       this.resize()
     },
     insertContent(initStr) { // 插入文本
@@ -230,17 +230,18 @@ export default {
         e.target.value = ''
       }
     },
-    addImageClickListener() { // 监听查看大图
-      setTimeout(() => {
-        const imgs = this.$refs.preview.querySelectorAll('img')
-        imgs.forEach((item) => {
-          item.onclick = () => {
-            const src = item.getAttribute('src')
-            this.$refs.viewImg.previewImage(src)
-          }
-        })
-      }, 600)
-    },
+    // addImageClickListener() { // 监听查看大图
+    //   setTimeout(() => {
+    //     console.log(this.$refs)
+    //     const imgs = this.$refs.preview.querySelectorAll('img')
+    //     imgs.forEach((item) => {
+    //       item.onclick = () => {
+    //         const src = item.getAttribute('src')
+    //         this.$refs.viewImg.previewImage(src)
+    //       }
+    //     })
+    //   }, 600)
+    // },
     editorScroll() {
       const { scrolling } = this
       if (!scrolling) {
@@ -250,8 +251,8 @@ export default {
         const { editor, preview } = this.$refs
         const editorScrollHeight = editor.scrollHeight
         const editorScrollTop = editor.scrollTop
-        const previewScrollHeight = preview.scrollHeight
-        preview.scrollTop = parseInt(editorScrollTop / editorScrollHeight * previewScrollHeight, 0)
+        const previewScrollHeight = preview.$el.scrollHeight
+        preview.$el.scrollTop = parseInt(editorScrollTop / editorScrollHeight * previewScrollHeight, 0)
       }
     },
     previewScroll() {
@@ -262,8 +263,8 @@ export default {
       if (this.scrollSide === 'preview') {
         const { editor, preview } = this.$refs
         const editorScrollHeight = editor.scrollHeight
-        const previewScrollHeight = preview.scrollHeight
-        const previewScrollTop = preview.scrollTop
+        const previewScrollHeight = preview.$el.scrollHeight
+        const previewScrollTop = preview.$el.scrollTop
         editor.scrollTop = parseInt(previewScrollTop / previewScrollHeight * editorScrollHeight, 0)
       }
     },

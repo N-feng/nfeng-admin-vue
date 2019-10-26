@@ -45,7 +45,8 @@
           <a-avatar slot="avatar"
                     :src="item.logo || 'https://cdn.nfeng.net.cn/upload/github.png'" />
         </a-list-item-meta>
-        {{item.content}}
+        <!-- <nf-md-preview :data="item.content"></nf-md-preview> -->
+        <!-- {{item.content}} -->
       </a-list-item>
     </a-list>
   </div>

@@ -3,7 +3,10 @@
 
     <div class="nf-title">ImgManager</div>
 
-    <a-upload accept="image/*"
+    <nf-masonry :imgList="tableList"
+                @handleDelete="handleDelete"></nf-masonry>
+
+    <!-- <a-upload accept="image/*"
               listType="picture-card"
               :fileList="fileList"
               :customRequest="customRequest"
@@ -13,7 +16,7 @@
         <a-icon type="plus" />
         <div class="ant-upload-text">Upload</div>
       </div>
-    </a-upload>
+    </a-upload> -->
 
     <a-modal :visible="previewVisible"
              :footer="null"
@@ -93,8 +96,9 @@ export default {
         this.getList()
       })
     },
-    handleDelete(fileName) {
-      deleteImg(fileName).h_then(({ msg }) => {
+    handleDelete(el) {
+      const { imgId } = el
+      deleteImg({ imgId }).h_then(({ msg }) => {
         this.$message.success(msg)
         this.getList()
       })
@@ -119,7 +123,7 @@ export default {
       const self = this
       this.$confirm({
         title: `Do you want to delete these items:${file.name}?`,
-        content: 'When clicked the OK button, this dialog will be closed after 1 second',
+        // content: 'When clicked the OK button, this dialog will be closed after 1 second',
         onOk() {
           self.handleDelete(file.name)
         },

@@ -187,18 +187,24 @@
                   v-model="textareaValue"
                   ref="textarea"></textarea>
       </div>
-      <div class="markdown-preview"
+      <!-- <div class="markdown-preview"
            :class="`${themeName}`"
            v-show="preview === 1 || preview === 2"
            ref="preview"
            @scroll="previewScroll"
            @mouseenter="mousescrollSide('preview')">
         <div v-html="html"></div>
-      </div>
+      </div> -->
+      <nf-md-preview v-show="preview === 1 || preview === 2"
+                     :themeName="themeName"
+                     :data="textareaValue"
+                     ref="preview"
+                     @previewScroll="previewScroll"
+                     @mousescrollSide="mousescrollSide('preview')"></nf-md-preview>
     </div>
 
     <!-- 预览图片 -->
-    <NfImgView ref="viewImg"></NfImgView>
+    <!-- <NfImgView ref="viewImg"></NfImgView> -->
 
   </div>
 </template>
@@ -209,11 +215,11 @@ import markdown from './js/index'
 export default markdown
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "./font/iconfont.css";
 @import "./scss/index.scss";
 </style>
 
 <style lang="scss" scoped>
-@import "./scss/preview-img.scss";
+// @import "./scss/preview-img.scss";
 </style>

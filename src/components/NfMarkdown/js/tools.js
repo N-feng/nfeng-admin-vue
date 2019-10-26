@@ -23,7 +23,7 @@ export default {
   notChecked: true,
   shift: true,
   fullscreen: true,
-  theme: false,
+  theme: true,
   exportmd: false,
   importmd: true,
   scrolling: false,

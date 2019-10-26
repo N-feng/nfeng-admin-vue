@@ -25,6 +25,9 @@
                         @confirm="handleDelete(item.projectId)"
                         class="mr10"><a href="javascript:;">Delete</a>
           </a-popconfirm>
+          <a href="javascript:;"
+             @click="$router.push({name: 'ProjectManagerPreview', query: {projectId: item.projectId}})"
+             class="mr10">Preview</a>
         </template>
         <!-- <template slot="actions"
                   v-for="{type, text} in actions">
@@ -45,7 +48,7 @@
           <a-avatar slot="avatar"
                     :src="item.logo || 'https://cdn.nfeng.net.cn/upload/github.png'" />
         </a-list-item-meta>
-        {{item.content}}
+        <!-- {{item.content}} -->
       </a-list-item>
     </a-list>
   </div>

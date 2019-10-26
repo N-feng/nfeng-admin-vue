@@ -28,6 +28,9 @@
                       @confirm="handleDelete(record.noteId)"
                       class="mr10"><a href="javascript:;">Delete</a>
         </a-popconfirm>
+        <a href="javascript:;"
+           @click="$router.push({name: 'NoteManagerPreview', query: {noteId: record.noteId}})"
+           class="mr10">Preview</a>
       </span>
     </a-table>
 

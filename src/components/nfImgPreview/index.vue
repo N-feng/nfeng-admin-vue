@@ -1,41 +1,40 @@
 <template>
   <!-- 预览图片 -->
-  <div class="preview-img"
-       :class="{active:previewImgModal}"
-       @click="previewImgModal = false">
+  <div class="img-preview"
+       :class="{active:imgPreviewModal}"
+       @click="imgPreviewModal = false">
     <span class="close"
-          @click="previewImgModal = false">关闭</span>
-    <img :class="[previewImgMode]"
-         :src="previewImgSrc"
-         alt=""
+          @click="imgPreviewModal = false">关闭</span>
+    <img :class="[imgPreviewMode]"
+         :src="imgPreviewSrc"
          @click="hide">
   </div>
 </template>
 
 <script>
 export default {
-  name: 'NfImgView',
+  name: 'nfImgPreview',
   data() {
     return {
-      previewImgModal: false,
-      previewImgSrc: '',
-      previewImgMode: '',
+      imgPreviewModal: false,
+      imgPreviewSrc: '',
+      imgPreviewMode: '',
     }
   },
   methods: {
-    previewImage(src) { // 预览图片
+    show(src) { // 预览图片
       const img = new Image()
       img.src = src
       img.onload = () => {
         const width = img.naturalWidth
         const height = img.naturalHeight
         if ((height / width) > 1.4) {
-          this.previewImgMode = 'horizontal'
+          this.imgPreviewMode = 'horizontal'
         } else {
-          this.previewImgMode = 'vertical'
+          this.imgPreviewMode = 'vertical'
         }
-        this.previewImgSrc = src
-        this.previewImgModal = true
+        this.imgPreviewSrc = src
+        this.imgPreviewModal = true
       }
     },
     hide(event) {
@@ -46,7 +45,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.preview-img {
+.img-preview {
   position: fixed;
   width: 100vw;
   height: 100vh;
