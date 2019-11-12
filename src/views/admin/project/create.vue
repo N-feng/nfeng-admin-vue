@@ -58,7 +58,7 @@ export default {
   data() {
     return {
       formItemLayout: {
-        labelCol: { span: 5 },
+        labelCol: { span: 4 },
         wrapperCol: { span: 14 },
       },
       createForm: {
@@ -158,5 +158,6 @@ export default {
 
 .ant-form:not(.ant-form-inline):not(.ant-form-vertical) {
   max-width: 600px;
+  margin: 0 auto;
 }
 </style>

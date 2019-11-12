@@ -28,6 +28,7 @@ export const task = {
 
 export const img = {
   imgAdd: '/img/add',
+  imgCosAdd: 'img/cosAdd',
   imgDelete: '/img/delete',
   imgList: '/img/list',
   imgFind: '/img/find',

@@ -1,5 +1,5 @@
 <template>
-  <a-modal width="558px"
+  <a-modal width="648px"
            :visible="visible"
            :title="title"
            centered
@@ -56,7 +56,7 @@ export default {
   data() {
     return {
       formItemLayout: {
-        labelCol: { span: 5 },
+        labelCol: { span: 4 },
         wrapperCol: { span: 14 },
       },
     }

@@ -1,5 +1,5 @@
 const Layout = () => import('@/components/Layout/admin.vue')
-// const NfRouterView = () => import('@/components/NfRouterView')
+// const nfRouterView = () => import('@/components/nfRouterView')
 
 export const admin = {
   path: '/admin',
@@ -57,25 +57,28 @@ export const admin = {
         title: 'NoteManager',
       },
       component: () => import('@/views/admin/note/list.vue'),
+      children: [
+        {
+          path: 'NoteManagerCreate',
+          name: 'NoteManagerCreate',
+          meta: {
+            title: 'NoteManagerCreate',
+            rename: 'NoteManager',
+          },
+          component: () => import('@/views/admin/note/create.vue'),
+        },
+        {
+          path: 'NoteManagerPreview',
+          name: 'NoteManagerPreview',
+          meta: {
+            title: 'NoteManagerPreview',
+            rename: 'NoteManager',
+          },
+          component: () => import('@/views/admin/note/preview.vue'),
+        },
+      ],
     },
-    {
-      path: 'NoteManagerCreate',
-      name: 'NoteManagerCreate',
-      meta: {
-        title: 'NoteManagerCreate',
-        rename: 'NoteManager',
-      },
-      component: () => import('@/views/admin/note/create.vue'),
-    },
-    {
-      path: 'NoteManagerPreview',
-      name: 'NoteManagerPreview',
-      meta: {
-        title: 'NoteManagerPreview',
-        rename: 'NoteManager',
-      },
-      component: () => import('@/views/admin/note/preview.vue'),
-    },
+
     {
       path: 'ProjectManager',
       name: 'ProjectManager',
@@ -109,7 +112,7 @@ export const admin = {
     //     title: 'AdminManager',
     //   },
     //   redirect: '/admin/system/Landing',
-    //   component: NfRouterView,
+    //   component: nfRouterView,
     //   children: [
     //   ],
     // },

@@ -16,6 +16,11 @@ export default {
       // zh_CN,
     }
   },
+  created() {
+    window.addEventListener('scroll', (e) => {
+      console.log(e)
+    })
+  },
 }
 </script>
 

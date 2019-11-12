@@ -1,11 +1,10 @@
 <template>
   <div>
-    <div class="nf-main">
 
+    <div class="nf-main">
       <div class="nf-title">new note</div>
 
-      <a-form class="oa"
-              :form="form">
+      <a-form :form="form">
         <a-form-item label="title"
                      v-bind="formItemLayout">
           <a-input v-decorator="['title', formConfig.title]"
@@ -25,14 +24,15 @@
         </a-form-item>
       </a-form>
     </div>
+
     <div class="nf-bottom-fixed">
       <a-button type="primary"
                 @click="save">save</a-button>
       <a-button class="ml10"
                 @click="$router.push({name: 'NoteManager'})">cancel</a-button>
     </div>
-  </div>
 
+  </div>
 </template>
 
 <script>
@@ -42,7 +42,7 @@ export default {
   data() {
     return {
       formItemLayout: {
-        labelCol: { span: 5 },
+        labelCol: { span: 4 },
         wrapperCol: { span: 14 },
       },
       createForm: {
@@ -114,5 +114,6 @@ export default {
 <style lang="scss" scoped>
 .ant-form:not(.ant-form-inline):not(.ant-form-vertical) {
   max-width: 600px;
+  margin: 0 auto;
 }
 </style>

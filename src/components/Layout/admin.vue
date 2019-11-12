@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import router from '@/router'
+// import router from '@/router'
 
 export default {
   name: 'adminLayout',
@@ -68,13 +68,13 @@ export default {
       return this.$store.getters.username
     },
     menus() {
-      const { menus } = this.$store.getters
-      const adminRouter = router.options.routes
-        .filter(item => item.name === 'admin')[0].children
-      const openTreeMenuData = this.$tree.openTreeMenu(adminRouter)
-      // console.log(openTreeMenuData)
-      const filterOpenTreeMenuData = openTreeMenuData.filter(item => menus.includes(item.id))
-      return this.$tree.translateDataToTree(filterOpenTreeMenuData)
+      // const { menus } = this.$store.getters
+      // const adminRouter = router.options.routes
+      //   .filter(item => item.name === 'admin')[0].children
+      // const openTreeMenuData = this.$tree.openTreeMenu(adminRouter)
+      // const filterOpenTreeMenuData = openTreeMenuData.filter(item => menus.includes(item.id))
+      // return this.$tree.translateDataToTree(filterOpenTreeMenuData)
+      return []
     },
     current() {
       // return [this.$route.name]
