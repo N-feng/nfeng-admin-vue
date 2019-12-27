@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { getNoteList, deleteNote } from '@/api/note'
+import { getNoteList, deleteNote } from '../../../api/note'
 
 export default {
   data() {
@@ -49,13 +49,13 @@ export default {
         showQuickJumper: true,
         showSizeChanger: true,
         total: 500,
-        showTotal: total => `Total ${total} items`,
+        showTotal: (total) => `Total ${total} items`
       },
       tableList: [],
       tableColumns: [
         {
           title: 'title',
-          dataIndex: 'title',
+          dataIndex: 'title'
         },
         // {
         //   title: '笔记内容',
@@ -64,20 +64,20 @@ export default {
         {
           title: 'createTime',
           dataIndex: 'createTime',
-          scopedSlots: { customRender: 'createTime' },
+          scopedSlots: { customRender: 'createTime' }
         },
         {
           title: 'updateTime',
           dataIndex: 'updateTime',
-          scopedSlots: { customRender: 'updateTime' },
+          scopedSlots: { customRender: 'updateTime' }
         },
         {
           title: 'action',
           dataIndex: 'action',
           // width: 150,
-          scopedSlots: { customRender: 'action' },
-        },
-      ],
+          scopedSlots: { customRender: 'action' }
+        }
+      ]
     }
   },
   methods: {
@@ -105,11 +105,11 @@ export default {
         this.$message.success(msg)
         this.getList()
       })
-    },
+    }
   },
   created() {
     // 获取列表
     this.getList()
-  },
+  }
 }
 </script>

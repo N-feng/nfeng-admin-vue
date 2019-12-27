@@ -1,4 +1,4 @@
-import { login, signup, getMenus } from '@/api/auth'
+import { login, signup, getMenus } from '../../api/auth'
 import {
   getToken,
   setToken,
@@ -8,14 +8,14 @@ import {
   removeName,
   setRoleName,
   removeRoleName,
-  getRoleName,
-} from '@/nfeng-utils/auth'
+  getRoleName
+} from '../../../../nfeng-utils/auth'
 
 const auth = {
   state: {
     menus: [],
     token: getToken(),
-    username: getName(),
+    username: getName()
   },
   mutations: {
     SET_TOKEN: (state, payload) => {
@@ -29,7 +29,7 @@ const auth = {
     },
     SET_MENUS: (state, payload) => {
       state.menus = payload
-    },
+    }
   },
   actions: {
     // 注册
@@ -89,8 +89,8 @@ const auth = {
       getMenus(getRoleName()).h_then(({ data }) => {
         commit('SET_MENUS', data)
       })
-    },
-  },
+    }
+  }
 }
 
 export default auth

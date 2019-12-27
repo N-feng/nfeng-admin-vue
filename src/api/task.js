@@ -1,5 +1,7 @@
-import { post } from '@/nfeng-utils/request'
+import utils from '../../../nfeng-utils'
 import { task } from './config'
+
+const { post } = utils.request
 
 export function addTask(params) {
   return post(task.taskAdd, params)

@@ -43,8 +43,8 @@
 
 <script>
 import {
-  addTask, deleteTask, updateTask, getTask, getTaskList,
-} from '@/api/task'
+  addTask, deleteTask, updateTask, getTask, getTaskList
+} from '../../../api/task'
 import create from './create.vue'
 
 export default {
@@ -56,42 +56,42 @@ export default {
         showQuickJumper: true,
         showSizeChanger: true,
         total: 500,
-        showTotal: total => `共${total}条`,
+        showTotal: (total) => `共${total}条`
       },
       tableList: [],
       tableColumns: [
         {
           title: 'title',
-          dataIndex: 'title',
+          dataIndex: 'title'
         },
         {
           title: 'description',
-          dataIndex: 'description',
+          dataIndex: 'description'
         },
         {
           title: 'date',
-          dataIndex: 'date',
+          dataIndex: 'date'
           // scopedSlots: { customRender: 'roleMenu' },
         },
         {
           title: 'priority',
-          dataIndex: 'priority',
+          dataIndex: 'priority'
           // scopedSlots: { customRender: 'permissions' },
         },
         {
           title: 'action',
           dataIndex: 'action',
           // width: 150,
-          scopedSlots: { customRender: 'action' },
-        },
+          scopedSlots: { customRender: 'action' }
+        }
       ],
       dialogForm: {},
       visible: false,
-      title: '',
+      title: ''
     }
   },
   components: {
-    create,
+    create
   },
   methods: {
     // 分页查询
@@ -114,7 +114,7 @@ export default {
         }
         const values = {
           ...fieldsValues,
-          date: fieldsValues.date.format('YYYY-MM-DD HH:mm:ss'),
+          date: fieldsValues.date.format('YYYY-MM-DD HH:mm:ss')
         }
         if (this.title === 'edit task') {
           values.taskId = this.dialogForm.taskId
@@ -137,7 +137,7 @@ export default {
         title: '',
         description: '',
         date: null,
-        priority: undefined,
+        priority: undefined
       }
       const { form } = this.$refs.dialogForm
       form.resetFields()
@@ -156,11 +156,11 @@ export default {
         this.visible = true
         this.title = 'edit task'
       })
-    },
+    }
   },
   created() {
     // 获取任务列表
     this.getList()
-  },
+  }
 }
 </script>

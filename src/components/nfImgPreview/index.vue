@@ -18,7 +18,7 @@ export default {
     return {
       imgPreviewModal: false,
       imgPreviewSrc: '',
-      imgPreviewMode: '',
+      imgPreviewMode: ''
     }
   },
   methods: {
@@ -39,8 +39,8 @@ export default {
     },
     hide(event) {
       event.stopPropagation()
-    },
-  },
+    }
+  }
 }
 </script>
 

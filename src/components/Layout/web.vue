@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import router from '@/router'
+import router from '../../router'
 
 export default {
   name: 'webLayout',
@@ -58,8 +58,8 @@ export default {
     menus() {
       const menus = ['Landing', 'Note', 'Project']
       const webRouter = router.options.routes
-        .filter(item => item.name === 'web')[0].children
-      const filterData = webRouter.filter(item => menus.includes(item.meta && item.meta.title))
+        .filter((item) => item.name === 'web')[0].children
+      const filterData = webRouter.filter((item) => menus.includes(item.meta && item.meta.title))
       return filterData
     },
     current() {
@@ -67,7 +67,7 @@ export default {
       return this.$route.meta.rename
         ? [this.$route.meta.rename]
         : [this.$route.name]
-    },
+    }
   },
   methods: {
     // 菜单选择
@@ -77,8 +77,8 @@ export default {
     // 登出
     logout() {
       this.$store.dispatch('FedLogOut')
-    },
-  },
+    }
+  }
 }
 </script>
 

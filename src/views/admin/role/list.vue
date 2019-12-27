@@ -50,13 +50,13 @@
 
 <script>
 import {
-  getRoleList, addRole, getRoleDetail, updateRole, deleteRole,
-} from '@/api/role'
+  getRoleList, addRole, getRoleDetail, updateRole, deleteRole
+} from '../../../api/role'
 import createRole from './create.vue'
 
 export default {
   components: {
-    createRole,
+    createRole
   },
   data() {
     return {
@@ -66,52 +66,52 @@ export default {
         showQuickJumper: true,
         showSizeChanger: true,
         total: 500,
-        showTotal: total => `Total ${total} items`,
+        showTotal: (total) => `Total ${total} items`
       },
       tableList: [],
       tableColumns: [
         {
           title: 'roleName',
-          dataIndex: 'roleName',
+          dataIndex: 'roleName'
           // width: 150,
         },
         {
           title: 'roleType',
-          dataIndex: 'roleType',
+          dataIndex: 'roleType'
           // width: 150,
         },
         {
           title: 'roleMenu',
           dataIndex: 'roleMenu',
           // width: 250,
-          scopedSlots: { customRender: 'roleMenu' },
+          scopedSlots: { customRender: 'roleMenu' }
         },
         {
           title: 'permissions',
           dataIndex: 'permissions',
-          scopedSlots: { customRender: 'permissions' },
+          scopedSlots: { customRender: 'permissions' }
         },
         {
           title: 'action',
           dataIndex: 'action',
           // width: 150,
-          scopedSlots: { customRender: 'action' },
-        },
+          scopedSlots: { customRender: 'action' }
+        }
       ],
       dialogForm: {
         roleName: '',
         roleType: '',
         roleMenu: [],
-        permissions: [],
+        permissions: []
       },
       visible: false,
-      title: '',
+      title: ''
     }
   },
   computed: {
     role() {
       return this.$store.getters.role
-    },
+    }
   },
   methods: {
     // 分页查询
@@ -133,7 +133,7 @@ export default {
         roleName: '',
         roleType: '',
         roleMenu: [],
-        permissions: [],
+        permissions: []
       }
       const { form } = this.$refs.dialogForm
       form.resetFields()
@@ -179,11 +179,11 @@ export default {
         this.$message.success(msg)
         this.getList()
       })
-    },
+    }
   },
   created() {
     // 获取角色列表
     this.getList()
-  },
+  }
 }
 </script>

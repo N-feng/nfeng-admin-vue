@@ -16,24 +16,15 @@ module.exports = {
     proxy: {
       '/api': {
         target: targetUrl,
-        changeOrigin: true,
-      },
-    },
+        changeOrigin: true
+      }
+    }
   },
   configureWebpack: {
     resolve: {
       alias: {
-        '@': resolve('src'),
-      },
-    },
-  },
-  pluginOptions: {
-    'style-resources-loader': {
-      preProcessor: 'scss',
-      patterns: [
-        // resolve('./node_modules/nfeng-scss/index.scss'),
-        resolve('./src/assets/scss/index.scss'),
-      ],
-    },
-  },
+        '@': resolve('src')
+      }
+    }
+  }
 }

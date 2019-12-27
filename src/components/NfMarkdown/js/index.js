@@ -24,22 +24,22 @@ export default {
   props: {
     value: {
       type: String,
-      default: '',
+      default: ''
     },
     theme: { // 默认主题
       type: String,
-      default: 'Light',
+      default: 'Light'
     },
     toolbars: { // 工具栏
       type: Object,
       default() {
         return {}
-      },
+      }
     },
     exportFileName: { // 默认导出文件名称
       type: String,
-      default: '未命名文件',
-    },
+      default: '未命名文件'
+    }
     // markedOptions: {
     //   type: Object,
     //   default() {
@@ -66,20 +66,20 @@ export default {
         3: '###  ',
         4: '####  ',
         5: '#####  ',
-        6: '######  ',
-      },
+        6: '######  '
+      }
     }
   },
   computed: {
     tools() {
       const {
-        toolbars = {},
+        toolbars = {}
       } = this
       return {
         ...defaultTools,
-        ...toolbars,
+        ...toolbars
       }
-    },
+    }
   },
   watch: {
     value() {
@@ -105,7 +105,7 @@ export default {
       setTimeout(() => {
         this.textareaValue = val
       }, 30)
-    },
+    }
   },
   methods: {
     init() {
@@ -222,7 +222,7 @@ export default {
       }
       const reader = new FileReader()
       reader.readAsText(file, {
-        encoding: 'utf-8',
+        encoding: 'utf-8'
       })
       reader.onload = () => {
         this.textareaValue = reader.result
@@ -252,7 +252,7 @@ export default {
         const editorScrollHeight = editor.scrollHeight
         const editorScrollTop = editor.scrollTop
         const previewScrollHeight = preview.$el.scrollHeight
-        preview.$el.scrollTop = parseInt(editorScrollTop / editorScrollHeight * previewScrollHeight, 0)
+        preview.$el.scrollTop = parseInt((editorScrollTop / editorScrollHeight) * previewScrollHeight, 0)
       }
     },
     previewScroll() {
@@ -265,7 +265,7 @@ export default {
         const editorScrollHeight = editor.scrollHeight
         const previewScrollHeight = preview.$el.scrollHeight
         const previewScrollTop = preview.$el.scrollTop
-        editor.scrollTop = parseInt(previewScrollTop / previewScrollHeight * editorScrollHeight, 0)
+        editor.scrollTop = parseInt((previewScrollTop / previewScrollHeight) * editorScrollHeight, 0)
       }
     },
     mousescrollSide(side) { // 设置究竟是哪个半边在主动滑动
@@ -276,12 +276,12 @@ export default {
         this.scrollHeight = this.$refs.textarea.scrollHeight
         this.indexLenth = parseInt(this.scrollHeight / 22, 0)
       }, 600)
-    },
+    }
   },
   created() {
     this.init()
   },
   destroyed() { // 销毁时清除定时器
     clearInterval(this.timerId)
-  },
+  }
 }

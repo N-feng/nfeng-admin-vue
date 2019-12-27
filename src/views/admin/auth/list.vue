@@ -33,13 +33,13 @@
 
 <script>
 import {
-  getAuthList, getAuthDetail, deleteAuth, updateUser,
-} from '@/api/auth'
+  getAuthList, getAuthDetail, deleteAuth, updateUser
+} from '../../../api/auth'
 import createAuth from './create.vue'
 
 export default {
   components: {
-    createAuth,
+    createAuth
   },
   data() {
     return {
@@ -49,28 +49,28 @@ export default {
         showQuickJumper: true,
         showSizeChanger: true,
         total: 500,
-        showTotal: total => `Total ${total} items`,
+        showTotal: (total) => `Total ${total} items`
       },
       tableList: [],
       tableColumns: [
         {
           title: 'username',
-          dataIndex: 'username',
+          dataIndex: 'username'
         },
         {
           title: 'roleName',
-          dataIndex: 'roleName',
+          dataIndex: 'roleName'
         },
         {
           title: 'action',
           dataIndex: 'action',
           // width: 150,
-          scopedSlots: { customRender: 'action' },
-        },
+          scopedSlots: { customRender: 'action' }
+        }
       ],
       dialogForm: {},
       visible: false,
-      title: '',
+      title: ''
     }
   },
   methods: {
@@ -118,11 +118,11 @@ export default {
         this.$message.success(msg)
         this.getList()
       })
-    },
+    }
   },
   created() {
     this.getList()
-  },
+  }
 }
 </script>
 

@@ -1,5 +1,5 @@
 export const global = {
-  getRoleNameList: '/global/roleNameList',
+  getRoleNameList: '/global/roleNameList'
 }
 
 export const auth = {
@@ -7,7 +7,7 @@ export const auth = {
   authUpdate: '/auth/update', // 修改用户
   authDetail: '/auth/detail', // 用户详情
   authList: '/auth/list', // 用户列表
-  getMenus: '/global/menus',
+  getMenus: '/global/menus'
 }
 
 export const role = {
@@ -15,7 +15,7 @@ export const role = {
   roleDelete: '/role/delete',
   roleUpdate: '/role/update',
   roleDetail: '/role/detail',
-  roleList: '/role/list',
+  roleList: '/role/list'
 }
 
 export const task = {
@@ -23,7 +23,7 @@ export const task = {
   taskDelete: '/task/delete',
   taskUpdate: '/task/update',
   taskDetail: '/task/detail',
-  taskList: '/task/list',
+  taskList: '/task/list'
 }
 
 export const img = {
@@ -31,7 +31,7 @@ export const img = {
   imgCosAdd: 'img/cosAdd',
   imgDelete: '/img/delete',
   imgList: '/img/list',
-  imgFind: '/img/find',
+  imgFind: '/img/find'
 }
 
 export const note = {
@@ -39,7 +39,7 @@ export const note = {
   noteDelete: '/note/delete',
   noteUpdate: '/note/update',
   noteDetail: '/note/detail',
-  noteList: '/note/list',
+  noteList: '/note/list'
 }
 
 export const project = {
@@ -47,7 +47,7 @@ export const project = {
   projectDelete: '/project/delete',
   projectUpdate: '/project/update',
   projectDetail: '/project/detail',
-  projectList: '/project/list',
+  projectList: '/project/list'
 }
 
 export default {
@@ -57,5 +57,5 @@ export default {
   ...img,
   ...task,
   ...note,
-  ...project,
+  ...project
 }

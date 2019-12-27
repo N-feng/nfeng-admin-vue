@@ -11,12 +11,12 @@ const mainRouter = [
     path: '/',
     redirect: '/web',
     meta: {
-      title: '前台跳转',
-    },
+      title: '前台跳转'
+    }
   },
   Web,
   Admin,
-  ...System,
+  ...System
 ]
 
 const routers = [...mainRouter]
@@ -24,7 +24,7 @@ const routers = [...mainRouter]
 const router = new Router({
   mode: 'history',
   // base: process.env.BASE_URL,
-  routes: routers,
+  routes: routers
 })
 
 router.beforeEach((to, from, next) => {

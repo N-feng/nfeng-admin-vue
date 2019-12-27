@@ -59,7 +59,8 @@
 </template>
 
 <script>
-// import router from '@/router'
+import router from '../../router'
+// import utils from '../../../../nfeng-utils'
 
 export default {
   name: 'adminLayout',
@@ -68,13 +69,13 @@ export default {
       return this.$store.getters.username
     },
     menus() {
-      // const { menus } = this.$store.getters
-      // const adminRouter = router.options.routes
-      //   .filter(item => item.name === 'admin')[0].children
-      // const openTreeMenuData = this.$tree.openTreeMenu(adminRouter)
-      // const filterOpenTreeMenuData = openTreeMenuData.filter(item => menus.includes(item.id))
-      // return this.$tree.translateDataToTree(filterOpenTreeMenuData)
-      return []
+      const { menus } = this.$store.getters
+      const adminRouter = router.options.routes
+        .filter((item) => item.name === 'admin')[0].children
+      const openTreeMenuData = this.$tree.openTreeMenu(adminRouter)
+      const filterOpenTreeMenuData = openTreeMenuData.filter((item) => menus.includes(item.id))
+      return this.$tree.translateDataToTree(filterOpenTreeMenuData)
+      // return []
     },
     current() {
       // return [this.$route.name]
@@ -86,7 +87,7 @@ export default {
     isHome() {
       // console.log(this.$route.name)
       return this.$route.name === 'Landing'
-    },
+    }
   },
   methods: {
     // 菜单选择
@@ -107,13 +108,14 @@ export default {
         //   },
         // })
       })
-    },
+    }
   },
   created() {
+    // console.log(utils)
     if (this.username) {
       this.$store.dispatch('getMenus')
     }
-  },
+  }
 }
 </script>
 

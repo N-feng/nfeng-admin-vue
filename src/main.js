@@ -3,29 +3,31 @@ import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
 import './permission' // 权限控制
 // import utils from 'nfeng-utils'
-import utils from './nfeng-utils'
+import utils from '../../nfeng-utils'
+// import '../../nfeng-scss/index.scss'
+// import './assets/scss/index.scss'
+// import { filter } from '../../nfeng-utils'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 import components from './components'
-import Api, { get, post } from './nfeng-utils/request'
-import { timeTransfer } from './nfeng-utils/filter'
+// import Api, { get, post } from './nfeng-utils/request'
 // import 'nfeng-scss/index.scss'
 
 Vue.use(Antd)
 Vue.use(components)
 Vue.use(utils)
-Vue.prototype.$get = get
-Vue.prototype.$post = post
-Vue.prototype.$api = Api
+// Vue.prototype.$get = get
+// Vue.prototype.$post = post
+// Vue.prototype.$api = Api
 
 Vue.config.productionTip = false
 // filter注册
-Vue.filter('timeTransfer', timeTransfer)
+// Vue.filter('timeTransfer', filter.timeTransfer)
 
 new Vue({
   el: '#app',
   router,
   store,
-  render: h => h(App),
+  render: (h) => h(App)
 })

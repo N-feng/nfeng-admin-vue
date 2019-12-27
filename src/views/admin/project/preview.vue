@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { getProject } from '@/api/project'
+import { getProject } from '../../../api/project'
 
 export default {
   data() {
@@ -20,8 +20,8 @@ export default {
       createForm: {
         projectId: '',
         title: '',
-        content: '',
-      },
+        content: ''
+      }
     }
   },
   methods: {
@@ -29,14 +29,14 @@ export default {
       getProject(this.createForm.projectId).h_then(({ data }) => {
         Object.assign(this.createForm, data)
       })
-    },
+    }
   },
   created() {
     this.createForm.projectId = this.$route.query.projectId
     if (this.createForm.projectId) {
       this.getDetail()
     }
-  },
+  }
 }
 </script>
 

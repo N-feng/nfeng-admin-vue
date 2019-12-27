@@ -1,10 +1,10 @@
-const Layout = () => import('@/components/Layout/web.vue')
+const Layout = () => import('../../components/Layout/web.vue')
 
 const web = {
   path: '/web',
   name: 'web',
   meta: {
-    title: 'The front desk',
+    title: 'The front desk'
   },
   component: Layout,
   redirect: '/web/index',
@@ -13,35 +13,35 @@ const web = {
       path: 'index',
       name: 'webIndex',
       meta: {
-        title: 'Landing',
+        title: 'Landing'
       },
-      component: () => import('@/views/web/index.vue'),
+      component: () => import('../../views/web/index.vue')
     },
     {
       path: 'note',
       name: 'webNote',
       meta: {
-        title: 'Note',
+        title: 'Note'
       },
-      component: () => import('@/views/web/note/list.vue'),
+      component: () => import('../../views/web/note/list.vue')
     },
     {
       path: 'notePreview',
       name: 'webNotePreview',
       meta: {
-        rename: 'webNote',
+        rename: 'webNote'
       },
-      component: () => import('@/views/web/note/preview.vue'),
+      component: () => import('../../views/web/note/preview.vue')
     },
     {
       path: 'project',
       name: 'webProject',
       meta: {
-        title: 'Project',
+        title: 'Project'
       },
-      component: () => import('@/views/web/project/list.vue'),
-    },
-  ],
+      component: () => import('../../views/web/project/list.vue')
+    }
+  ]
 }
 
 export default web

@@ -58,10 +58,10 @@
 </template>
 
 <script>
-import { getRoleList } from '@/api/role'
+import { getRoleList } from '../../api/role'
 
 function hasErrors(fieldsError) {
-  return Object.keys(fieldsError).some(field => fieldsError[field])
+  return Object.keys(fieldsError).some((field) => fieldsError[field])
 }
 
 export default {
@@ -78,20 +78,20 @@ export default {
       form: this.$form.createForm(this),
       rules: {
         username: [
-          { required: true, message: 'Please input username' },
+          { required: true, message: 'Please input username' }
         ],
         password: [
-          { required: true, message: 'Please input password' },
+          { required: true, message: 'Please input password' }
         ],
         checkPassword: [
           { required: true, message: 'Please confirm your password!' },
-          { validator: validatePass },
+          { validator: validatePass }
         ],
         roleName: [
-          { required: true, message: 'Please select role' },
-        ],
+          { required: true, message: 'Please select role' }
+        ]
       },
-      roleList: [],
+      roleList: []
     }
   },
   mounted() {
@@ -136,11 +136,11 @@ export default {
       getRoleList().h_then(({ data }) => {
         this.roleList = data
       })
-    },
+    }
   },
   created() {
     // this.getRoleList()
-  },
+  }
 }
 </script>
 

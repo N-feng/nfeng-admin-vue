@@ -48,8 +48,8 @@
 </template>
 
 <script>
-import router from '@/router'
-import config from '@/api/config'
+import router from '../../../router'
+import config from '../../../api/config'
 
 const treeData = [
   {
@@ -62,34 +62,34 @@ const treeData = [
         disabled: true,
         children: [
           { title: 'leaf', key: '0-0-0-0', disableCheckbox: true },
-          { title: 'leaf', key: '0-0-0-1' },
-        ],
+          { title: 'leaf', key: '0-0-0-1' }
+        ]
       },
       {
         title: 'parent 1-1',
         key: '0-0-1',
-        children: [{ key: '0-0-1-0', slots: { title: 'title0010' } }],
-      },
-    ],
-  },
+        children: [{ key: '0-0-1-0', slots: { title: 'title0010' } }]
+      }
+    ]
+  }
 ]
 
 export default {
   props: {
     visible: {
-      type: Boolean,
+      type: Boolean
     },
     title: {
-      type: String,
+      type: String
     },
     dialogForm: {
-      type: Object,
-    },
+      type: Object
+    }
   },
   computed: {
     adminRouter() {
       const adminRouter = router.options.routes
-        .filter(item => item.name === 'admin')[0].children
+        .filter((item) => item.name === 'admin')[0].children
       function getKey(arr) {
         return arr.map((item) => {
           const { title } = item.meta
@@ -108,11 +108,11 @@ export default {
       function flatten(data) {
         return data.reduce((arr, {
           meta,
-          children = [],
+          children = []
         }) => arr.concat([meta.title], flatten(children)), [])
       }
       const adminRouter = router.options.routes
-        .filter(item => item.name === 'admin')[0].children
+        .filter((item) => item.name === 'admin')[0].children
       return flatten(adminRouter)
     },
     permissionsList() {
@@ -126,22 +126,22 @@ export default {
       return {
         roleName: {
           rules: [{ required: true, message: 'Please input roleName' }],
-          initialValue: this.dialogForm.roleName,
+          initialValue: this.dialogForm.roleName
         },
         roleType: {
           rules: [{ required: true, message: 'Please select roleType' }],
-          initialValue: this.dialogForm.roleType,
+          initialValue: this.dialogForm.roleType
         },
         roleMenu: {
           rules: [{ required: true, message: 'Please select roleMenu' }],
-          initialValue: this.dialogForm.roleMenu,
+          initialValue: this.dialogForm.roleMenu
         },
         permissions: {
           rules: [{ required: true, message: 'Please select permissions' }],
-          initialValue: this.dialogForm.permissions,
-        },
+          initialValue: this.dialogForm.permissions
+        }
       }
-    },
+    }
     // checkedKeys: {
     //   get() {
     //     console.log(this.dialogForm.roleMenu)
@@ -157,14 +157,14 @@ export default {
     return {
       formItemLayout: {
         labelCol: { span: 4 },
-        wrapperCol: { span: 14 },
+        wrapperCol: { span: 14 }
       },
       typeList: [
         { name: '会员', value: 'member' },
-        { name: '管理', value: 'admin' },
+        { name: '管理', value: 'admin' }
       ],
       treeData,
-      checkedKeys: [],
+      checkedKeys: []
     }
   },
   beforeCreate() {
@@ -174,8 +174,8 @@ export default {
     onCheck(checkedKeys) {
       console.log('onCheck', checkedKeys)
       this.checkedKeys = checkedKeys.checked
-    },
-  },
+    }
+  }
 }
 </script>
 

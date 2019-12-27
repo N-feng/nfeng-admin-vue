@@ -40,7 +40,7 @@
 
 <script>
 function hasErrors(fieldsError) {
-  return Object.keys(fieldsError).some(field => fieldsError[field])
+  return Object.keys(fieldsError).some((field) => fieldsError[field])
 }
 export default {
   data() {
@@ -49,12 +49,12 @@ export default {
       form: this.$form.createForm(this),
       rules: {
         username: [
-          { required: true, message: 'Please input username' },
+          { required: true, message: 'Please input username' }
         ],
         password: [
-          { required: true, message: 'Please input password' },
-        ],
-      },
+          { required: true, message: 'Please input password' }
+        ]
+      }
     }
   },
   methods: {
@@ -82,7 +82,7 @@ export default {
             if (query) {
               this.$router.push({
                 name,
-                query: JSON.parse(query),
+                query: JSON.parse(query)
               })
             } else {
               this.$router.push('/admin')
@@ -91,8 +91,8 @@ export default {
           })
         }
       })
-    },
-  },
+    }
+  }
 }
 </script>
 

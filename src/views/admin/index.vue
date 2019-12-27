@@ -13,12 +13,8 @@ export default {
   computed: {
     username() {
       return this.$store.getters.username
-    },
-  },
-  created() {
-    console.log(this.$conver.cvForm({ name: 'n feng Ｍ', phone: 187 }))
-    console.log(this.$conver.cvStr('n feng Ｍ'))
-  },
+    }
+  }
 }
 </script>
 

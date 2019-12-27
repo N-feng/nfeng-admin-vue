@@ -37,19 +37,19 @@
 
 <script>
 import moment from 'moment'
-import router from '@/router'
+import router from '../../../router'
 
 export default {
   props: {
     visible: {
-      type: Boolean,
+      type: Boolean
     },
     title: {
-      type: String,
+      type: String
     },
     dialogForm: {
-      type: Object,
-    },
+      type: Object
+    }
   },
   computed: {
     menuList() {
@@ -71,42 +71,42 @@ export default {
       return {
         title: {
           rules: [{ required: true, message: 'Please input title' }],
-          initialValue: this.dialogForm.title,
+          initialValue: this.dialogForm.title
         },
         description: {
           rules: [{ required: true, message: 'Please input description' }],
-          initialValue: this.dialogForm.description,
+          initialValue: this.dialogForm.description
         },
         date: {
           rules: [{ type: 'object', required: true, message: 'Please select date' }],
-          initialValue: this.dialogForm.date ? this.moment(this.dialogForm.date, this.timeFormat) : null,
+          initialValue: this.dialogForm.date ? this.moment(this.dialogForm.date, this.timeFormat) : null
         },
         priority: {
           rules: [{ required: true, message: 'Please select priority' }],
-          initialValue: this.dialogForm.priority,
-        },
+          initialValue: this.dialogForm.priority
+        }
       }
-    },
+    }
   },
   data() {
     return {
       formItemLayout: {
         labelCol: { span: 7 },
-        wrapperCol: { span: 13 },
+        wrapperCol: { span: 13 }
       },
       priorityList: [
         { name: '低', value: 'Low' },
         { name: '中', value: 'Normal' },
-        { name: '高', value: 'High' },
+        { name: '高', value: 'High' }
       ],
-      timeFormat: 'YYYY-MM-DD HH:mm:ss',
+      timeFormat: 'YYYY-MM-DD HH:mm:ss'
     }
   },
   beforeCreate() {
     this.form = this.$form.createForm(this)
   },
   methods: {
-    moment,
-  },
+    moment
+  }
 }
 </script>

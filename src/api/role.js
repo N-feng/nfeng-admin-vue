@@ -1,12 +1,14 @@
-import { post } from '@/nfeng-utils/request'
+import utils from '../../../nfeng-utils'
 import { role } from './config'
+
+const { post } = utils.request
 
 export function addRole(roleData) {
   const {
-    roleName, roleType, roleMenu, permissions,
+    roleName, roleType, roleMenu, permissions
   } = roleData
   return post(role.roleAdd, {
-    roleName, roleType, roleMenu, permissions,
+    roleName, roleType, roleMenu, permissions
   })
 }
 
@@ -17,10 +19,10 @@ export function deleteRole(roleData) {
 
 export function updateRole(roleData) {
   const {
-    roleName, roleType, roleMenu, permissions,
+    roleName, roleType, roleMenu, permissions
   } = roleData
   return post(role.roleUpdate, {
-    roleName, roleType, roleMenu, permissions,
+    roleName, roleType, roleMenu, permissions
   })
 }
 

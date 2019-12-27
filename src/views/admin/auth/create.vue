@@ -29,14 +29,14 @@
 export default {
   props: {
     visible: {
-      type: Boolean,
+      type: Boolean
     },
     title: {
-      type: String,
+      type: String
     },
     dialogForm: {
-      type: Object,
-    },
+      type: Object
+    }
   },
   computed: {
     globalList() {
@@ -45,20 +45,20 @@ export default {
     formConfig() {
       return {
         username: {
-          initialValue: this.dialogForm.username,
+          initialValue: this.dialogForm.username
         },
         roleName: {
-          initialValue: this.dialogForm.roleName,
-        },
+          initialValue: this.dialogForm.roleName
+        }
       }
-    },
+    }
   },
   data() {
     return {
       formItemLayout: {
         labelCol: { span: 4 },
-        wrapperCol: { span: 14 },
-      },
+        wrapperCol: { span: 14 }
+      }
     }
   },
   created() {
@@ -66,7 +66,7 @@ export default {
   },
   beforeCreate() {
     this.form = this.$form.createForm(this)
-  },
+  }
 }
 </script>
 

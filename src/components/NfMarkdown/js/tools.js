@@ -26,5 +26,5 @@ export default {
   theme: true,
   exportmd: false,
   importmd: true,
-  scrolling: false,
+  scrolling: false
 }

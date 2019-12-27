@@ -27,29 +27,29 @@ marked.setOptions({
   smartLists: true,
   highlight(code) {
     return hljs.highlightAuto(code).value
-  },
+  }
 })
 
 export default {
   name: 'nfMdPreview',
   props: {
     data: {
-      type: String,
+      type: String
     },
     markedOptions: {
       type: Object,
       default() {
         return {}
-      },
+      }
     },
     themeName: {
       type: String,
-      default: 'Light',
-    },
+      default: 'Light'
+    }
   },
   data() {
     return {
-      html: '',
+      html: ''
     }
   },
   // computed: {
@@ -63,7 +63,7 @@ export default {
   watch: {
     data() {
       this.init()
-    },
+    }
   },
   methods: {
     init() {
@@ -80,11 +80,11 @@ export default {
           }
         })
       }, 600)
-    },
+    }
   },
   created() {
     this.init()
-  },
+  }
 }
 </script>
 

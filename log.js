@@ -21,7 +21,7 @@ const styles = {
   greenBG: ['\x1B[42m', '\x1B[49m'],
   magentaBG: ['\x1B[45m', '\x1B[49m'],
   redBG: ['\x1B[41m', '\x1B[49m'],
-  yellowBG: ['\x1B[43m', '\x1B[49m'],
+  yellowBG: ['\x1B[43m', '\x1B[49m']
 }
 
 function log(key, obj) {

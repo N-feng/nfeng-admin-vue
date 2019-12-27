@@ -17,33 +17,33 @@ export default {
   data() {
     return {
       indeterminate: false,
-      checkAll: false,
+      checkAll: false
     }
   },
   watch: {
     formConfig(val) {
       this.onChange(val.initialValue)
-    },
+    }
   },
   props: {
     form: {
-      type: Object,
+      type: Object
     },
     formItemLayout: {
-      type: Object,
+      type: Object
     },
     label: {
-      type: String,
+      type: String
     },
     field: {
-      type: String,
+      type: String
     },
     plainOptions: {
-      type: Array,
+      type: Array
     },
     formConfig: {
-      type: Object,
-    },
+      type: Object
+    }
   },
   methods: {
     onChange(checkedList) {
@@ -55,15 +55,15 @@ export default {
       Object.assign(this, {
         // checkedList: e.target.checked ? this.plainOptions : [],
         indeterminate: false,
-        checkAll: e.target.checked,
+        checkAll: e.target.checked
       })
       const obj = {}
       obj[this.field] = e.target.checked ? this.plainOptions : []
       this.form.setFieldsValue(obj)
-    },
+    }
   },
   created() {
     this.onChange(this.formConfig.initialValue)
-  },
+  }
 }
 </script>

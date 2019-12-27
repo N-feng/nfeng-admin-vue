@@ -31,7 +31,7 @@ const languagesMap = {
   rust,
   stylus,
   typescript,
-  xml,
+  xml
 }
 Object.keys(languagesMap).forEach((language) => {
   hljs.registerLanguage(language, languagesMap[language])

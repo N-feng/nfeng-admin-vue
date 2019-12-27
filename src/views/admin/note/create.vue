@@ -1,15 +1,11 @@
 <template>
   <div>
 
-    <div class="nf-main">
-      <div class="nf-title">new note</div>
-
+    <nf-form-box title="new note">
       <a-form :form="form">
-        <a-form-item label="title"
-                     v-bind="formItemLayout">
-          <a-input v-decorator="['title', formConfig.title]"
-                   placeholder="Please input title"></a-input>
-        </a-form-item>
+
+        <nf-form-item :fieldOptions="fieldOptions"></nf-form-item>
+
         <a-form-item label="content"
                      :label-col="formItemLayout.labelCol"
                      :wrapper-col="{ span: 19 }"
@@ -19,39 +15,37 @@
           <nf-markdown v-model="createForm.content"
                        @change="changeHandle"></nf-markdown>
         </a-form-item>
-        <a-form-item :wrapper-col="{ span: 12, offset: formItemLayout.labelCol.span }">
 
-        </a-form-item>
+        <div class="nf-bottom-fixed">
+          <a-button type="primary"
+                    @click="save">save</a-button>
+          <a-button class="ml10"
+                    @click="$router.push({name: 'NoteManager'})">cancel</a-button>
+        </div>
+
       </a-form>
-    </div>
-
-    <div class="nf-bottom-fixed">
-      <a-button type="primary"
-                @click="save">save</a-button>
-      <a-button class="ml10"
-                @click="$router.push({name: 'NoteManager'})">cancel</a-button>
-    </div>
+    </nf-form-box>
 
   </div>
 </template>
 
 <script>
-import { addNote, updateNote, getNote } from '@/api/note'
+import { addNote, updateNote, getNote } from '../../../api/note'
 
 export default {
   data() {
     return {
       formItemLayout: {
         labelCol: { span: 4 },
-        wrapperCol: { span: 14 },
+        wrapperCol: { span: 14 }
       },
       createForm: {
         noteId: '',
         title: '',
-        content: '',
+        content: ''
       },
       validateStatus: '',
-      help: '',
+      help: ''
     }
   },
   computed: {
@@ -59,14 +53,26 @@ export default {
       return {
         title: {
           rules: [{ required: true, message: 'Please input title' }],
-          initialValue: this.createForm.title,
+          initialValue: this.createForm.title
         },
         content: {
           rules: [{ required: true, message: 'Pleate input content' }],
-          initialValue: this.createForm.content,
-        },
+          initialValue: this.createForm.content
+        }
       }
     },
+    fieldOptions() {
+      return [
+        {
+          label: 'title',
+          type: 'input',
+          decorator: ['title', {
+            rules: [{ required: true, message: 'Please input title' }],
+            initialValue: this.createForm.title
+          }]
+        }
+      ]
+    }
   },
   methods: {
     save() {
@@ -77,7 +83,7 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err && !this.help) {
           console.log('Received values of form: ', values)
-          const params = Object.assign({}, this.createForm, values)
+          const params = { ...this.createForm, ...values }
           const fn = this.createForm.noteId ? updateNote : addNote
           fn(params).h_then(({ code, msg }) => {
             if (code === 200) {
@@ -97,7 +103,7 @@ export default {
       getNote(this.createForm.noteId).h_then(({ data }) => {
         Object.assign(this.createForm, data)
       })
-    },
+    }
   },
   beforeCreate() {
     this.form = this.$form.createForm(this)
@@ -107,7 +113,7 @@ export default {
     if (this.createForm.noteId) {
       this.getDetail()
     }
-  },
+  }
 }
 </script>
 

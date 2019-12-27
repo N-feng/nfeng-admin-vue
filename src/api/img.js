@@ -1,5 +1,7 @@
-import service, { get } from '@/nfeng-utils/request'
+import utils from '../../../nfeng-utils'
 import { img } from './config'
+
+const { get } = utils.request
 
 export function addImg(e) {
   const formData = new FormData()
@@ -7,11 +9,11 @@ export function addImg(e) {
   formData.append('file', file)
   formData.append('fileName', file.name)
   file.status = 'uploading'
-  return service.request({
+  return utils.request.request({
     url: img.imgAdd,
     method: 'post',
     headers: { 'Content-Type': 'multipart/form-data' },
-    data: formData,
+    data: formData
   })
 }
 
