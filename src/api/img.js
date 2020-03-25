@@ -1,7 +1,7 @@
-import utils from '../../../nfeng-utils'
+// import utils from '../../../nfeng-utils'
 import { img } from './config'
 
-const { get } = utils.request
+// const { get } = utils.request
 
 export function addImg(e) {
   const formData = new FormData()

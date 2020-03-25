@@ -1,26 +1,20 @@
 <template>
-  <div class="card-box center">
+  <div class="card-box">
     <div class="header">
-      <img src="https://cdn.nfeng.net.cn/upload/me.jpeg"
-           alt="">
+      <img src="https://cdn.nfeng.net.cn/upload/me.jpeg" alt />
     </div>
     <div class="content">
       <h2>Nfeng</h2>
       <h4>Web Devlopoer - Web Designer</h4>
       <span>A web developer is a programmer who specializes In, or is specifically engaged in, the development of World Wide Web applications, or applications that are run over HTTP from a web server to a web browser.</span>
       <div class="social-box">
-        <a class="btn"
-           href="https://www.facebook.com/imnfeng"
-           target="_blank">
+        <a class="btn" href="https://www.facebook.com/imnfeng" target="_blank">
           <i class="fab fa-facebook-f"></i>
         </a>
-        <a class="btn"
-           href="https://twitter.com/imnfeng"
-           target="_blank">
+        <a class="btn" href="https://twitter.com/imnfeng" target="_blank">
           <i class="fab fa-twitter"></i>
         </a>
-        <a class="btn"
-           href="mailto:nf308561157@gmail.com">
+        <a class="btn" href="mailto:nf308561157@gmail.com">
           <i class="fab fa-google"></i>
         </a>
       </div>
@@ -41,8 +35,8 @@ export default {
 .card-box {
   background: white;
   color: #314652;
-  // margin: 60px auto;
-  // box-shadow: 1px 1px 12px #909EAA;
+  margin: 60px auto;
+  box-shadow: 1px 1px 12px #909EAA;
   overflow: hidden;
   width: 400px;
   max-width: 85vw;

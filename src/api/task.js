@@ -1,7 +1,7 @@
-import utils from '../../../nfeng-utils'
+// import utils from '../../../nfeng-utils'
 import { task } from './config'
 
-const { post } = utils.request
+// const { post } = utils.request
 
 export function addTask(params) {
   return post(task.taskAdd, params)

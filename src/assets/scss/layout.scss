@@ -1,52 +1,11 @@
-// 整个layout 调整
-#components-layout-demo-top {
-  height: 100%;
-  overflow: auto;
+// logo
+.nf-logo {
+  margin-right: 28px;
+  float: left;
 }
 
-// layout 头部菜单调整
-.ant-menu-horizontal {
-  border-bottom: none;
-  overflow: auto;
-  text-align: center;
-  flex: 1;
-}
-
-.ant-menu-horizontal > .ant-menu-submenu,
-.ant-menu-horizontal > .ant-menu-item {
-  height: 64px;
-  line-height: 60px;
-  min-width: 72px;
-  border-top: 2px solid transparent;
-}
-
-.ant-menu-horizontal > .ant-menu-submenu-selected,
-.ant-menu-horizontal > .ant-menu-item-selected {
-  border-top: 2px solid #1890ff;
-  border-bottom: 2px solid transparent;
-}
-
-.ant-menu-horizontal > .ant-menu-submenu:hover,
-.ant-menu-horizontal > .ant-menu-item:hover {
-  border-top: 2px solid #1890ff;
-  // border-bottom: 2px solid transparent;
-}
-
-.ant-layout-content {
-  flex: 1;
-  padding: 0 5% 5%;
-  overflow: auto;
-}
-
-// 头部调整
-.media-show {
-  display: none;
-}
-@media (max-width: 767px) {
-  .media-hide {
-    display: none;
-  }
-  .media-show {
-    display: block;
-  }
+// bg
+.nf-bg {
+  background: url(https://cdn.nfeng.net.cn/upload/sea.jpeg) no-repeat 50% 50%;
+  background-size: cover;
 }

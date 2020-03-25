@@ -1,8 +1,8 @@
 // import { post } from '../../../nfeng-utils/request'
 import { auth } from './config'
-import utils from '../../../nfeng-utils'
+// import utils from '../../../nfeng-utils'
 
-const { post } = utils.request
+// const { post } = utils.request
 
 export function signup(username, password, roleName) {
   const url = '/auth/signup' // 注册

@@ -1,48 +1,48 @@
 <template>
-  <a-layout id="components-layout-demo-top"
-            class="nf-bg">
+  <a-layout class="nf-bg">
     <a-layout-header>
-      <div class="header-content space-box">
-        <a class="nf-logo media-hide">nfeng.net.cn</a>
-        <a class="nf-logo media-show">nf</a>
-        <!-- <router-link to="/"
-                     class="nf-logo fs16">nfeng.net.cn</router-link> -->
-        <a-menu :selectedKeys="current"
-                mode="horizontal"
-                theme="dark"
-                @click="handleClick">
-          <template v-for="item in menus">
-            <a-menu-item :key="item.name">{{item.meta.title}}</a-menu-item>
-          </template>
-          <!-- <a-menu-item>
-          <router-link to="/admin">学习笔记</router-link>
-        </a-menu-item>
-        <a-menu-item>
-          <router-link to="/admin">后台管理</router-link>
-        </a-menu-item> -->
-        </a-menu>
-        <a-dropdown>
-          <a><span class="media-hide">Welcome, </span>{{ username || 'stranger' }}
-            <a-icon type="down" />
-          </a>
-          <a-menu slot="overlay">
-            <a-menu-item>
-              <router-link to="/admin">Admin Manager</router-link>
-            </a-menu-item>
-            <a-menu-item v-if="username">
-              <a href="javascript:;"
-                 @click="logout">Logout Now</a>
-            </a-menu-item>
-            <a-menu-item v-else>
-              <router-link to="/login">Login Now</router-link>
-            </a-menu-item>
-          </a-menu>
-        </a-dropdown>
+      <div class="nf-logo">
+        <a>NFENG.NET.CN</a>
       </div>
+
+      <a-dropdown class="fr mt15 ml20">
+        <a-menu slot="overlay">
+          <a-menu-item>
+            <router-link to="/admin">Admin Manager</router-link>
+          </a-menu-item>
+          <a-menu-item v-if="username">
+            <a href="javascript:;" @click="logout">Logout Now</a>
+          </a-menu-item>
+          <a-menu-item v-else>
+            <router-link to="/login">Login Now</router-link>
+          </a-menu-item>
+        </a-menu>
+        <a-button>
+          <span class="media-hide">Welcome,</span>
+          {{ username || 'stranger' }}
+          <a-icon type="down" />
+        </a-button>
+      </a-dropdown>
+
+      <a-menu
+        class="tc"
+        theme="dark"
+        mode="horizontal"
+        :style="{ lineHeight: '64px' }"
+        :selectedKeys="current"
+        @click="handleClick"
+      >
+        <template v-for="item in menus">
+          <a-menu-item :key="item.name">{{item.meta.title}}</a-menu-item>
+        </template>
+      </a-menu>
     </a-layout-header>
     <a-layout-content>
       <router-view />
     </a-layout-content>
+    <a-layout-footer class="fixed-footer">
+      <a href="http://beian.miit.gov.cn">粤ICP备19027391号-1</a>
+    </a-layout-footer>
   </a-layout>
 </template>
 
@@ -83,5 +83,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/layout.scss";
+.fixed-footer {
+  text-align: center;
+  z-index: 2;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
 </style>

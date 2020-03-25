@@ -1,21 +1,22 @@
 import { login, signup, getMenus } from '../../api/auth'
-import {
-  getToken,
-  setToken,
-  removeToken,
-  getName,
-  setName,
-  removeName,
-  setRoleName,
-  removeRoleName,
-  getRoleName
-} from '../../../../nfeng-utils/auth'
+// import {
+//   getToken,
+//   setToken,
+//   removeToken,
+//   getName,
+//   setName,
+//   removeName,
+//   setRoleName,
+//   removeRoleName,
+//   getRoleName
+// } from '../../../../nfeng-utils/auth'
+import utils from '../../utils'
 
 const auth = {
   state: {
     menus: [],
-    token: getToken(),
-    username: getName()
+    token: utils.auth.getToken(),
+    username: utils.auth.getName()
   },
   mutations: {
     SET_TOKEN: (state, payload) => {
@@ -35,9 +36,9 @@ const auth = {
     // 注册
     SignUp({ commit }, userInfo) {
       return signup(userInfo.username, userInfo.password, 'member').h_then(({ data }) => {
-        setToken(data.token)
-        setName(data.username)
-        setRoleName(data.roleName)
+        utils.setToken(data.token)
+        utils.setName(data.username)
+        utils.setRoleName(data.roleName)
         commit('SET_TOKEN', data.token)
         commit('SET_NAME', data.username)
         commit('SET_ROLENAME', data.roleName)
@@ -46,9 +47,9 @@ const auth = {
     // 登录
     Login({ commit }, userInfo) {
       return login(userInfo.username, userInfo.password).h_then(({ data }) => {
-        setToken(data.token)
-        setName(data.username)
-        setRoleName(data.roleName)
+        utils.setToken(data.token)
+        utils.setName(data.username)
+        utils.setRoleName(data.roleName)
         commit('SET_TOKEN', data.token)
         commit('SET_NAME', data.username)
         commit('SET_ROLENAME', data.roleName)
@@ -78,15 +79,16 @@ const auth = {
         commit('SET_TOKEN', '')
         commit('SET_NAME', '')
         commit('SET_MENUS', [])
-        removeToken()
-        removeName()
-        removeRoleName()
+        utils.removeToken()
+        utils.removeName()
+        utils.removeRoleName()
         resolve()
       })
     },
     // 获取菜单
     getMenus({ commit }) {
-      getMenus(getRoleName()).h_then(({ data }) => {
+      // getMenus(getRoleName()).h_then(({ data }) => {
+      getMenus().h_then(({ data }) => {
         commit('SET_MENUS', data)
       })
     }

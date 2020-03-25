@@ -1,7 +1,7 @@
-import utils from '../../../nfeng-utils'
+// import utils from '../../../nfeng-utils'
 import { note } from './config'
 
-const { post } = utils.request
+// const { post } = utils.request
 
 export function addNote(params) {
   return post(note.noteAdd, params)
