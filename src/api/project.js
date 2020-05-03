@@ -1,7 +1,7 @@
-// import utils from '../../../nfeng-utils'
+import { utils } from 'nfeng-ui-vue'
 import { project } from './config'
 
-// const { post } = utils.request
+const { post } = utils.service
 
 export function addProject(params) {
   return post(project.projectAdd, params)

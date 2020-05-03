@@ -1,21 +1,21 @@
-const Layout = () => import('../../components/Layout/web.vue')
+const Layout = () => import('../../views/default/layout.vue')
 
 const web = {
-  path: '/web',
+  path: '/',
   name: 'web',
   meta: {
     title: 'The front desk'
   },
   component: Layout,
-  redirect: '/web/index',
+  // redirect: '/web/index',
   children: [
     {
-      path: 'index',
+      path: '/index',
       name: 'webIndex',
       meta: {
         title: 'Landing'
       },
-      component: () => import('../../views/web/index.vue')
+      component: () => import('../../views/default/index.vue')
     }
     // {
     //   path: 'note',
@@ -23,7 +23,7 @@ const web = {
     //   meta: {
     //     title: 'Note'
     //   },
-    //   component: () => import('../../views/web/note/list.vue')
+    //   component: () => import('../../views/default/note/list.vue')
     // },
     // {
     //   path: 'notePreview',
@@ -31,7 +31,7 @@ const web = {
     //   meta: {
     //     rename: 'webNote'
     //   },
-    //   component: () => import('../../views/web/note/preview.vue')
+    //   component: () => import('../../views/default/note/preview.vue')
     // },
     // {
     //   path: 'project',
@@ -39,7 +39,7 @@ const web = {
     //   meta: {
     //     title: 'Project'
     //   },
-    //   component: () => import('../../views/web/project/list.vue')
+    //   component: () => import('../../views/default/project/list.vue')
     // }
   ]
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="card-box">
     <div class="header">
-      <img src="https://cdn.nfeng.net.cn/upload/me.jpeg" alt />
+      <img src="../../../public/me.jpeg" alt />
     </div>
     <div class="content">
       <h2>Nfeng</h2>
