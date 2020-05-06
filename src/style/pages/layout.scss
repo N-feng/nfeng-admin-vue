@@ -1,4 +1,4 @@
-.#{$prefix}layout {
+.#{$prefix}default-layout {
   .sidebar{
     position: fixed;
     left: -250px;
@@ -28,7 +28,7 @@
     box-sizing: border-box;
     border-top: 1px solid rgba(255,255,255,.1);
     border-bottom: 1px solid black;
-    translation: .4s;
+    transition: .4s;
   }
 
   ul li:hover a{
@@ -89,7 +89,7 @@
   }
 
   section{
-    background: url('../../../public/boat.jpeg') no-repeat;
+    background: url('../../public/1.jpg') no-repeat;
     background-position: center;
     background-size: cover;
     height: 100vh;

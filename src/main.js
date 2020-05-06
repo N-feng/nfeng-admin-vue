@@ -1,24 +1,29 @@
 import Vue from 'vue'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
-import './permission' // 权限控制
+import './utils/permission' // 权限控制
 import NfengUI from 'nfeng-ui-vue'
-import './assets/style/index.scss'
+import './style/index.scss'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 import components from './components'
-// import 'nfeng-scss/index.scss'
+import { get, post } from './utils/request'
+import bus from './utils/bus'
+
+Vue.prototype.$get = get
+Vue.prototype.$post = post
 
 Vue.use(Antd)
 Vue.use(components)
 Vue.use(NfengUI)
 
+window.myBus = bus
 Vue.config.productionTip = false
 
 new Vue({
   el: '#app',
   router,
   store,
-  render: (h) => h(App)
+  render: (h) => h(App),
 })

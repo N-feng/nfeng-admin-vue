@@ -1,5 +1,5 @@
 <template>
-  <div class="nf-layout">
+  <div class="nf-default-layout">
     <input type="checkbox" id="check">
     <label for="check">
         <i class="fas fa-bars" id="btn"></i>
@@ -89,7 +89,7 @@ export default {
       return this.$route.meta.rename
         ? [this.$route.meta.rename]
         : [this.$route.name]
-    }
+    },
   },
   methods: {
     // 菜单选择
@@ -99,8 +99,8 @@ export default {
     // 登出
     logout() {
       this.$store.dispatch('FedLogOut')
-    }
-  }
+    },
+  },
 }
 </script>
 

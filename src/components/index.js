@@ -11,7 +11,7 @@ const components = [
   nfMarkdown,
   nfMdPreview,
   nfImgPreview,
-  nfMasonry
+  nfMasonry,
 ]
 
 function install(Vue) {
@@ -23,5 +23,5 @@ function install(Vue) {
 }
 
 export default {
-  install
+  install,
 }

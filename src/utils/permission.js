@@ -1,6 +1,6 @@
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css' // Progress 进度条样式
-import router from './router'
+import router from '../router'
 // import store from './store'
 
 NProgress.configure({ showSpinner: false })

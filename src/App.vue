@@ -16,11 +16,20 @@ export default {
       // zh_CN,
     }
   },
+  methods: {
+    // 常规操作
+    usualOp() {
+      const that = this
+      // 子项目无权限需要跳转登陆页面时
+      window.myBus.on('login', () => {
+        that.$router.replace('/login')
+      })
+    },
+  },
   created() {
-    window.addEventListener('scroll', (e) => {
-      console.log(e)
-    })
-  }
+    // 必有常规操作
+    this.usualOp()
+  },
 }
 </script>
 

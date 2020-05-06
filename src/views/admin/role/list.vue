@@ -1,117 +1,124 @@
 <template>
   <div class="nf-main">
-
-    <div class="nf-title">RoleManager</div>
-
+    <!-- <div class="nf-title">RoleManager</div>
     <div>
-      <a-button type="primary"
-                @click="addRole">new role</a-button>
+      <a-button type="primary" @click="addRole">new role</a-button>
     </div>
-
-    <a-table class="mt20 oa"
-             :loading="loading"
-             :columns="tableColumns"
-             :dataSource="tableList"
-             :pagination="pagination"
-             :rowKey="record => record.roleName">
-      <span slot="roleMenu"
-            slot-scope="text, record">
-        <a-tag v-for="tag in record.roleMenu"
-               color="blue"
-               :key="tag">{{tag}}</a-tag>
+    <a-table
+      class="mt20 oa"
+      :loading="loading"
+      :columns="tableColumns"
+      :dataSource="tableList"
+      :pagination="pagination"
+      :rowKey="record => record.roleName"
+    >
+      <span slot="roleMenu" slot-scope="text, record">
+        <a-tag v-for="tag in record.roleMenu" color="blue" :key="tag">{{tag}}</a-tag>
       </span>
-      <span slot="permissions"
-            slot-scope="text, record">
-        <a-tag v-for="tag in record.permissions"
-               color="blue"
-               :key="tag">{{tag}}</a-tag>
+      <span slot="permissions" slot-scope="text, record">
+        <a-tag v-for="tag in record.permissions" color="blue" :key="tag">{{tag}}</a-tag>
       </span>
-      <span slot="action"
-            slot-scope="text, record">
-        <a href="javascript:;"
-           @click="updateRole(record)"
-           class="mr10">Edit</a>
-        <a-popconfirm title="Are you sure delete this item?"
-                      @confirm="handleDelete(record)"
-                      class="mr10"><a href="javascript:;">Delete</a>
+      <span slot="action" slot-scope="text, record">
+        <a href="javascript:;" @click="updateRole(record)" class="mr10">Edit</a>
+        <a-popconfirm
+          title="Are you sure delete this item?"
+          @confirm="handleDelete(record)"
+          class="mr10"
+        >
+          <a href="javascript:;">Delete</a>
         </a-popconfirm>
       </span>
-    </a-table>
-
-    <create-role ref="dialogForm"
-                 :visible="visible"
-                 :dialogForm="dialogForm"
-                 :title="title"
-                 @cancel="visible = false"
-                 @create="handleCreate"></create-role>
-
+    </a-table>-->
+    <nf-dynamic-table queryUrl="/api/role" :tableColumns="tableColumns" :actions="actions">
+      <a-button slot="tabBarExtraContent" type="primary">
+        <router-link to="rechargeApplication">新增</router-link>
+      </a-button>
+    </nf-dynamic-table>
+    <!-- <create-role
+      ref="dialogForm"
+      :visible="visible"
+      :dialogForm="dialogForm"
+      :title="title"
+      @cancel="visible = false"
+      @create="handleCreate"
+    ></create-role>-->
   </div>
 </template>
 
 <script>
 import {
-  getRoleList, addRole, getRoleDetail, updateRole, deleteRole
+  getRoleList, addRole, getRoleDetail, updateRole, deleteRole,
 } from '../../../api/role'
-import createRole from './create.vue'
+// import createRole from './create.vue'
+import NfDynamicTable from '../../../components/dynamicTable'
+import { format } from 'silly-datetime'
 
 export default {
   components: {
-    createRole
+    // createRole,
+    NfDynamicTable,
   },
   data() {
     return {
-      loading: true,
-      pagination: {
-        size: 'small',
-        showQuickJumper: true,
-        showSizeChanger: true,
-        total: 500,
-        showTotal: (total) => `Total ${total} items`
-      },
+      // loading: true,
+      // pagination: {
+      //   size: 'small',
+      //   showQuickJumper: true,
+      //   showSizeChanger: true,
+      //   total: 500,
+      //   showTotal: (total) => `Total ${total} items`,
+      // },
       tableList: [],
+      // 表格配置
       tableColumns: [
         {
-          title: 'roleName',
-          dataIndex: 'roleName'
+          title: '角色名称',
+          dataIndex: 'title',
           // width: 150,
         },
         {
-          title: 'roleType',
-          dataIndex: 'roleType'
+          title: '角色描述',
+          dataIndex: 'description',
           // width: 150,
         },
         {
-          title: 'roleMenu',
-          dataIndex: 'roleMenu',
+          title: '增加时间',
+          dataIndex: 'add_time',
           // width: 250,
-          scopedSlots: { customRender: 'roleMenu' }
+          // scopedSlots: { customRender: 'roleMenu' },
+          customRender: (text) => format(text),
         },
         {
-          title: 'permissions',
-          dataIndex: 'permissions',
-          scopedSlots: { customRender: 'permissions' }
-        },
-        {
-          title: 'action',
+          title: '操作',
           dataIndex: 'action',
           // width: 150,
-          scopedSlots: { customRender: 'action' }
-        }
+          scopedSlots: { customRender: 'action' },
+        },
       ],
+      actions: [{ name: '授权', url: '/admin/role-access/create' }],
       dialogForm: {
         roleName: '',
         roleType: '',
         roleMenu: [],
-        permissions: []
+        permissions: [],
       },
       visible: false,
-      title: ''
+      title: '',
+      // 搜索表单
+      searchForm: {
+        appId: '',
+        rechargeCode: '',
+        // state:'',
+        stateForQuery: [],
+        page: 1,
+        pageSize: 10,
+      },
     }
   },
   computed: {
     role() {
       return this.$store.getters.role
-    }
+    },
   },
   methods: {
     // 分页查询
@@ -133,7 +140,7 @@ export default {
         roleName: '',
         roleType: '',
         roleMenu: [],
-        permissions: []
+        permissions: [],
       }
       const { form } = this.$refs.dialogForm
       form.resetFields()
@@ -179,11 +186,11 @@ export default {
         this.$message.success(msg)
         this.getList()
       })
-    }
+    },
   },
   created() {
     // 获取角色列表
-    this.getList()
-  }
+    // this.getList()
+  },
 }
 </script>
