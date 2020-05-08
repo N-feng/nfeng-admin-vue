@@ -1,7 +1,7 @@
 import { utils } from 'nfeng-ui-vue'
 import { img } from './config'
 
-const { get } = utils.service
+const { get } = utils
 
 export function addImg(e) {
   const formData = new FormData()
@@ -9,11 +9,11 @@ export function addImg(e) {
   formData.append('file', file)
   formData.append('fileName', file.name)
   file.status = 'uploading'
-  return utils.service.request({
+  return utils.request({
     url: img.imgAdd,
     method: 'post',
     headers: { 'Content-Type': 'multipart/form-data' },
-    data: formData
+    data: formData,
   })
 }
 

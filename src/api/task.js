@@ -1,7 +1,7 @@
 import { utils } from 'nfeng-ui-vue'
 import { task } from './config'
 
-const { post } = utils.service
+const { post } = utils
 
 export function addTask(params) {
   return post(task.taskAdd, params)

@@ -1,7 +1,7 @@
 import { utils } from 'nfeng-ui-vue'
 import { note } from './config'
 
-const { post } = utils.service
+const { post } = utils
 
 export function addNote(params) {
   return post(note.noteAdd, params)

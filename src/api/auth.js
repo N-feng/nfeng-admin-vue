@@ -1,7 +1,9 @@
 import { utils } from 'nfeng-ui-vue'
 import { auth } from './config'
 
-const { post } = utils.service
+console.log(utils)
+
+const { post } = utils
 
 export function signup(username, password, roleName) {
   const url = '/auth/signup' // 注册

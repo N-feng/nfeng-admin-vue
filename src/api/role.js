@@ -1,14 +1,14 @@
 import { utils } from 'nfeng-ui-vue'
 import { role } from './config'
 
-const { post } = utils.service
+const { post } = utils
 
 export function addRole(roleData) {
   const {
-    roleName, roleType, roleMenu, permissions
+    roleName, roleType, roleMenu, permissions,
   } = roleData
   return post(role.roleAdd, {
-    roleName, roleType, roleMenu, permissions
+    roleName, roleType, roleMenu, permissions,
   })
 }
 
@@ -19,10 +19,10 @@ export function deleteRole(roleData) {
 
 export function updateRole(roleData) {
   const {
-    roleName, roleType, roleMenu, permissions
+    roleName, roleType, roleMenu, permissions,
   } = roleData
   return post(role.roleUpdate, {
-    roleName, roleType, roleMenu, permissions
+    roleName, roleType, roleMenu, permissions,
   })
 }
 
