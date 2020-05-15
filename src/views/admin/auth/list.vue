@@ -1,130 +1,54 @@
 <template>
-  <div class="nf-main">
-
-    <div class="nf-title">AuthManager</div>
-
-    <a-table class="mt20 oa"
-             :loading="loading"
-             :columns="tableColumns"
-             :dataSource="tableList"
-             :pagination="pagination"
-             :rowKey="record => record.username">
-      <span slot="action"
-            slot-scope="text, record">
-        <a href="javascript:;"
-           @click="update(record.username)"
-           class="mr10">Edit</a>
-        <a-popconfirm title="Are you sure delete this item?"
-                      @confirm="handleDelete(record)"
-                      class="mr10"><a href="javascript:;">Delete</a>
-        </a-popconfirm>
-      </span>
-    </a-table>
-
-    <create-auth ref="dialogForm"
-                 :visible="visible"
-                 :dialogForm="dialogForm"
-                 :title="title"
-                 @cancel="visible = false"
-                 @create="handleCreate"></create-auth>
-
-  </div>
+  <nf-table remoteUrl="/api/auth/findAll" :tableColumns="tableColumns"
+      @row-update="rowUpdate" @row-del="rowDel"></nf-table>
 </template>
 
 <script>
-import {
-  getAuthList, getAuthDetail, deleteAuth, updateUser
-} from '../../../api/auth'
-import createAuth from './create.vue'
 
 export default {
-  components: {
-    createAuth
-  },
   data() {
     return {
-      loading: true,
-      pagination: {
-        size: 'small',
-        showQuickJumper: true,
-        showSizeChanger: true,
-        total: 500,
-        showTotal: (total) => `Total ${total} items`
-      },
-      tableList: [],
       tableColumns: [
         {
-          title: 'username',
-          dataIndex: 'username'
+          title: '用户名称',
+          dataIndex: 'username',
         },
         {
-          title: 'roleName',
-          dataIndex: 'roleName'
+          title: '用户电话',
+          dataIndex: 'mobile',
         },
         {
-          title: 'action',
+          title: '用户邮箱',
+          dataIndex: 'email',
+        },
+        {
+          title: '用户角色',
+          dataIndex: 'role',
+          customRender: (text) => text.map((item) => item.title),
+        },
+        {
+          title: '操作',
           dataIndex: 'action',
-          // width: 150,
-          scopedSlots: { customRender: 'action' }
-        }
+          scopedSlots: { customRender: 'action' },
+        },
       ],
-      dialogForm: {},
-      visible: false,
-      title: ''
     }
   },
   methods: {
-    // 分页查询
-    getList() {
-      this.loading = true
-      // console.log(this.fields)
-      getAuthList().h_then(({ data }) => {
-        this.tableList = data
-        this.pagination.total = data.length
-      }).finally(() => {
-        this.loading = false
+    rowUpdate(form) {
+      this.$router.push({
+        path: '/admin/auth/create',
+        query: {
+          id: form._id,
+        },
       })
     },
-    // 修改按钮
-    async update(username) {
-      await getAuthDetail(username).h_then(({ data }) => {
-        console.log(data)
-        this.dialogForm = data
-        this.visible = true
-        this.title = 'Edit Auth'
+    rowDel(form, updateTable) {
+      this.$get('/api/auth/remove', { id: form._id }).then(() => {
+        this.$message.success('删除成功~')
+        updateTable()
       })
     },
-    // 提交按钮
-    handleCreate() {
-      const { form } = this.$refs.dialogForm
-      form.validateFields((err, values) => {
-        if (err) {
-          return
-        }
-        console.log('Received values of form: ', values)
-        // form.resetFields()
-        updateUser(values).h_then(({ msg }) => this.save(msg))
-      })
-    },
-    // 保存处理
-    save(message) {
-      this.$message.success(message)
-      this.getList()
-      this.visible = false
-    },
-    // 删除按钮
-    handleDelete(record) {
-      deleteAuth(record).h_then(({ msg }) => {
-        this.$message.success(msg)
-        this.getList()
-      })
-    }
   },
-  created() {
-    this.getList()
-  }
 }
 </script>
-
-<style scoped>
-</style>

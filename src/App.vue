@@ -1,19 +1,19 @@
 <template>
-  <!-- <a-locale-provider :locale="zh_CN"> -->
-  <div id="app">
-    <router-view></router-view>
-  </div>
-  <!-- </a-locale-provider> -->
+  <a-locale-provider :locale="zh_CN">
+    <div id="app">
+      <router-view></router-view>
+    </div>
+  </a-locale-provider>
 </template>
 
 <script>
 // eslint-disable-next-line camelcase
-// import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN'
+import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN'
 
 export default {
   data() {
     return {
-      // zh_CN,
+      zh_CN,
     }
   },
   methods: {

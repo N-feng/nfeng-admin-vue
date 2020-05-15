@@ -5,23 +5,17 @@
       <a-menu
         mode="inline"
         :default-selected-keys="['1']"
-        :default-open-keys="['sub2']"
+        :default-open-keys="['sub1', 'sub2', 'sub3']"
         :style="{ height: '100%', borderRight: 0 }"
         @click="handleClick"
       >
         <a-sub-menu key="sub1">
-          <span slot="title"><a-icon type="user" />subnav 1</span>
-          <a-menu-item key="1">
-            option1
+          <span slot="title"><a-icon type="user" />用户管理</span>
+          <a-menu-item key="/auth/list">
+            用户列表
           </a-menu-item>
-          <a-menu-item key="2">
-            option2
-          </a-menu-item>
-          <a-menu-item key="3">
-            option3
-          </a-menu-item>
-          <a-menu-item key="4">
-            option4
+          <a-menu-item key="/auth/create">
+            增加用户
           </a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub2">
@@ -29,8 +23,8 @@
           <a-menu-item key="/role/list">
             角色列表
           </a-menu-item>
-          <a-menu-item key="6">
-            增加角色
+          <a-menu-item key="/role/create">
+            创建角色
           </a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub3">
@@ -38,8 +32,8 @@
           <a-menu-item key="/access/list">
             权限列表
           </a-menu-item>
-          <a-menu-item key="10">
-            增加权限
+          <a-menu-item key="/access/create">
+            创建权限
           </a-menu-item>
         </a-sub-menu>
       </a-menu>
@@ -139,9 +133,9 @@ export default {
     // if (this.username) {
     //   this.$store.dispatch('getMenus')
     // }
-    this.$get('/api/role-access').catch((err) => {
-      console.log(err)
-    })
+    // this.$get('/api/role-access').catch((err) => {
+    //   console.log(err)
+    // })
   },
 }
 </script>

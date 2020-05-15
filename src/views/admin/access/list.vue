@@ -1,24 +1,24 @@
 <template>
   <div>
-    <nf-dynamic-table queryUrl="/api/access" :tableColumns="tableColumns">
-      <a-button slot="tabBarExtraContent" type="primary">
-        <router-link to="/admin/access/create">新增</router-link>
-      </a-button>
-    </nf-dynamic-table>
+    <nf-table
+      remoteUrl="/api/access/findAll"
+      :remoteField="remoteField"
+      :tableColumns="tableColumns"
+      @row-update="rowUpdate"
+      @row-del="rowDel"
+    ></nf-table>
   </div>
 </template>
 
 
 <script>
-import NfDynamicTable from '../../../components/dynamicTable'
-
 export default {
-  components: {
-    // createRole,
-    NfDynamicTable,
-  },
   data() {
     return {
+      remoteField: {
+        pageNo: 1,
+        pageSize: 10,
+      },
       typeName: {
         1: '模块',
         2: '菜单',
@@ -28,7 +28,7 @@ export default {
       tableColumns: [
         {
           title: '模块名称',
-          dataIndex: 'module_name',
+          dataIndex: 'moduleName',
         },
         {
           title: '节点类型',
@@ -37,7 +37,7 @@ export default {
         },
         {
           title: '操作名称',
-          dataIndex: 'action_name',
+          dataIndex: 'actionName',
         },
         {
           title: '操作地址',
@@ -59,8 +59,18 @@ export default {
       ],
     }
   },
-  created() {
-
+  methods: {
+    rowUpdate(form) {
+      this.$router.push({
+        path: '/admin/access/create',
+        query: {
+          id: form._id,
+        },
+      })
+    },
+    rowDel(form) {
+      console.log(form)
+    },
   },
 }
 </script>

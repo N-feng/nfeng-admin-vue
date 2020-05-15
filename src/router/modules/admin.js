@@ -1,5 +1,4 @@
 const Layout = () => import('../../views/admin/layout.vue')
-// const nfRouterView = () => import('../../components/nfRouterView')
 
 export const admin = [{
   path: '/admin',
@@ -7,29 +6,27 @@ export const admin = [{
   meta: {
     title: 'admin',
   },
-  // redirect: '/admin/Landing',
   component: Layout,
   children: [
     {
-      path: 'Landing',
-      name: 'Landing',
-      meta: {
-        title: 'Landing',
-      },
-      component: () => import('../../views/admin/index.vue'),
+      path: 'auth/list',
+      name: '用户列表',
+      component: () => import('../../views/admin/auth/list.vue'),
     },
     {
-      path: 'AuthManager',
-      name: 'AuthManager',
-      meta: {
-        title: 'AuthManager',
-      },
-      component: () => import('../../views/admin/auth/list.vue'),
+      path: 'auth/create',
+      name: '创建用户',
+      component: () => import('../../views/admin/auth/create.vue'),
     },
     {
       path: 'role/list',
       name: '角色列表',
       component: () => import('../../views/admin/role/list.vue'),
+    },
+    {
+      path: 'role/create',
+      name: '创建角色',
+      component: () => import('../../views/admin/role/create.vue'),
     },
     {
       path: 'access/list',
@@ -38,7 +35,7 @@ export const admin = [{
     },
     {
       path: 'access/create',
-      name: '增加权限',
+      name: '创建权限',
       component: () => import('../../views/admin/access/create.vue'),
     },
     {
