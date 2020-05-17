@@ -1,11 +1,11 @@
 <template>
   <div>
     <a-checkbox-group v-model="checkedList" class="nf-form">
-      <div v-for="(item, key) in plainOptions" :key="key" class="mb25">
+      <div v-for="(item, key) in plainOptions" :key="key" class="mb30">
         <div class="mb10 pb10" :style="{ borderBottom: '1px solid #E9E9E9' }">
           <a-checkbox :value="item._id">{{item.actionName}}</a-checkbox>
         </div>
-        <a-checkbox v-for="(el, i) in item.children" :key="i" :value="el._id">{{el.actionName}}</a-checkbox>
+        <a-checkbox v-for="(el, i) in item.children" :key="i" :value="el._id" style="margin: 0 10px 10px 0;">{{el.actionName}}</a-checkbox>
       </div>
     </a-checkbox-group>
     <div style="text-align: center">
@@ -31,13 +31,14 @@ export default {
     },
   },
   created() {
-    this.$get('/api/access/findAll').then(({ data }) => {
+    this.$post('/api/access/findAll').then(({ data }) => {
       const { list } = data
       this.plainOptions = list
     })
     if (this.$route.query.id) {
-      this.$get('/api/role-access/findOne', { id: this.$route.query.id }).then(({ list }) => {
-        this.checkedList = list
+      this.$post('/api/role-access/findOne', { id: this.$route.query.id }).then(({ data }) => {
+        const { list } = data
+        this.checkedList = list.map((item) => item.accessId)
       })
     }
   },

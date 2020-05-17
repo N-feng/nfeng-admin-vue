@@ -63,7 +63,7 @@ export default {
               widgetConfig: {
                 enumSourceRemote: {
                   // 远程数据源
-                  remoteUrl: '/api/role/getRoles', // 如果是远程访问，则填写该url
+                  remoteUrl: '/api/enum/findRoles', // 如果是远程访问，则填写该url
                   paramName: 'keyword', // 请求参数名，默认是keyword
                   otherParams: {}, // 其它请求的参数，支持字符串表达式
                   resField: 'list', // 响应结果的字段
@@ -101,11 +101,11 @@ export default {
       this.$ncformValidate('your-form-name').then((data) => {
         if (data.result) {
           if (this.$route.query.id) {
-            this.$post('/api/auth/update', { id: this.$route.query.id, ...this.$data.formSchema.value }).then(() => {
+            this.$post('/api/user/update', { id: this.$route.query.id, ...this.$data.formSchema.value }).then(() => {
               this.$message.success('更新成功!')
             })
           } else {
-            this.$post('/api/auth/create', { ...this.$data.formSchema.value }).then(() => {
+            this.$post('/api/user/create', { ...this.$data.formSchema.value }).then(() => {
               this.$message.success('创建成功!')
             })
           }
@@ -115,7 +115,7 @@ export default {
   },
   created() {
     if (this.$route.query.id) {
-      this.$get('/api/auth/findOne', { id: this.$route.query.id }).then(({ data }) => {
+      this.$get('/api/user/findOne', { id: this.$route.query.id }).then(({ data }) => {
         this.formSchema.value = data
       })
     }

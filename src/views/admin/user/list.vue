@@ -1,5 +1,5 @@
 <template>
-  <nf-table remoteUrl="/api/auth/findAll" :tableColumns="tableColumns"
+  <nf-table remoteUrl="/api/user/findAll" :tableColumns="tableColumns"
       @row-update="rowUpdate" @row-del="rowDel"></nf-table>
 </template>
 
@@ -37,14 +37,14 @@ export default {
   methods: {
     rowUpdate(form) {
       this.$router.push({
-        path: '/admin/auth/create',
+        path: '/admin/user/create',
         query: {
           id: form._id,
         },
       })
     },
     rowDel(form, updateTable) {
-      this.$get('/api/auth/remove', { id: form._id }).then(() => {
+      this.$get('/api/user/remove', { id: form._id }).then(() => {
         this.$message.success('删除成功~')
         updateTable()
       })

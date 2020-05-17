@@ -63,7 +63,7 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           console.log('Received values of form: ', values)
-          this.$post('/api/auth/login', values).then((res) => {
+          this.$post('/api/user/login', values).then((res) => {
             if (res.code === 200) {
               this.$message.success(res.msg)
               this.$router.push('/admin')

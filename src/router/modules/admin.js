@@ -9,14 +9,14 @@ export const admin = [{
   component: Layout,
   children: [
     {
-      path: 'auth/list',
+      path: 'user/list',
       name: '用户列表',
-      component: () => import('../../views/admin/auth/list.vue'),
+      component: () => import('../../views/admin/user/list.vue'),
     },
     {
-      path: 'auth/create',
+      path: 'user/create',
       name: '创建用户',
-      component: () => import('../../views/admin/auth/create.vue'),
+      component: () => import('../../views/admin/user/create.vue'),
     },
     {
       path: 'role/list',
@@ -140,7 +140,7 @@ export const admin = [{
   meta: {
     title: '登录',
   },
-  component: () => import('../../views/admin/auth/login.vue'),
+  component: () => import('../../views/admin/user/login.vue'),
 }]
 
 export default admin

@@ -42,7 +42,6 @@ export default {
                   { label: '操作', value: 3 },
                 ],
               },
-
             },
             rules: {
               required: {
@@ -71,7 +70,7 @@ export default {
               widgetConfig: {
                 enumSourceRemote: {
                   // 远程数据源
-                  remoteUrl: '/api/access/getModules', // 如果是远程访问，则填写该url
+                  remoteUrl: '/api/enum/findModules', // 如果是远程访问，则填写该url
                   paramName: 'keyword', // 请求参数名，默认是keyword
                   otherParams: {}, // 其它请求的参数，支持字符串表达式
                   resField: 'list', // 响应结果的字段
@@ -142,7 +141,7 @@ export default {
   },
   created() {
     if (this.$route.query.id) {
-      this.$get('/api/access/findOne', { id: this.$route.query.id }).then(({ data }) => {
+      this.$post('/api/access/findOne', { id: this.$route.query.id }).then(({ data }) => {
         this.formSchema.value = data
       })
     }
