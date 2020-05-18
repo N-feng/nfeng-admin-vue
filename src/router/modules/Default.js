@@ -7,7 +7,6 @@ const web = [{
     title: 'The front desk',
   },
   component: Layout,
-  // redirect: '/web/index',
   children: [
     {
       path: '/index',
@@ -17,30 +16,6 @@ const web = [{
       },
       component: () => import('../../views/default/index.vue'),
     },
-    // {
-    //   path: 'note',
-    //   name: 'webNote',
-    //   meta: {
-    //     title: 'Note'
-    //   },
-    //   component: () => import('../../views/default/note/list.vue')
-    // },
-    // {
-    //   path: 'notePreview',
-    //   name: 'webNotePreview',
-    //   meta: {
-    //     rename: 'webNote'
-    //   },
-    //   component: () => import('../../views/default/note/preview.vue')
-    // },
-    // {
-    //   path: 'project',
-    //   name: 'webProject',
-    //   meta: {
-    //     title: 'Project'
-    //   },
-    //   component: () => import('../../views/default/project/list.vue')
-    // }
   ],
 }, {
   path: '*',

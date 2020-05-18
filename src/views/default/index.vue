@@ -8,6 +8,5 @@
 <script>
 export default {
   name: 'Home',
-  created() {}
 }
 </script>

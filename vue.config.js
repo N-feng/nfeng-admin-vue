@@ -16,15 +16,19 @@ module.exports = {
     proxy: {
       '/api': {
         target: targetUrl,
-        changeOrigin: true
-      }
-    }
+        changeOrigin: true,
+      },
+      '/upload': {
+        target: targetUrl,
+        changeOrigin: true,
+      },
+    },
   },
   configureWebpack: {
     resolve: {
       alias: {
-        '@': resolve('src')
-      }
-    }
-  }
+        '@': resolve('src'),
+      },
+    },
+  },
 }

@@ -44,95 +44,15 @@ export const admin = [{
       component: () => import('../../views/admin/role-access/create.vue'),
     },
     {
-      path: 'TaskManager',
-      name: 'TaskManager',
-      meta: {
-        title: 'TaskManager',
-      },
-      component: () => import('../../views/admin/task/list.vue'),
+      path: 'focus/create',
+      name: '创建轮播图',
+      component: () => import('../../views/admin/focus/create.vue'),
     },
     {
-      path: 'ImgManager',
-      name: 'ImgManager',
-      meta: {
-        title: 'ImgManager',
-      },
-      component: () => import('../../views/admin/img/list.vue'),
+      path: 'focus/list',
+      name: '轮播图列表',
+      component: () => import('../../views/admin/focus/list.vue'),
     },
-    {
-      path: 'NoteManager',
-      name: 'NoteManager',
-      meta: {
-        title: 'NoteManager',
-      },
-      component: () => import('../../views/admin/note/list.vue'),
-      children: [
-        // {
-        //   path: 'NoteManagerCreate',
-        //   name: 'NoteManagerCreate',
-        //   meta: {
-        //     title: 'NoteManagerCreate',
-        //     rename: 'NoteManager'
-        //   },
-        //   component: () => import('../../views/admin/note/create.vue')
-        // },
-        {
-          path: 'NoteManagerPreview',
-          name: 'NoteManagerPreview',
-          meta: {
-            title: 'NoteManagerPreview',
-            rename: 'NoteManager',
-          },
-          component: () => import('../../views/admin/note/preview.vue'),
-        },
-      ],
-    },
-    {
-      path: 'NoteManagerCreate',
-      name: 'NoteManagerCreate',
-      meta: {
-        title: 'NoteManagerCreate',
-        rename: 'NoteManager',
-      },
-      component: () => import('../../views/admin/note/create.vue'),
-    },
-    {
-      path: 'ProjectManager',
-      name: 'ProjectManager',
-      meta: {
-        title: 'ProjectManager',
-      },
-      component: () => import('../../views/admin/project/list.vue'),
-    },
-    {
-      path: 'ProjectManagerCreate',
-      name: 'ProjectManagerCreate',
-      meta: {
-        title: 'ProjectManagerCreate',
-        rename: 'ProjectManager',
-      },
-      component: () => import('../../views/admin/project/create.vue'),
-    },
-    {
-      path: 'ProjectManagerPreview',
-      name: 'ProjectManagerPreview',
-      meta: {
-        title: 'ProjectManagerPreview',
-        rename: 'ProjectManager',
-      },
-      component: () => import('../../views/admin/project/preview.vue'),
-    },
-    // {
-    //   path: 'system',
-    //   name: 'AdminManager',
-    //   meta: {
-    //     title: 'AdminManager',
-    //   },
-    //   redirect: '/admin/system/Landing',
-    //   component: nfRouterView,
-    //   children: [
-    //   ],
-    // },
   ],
 }, {
   path: '/login',

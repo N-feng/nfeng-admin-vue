@@ -68,8 +68,11 @@ export default {
         },
       })
     },
-    rowDel(form) {
-      console.log(form)
+    rowDel(form, updateTable) {
+      this.$post('/api/access/delete', { id: form._id }).then(() => {
+        this.$message.success('删除成功~')
+        updateTable()
+      })
     },
   },
 }

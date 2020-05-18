@@ -59,13 +59,13 @@ export default {
     },
   },
   created() {
-    this.$post('/api/user/findMenus').then(({ data }) => {
-      if (!data) {
-        return
+    this.$post('/api/user/findMenus').then((res) => {
+      if (res && res.data) {
+        const { menus } = res.data
+        this.menus = menus
+        this.openKeys = menus.map((item) => item.id)
+        this.current = [this.$route.path.replace('/admin/', '')]
       }
-      this.menus = data.menus
-      this.openKeys = data.menus.map((item) => item.id)
-      this.current = [this.$route.path.replace('/admin/', '')]
     })
   },
 }

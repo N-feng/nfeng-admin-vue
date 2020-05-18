@@ -16,7 +16,7 @@ import NfengUI, { components as MyCustomComp, utils } from 'nfeng-ui-vue'
 import './style/index.scss'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+// import store from './store'
 // import components from './components'
 import bus from './utils/bus'
 
@@ -33,7 +33,7 @@ Vue.use(Element)
 Vue.use(vueNcform, {
   extComponents: Object.assign(ncformStdComps, MyCustomComp),
   extRules: [{ myCustom: MyCustomRule }],
-  lang: '', // you can try 'en' or 'zh-cn'
+  lang: 'zh_cn', // you can try 'en' or 'zh-cn'
 })
 Vue.use(Antd)
 // Vue.use(components)
@@ -45,6 +45,6 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  store,
+  // store,
   render: (h) => h(App),
 })
