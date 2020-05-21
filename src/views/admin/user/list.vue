@@ -1,6 +1,10 @@
 <template>
-  <nf-table remoteUrl="/api/user/findAll" :tableColumns="tableColumns"
-      @row-update="rowUpdate" @row-del="rowDel"></nf-table>
+  <nf-table
+    remoteUrl="/api/user/findAll"
+    :tableColumns="tableColumns"
+    @row-update="rowUpdate"
+    @row-del="rowDel"
+  ></nf-table>
 </template>
 
 <script>

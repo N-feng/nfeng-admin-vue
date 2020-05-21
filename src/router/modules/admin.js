@@ -53,6 +53,36 @@ export const admin = [{
       name: '轮播图列表',
       component: () => import('../../views/admin/focus/list.vue'),
     },
+    {
+      path: 'goodsType/create',
+      name: '创建商品类型',
+      component: () => import('../../views/admin/goods-type/create.vue'),
+    },
+    {
+      path: 'goodsType/list',
+      name: '商品类型',
+      component: () => import('../../views/admin/goods-type/list.vue'),
+    },
+    {
+      path: 'goodsCate/create',
+      name: '创建商品分类',
+      component: () => import('../../views/admin/goods-cate/create.vue'),
+    },
+    {
+      path: 'goodsCate/list',
+      name: '商品分类',
+      component: () => import('../../views/admin/goods-cate/list.vue'),
+    },
+    {
+      path: 'goods/list',
+      name: '商品列表',
+      component: () => import('../../views/admin/goods/list.vue'),
+    },
+    {
+      path: 'goods/create',
+      name: '创建商品',
+      component: () => import('../../views/admin/goods/create.vue'),
+    },
   ],
 }, {
   path: '/login',

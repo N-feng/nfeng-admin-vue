@@ -20,29 +20,9 @@ export default {
       formSchema: {
         type: 'object',
         properties: {
-          type: {
-            type: 'string',
-            ui: {
-              label: '分类',
-              widget: 'nf-select',
-              widgetConfig: {
-                enumSource: [
-                  { label: '网站', value: 1 },
-                  { label: 'APP', value: 2 },
-                  { label: '小程序', value: 3 },
-                ],
-              },
-            },
-            rules: {
-              required: {
-                value: true,
-                errMsg: '请选择分类',
-              },
-            },
-          },
           title: {
             ui: {
-              label: '名称',
+              label: '分类名称',
               widget: 'nf-input',
             },
             rules: {
@@ -52,16 +32,34 @@ export default {
               },
             },
           },
-          link: {
+          pid: {
+            type: 'string',
+            value: '0',
             ui: {
-              label: '跳转地址',
-              widget: 'nf-input',
+              label: '上级分类',
+              widget: 'nf-select',
+              widgetConfig: {
+                enumSourceRemote: {
+                  // 远程数据源
+                  remoteUrl: '/api/enum/findGoodsCate', // 如果是远程访问，则填写该url
+                  paramName: 'keyword', // 请求参数名，默认是keyword
+                  otherParams: {}, // 其它请求的参数，支持字符串表达式
+                  resField: 'list', // 响应结果的字段
+                  selectFirstItem: false, // 默认选中第一项
+                },
+              },
+            },
+            rules: {
+              required: {
+                value: true,
+                errMsg: '请选择分类',
+              },
             },
           },
-          focusImg: {
+          cateImg: {
             value: [],
             ui: {
-              label: '轮播图',
+              label: '分类图片',
               widget: 'nf-upload',
               widgetConfig: {
                 uploadUrl: '/api/focus/upload',
@@ -69,11 +67,36 @@ export default {
                 resField: 'data',
               },
             },
-            rules: {
-              required: {
-                value: true,
-                errMsg: '请上传轮播图',
-              },
+          },
+          link: {
+            ui: {
+              label: '跳转地址',
+              widget: 'nf-input',
+            },
+          },
+          template: {
+            ui: {
+              label: '分类模板',
+              widget: 'nf-input',
+              description: '空表示默认模板',
+            },
+          },
+          subTitle: {
+            ui: {
+              label: 'Seo标题',
+              widget: 'nf-input',
+            },
+          },
+          keywords: {
+            ui: {
+              label: 'Seo关键词',
+              widget: 'nf-input',
+            },
+          },
+          description: {
+            ui: {
+              label: 'Seo描述',
+              widget: 'nf-textarea',
             },
           },
           sort: {
@@ -95,6 +118,12 @@ export default {
               widget: 'nf-radio',
               widgetConfig: {
                 enumSource: [{ value: 1, label: '是' }, { value: 0, label: '否' }],
+              },
+            },
+            rules: {
+              required: {
+                value: true,
+                errMsg: '请选择状态',
               },
             },
           },
@@ -119,18 +148,19 @@ export default {
     submit() {
       this.$ncformValidate('your-form-name').then((data) => {
         if (data.result) {
+          const cateImg = this.$data.formSchema.value.cateImg[0] ? this.$data.formSchema.value.cateImg[0].url : ''
           if (this.$route.query.id) {
-            this.$post('/api/focus/update', {
+            this.$post('/api/goods-cate/update', {
               ...this.$data.formSchema.value,
               id: this.$route.query.id,
-              focusImg: this.$data.formSchema.value.focusImg[0].url,
+              cateImg,
             }).then(() => {
               this.$message.success('更新成功!')
             })
           } else {
-            this.$post('/api/focus/create', {
+            this.$post('/api/goods-cate/create', {
               ...this.$data.formSchema.value,
-              focusImg: this.$data.formSchema.value.focusImg[0].url,
+              cateImg,
             }).then(() => {
               this.$message.success('创建成功!')
             })
@@ -141,13 +171,13 @@ export default {
   },
   created() {
     if (this.$route.query.id) {
-      this.$post('/api/focus/findOne', { id: this.$route.query.id }).then(({ data }) => {
+      this.$post('/api/goods-cate/findOne', { id: this.$route.query.id }).then(({ data }) => {
         this.formSchema.value = {
           ...data,
-          focusImg: [{
+          cateImg: [{
             uid: uuidv4(),
-            name: data.focusImg.replace('/upload/', ''),
-            url: data.focusImg,
+            name: data.cateImg.replace('/upload/', ''),
+            url: data.cateImg,
             status: 'success',
           }],
         }
