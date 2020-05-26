@@ -2,10 +2,10 @@
   <div>
     <a-tabs default-active-key="1">
       <a-tab-pane key="1" tab="通用信息">
-        Content of Tab Pane 1
+        <step1></step1>
       </a-tab-pane>
       <a-tab-pane key="2" tab="详细描述" force-render>
-        Content of Tab Pane 2
+        <step2></step2>
       </a-tab-pane>
       <a-tab-pane key="3" tab="商品属性">
         Content of Tab Pane 3
@@ -13,87 +13,13 @@
       <a-tab-pane key="4" tab="规格与包装"></a-tab-pane>
       <a-tab-pane key="5" tab="商品相册"></a-tab-pane>
     </a-tabs>
-    <ncform
-      :form-schema="formSchema"
-      form-name="your-form-name"
-      v-model="formSchema.value"
-      @submit="submit()"
-    ></ncform>
-    <div style="text-align: center">
-      <a-button @click="submit()">提交</a-button>
-    </div>
   </div>
 </template>
 <script>
+import step1 from './component/step1.vue'
+import step2 from './component/step2.vue'
+
 export default {
-  data() {
-    return {
-      formSchema: {
-        type: 'object',
-        properties: {
-          title: {
-            ui: {
-              label: '商品类型名称',
-              widget: 'nf-input',
-            },
-            rules: {
-              required: {
-                value: true,
-                errMsg: '请填写名称',
-              },
-            },
-          },
-          description: {
-            ui: {
-              label: '商品类型描述',
-              widget: 'nf-textarea',
-            },
-          },
-        },
-        ui: {
-          widgetConfig: {
-            layout: 'h',
-          },
-        },
-        globalConfig: {
-          style: {
-            formCls: 'nf-form',
-            invalidFeedbackCls: [
-              'el-form-item__error',
-            ],
-          },
-        },
-      },
-    }
-  },
-  methods: {
-    submit() {
-      this.$ncformValidate('your-form-name').then((data) => {
-        if (data.result) {
-          if (this.$route.query.id) {
-            this.$post('/api/goods-type/update', {
-              ...this.$data.formSchema.value,
-              id: this.$route.query.id,
-            }).then(() => {
-              this.$message.success('更新成功!')
-            })
-          } else {
-            this.$post('/api/goods-type/create', {
-              ...this.$data.formSchema.value,
-            }).then(() => {
-              this.$message.success('创建成功!')
-            })
-          }
-        }
-      })
-    },
-  },
-  created() {
-    if (this.$route.query.id) {
-      this.$post('/api/goods-type/findOne', { id: this.$route.query.id }).then(({ data }) => {
-        this.formSchema.value = data
-      })
-    }
-  },
+  components: { step1, step2 },
 }
 </script>

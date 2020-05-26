@@ -1,5 +1,5 @@
 <template>
-  <a-layout id="components-layout-demo-top-side">
+  <a-layout id="components-layout-demo-top-side" style="min-height: 100%;">
     <a-layout-header class="header">
       <div class="logo" />
     </a-layout-header>
@@ -22,6 +22,7 @@
             :open-keys.sync="openKeys"
             mode="inline"
             @click="handleClick"
+            style="height: 100%;"
           >
             <a-sub-menu v-for="(item, key) in menus" :key="item.id || key">
               <span slot="title">{{item.actionName}}</span>
@@ -63,7 +64,7 @@ export default {
       if (res && res.data) {
         const { menus } = res.data
         this.menus = menus
-        this.openKeys = menus.map((item) => item.id)
+        // this.openKeys = menus.map((item) => item.id)
         this.current = [this.$route.path.replace('/admin/', '')]
       }
     })

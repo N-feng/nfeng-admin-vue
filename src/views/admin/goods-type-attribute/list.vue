@@ -1,21 +1,15 @@
 <template>
   <div>
-    <router-link to="/admin/goodsType/create">
-      <a-button type="primary" class="mb20">创建商品类型</a-button>
+    <router-link :to="{ path: '/admin/goodsTypeAttribute/create', query: { cateId: $route.query.id } }">
+      <a-button type="primary" class="mb20">创建商品类型属性</a-button>
     </router-link>
     <nf-table
-      remoteUrl="/api/goods-type/findAll"
+      remoteUrl="/api/goods-type-attribute/findAll"
+      :otherParams="{id: $route.query.id}"
       :tableColumns="tableColumns"
       @row-update="rowUpdate"
       @row-del="rowDel"
     >
-      <template slot="tableAction" slot-scope="form">
-        <a
-          href="javascript:;"
-          @click="$router.push({path: '/admin/goodsTypeAttribute/list', query: {id: form._id}})"
-        >属性列表</a>
-        <a-divider type="vertical"/>
-      </template>
     </nf-table>
   </div>
 </template>
@@ -29,12 +23,20 @@ export default {
       // 表格配置
       tableColumns: [
         {
-          title: '商品类型名称',
+          title: '属性名称',
           dataIndex: 'title',
         },
         {
-          title: '描述',
-          dataIndex: 'description',
+          title: '商品类型',
+          dataIndex: 'cateName',
+        },
+        {
+          title: '属性值的录入方式',
+          dataIndex: 'attrType',
+        },
+        {
+          title: '可选值列表',
+          dataIndex: 'attrValue',
         },
         {
           title: '创建时间',

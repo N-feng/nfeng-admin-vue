@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-link to="/admin/goods/create">
-      <a-button type="primary" class="mb20">创建</a-button>
+      <a-button type="primary" class="mb20">创建商品</a-button>
     </router-link>
     <nf-table
       remoteUrl="/api/goods/findAll"
@@ -20,21 +20,40 @@ export default {
       // 表格配置
       tableColumns: [
         {
-          title: '分类名称',
+          title: '商品名称',
           dataIndex: 'title',
         },
         {
-          title: '分类图片',
-          dataIndex: 'cateImg',
-          scopedSlots: { customRender: 'img' },
+          title: '价格',
+          dataIndex: 'marketPrice',
         },
         {
-          title: '排序',
+          title: '点击量',
+          dataIndex: 'clickCount',
+        },
+        {
+          title: '上架',
+          dataIndex: 'state',
+        },
+        {
+          title: '精品',
+          dataIndex: 'isBest',
+        },
+        {
+          title: '新品',
+          dataIndex: 'isLatest',
+        },
+        {
+          title: '热销',
+          dataIndex: 'isHot',
+        },
+        {
+          title: '推荐排序',
           dataIndex: 'sort',
         },
         {
-          title: '状态',
-          dataIndex: 'status',
+          title: '库存',
+          dataIndex: 'goodsNumber',
         },
         {
           title: '操作',
@@ -47,14 +66,14 @@ export default {
   methods: {
     rowUpdate(form) {
       this.$router.push({
-        path: '/admin/goodsCate/create',
+        path: '/admin/goods/create',
         query: {
           id: form._id,
         },
       })
     },
     rowDel(form, updateTable) {
-      this.$post('/api/goods-cate/delete', { id: form._id }).then(() => {
+      this.$post('/api/goods/delete', { id: form._id }).then(() => {
         this.$message.success('删除成功~')
         updateTable()
       })

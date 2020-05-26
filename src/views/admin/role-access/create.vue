@@ -5,7 +5,7 @@
         <div class="mb10 pb10" :style="{ borderBottom: '1px solid #E9E9E9' }">
           <a-checkbox :value="item._id">{{item.actionName}}</a-checkbox>
         </div>
-        <a-checkbox v-for="(el, i) in item.children" :key="i" :value="el._id" style="margin: 0 10px 10px 0;">{{el.actionName}}</a-checkbox>
+        <a-checkbox v-for="(el, i) in item.children" :key="i" :value="el._id" style="margin: 0 16px 16px 0;">{{el.actionName}}</a-checkbox>
       </div>
     </a-checkbox-group>
     <div style="text-align: center">

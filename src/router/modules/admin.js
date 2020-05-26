@@ -60,8 +60,18 @@ export const admin = [{
     },
     {
       path: 'goodsType/list',
-      name: '商品类型',
+      name: '商品类型列表',
       component: () => import('../../views/admin/goods-type/list.vue'),
+    },
+    {
+      path: 'goodsTypeAttribute/create',
+      name: '创建商品类型属性',
+      component: () => import('../../views/admin/goods-type-attribute/create.vue'),
+    },
+    {
+      path: 'goodsTypeAttribute/list',
+      name: '商品类型属性列表',
+      component: () => import('../../views/admin/goods-type-attribute/list.vue'),
     },
     {
       path: 'goodsCate/create',

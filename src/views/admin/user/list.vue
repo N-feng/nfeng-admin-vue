@@ -27,8 +27,9 @@ export default {
         },
         {
           title: '用户角色',
-          dataIndex: 'role',
-          customRender: (text) => text.map((item) => item.title),
+          // dataIndex: 'role',
+          // customRender: (text) => text.map((item) => item.title),
+          dataIndex: 'roleName',
         },
         {
           title: '操作',

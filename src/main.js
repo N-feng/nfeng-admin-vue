@@ -17,17 +17,12 @@ import './style/index.scss'
 import App from './App.vue'
 import router from './router'
 // import store from './store'
-// import components from './components'
 import bus from './utils/bus'
 
 const { get, post } = utils
 Vue.prototype.$get = get
 Vue.prototype.$post = post
 Vue.prototype.$http = axios
-
-console.log(ncformStdComps)
-
-console.log(MyCustomComp)
 
 Vue.use(Element)
 Vue.use(vueNcform, {
@@ -36,7 +31,6 @@ Vue.use(vueNcform, {
   lang: 'zh_cn', // you can try 'en' or 'zh-cn'
 })
 Vue.use(Antd)
-// Vue.use(components)
 Vue.use(NfengUI)
 
 window.myBus = bus

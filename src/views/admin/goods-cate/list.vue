@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-link to="/admin/goodsCate/create">
-      <a-button type="primary" class="mb20">创建</a-button>
+      <a-button type="primary" class="mb20">创建商品分类</a-button>
     </router-link>
     <nf-table
       remoteUrl="/api/goods-cate/findAll"
