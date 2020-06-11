@@ -64,7 +64,7 @@ export default {
         if (!err) {
           console.log('Received values of form: ', values)
           this.$post('/api/user/login', values).then((res) => {
-            if (res.code === 200) {
+            if (res.status === 200) {
               this.$message.success(res.msg)
               this.$router.push('/admin')
             }

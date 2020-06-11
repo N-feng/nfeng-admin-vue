@@ -2,7 +2,7 @@
   <div>
     <ncform
       :form-schema="formSchema"
-      form-name="your-form-name"
+      form-name="part1"
       v-model="formSchema.value"
       @submit="submit()"
     ></ncform>
@@ -59,7 +59,7 @@ export default {
           },
           goodsCateId: {
             type: 'string',
-            value: '0',
+            // value: '0',
             ui: {
               label: '所属分类',
               widget: 'nf-select',
@@ -165,7 +165,7 @@ export default {
   },
   methods: {
     submit() {
-      this.$ncformValidate('your-form-name').then((data) => {
+      this.$ncformValidate('part1').then((data) => {
         const goodsImg = this.$data.formSchema.value.goodsImg[0] ? this.$data.formSchema.value.goodsImg[0].url : ''
         if (data.result) {
           if (this.$route.query.id) {

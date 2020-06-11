@@ -93,6 +93,16 @@ export const admin = [{
       name: '创建商品',
       component: () => import('../../views/admin/goods/create.vue'),
     },
+    {
+      path: 'goodsColor/create',
+      name: '创建商品颜色',
+      component: () => import('../../views/admin/goods-color/create.vue'),
+    },
+    {
+      path: 'goodsColor/list',
+      name: '商品颜色列表',
+      component: () => import('../../views/admin/goods-color/list.vue'),
+    },
   ],
 }, {
   path: '/login',

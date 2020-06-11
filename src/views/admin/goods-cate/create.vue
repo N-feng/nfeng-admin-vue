@@ -34,7 +34,7 @@ export default {
           },
           pid: {
             type: 'string',
-            value: '0',
+            // value: '0',
             ui: {
               label: '上级分类',
               widget: 'nf-select',
@@ -43,7 +43,7 @@ export default {
                   // 远程数据源
                   remoteUrl: '/api/enum/findGoodsCate', // 如果是远程访问，则填写该url
                   paramName: 'keyword', // 请求参数名，默认是keyword
-                  otherParams: {}, // 其它请求的参数，支持字符串表达式
+                  otherParams: { pid: '0' }, // 其它请求的参数，支持字符串表达式
                   resField: 'list', // 响应结果的字段
                   selectFirstItem: false, // 默认选中第一项
                 },
@@ -171,15 +171,20 @@ export default {
   },
   created() {
     if (this.$route.query.id) {
-      this.$post('/api/goods-cate/findOne', { id: this.$route.query.id }).then(({ data }) => {
+      this.$post('/api/goods-cate/findOne', { id: this.$route.query.id }).then((res) => {
+        if (!res) {
+          return
+        }
+        const { data } = res
+        const cateImg = data.cateImg ? [{
+          uid: uuidv4(),
+          name: data.cateImg.replace('/upload/', ''),
+          url: data.cateImg,
+          status: 'success',
+        }] : []
         this.formSchema.value = {
           ...data,
-          cateImg: [{
-            uid: uuidv4(),
-            name: data.cateImg.replace('/upload/', ''),
-            url: data.cateImg,
-            status: 'success',
-          }],
+          cateImg,
         }
       })
     }
