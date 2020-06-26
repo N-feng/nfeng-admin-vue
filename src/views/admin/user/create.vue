@@ -70,7 +70,6 @@ export default {
                   selectFirstItem: false, // 默认选中第一项
                 },
               },
-
             },
             rules: {
               required: {

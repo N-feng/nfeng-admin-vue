@@ -12,7 +12,7 @@ import MyCustomRule from './rules/MyCustomRule' // Your custom rule
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
 import './utils/permission' // 权限控制
-import NfengUI, { components as MyCustomComp, utils } from 'nfeng-ui-vue'
+import NfengUI, { pcComps, utils } from 'nfeng-ui-vue'
 import './style/index.scss'
 import App from './App.vue'
 import router from './router'
@@ -26,7 +26,7 @@ Vue.prototype.$http = axios
 
 Vue.use(Element)
 Vue.use(vueNcform, {
-  extComponents: Object.assign(ncformStdComps, MyCustomComp),
+  extComponents: Object.assign(ncformStdComps, pcComps),
   extRules: [{ myCustom: MyCustomRule }],
   lang: 'zh_cn', // you can try 'en' or 'zh-cn'
 })
