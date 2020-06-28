@@ -1,9 +1,9 @@
 <template>
-  <a-locale-provider :locale="zh_CN">
+  <a-config-provider :locale="zh_CN">
     <div id="app">
       <router-view></router-view>
     </div>
-  </a-locale-provider>
+  </a-config-provider>
 </template>
 
 <script>
@@ -32,7 +32,6 @@ export default {
   },
 }
 </script>
-
 
 <style lang="scss">
 #app {

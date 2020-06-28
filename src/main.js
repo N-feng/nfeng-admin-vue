@@ -7,7 +7,7 @@ import ncformStdComps from '@ncform/ncform-theme-elementui'
 import axios from 'axios'
 
 // import MyCustomComp from './components/MyCustomComp.vue' // Your custom form widget
-import MyCustomRule from './rules/MyCustomRule' // Your custom rule
+// import MyCustomRule from './rules/MyCustomRule' // Your custom rule
 
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
@@ -27,7 +27,7 @@ Vue.prototype.$http = axios
 Vue.use(Element)
 Vue.use(vueNcform, {
   extComponents: Object.assign(ncformStdComps, pcComps),
-  extRules: [{ myCustom: MyCustomRule }],
+  // extRules: [{ myCustom: MyCustomRule }],
   lang: 'zh_cn', // you can try 'en' or 'zh-cn'
 })
 Vue.use(Antd)

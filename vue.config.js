@@ -6,6 +6,9 @@ const targetUrl = process.env.PROXY_URL
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
+
+console.log(resolve('src'))
+
 // vue.config.js
 module.exports = {
   // 选项...
@@ -24,11 +27,19 @@ module.exports = {
       },
     },
   },
-  configureWebpack: {
-    resolve: {
-      alias: {
-        '@': resolve('src'),
-      },
-    },
+  // configureWebpack: {
+  //   entry: {
+  //     app: './src/main.js',
+  //   },
+  //   resolve: {
+  //     alias: {
+  //       src: resolve('src'),
+  //       '@': resolve('src'),
+  //     },
+  //   },
+  // },
+  chainWebpack: (config) => {
+    config.resolve.alias
+      .set('src', resolve('src'))
   },
 }
