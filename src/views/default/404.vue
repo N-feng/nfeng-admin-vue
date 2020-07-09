@@ -11,7 +11,7 @@
 
 <script>
 import lottie from 'lottie-web'
-import * as animationData from '../../../public/3146-404page.json'
+import * as animationData from '../../assets/image/3146-404page.json'
 
 export default {
   mounted() {

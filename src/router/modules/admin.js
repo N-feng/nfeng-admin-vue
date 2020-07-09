@@ -16,7 +16,7 @@ export const admin = [{
     {
       path: 'user/create',
       name: '创建用户',
-      component: () => import('../../views/admin/user/create.vue'),
+      component: () => import('../../views/admin/user/create copy.vue'),
     },
     {
       path: 'role/list',

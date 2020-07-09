@@ -7,10 +7,10 @@
 </template>
 
 <script>
-// eslint-disable-next-line camelcase
 import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN'
 
 export default {
+  name: 'App',
   data() {
     return {
       zh_CN,
@@ -30,11 +30,6 @@ export default {
     // 必有常规操作
     this.usualOp()
   },
+
 }
 </script>
-
-<style lang="scss">
-#app {
-  height: 100%;
-}
-</style>

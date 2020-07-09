@@ -7,16 +7,18 @@ const web = [{
     title: 'The front desk',
   },
   component: Layout,
-  children: [
-    {
-      path: '/index',
-      name: 'webIndex',
-      meta: {
-        title: 'Landing',
-      },
-      component: () => import('../../views/default/index.vue'),
+  children: [{
+    path: '/index',
+    name: 'webIndex',
+    meta: {
+      title: 'Landing',
     },
-  ],
+    component: () => import('../../views/default/index.vue'),
+  }, {
+    path: '/translate',
+    name: 'translate',
+    component: () => import('../../views/default/translate.vue'),
+  }]
 }, {
   path: '*',
   name: 'error-404',
