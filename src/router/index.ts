@@ -1,10 +1,11 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
+
 const Layout = () => import('@/views/default/layout.vue')
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-const mainRouter = [
+const routes = [
   {
     path: '/admin',
     name: 'admin',
@@ -124,19 +125,23 @@ const mainRouter = [
       title: 'The front desk',
     },
     component: Layout,
-    children: [{
-      path: '/index',
-      name: 'webIndex',
-      meta: {
-        title: 'Landing',
+    children: [
+      {
+        path: '/index',
+        name: 'webIndex',
+        meta: {
+          title: 'Landing',
+        },
+        component: () => import('@/views/default/index.vue'),
       },
-      component: () => import('@/views/default/index.vue'),
-    }, {
-      path: '/translate',
-      name: 'translate',
-      component: () => import('@/views/default/translate.vue'),
-    }]
-  }, {
+      {
+        path: '/translate',
+        name: 'translate',
+        component: () => import('@/views/default/translate.vue'),
+      },
+    ],
+  },
+  {
     path: '*',
     name: 'error-404',
     meta: {
@@ -146,16 +151,9 @@ const mainRouter = [
   },
 ]
 
-const routers = [...mainRouter]
+// const router = new VueRouter({
+//   mode: 'history',
+//   routes,
+// })
 
-const router = new Router({
-  mode: 'history',
-  // base: process.env.BASE_URL,
-  routes: routers,
-})
-
-router.beforeEach((to, from, next) => {
-  next()
-})
-
-export default router
+export default routes

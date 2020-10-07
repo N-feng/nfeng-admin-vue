@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import {formSchema} from 'src/pageConfig/userCreate'
+import { formSchema } from '@/pageConfig/userCreate'
 
 export default {
-  data () {
+  data() {
     return {
-      value: ''
+      value: '',
     }
   },
   methods: {
@@ -24,7 +24,7 @@ export default {
           const properties = newObj.properties[item]
           const nObj = {
             ...properties,
-            ...properties.ui
+            ...properties.ui,
           }
           delete nObj.ui
           nObj.widget = nObj.widget.replace('nf-', '')
@@ -34,18 +34,17 @@ export default {
         delete newObj.type
         delete newObj.ui
         newObj.globalConfig = {
-          formCls: newObj.globalConfig.style.formCls
+          formCls: newObj.globalConfig.style.formCls,
         }
       }
       return JSON.stringify(newObj)
-    }
+    },
   },
-  created () {
+  created() {
     this.value = this.translate(JSON.stringify(formSchema))
-  }
+  },
 }
 </script>
-
 
 <style lang="scss" scoped>
 .main {
@@ -57,4 +56,3 @@ export default {
   padding: 20px;
 }
 </style>
-

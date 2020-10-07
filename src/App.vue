@@ -1,35 +1,32 @@
 <template>
-  <a-config-provider :locale="zh_CN">
-    <div id="app">
-      <router-view></router-view>
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
     </div>
-  </a-config-provider>
+    <router-view/>
+  </div>
 </template>
 
-<script>
-import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN'
-
-export default {
-  name: 'App',
-  data() {
-    return {
-      zh_CN,
-    }
-  },
-  methods: {
-    // 常规操作
-    usualOp() {
-      const that = this
-      // 子项目无权限需要跳转登陆页面时
-      window.myBus.on('login', () => {
-        that.$router.replace('/login')
-      })
-    },
-  },
-  created() {
-    // 必有常规操作
-    this.usualOp()
-  },
-
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
-</script>
+
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+</style>

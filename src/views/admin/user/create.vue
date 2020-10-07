@@ -12,12 +12,12 @@
   </div>
 </template>
 <script>
-import {formSchema} from 'src/pageConfig/userCreate'
+import { formSchema } from '@/pageConfig/userCreate'
 
 export default {
   data() {
     return {
-      formSchema
+      formSchema,
     }
   },
   methods: {

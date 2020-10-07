@@ -3,7 +3,7 @@ import { img } from './config'
 
 const { get } = utils
 
-export function addImg(e) {
+export function addImg(e: any) {
   const formData = new FormData()
   const { file } = e
   formData.append('file', file)
@@ -17,7 +17,7 @@ export function addImg(e) {
   })
 }
 
-export function deleteImg({ imgId }) {
+export function deleteImg(imgId: any) {
   return get(img.imgDelete, { params: { imgId } })
 }
 

@@ -1,4 +1,4 @@
-# nfeng-admin-vue
+# nfeng-frontends-vue
 
 ## Project setup
 ```

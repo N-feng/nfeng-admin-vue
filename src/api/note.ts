@@ -3,19 +3,19 @@ import { note } from './config'
 
 const { post } = utils
 
-export function addNote(params) {
+export function addNote(params: any) {
   return post(note.noteAdd, params)
 }
 
-export function deleteNote(noteId) {
+export function deleteNote(noteId: any) {
   return post(note.noteDelete, { noteId })
 }
 
-export function updateNote(params) {
+export function updateNote(params: any) {
   return post(note.noteUpdate, params)
 }
 
-export function getNote(noteId) {
+export function getNote(noteId: any) {
   return post(note.noteDetail, { noteId })
 }
 

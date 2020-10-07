@@ -3,7 +3,7 @@ import { role } from './config'
 
 const { post } = utils
 
-export function addRole(roleData) {
+export function addRole(roleData: any) {
   const {
     roleName, roleType, roleMenu, permissions,
   } = roleData
@@ -12,12 +12,12 @@ export function addRole(roleData) {
   })
 }
 
-export function deleteRole(roleData) {
+export function deleteRole(roleData: any) {
   const { roleName } = roleData
   return post(role.roleDelete, { roleName })
 }
 
-export function updateRole(roleData) {
+export function updateRole(roleData: any) {
   const {
     roleName, roleType, roleMenu, permissions,
   } = roleData
@@ -26,7 +26,7 @@ export function updateRole(roleData) {
   })
 }
 
-export function getRoleDetail(roleName) {
+export function getRoleDetail(roleName: any) {
   return post(role.roleDetail, { roleName })
 }
 

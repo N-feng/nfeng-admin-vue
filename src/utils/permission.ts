@@ -1,6 +1,6 @@
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css' // Progress 进度条样式
-import router from '../router'
+// import router from '../router'
 // import store from './store'
 
 NProgress.configure({ showSpinner: false })
@@ -16,9 +16,9 @@ NProgress.configure({ showSpinner: false })
 
 // const whiteList = ['/login', '/signup'] // no redirect whitelist
 
-router.beforeEach((to, from, next) => {
+// router.beforeEach((next: any) => {
   // 进度条开始走起
-  NProgress.start()
+  // NProgress.start()
   // 如果有token
   // if (store.getters.token) {
   //   if (to.path === '/login') {
@@ -35,9 +35,9 @@ router.beforeEach((to, from, next) => {
   //   next(url)
   //   NProgress.done()
   // }
-  next()
-})
+//   next()
+// })
 
-router.afterEach(() => {
-  NProgress.done()
-})
+// router.afterEach(() => {
+//   NProgress.done()
+// })
