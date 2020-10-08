@@ -1,6 +1,7 @@
 import './public-path'
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import axios from 'axios'
+// import VueRouter from 'vue-router'
 // import vueNcform from '@ncform/ncform'
 
 // import Element from 'element-ui'
@@ -15,10 +16,12 @@ import VueRouter from 'vue-router'
 // import 'ant-design-vue/dist/antd.css'
 // import './utils/permission' // 权限控制
 // import NfengUI, { pcComps, utils } from 'nfeng-ui-vue'
+import './plugins/element'
+import './plugins/avue'
+// import './plugins/ant-design'
 import './assets/style/index.scss'
 import App from './App.vue'
-import './plugins/ant-design'
-import routes from './router'
+import router from './router'
 // import store from './store'
 // import bus from './utils/bus'
 
@@ -31,7 +34,11 @@ Vue.config.productionTip = false
 // const { get, post } = utils
 // Vue.prototype.$get = get
 // Vue.prototype.$post = post
-// Vue.prototype.$http = axios
+const http = axios.create({
+  baseURL: 'http://localhost:3000',
+})
+Vue.prototype.$httpajax = http
+Vue.prototype.$http = http
 
 // Vue.use(Element)
 // Vue.use(vueNcform, {
@@ -58,16 +65,16 @@ Vue.config.productionTip = false
 //   render: (h: any) => h(App),
 // }).$mount('#app')
 
-let router = null
+// let router = null
 let instance: any = null
 
 function render(props: any) {
   const { container } = props
-  router = new VueRouter({
-    base: window.__POWERED_BY_QIANKUN__ ? '/micro-vue' : '/',
-    mode: 'history',
-    routes,
-  })
+  // router = new VueRouter({
+  //   base: window.__POWERED_BY_QIANKUN__ ? '/micro-vue' : '/',
+  //   mode: 'history',
+  //   routes,
+  // })
 
   instance = new Vue({
     router,
@@ -104,5 +111,5 @@ export async function unmount() {
   instance.$destroy()
   instance.$el.innerHTML = ''
   instance = null
-  router = null
+  // router = null
 }

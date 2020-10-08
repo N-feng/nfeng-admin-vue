@@ -37,15 +37,15 @@ export default {
     return {
       formItemLayout: {
         labelCol: { span: 4 },
-        wrapperCol: { span: 14 }
+        wrapperCol: { span: 14 },
       },
       createForm: {
         noteId: '',
         title: '',
-        content: ''
+        content: '',
       },
       validateStatus: '',
-      help: ''
+      help: '',
     }
   },
   computed: {
@@ -53,12 +53,12 @@ export default {
       return {
         title: {
           rules: [{ required: true, message: 'Please input title' }],
-          initialValue: this.createForm.title
+          initialValue: this.createForm.title,
         },
         content: {
           rules: [{ required: true, message: 'Pleate input content' }],
-          initialValue: this.createForm.content
-        }
+          initialValue: this.createForm.content,
+        },
       }
     },
     fieldOptions() {
@@ -68,11 +68,11 @@ export default {
           type: 'input',
           decorator: ['title', {
             rules: [{ required: true, message: 'Please input title' }],
-            initialValue: this.createForm.title
-          }]
-        }
+            initialValue: this.createForm.title,
+          }],
+        },
       ]
-    }
+    },
   },
   methods: {
     save() {
@@ -103,7 +103,7 @@ export default {
       getNote(this.createForm.noteId).h_then(({ data }) => {
         Object.assign(this.createForm, data)
       })
-    }
+    },
   },
   beforeCreate() {
     this.form = this.$form.createForm(this)
@@ -113,7 +113,7 @@ export default {
     if (this.createForm.noteId) {
       this.getDetail()
     }
-  }
+  },
 }
 </script>
 

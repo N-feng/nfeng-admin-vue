@@ -71,9 +71,9 @@ export default {
         showQuickJumper: true,
         // showSizeChanger: true,
         total: 500,
-        showTotal: (total) => `Total ${total} items`
+        showTotal: (total) => `Total ${total} items`,
       },
-      tableList: []
+      tableList: [],
       // actions: [
       //   { type: 'star-o', text: '156' },
       //   { type: 'like-o', text: '156' },
@@ -100,12 +100,12 @@ export default {
         this.$message.success(msg)
         this.getList()
       })
-    }
+    },
   },
   created() {
     // 获取列表
     this.getList()
-  }
+  },
 }
 </script>
 

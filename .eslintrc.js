@@ -14,17 +14,23 @@ module.exports = {
   },
   parserOptions: {
     parser: 'babel-eslint',
+    ecmaFeatures: {
+      legacyDecorators: true,
+    },
+    sourceType: 'module',
   },
+  parser: 'vue-eslint-parser',
   rules: {
-    "import/extensions": [
-      "error",
-      "ignorePackages",
+    camelcase: [2, { properties: 'never', ignoreDestructuring: true }],
+    'import/extensions': [
+      'error',
+      'ignorePackages',
       {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
     ],
     'max-len': 0,
     'linebreak-style': 0, // 不校验换行符
@@ -65,7 +71,7 @@ module.exports = {
         jsx: 'never',
         ts: 'never',
         tsx: 'never',
-        //   vue: 'never',
+        // vue: 'never',
       },
     ],
   },

@@ -124,7 +124,7 @@ const routes = [
     meta: {
       title: 'The front desk',
     },
-    component: Layout,
+    component: () => import('@/views/Main.vue'),
     children: [
       {
         path: '/index',
@@ -139,6 +139,17 @@ const routes = [
         name: 'translate',
         component: () => import('@/views/default/translate.vue'),
       },
+      {
+        name: 'home',
+        path: '/home',
+        component: () => import('@/views/Home.vue'),
+      },
+      {
+        name: 'courses-list',
+        path: '/:resource/list',
+        component: () => import('@/views/courses/CourseCrud.vue'),
+        props: true,
+      },
     ],
   },
   {
@@ -151,9 +162,10 @@ const routes = [
   },
 ]
 
-// const router = new VueRouter({
-//   mode: 'history',
-//   routes,
-// })
+const router = new VueRouter({
+  base: window.__POWERED_BY_QIANKUN__ ? '/micro-vue' : '/',
+  mode: 'history',
+  routes,
+})
 
-export default routes
+export default router

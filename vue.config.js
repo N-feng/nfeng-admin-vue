@@ -2,7 +2,7 @@ const path = require('path')
 const { name } = require('./package')
 
 // 转发地址
-const targetUrl = process.env.PROXY_URL
+// const targetUrl = process.env.PROXY_URL
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -32,16 +32,19 @@ module.exports = {
       'Access-Control-Allow-Origin': '*',
     },
     // port: 7101,
-    proxy: {
-      '/api': {
-        target: targetUrl,
-        changeOrigin: true,
-      },
-      '/upload': {
-        target: targetUrl,
-        changeOrigin: true,
-      },
+    watchOptions: {
+      ignored: /node_modules/,
     },
+    // proxy: {
+    //   '/api': {
+    //     target: targetUrl,
+    //     changeOrigin: true,
+    //   },
+    //   '/upload': {
+    //     target: targetUrl,
+    //     changeOrigin: true,
+    //   },
+    // },
   },
   configureWebpack: {
     // entry: {

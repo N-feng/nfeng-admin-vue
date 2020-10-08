@@ -20,5 +20,5 @@ const checkCode = (data: any) => {
 }
 
 export {
-  checkCode
+  checkCode,
 }

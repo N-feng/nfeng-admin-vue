@@ -42,12 +42,12 @@ export default {
   name: 'nfMasonry',
   props: {
     imgList: {
-      type: Array
+      type: Array,
     },
     column: {
       type: Number,
-      default: 4
-    }
+      default: 4,
+    },
   },
   computed: {
     masonryList() {
@@ -72,10 +72,10 @@ export default {
     },
     style() {
       return {
-        width: `${100 / this.column}%`
+        width: `${100 / this.column}%`,
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

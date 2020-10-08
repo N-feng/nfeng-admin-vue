@@ -20,8 +20,8 @@ export default {
       createForm: {
         noteId: '',
         title: '',
-        content: ''
-      }
+        content: '',
+      },
     }
   },
   methods: {
@@ -29,14 +29,14 @@ export default {
       getNote(this.createForm.noteId).h_then(({ data }) => {
         Object.assign(this.createForm, data)
       })
-    }
+    },
   },
   created() {
     this.createForm.noteId = this.$route.query.noteId
     if (this.createForm.noteId) {
       this.getDetail()
     }
-  }
+  },
 }
 </script>
 

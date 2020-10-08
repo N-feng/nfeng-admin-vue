@@ -59,18 +59,18 @@ export default {
     return {
       formItemLayout: {
         labelCol: { span: 4 },
-        wrapperCol: { span: 14 }
+        wrapperCol: { span: 14 },
       },
       createForm: {
         projectId: '',
         title: '',
         link: '',
         content: '',
-        logo: ''
+        logo: '',
       },
       validateStatus: '',
       help: '',
-      loading: false
+      loading: false,
     }
   },
   computed: {
@@ -78,18 +78,18 @@ export default {
       return {
         title: {
           rules: [{ required: true, message: 'Please input title' }],
-          initialValue: this.createForm.title
+          initialValue: this.createForm.title,
         },
         link: {
           rules: [{ required: true, message: 'Please input link' }],
-          initialValue: this.createForm.link
+          initialValue: this.createForm.link,
         },
         content: {
           rules: [{ required: true, message: 'Pleate input content' }],
-          initialValue: this.createForm.content
-        }
+          initialValue: this.createForm.content,
+        },
       }
-    }
+    },
   },
   methods: {
     save() {
@@ -127,7 +127,7 @@ export default {
       getProject(this.createForm.projectId).h_then(({ data }) => {
         Object.assign(this.createForm, data)
       })
-    }
+    },
   },
   beforeCreate() {
     this.form = this.$form.createForm(this)
@@ -137,7 +137,7 @@ export default {
     if (this.createForm.projectId) {
       this.getDetail()
     }
-  }
+  },
 }
 </script>
 

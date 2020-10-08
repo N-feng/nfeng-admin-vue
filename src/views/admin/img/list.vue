@@ -62,7 +62,7 @@
 
 <script>
 import {
-  addImg, deleteImg, getImgList
+  addImg, deleteImg, getImgList,
 } from '../../../api/img'
 
 export default {
@@ -74,14 +74,14 @@ export default {
           item.uid = item.name
           return item
         })
-      }
-    }
+      },
+    },
   },
   data() {
     return {
       tableList: [],
       previewVisible: false,
-      previewImage: ''
+      previewImage: '',
     }
   },
   methods: {
@@ -127,13 +127,13 @@ export default {
         onOk() {
           self.handleDelete(file.name)
         },
-        onCancel() {}
+        onCancel() {},
       })
-    }
+    },
   },
   created() {
     this.getList()
-  }
+  },
 }
 </script>
 

@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import ncformCommon from "@ncform/ncform-common";
+import ncformCommon from '@ncform/ncform-common'
 
 export default {
   mixins: [ncformCommon.mixins.vue.controlMixin],
@@ -26,29 +26,29 @@ export default {
   i18nData: {
     // i18n
     en: {
-      hi: "Hi <%= name %>"
+      hi: 'Hi <%= name %>',
     },
     zh_cn: {
-      hi: "你好 <%= name %>"
-    }
+      hi: '你好 <%= name %>',
+    },
   },
 
   data() {
     return {
       defaultConfig: {
         // your config's default value ( Note: use mergeConfig to get config value )
-        name: "daniel"
-      }
-    };
+        name: 'daniel',
+      },
+    }
   },
 
   methods: {
     // you can handle the modelVal before $emit it (before this.$emit('input'))
     _processModelVal(modelVal) {
-      return modelVal;
-    }
-  }
-};
+      return modelVal
+    },
+  },
+}
 </script>
 
 <style scoped>
