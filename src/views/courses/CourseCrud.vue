@@ -41,7 +41,7 @@ export default class ResourceList extends Vue {
 
   form: any = {}
 
-  async uploadBefore(file: any, done: any) {
+  async uploadBefore(file, done) {
     const formData = new FormData()
     // formData.append('targetType', this.type)
     formData.append('fileName', file.name)
@@ -59,13 +59,13 @@ export default class ResourceList extends Vue {
     this.option = res.data
   }
 
-  async changePage({ pageSize, currentPage }: any) {
+  async changePage({ pageSize, currentPage }) {
     this.query.page = currentPage
     this.query.limit = pageSize
     this.fetch()
   }
 
-  async changeSort({ prop, order }: any) {
+  async changeSort({ prop, order }) {
     if (!order) {
       this.query.sort = null
     } else {
@@ -76,9 +76,9 @@ export default class ResourceList extends Vue {
     this.fetch()
   }
 
-  async search(where: any, done: any) {
+  async search(where, done) {
     Object.keys(where).forEach((k) => {
-      const field = this.option.column.find((v: any) => v.prop === k)
+      const field = this.option.column.find((v) => v.prop === k)
       if (field.regex) {
         where[k] = { $regex: where[k] }
       }
@@ -98,14 +98,14 @@ export default class ResourceList extends Vue {
     this.data = res.data
   }
 
-  async create(row: any, done: any) {
+  async create(row, done) {
     await this.$http.post(`${this.resource}`, row)
     this.$message.success('创建成功')
     this.fetch()
     done()
   }
 
-  async update(row: any, index: any, done: any) {
+  async update(row, index, done) {
     const data = JSON.parse(JSON.stringify(row))
     delete data.$index
     await this.$http.put(`${this.resource}/${row._id}`, data)
@@ -114,7 +114,7 @@ export default class ResourceList extends Vue {
     done()
   }
 
-  async remove(row: any) {
+  async remove(row) {
     try {
       await this.$confirm('是否确认删除?')
     } catch (e) {
