@@ -14,7 +14,7 @@ import axios from 'axios'
 
 // import Antd from 'ant-design-vue'
 // import 'ant-design-vue/dist/antd.css'
-// import './utils/permission' // 权限控制
+import './utils/permission' // 权限控制
 // import NfengUI, { pcComps, utils } from 'nfeng-ui-vue'
 import './plugins/element'
 import './plugins/avue'
