@@ -1,18 +1,19 @@
 <template>
   <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    {{ version }}
+    <router-view />
+    <!-- <a-button @click="$router.push('/micro-react/child-one')">back home</a-button> -->
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import { State } from 'vuex-class';
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld,
-  },
+const namespace = 'global';
+
+@Component
+export default class Home extends Vue {
+  @State('version', { namespace }) private version?: string;
 }
 </script>

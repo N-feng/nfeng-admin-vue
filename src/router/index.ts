@@ -1,171 +1,204 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter, { RouteConfig } from "vue-router";
+// import { component } from 'vue/types/umd'
+// import { createRouter, createWebHashHistory } from 'vue-router'
+import Home from "../views/Home.vue";
+import Layout from "@/layout/index.vue";
 
-const Layout = () => import('@/views/default/layout.vue')
+Vue.use(VueRouter);
 
-Vue.use(VueRouter)
-
-const routes = [
+export const constantRoutes: any = [
   {
-    path: '/admin',
-    name: 'admin',
-    meta: {
-      title: 'admin',
-    },
+    path: "/login",
+    component: () => import("@/views/Login.vue"),
+    hidden: true,
+  },
+  // {
+  //   path: '/403',
+  //   name: '403',
+  //   component: () => import('@/views/403'),
+  //   hidden: true,
+  // },
+  // {
+  //   path: '/404',
+  //   name: '404',
+  //   component: () => import('@/views/404'),
+  //   hidden: true,
+  // },
+];
+
+export const asyncRoutes = [
+  {
+    path: "/",
     component: Layout,
+    redirect: "/index",
+    meta: {
+      title: "首页",
+      icon: "home-4-line",
+      affix: true,
+    },
     children: [
       {
-        path: 'user/list',
-        name: '用户列表',
-        component: () => import('@/views/admin/user/list.vue'),
-      },
-      {
-        path: 'user/create',
-        name: '创建用户',
-        component: () => import('@/views/admin/user/create copy.vue'),
-      },
-      {
-        path: 'role/list',
-        name: '角色列表',
-        component: () => import('@/views/admin/role/list.vue'),
-      },
-      {
-        path: 'role/create',
-        name: '创建角色',
-        component: () => import('@/views/admin/role/create.vue'),
-      },
-      {
-        path: 'access/list',
-        name: '权限列表',
-        component: () => import('@/views/admin/access/list.vue'),
-      },
-      {
-        path: 'access/create',
-        name: '创建权限',
-        component: () => import('@/views/admin/access/create.vue'),
-      },
-      {
-        path: 'role-access/create',
-        name: '授权',
-        component: () => import('@/views/admin/role-access/create.vue'),
-      },
-      {
-        path: 'focus/create',
-        name: '创建轮播图',
-        component: () => import('@/views/admin/focus/create.vue'),
-      },
-      {
-        path: 'focus/list',
-        name: '轮播图列表',
-        component: () => import('@/views/admin/focus/list.vue'),
-      },
-      {
-        path: 'goodsType/create',
-        name: '创建商品类型',
-        component: () => import('@/views/admin/goods-type/create.vue'),
-      },
-      {
-        path: 'goodsType/list',
-        name: '商品类型列表',
-        component: () => import('@/views/admin/goods-type/list.vue'),
-      },
-      {
-        path: 'goodsTypeAttribute/create',
-        name: '创建商品类型属性',
-        component: () => import('@/views/admin/goods-type-attribute/create.vue'),
-      },
-      {
-        path: 'goodsTypeAttribute/list',
-        name: '商品类型属性列表',
-        component: () => import('@/views/admin/goods-type-attribute/list.vue'),
-      },
-      {
-        path: 'goodsCate/create',
-        name: '创建商品分类',
-        component: () => import('@/views/admin/goods-cate/create.vue'),
-      },
-      {
-        path: 'goodsCate/list',
-        name: '商品分类',
-        component: () => import('@/views/admin/goods-cate/list.vue'),
-      },
-      {
-        path: 'goods/list',
-        name: '商品列表',
-        component: () => import('@/views/admin/goods/list.vue'),
-      },
-      {
-        path: 'goods/create',
-        name: '创建商品',
-        component: () => import('@/views/admin/goods/create.vue'),
-      },
-      {
-        path: 'goodsColor/create',
-        name: '创建商品颜色',
-        component: () => import('@/views/admin/goods-color/create.vue'),
-      },
-      {
-        path: 'goodsColor/list',
-        name: '商品颜色列表',
-        component: () => import('@/views/admin/goods-color/list.vue'),
-      },
-    ],
-  }, {
-    path: '/login',
-    name: 'login',
-    meta: {
-      title: '登录',
-    },
-    component: () => import('@/views/admin/user/login.vue'),
-  },
-  {
-    path: '/',
-    name: 'web',
-    meta: {
-      title: 'The front desk',
-    },
-    component: () => import('@/views/Main.vue'),
-    children: [
-      {
-        path: '/index',
-        name: 'webIndex',
+        path: "index",
+        name: "Index",
+        component: () => import("@/views/Home.vue"),
         meta: {
-          title: 'Landing',
+          title: "首页",
+          icon: "home-4-line",
+          affix: true,
+          sidebarActive: "/"
         },
-        component: () => import('@/views/default/index.vue'),
       },
+    ],
+  },
+  // {
+  //   path: "/home",
+  //   name: "Home",
+  //   component: Home,
+  //   meta: {
+  //     title: "首页",
+  //     icon: "home-4-line",
+  //     affix: true,
+  //   },
+  //   children: [
+  //     {
+  //       path: "child-one",
+  //       component: { template: "<p>child-one</p>" },
+  //       meta: {
+  //         title: "child-one",
+  //         icon: "home-4-line",
+  //         affix: true,
+  //       },
+  //     },
+  //     {
+  //       path: "child-two",
+  //       component: { template: "<p>child-two</p>" },
+  //       meta: {
+  //         title: "child-two",
+  //         icon: "home-4-line",
+  //         affix: true,
+  //       },
+  //     },
+  //   ],
+  // },
+  {
+    path: "/about",
+    name: "About",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    meta: {
+      title: "介绍页",
+    },
+  },
+  {
+    path: "/micro-vue",
+    component: () => import("../layout/index.vue"),
+    meta: {
+      title: "vue组件",
+    },
+    children: [
       {
-        path: '/translate',
-        name: 'translate',
-        component: () => import('@/views/default/translate.vue'),
-      },
-      {
-        name: 'home',
-        path: '/home',
-        component: () => import('@/views/Home.vue'),
-      },
-      {
-        name: 'courses-list',
-        path: '/:resource/list',
-        component: () => import('@/views/courses/CourseCrud.vue'),
-        props: true,
+        path: "courses/list",
+        meta: {
+          title: "crud列表页",
+        },
       },
     ],
   },
   {
-    path: '*',
-    name: 'error-404',
+    path: "/error",
+    name: "Error",
+    component: Layout,
+    redirect: "/error/403",
     meta: {
-      title: '404-页面不存在',
+      title: "错误页",
+      icon: "error-warning-line",
     },
-    component: () => import('@/views/default/404.vue'),
+    children: [
+      {
+        path: "403",
+        name: "Error403",
+        component: () => import("@/views/403.vue"),
+        meta: {
+          title: "403",
+          icon: "error-warning-line",
+        },
+      },
+      {
+        path: "404",
+        name: "Error404",
+        component: () => import("@/views/404.vue"),
+        meta: {
+          title: "404",
+          icon: "error-warning-line",
+        },
+      },
+    ],
   },
-]
+  {
+    path: "/*",
+    redirect: "/404",
+    hidden: true,
+  },
+];
+
+// const routes: Array<RouteConfig> = [
+//   {
+//     path: "/home",
+//     name: "Home",
+//     component: Home,
+//     children: [
+//       {
+//         path: "child-one",
+//         component: { template: "<p>child-one</p>" },
+//       },
+//       {
+//         path: "child-two",
+//         component: { template: "<p>child-two</p>" },
+//       },
+//     ],
+//   },
+//   {
+//     path: "/about",
+//     name: "About",
+//     // route level code-splitting
+//     // this generates a separate chunk (about.[hash].js) for this route
+//     // which is lazy-loaded when the route is visited.
+//     component: () =>
+//       import(/* webpackChunkName: "about" */ "../views/About.vue"),
+//   },
+//   {
+//     path: "/login",
+//     component: () => import("../views/Login.vue"),
+//   },
+//   {
+//     path: "/micro-*",
+//     component: () => import("../layout/index.vue"),
+//     children: [
+//       {
+//         path: ":resource/list",
+//         meta: {
+//           sidebarActive: "/micro-vue",
+//         },
+//       },
+//     ],
+//   },
+// ];
 
 const router = new VueRouter({
-  base: window.__POWERED_BY_QIANKUN__ ? '/micro-vue' : '/',
-  mode: 'history',
-  routes,
-})
+  mode: "history",
+  // base: process.env.BASE_URL,
+  // routes: constantRoutes,
+  routes: [...constantRoutes, ...asyncRoutes],
+});
 
-export default router
+// const router = createRouter({
+//   history: createWebHashHistory(),
+//   // routes: constantRoutes,
+//   routes: [...constantRoutes, ...asyncRoutes]
+// })
+
+export default router;
