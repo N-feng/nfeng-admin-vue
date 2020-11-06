@@ -48,6 +48,9 @@
     beforeUnmount() {
       clearInterval(this.timer)
     },
+    destroyed() {
+      console.log("destroyed")
+    },
     methods: {
       ...mapActions({
         delOthersVisitedRoutes: 'tagsBar/delOthersVisitedRoutes',
@@ -58,7 +61,7 @@
             this.jumpTime--
           } else {
             this.$router.push({ path: '/' })
-            // this.delOthersVisitedRoutes({ path: '/' })
+            this.delOthersVisitedRoutes({ path: '/' })
             clearInterval(this.timer)
           }
         }, 1000)

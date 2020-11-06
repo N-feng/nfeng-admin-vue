@@ -26,6 +26,8 @@ export const getters: GetterTree<UserState, RootState> = {
   accessToken(state: UserState): string {
     return state.accessToken;
   },
+  username: (state) => state.username,
+  avatar: (state) => state.avatar,
 };
 
 /**

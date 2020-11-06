@@ -59,7 +59,7 @@
             this.jumpTime--
           } else {
             this.$router.push({ path: '/' })
-            // this.delOthersVisitedRoutes({ path: '/' })
+            this.delOthersVisitedRoutes({ path: '/' })
             clearInterval(this.timer)
           }
         }, 1000)

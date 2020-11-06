@@ -46,9 +46,27 @@ export const asyncRoutes = [
           title: "首页",
           icon: "home-4-line",
           affix: true,
-          sidebarActive: "/"
+          sidebarActive: "/",
         },
       },
+      // {
+      //   path: "child-one",
+      //   component: { template: "<p>child-one</p>" },
+      //   meta: {
+      //     title: "child-one",
+      //     icon: "home-4-line",
+      //     affix: true,
+      //   },
+      // },
+      // {
+      //   path: "child-two",
+      //   component: { template: "<p>child-two</p>" },
+      //   meta: {
+      //     title: "child-two",
+      //     icon: "home-4-line",
+      //     affix: true,
+      //   },
+      // },
     ],
   },
   // {
@@ -95,15 +113,23 @@ export const asyncRoutes = [
   },
   {
     path: "/micro-vue",
-    component: () => import("../layout/index.vue"),
+    name: "Micro-vue",
+    component: Layout,
+    redirect: "/micro-vue/courses/list",
     meta: {
       title: "vue组件",
+      icon: "error-warning-line",
+      affix: true,
     },
     children: [
       {
         path: "courses/list",
+        component: { template: "<p>courses/list</p>" },
         meta: {
           title: "crud列表页",
+          icon: "home-4-line",
+          affix: true,
+          sidebarActive: "/micro-vue",
         },
       },
     ],
@@ -191,8 +217,8 @@ export const asyncRoutes = [
 const router = new VueRouter({
   mode: "history",
   // base: process.env.BASE_URL,
-  // routes: constantRoutes,
-  routes: [...constantRoutes, ...asyncRoutes],
+  routes: constantRoutes,
+  // routes: [...constantRoutes, ...asyncRoutes],
 });
 
 // const router = createRouter({

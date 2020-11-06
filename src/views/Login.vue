@@ -80,8 +80,7 @@ export default class Login extends Vue {
 
   async handleSubmit() {
     await this.login(this.form);
-    const path = this.handleRoute();
-    await this.$router.push({ path });
+    await this.$router.push({ path: this.handleRoute()});
   }
 }
 </script>

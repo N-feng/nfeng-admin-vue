@@ -4,6 +4,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+import "remixicon/fonts/remixicon.css";
 
 @Component
 export default class Icon extends Vue {

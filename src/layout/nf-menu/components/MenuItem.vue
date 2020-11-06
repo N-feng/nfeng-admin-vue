@@ -2,7 +2,7 @@
   <a-menu-item :key="routeChildren.path">
     <div @click="handleLink">
       <span class="anticon">
-        <!-- <vab-icon :icon="routeChildren.meta.icon"></vab-icon> -->
+        <nf-icon :icon="routeChildren.meta.icon"></nf-icon>
       </span>
       <span>{{ routeChildren.meta.title }}</span>
     </div>
@@ -11,10 +11,10 @@
 
 <script>
   import { isExternal } from '@/utils/validate'
-  // import VabIcon from '@/layout/vab-icon'
+  import NfIcon from '@/layout/nf-icon'
   export default {
     name: 'MenuItem',
-    // components: { VabIcon },
+    components: { NfIcon },
     props: {
       item: {
         type: Object,

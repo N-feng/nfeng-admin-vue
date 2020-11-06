@@ -2,7 +2,7 @@
   <a-sub-menu :key="item.fullPath">
     <template v-slot:title>
       <span class="anticon">
-        <!-- <vab-icon :icon="item.meta.icon"></vab-icon> -->
+        <nf-icon :icon="item.meta.icon"></nf-icon>
       </span>
       <span>{{ item.meta.title }}</span>
     </template>
@@ -11,10 +11,10 @@
 </template>
 
 <script>
-// import VabIcon from '@/layout/nf-icon'
+import NfIcon from '@/layout/nf-icon'
 export default {
   name: "Submenu",
-  // components: { VabIcon },
+  components: { NfIcon },
   props: {
     item: {
       type: Object,

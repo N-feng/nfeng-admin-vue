@@ -18,7 +18,9 @@ const mockServer = () => {
 
 // 基础路径 注意发布之前要先修改这里
 module.exports = {
-  publicPath: process.env.VUE_APP_BASEURL, // 根据你的实际情况更改这里
+  publicPath: process.env.NODE_ENV === 'production'
+  ? '/nfeng-admin-vue/'
+  : '/', // 根据你的实际情况更改这里
   // 默认在生成的静态资源文件名中包含hash以控制缓存
   filenameHashing: true,
   // 如果你不需要使用eslint，把lintOnSave设为false即可

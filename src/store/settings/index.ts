@@ -23,7 +23,8 @@ const { collapse } = getLocalStorage("vue-admin-beautiful-pro-collapse");
 export const state: SettingsState = {
   logo,
   title,
-  collapse
+  collapse,
+  device: "desktop",
 };
 
 /**
@@ -31,7 +32,10 @@ export const state: SettingsState = {
  */
 export const getters: GetterTree<SettingsState, RootState> = {
   collapse(state: SettingsState): boolean {
-    return state.collapse
+    return state.collapse;
+  },
+  device(state: SettingsState): string {
+    return state.device;
   },
   logo(state: SettingsState): string {
     return state.logo;
@@ -47,6 +51,16 @@ export const getters: GetterTree<SettingsState, RootState> = {
 export const mutations: MutationTree<SettingsState> = {
   toggleCollapse(state: SettingsState, payload: string) {
     state.collapse = !state.collapse;
+    localStorage.setItem(
+      "vue-admin-beautiful-pro-collapse",
+      `{"collapse":${state.collapse}}`
+    );
+  },
+  toggleDevice(state, device) {
+    state.device = device;
+  },
+  foldSideBar(state) {
+    state.collapse = true;
   },
 };
 
@@ -56,6 +70,12 @@ export const mutations: MutationTree<SettingsState> = {
 export const actions: ActionTree<SettingsState, RootState> = {
   toggleCollapse({ commit }) {
     commit("toggleCollapse");
+  },
+  toggleDevice({ commit }, device) {
+    commit("toggleDevice", device);
+  },
+  foldSideBar({ commit }) {
+    commit("foldSideBar");
   },
 };
 
