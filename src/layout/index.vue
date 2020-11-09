@@ -21,11 +21,7 @@
         v-model="selectedKeys"
         :openKeys.sync="openKeys"
       >
-        <nf-menu
-          v-for="route in routes"
-          :key="route.path"
-          :item="route"
-        ></nf-menu>
+        <nf-menu v-for="route in routes" :key="route.path" :item="route" />
       </a-menu>
     </a-layout-sider>
     <a-layout
@@ -50,17 +46,6 @@
       <nf-content>
         <div id="subapp-viewport" />
       </nf-content>
-      <a-layout-content
-        :style="{
-          margin: '24px 16px',
-          padding: '24px',
-          background: '#fff',
-          minHeight: '280px',
-        }"
-      >
-        <router-view />
-        <div id="subapp-viewport" />
-      </a-layout-content>
     </a-layout>
   </a-layout>
 </template>
@@ -89,58 +74,6 @@ export default class NfLayout extends Vue {
   width;
   selectedKeys: Array<any> = [];
   openKeys: Array<any> = [];
-  // routes: Array<any> = [
-  //   {
-  //     action: "/home",
-  //     title: "Home",
-  //     children: [
-  //       {
-  //         action: "/home/child-one",
-  //         title: "ChildOne",
-  //       },
-  //       {
-  //         action: "/home/child-two",
-  //         title: "ChildTwo",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     action: "/micro-react",
-  //     title: "React",
-  //     children: [
-  //       {
-  //         action: "/micro-react/child-one",
-  //         title: "MicroChildOne",
-  //       },
-  //       {
-  //         action: "/micro-react/child-two",
-  //         title: "MicroChildTwo",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     action: "/micro-vue",
-  //     title: "Vue",
-  //     children: [
-  //       {
-  //         action: "/micro-vue/home",
-  //         title: "首页",
-  //       },
-  //       {
-  //         action: "/micro-vue/courses/list",
-  //         title: "课程管理",
-  //       },
-  //       {
-  //         action: "/micro-vue/episodes/list",
-  //         title: "课时管理",
-  //       },
-  //       {
-  //         action: "/micro-vue/users/list",
-  //         title: "用户管理",
-  //       },
-  //     ],
-  //   },
-  // ];
 
   @Getter("settings/collapse") collapse?: boolean;
   @Getter("routes/routes") routes?: Array<any>;
@@ -159,10 +92,7 @@ export default class NfLayout extends Vue {
 
   @Watch("$route", { immediate: true })
   handler({ path, matched, meta }): void {
-    
-    
-    
-    this.selectedKeys = meta.sidebarActive ? [meta.sidebarActive] : [path];
+    this.selectedKeys = [matched[matched.length - 1].path]
     this.openKeys = [matched[0].path];
   }
 

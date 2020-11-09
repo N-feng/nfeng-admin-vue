@@ -3,13 +3,98 @@ import { RoutesState } from "./types";
 import { RootState } from "../types";
 import { asyncRoutes, constantRoutes } from "@/router";
 import { getRouterList } from "@/api/router";
-import { convertRouter, filterRoutes } from "@/utils/routes";
+import {
+  convertRouter,
+  // filterRoutes,
+  routerList,
+} from "@/utils/routes";
 
 /**
  * state
  */
 export const state: RoutesState = {
-  routes: [],
+  routes: [
+    {
+      path: "/index",
+      name: "首页",
+      title: "Home",
+      meta: {
+        title: "首页",
+        icon: "home-4-line",
+        affix: true,
+        // sidebarActive: "/index",
+      },
+      children: [],
+    },
+    // {
+    //   path: "/micro-react",
+    //   title: "React",
+    //   children: [
+    //     {
+    //       path: "/micro-react/child-one",
+    //       title: "MicroChildOne",
+    //     },
+    //     {
+    //       path: "/micro-react/child-two",
+    //       title: "MicroChildTwo",
+    //     },
+    //   ],
+    // },
+    {
+      path: "/micro-vue",
+      title: "Vue",
+      meta: {
+        title: "Vue",
+        icon: "apps-line",
+      },
+      children: [
+        // {
+        //   path: "/micro-vue/home",
+        //   title: "首页",
+        // },
+        {
+          path: "/micro-vue/courses/list",
+          title: "课程管理",
+          meta: {
+            title: "表格",
+            icon: "table-2",
+          },
+        },
+        // {
+        //   path: "/micro-vue/episodes/list",
+        //   title: "课时管理",
+        // },
+        // {
+        //   path: "/micro-vue/users/list",
+        //   title: "用户管理",
+        // },
+      ],
+    },
+    {
+      path: "/nf",
+      meta: {
+        title: "组件",
+        icon: "apps-line",
+      },
+      children: [
+        {
+          path: "/nf/table",
+          meta: {
+            title: "表格",
+            icon: "table-2",
+          },
+        },
+        {
+          path: "/nf/icon",
+          meta: {
+            title: "图标",
+            icon: "remixicon-line",
+          },
+        },
+      ],
+    },
+  ],
+  hasInited: false,
 };
 
 /**
@@ -19,6 +104,9 @@ export const getters: GetterTree<RoutesState, RootState> = {
   routes(state: RoutesState): Array<any> {
     return state.routes;
   },
+  hasInited(state: RoutesState): boolean {
+    return state.hasInited;
+  },
 };
 
 /**
@@ -26,7 +114,7 @@ export const getters: GetterTree<RoutesState, RootState> = {
  */
 export const mutations: MutationTree<RoutesState> = {
   setRoutes(state, routes) {
-    state.routes = routes
+    state.routes = routes;
   },
   // setPartialRoutes(state, routes) {
   //   state.partialRoutes = routes
@@ -37,31 +125,37 @@ export const mutations: MutationTree<RoutesState> = {
  * actions
  */
 export const actions: ActionTree<RoutesState, RootState> = {
-  /**
-   * @author chuzhixin 1204505056@qq.com
-   * @description intelligence模式设置路由
-   * @param {*} { commit }
-   * @returns
-   */
-  async setRoutes({ commit }) {
-    const finallyRoutes = filterRoutes([...constantRoutes, ...asyncRoutes]);
-    commit("setRoutes", finallyRoutes);
-    return [...asyncRoutes];
-  },
-  /**
-   * @author chuzhixin 1204505056@qq.com
-   * @description all模式设置路由
-   * @param {*} { commit }
-   * @returns
-   */
-  async setAllRoutes({ commit }) {
-    let { data } = await getRouterList();
-    if (data[data.length - 1].path !== "*")
-      data.push({ path: "*", redirect: "/404", hidden: true });
-    const asyncRoutes = convertRouter(data);
-    const finallyRoutes = filterRoutes([...constantRoutes, ...asyncRoutes]);
-    commit("setRoutes", finallyRoutes);
-    return [...asyncRoutes];
+  // /**
+  //  * @author chuzhixin 1204505056@qq.com
+  //  * @description intelligence模式设置路由
+  //  * @param {*} { commit }
+  //  * @returns
+  //  */
+  // async setRoutes({ commit }) {
+  //   const finallyRoutes = filterRoutes([...constantRoutes, ...asyncRoutes]);
+  //   commit("setRoutes", finallyRoutes);
+  //   return [...asyncRoutes];
+  // },
+  // /**
+  //  * @author chuzhixin 1204505056@qq.com
+  //  * @description all模式设置路由
+  //  * @param {*} { commit }
+  //  * @returns
+  //  */
+  // async setAllRoutes({ commit }) {
+  //   let { data } = await getRouterList();
+  //   if (data[data.length - 1].path !== "*")
+  //     data.push({ path: "*", redirect: "/404", hidden: true });
+  //   const asyncRoutes = convertRouter(data);
+  //   const finallyRoutes = filterRoutes([...constantRoutes, ...asyncRoutes]);
+  //   commit("setRoutes", finallyRoutes);
+  //   return [...asyncRoutes];
+  // },
+  addRouters({ state }) {
+    return new Promise((resolve) => {
+      const { routes } = state;
+      const list = routerList(routes);
+    });
   },
 };
 

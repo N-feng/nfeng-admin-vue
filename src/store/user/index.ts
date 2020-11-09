@@ -9,6 +9,7 @@ import {
 import { title, tokenName } from "@/config";
 import { getUserInfo, login, logout } from "@/api/user";
 import { message, notification } from "ant-design-vue";
+import { setToken, removeToken } from "@/utils/auth";
 
 /**
  * state
@@ -89,6 +90,7 @@ export const actions: ActionTree<UserState, RootState> = {
     const accessToken = data[tokenName];
     if (accessToken) {
       commit("setAccessToken", accessToken);
+      setToken("token", "token");
       const hour = new Date().getHours();
       const thisTime =
         hour < 8
@@ -152,6 +154,7 @@ export const actions: ActionTree<UserState, RootState> = {
     await dispatch('acl/setRole', [], { root: true })
     await dispatch('acl/setAbility', [], { root: true })
     removeAccessToken()
+    removeToken("token")
   },
   /**
    * @author chuzhixin 1204505056@qq.com

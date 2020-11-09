@@ -11,12 +11,18 @@
 </template>
 
 <script>
-import NfIcon from '@/layout/nf-icon'
+import NfIcon from "@/layout/nf-icon";
 export default {
   name: "Submenu",
   components: { NfIcon },
   props: {
     item: {
+      type: Object,
+      default() {
+        return null;
+      },
+    },
+    routeChildren: {
       type: Object,
       default() {
         return null;

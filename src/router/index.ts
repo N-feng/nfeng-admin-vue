@@ -49,56 +49,36 @@ export const asyncRoutes = [
           sidebarActive: "/",
         },
       },
-      // {
-      //   path: "child-one",
-      //   component: { template: "<p>child-one</p>" },
-      //   meta: {
-      //     title: "child-one",
-      //     icon: "home-4-line",
-      //     affix: true,
-      //   },
-      // },
-      // {
-      //   path: "child-two",
-      //   component: { template: "<p>child-two</p>" },
-      //   meta: {
-      //     title: "child-two",
-      //     icon: "home-4-line",
-      //     affix: true,
-      //   },
-      // },
     ],
   },
-  // {
-  //   path: "/home",
-  //   name: "Home",
-  //   component: Home,
-  //   meta: {
-  //     title: "首页",
-  //     icon: "home-4-line",
-  //     affix: true,
-  //   },
-  //   children: [
-  //     {
-  //       path: "child-one",
-  //       component: { template: "<p>child-one</p>" },
-  //       meta: {
-  //         title: "child-one",
-  //         icon: "home-4-line",
-  //         affix: true,
-  //       },
-  //     },
-  //     {
-  //       path: "child-two",
-  //       component: { template: "<p>child-two</p>" },
-  //       meta: {
-  //         title: "child-two",
-  //         icon: "home-4-line",
-  //         affix: true,
-  //       },
-  //     },
-  //   ],
-  // },
+  {
+    path: "/nf",
+    component: Layout,
+    meta: {
+      title: "组件",
+      icon: "apps-line",
+    },
+    children: [
+      {
+        path: "table",
+        name: "Table",
+        component: () => import('@/views/nf/table.vue'),
+        meta: {
+          title: '表格',
+          icon: 'table-2',
+        },
+      },
+      {
+        path: "icon",
+        name: "Icon",
+        component: () => import('@/views/nf/icon.vue'),
+        meta: {
+          title: '图标',
+          icon: 'remixicon-line',
+        },
+      },
+    ],
+  },
   {
     path: "/about",
     name: "About",
@@ -217,8 +197,8 @@ export const asyncRoutes = [
 const router = new VueRouter({
   mode: "history",
   // base: process.env.BASE_URL,
-  routes: constantRoutes,
-  // routes: [...constantRoutes, ...asyncRoutes],
+  // routes: constantRoutes,
+  routes: [...constantRoutes, ...asyncRoutes],
 });
 
 // const router = createRouter({

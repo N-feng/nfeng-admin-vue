@@ -10,7 +10,7 @@
       >
         <a-tab-pane
           v-for="item in visitedRoutes"
-          :key="item.fullPath"
+          :key="item.path"
           :closable="!isAffix(item)"
           :tab="item.meta.title"
         ></a-tab-pane>
@@ -55,7 +55,7 @@ export default {
   data() {
     return {
       affixTabs: [],
-      tabActive: null,
+      tabActive: "/",
       created: false,
     };
   },
@@ -114,7 +114,6 @@ export default {
     },
     handleTabClick(tab) {
       const route = this.visitedRoutes.filter((item) => item.path === tab)[0];
-      console.log('route: ', route);
       if (this.$route.fullPath !== route.fullPath) this.$router.push(route);
     },
     async handleTabRemove(fullPath) {
