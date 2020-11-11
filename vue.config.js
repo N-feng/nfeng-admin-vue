@@ -1,8 +1,8 @@
 const path = require("path");
-const defaultSettings = require('./src/config');
-const { devPort } = defaultSettings
+// const defaultSettings = require('./src/config');
+// const { devPort } = defaultSettings
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const packageName = require("./package.json").name;
+// const packageName = require("./package.json").name;
 
 function resolve(dir) {
   return path.join(__dirname, dir);
@@ -30,7 +30,7 @@ module.exports = {
     headers: {
       "Access-Control-Allow-Origin": "*"
     },
-    port: devPort,
+    port: 7099,
     hot: true,
     // 注释掉的地方是前端配置代理访问后端的示例
     // proxy: {
@@ -58,24 +58,24 @@ module.exports = {
       }
     }
   },
-  chainWebpack: config => {
-    config.extensions = ['.js', '.vue', '.json', '.ts'];
-  },
-  css: {
-    requireModuleExtension: true,
-    sourceMap: true,
-    loaderOptions: {
-      less: {
-        lessOptions: {
-          javascriptEnabled: true,
-          modifyVars: {
-            'nf-color-blue': '#1890ff',
-            'nf-margin': '20px',
-            'nf-padding': '20px',
-            'nf-header-height': '65px',
-          }
-        }
-      }
-    }
-  }
+  // chainWebpack: config => {
+  //   config.extensions = ['.js', '.vue', '.json', '.ts'];
+  // },
+  // css: {
+  //   requireModuleExtension: true,
+  //   sourceMap: true,
+  //   loaderOptions: {
+  //     less: {
+  //       lessOptions: {
+  //         javascriptEnabled: true,
+  //         modifyVars: {
+  //           'nf-color-blue': '#1890ff',
+  //           'nf-margin': '20px',
+  //           'nf-padding': '20px',
+  //           'nf-header-height': '65px',
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 };

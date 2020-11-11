@@ -88,7 +88,7 @@ export default class Login extends Vue {
 <style lang="less" scoped>
 .login-container {
   background-image: linear-gradient(45deg, #9fbaa8, #31354c);
-  background-image: url("../assets/open.jpg");
+  background-image: url("../../assets/open.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;

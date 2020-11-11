@@ -17,9 +17,9 @@
             <div class="bullshit-oops">{{ oops }}</div>
             <div class="bullshit-headline">{{ headline }}</div>
             <div class="bullshit-info">{{ info }}</div>
-            <a class="bullshit-return-home" href="#/index">
+            <!-- <a class="bullshit-return-home" href="#/index">
               {{ jumpTime }}s&nbsp;{{ btn }}
-            </a>
+            </a> -->
           </div>
         </a-col>
       </a-row>
@@ -42,12 +42,12 @@
         timer: 0,
       }
     },
-    mounted() {
-      this.timeChange()
-    },
-    beforeUnmount() {
-      clearInterval(this.timer)
-    },
+    // mounted() {
+    //   this.timeChange()
+    // },
+    // destroyed() {
+    //   clearInterval(this.timer)
+    // },
     methods: {
       ...mapActions({
         delVisitedRoute: 'tagsBar/delVisitedRoute',
@@ -142,7 +142,7 @@
         overflow: hidden;
 
         &-oops {
-          margin-bottom: @nf-margin;
+          margin-bottom: 20px;
           font-size: 32px;
           font-weight: bold;
           line-height: 40px;
@@ -186,7 +186,7 @@
           color: #fff;
           text-align: center;
           cursor: pointer;
-          background: @nf-color-blue;
+          background: #1890ff;
           border-radius: 100px;
           opacity: 0;
           animation-name: slideUp;

@@ -54,10 +54,13 @@ export const state: RoutesState = {
         // },
         {
           path: "/micro-vue/courses/list",
+          // name: "课程管理",
           title: "课程管理",
           meta: {
             title: "表格",
             icon: "table-2",
+            // affix: true,
+            // target: "_blank",
           },
         },
         // {
@@ -89,6 +92,37 @@ export const state: RoutesState = {
           meta: {
             title: "图标",
             icon: "remixicon-line",
+          },
+        },
+      ],
+    },
+    {
+      path: "/test/test",
+      meta: {
+        title: "动态路由测试",
+        icon: "test-tube-line",
+      },
+      children: [],
+    },
+    {
+      path: "/error",
+      meta: {
+        title: "错误页",
+        icon: "error-warning-line",
+      },
+      children: [
+        {
+          path: "/error/403",
+          meta: {
+            title: "403",
+            icon: "error-warning-line",
+          },
+        },
+        {
+          path: "/error/404",
+          meta: {
+            title: "404",
+            icon: "error-warning-line",
           },
         },
       ],

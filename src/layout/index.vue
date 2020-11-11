@@ -14,7 +14,7 @@
       :trigger="null"
     >
       <nf-logo />
-      <a-menu
+      <!-- <a-menu
         class="nf-menu"
         theme="dark"
         mode="inline"
@@ -22,7 +22,8 @@
         :openKeys.sync="openKeys"
       >
         <nf-menu v-for="route in routes" :key="route.path" :item="route" />
-      </a-menu>
+      </a-menu> -->
+      <nf-menu />
     </a-layout-sider>
     <a-layout
       class="nf-layout"
@@ -72,11 +73,11 @@ import apps from "@/micro/apps";
 })
 export default class NfLayout extends Vue {
   width;
-  selectedKeys: Array<any> = [];
-  openKeys: Array<any> = [];
+  // selectedKeys: Array<any> = [];
+  // openKeys: Array<any> = [];
 
   @Getter("settings/collapse") collapse?: boolean;
-  @Getter("routes/routes") routes?: Array<any>;
+  // @Getter("routes/routes") routes?: Array<any>;
   @Getter("settings/device") device?: string;
 
   get classObj() {
@@ -90,11 +91,11 @@ export default class NfLayout extends Vue {
   @Action("settings/foldSideBar") handleFoldSideBar;
   @Action("settings/toggleCollapse") toggleCollapse;
 
-  @Watch("$route", { immediate: true })
-  handler({ path, matched, meta }): void {
-    this.selectedKeys = [matched[matched.length - 1].path]
-    this.openKeys = [matched[0].path];
-  }
+  // @Watch("$route", { immediate: true })
+  // handler({ path, matched, meta }): void {
+  //   this.selectedKeys = [matched[matched.length - 1].path];
+  //   this.openKeys = [matched[0].path];
+  // }
 
   beforeMount() {
     window.addEventListener("resize", this.handleLayouts);
@@ -128,7 +129,7 @@ export default class NfLayout extends Vue {
     height: 100vh;
     overflow: auto;
     .nf-menu {
-      height: calc(100vh - @nf-header-height);
+      height: calc(100vh - 65px);
     }
   }
   .nf-layout {
@@ -196,13 +197,13 @@ export default class NfLayout extends Vue {
     .ant-col + .ant-col {
       display: flex;
       justify-content: flex-end;
-      padding: 0 @nf-padding;
+      padding: 0 20px;
     }
     .trigger {
-      height: @nf-header-height;
-      padding: 0 @nf-padding;
+      height: 65px;
+      padding: 0 20px;
       font-size: 18px;
-      line-height: @nf-header-height;
+      line-height: 65px;
       cursor: pointer;
       transition: color 0.3s;
       &:hover {

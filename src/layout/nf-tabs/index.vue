@@ -113,7 +113,10 @@ export default {
       return tag.meta && tag.meta.affix;
     },
     handleTabClick(tab) {
+      console.log('tab: ', tab);
       const route = this.visitedRoutes.filter((item) => item.path === tab)[0];
+      console.log('this.visitedRoutes: ', this.visitedRoutes);
+      console.log('route: ', route);
       if (this.$route.fullPath !== route.fullPath) this.$router.push(route);
     },
     async handleTabRemove(fullPath) {
@@ -177,11 +180,11 @@ export default {
 </script>
 <style lang="less">
 .nf-tabs {
-  padding: 0 @nf-margin;
+  padding: 0 20px;
   background: #ffffff;
   &-left-panel {
     float: left;
-    width: calc(100% - 52px - @nf-margin - @nf-margin);
+    width: calc(100% - 52px - 20px - 20px);
   }
   &-right-panel {
     float: left;

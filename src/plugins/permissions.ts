@@ -30,13 +30,13 @@ router.beforeEach(async (to: any, from, next) => {
     if (!store.getters["routes/hasInited"]) {
       store.dispatch("routes/addRouters");
     }
-    // const hasRoles =
-    //   store.getters["acl/admin"] ||
-    //   store.getters["acl/role"].length > 0 ||
-    //   store.getters["acl/ability"].length > 0;
-    // if (!hasRoles) {
+    const hasRoles =
+      store.getters["acl/admin"] ||
+      store.getters["acl/role"].length > 0 ||
+      store.getters["acl/ability"].length > 0;
+    if (!hasRoles) {
     //   if (loginInterception) {
-    //     await store.dispatch("user/getUserInfo");
+        await store.dispatch("user/getUserInfo");
     //   } else {
     //     //loginInterception为false（关闭登录拦截时）时，创建虚拟角色
     //     await store.dispatch("user/setVirtualRoles");
@@ -52,7 +52,7 @@ router.beforeEach(async (to: any, from, next) => {
     //   router.addRoutes(accessRoutes);
     //   next({ ...to, replace: true });
     //   return;
-    // }
+    }
     next();
   } else if (whiteList.indexOf(to.path) !== -1) {
     // 白名单直接放行
