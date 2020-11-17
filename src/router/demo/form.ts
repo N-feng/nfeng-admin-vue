@@ -16,6 +16,30 @@ export default [
           title: "基础表单",
         },
       },
+      {
+        path: 'advancedForm',
+        name: 'AdvancedFormDemo',
+        component: () => import('@/views/demo/form/AdvancedForm.vue'),
+        meta: {
+          title: '可收缩表单',
+        },
+      },
+      {
+        path: 'ruleForm',
+        name: 'RuleFormDemo',
+        component: () => import('@/views/demo/form/RuleForm.vue'),
+        meta: {
+          title: '表单验证',
+        },
+      },
+      {
+        path: 'dynamicForm',
+        name: 'DynamicFormDemo',
+        component: () => import('@/views/demo/form/DynamicForm.vue'),
+        meta: {
+          title: '动态表单',
+        },
+      },
     ],
   },
 ];

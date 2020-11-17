@@ -33,6 +33,21 @@ export default class App extends Vue {
         prop: "month-picker",
         label: "月份选择",
       },
+      {
+        type: "date-picker",
+        prop: "date-picker",
+        label: "日期选择"
+      },
+      {
+        type: "month-range-picker",
+        prop: "month-range-picker",
+        label: "月份区间选择器",
+      },
+      {
+        type: "range-picker",
+        prop: "range-picker",
+        label: "日期区间选择器",
+      },
     ];
   }
 }

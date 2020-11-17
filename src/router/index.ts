@@ -54,35 +54,35 @@ export const asyncRoutes = [
       },
     ],
   },
-  {
-    path: "/nf",
-    component: Layout,
-    alwaysShow: true,
-    meta: {
-      title: "组件",
-      icon: "apps-line",
-    },
-    children: [
-      {
-        path: "table",
-        name: "Table",
-        component: () => import("@/views/table/Table.vue"),
-        meta: {
-          title: "表格",
-          icon: "table-2",
-        },
-      },
-      {
-        path: "icon",
-        name: "Icon",
-        component: () => import("@/views/icon/Icon.vue"),
-        meta: {
-          title: "图标",
-          icon: "remixicon-line",
-        },
-      },
-    ],
-  },
+  // {
+  //   path: "/nf",
+  //   component: Layout,
+  //   alwaysShow: true,
+  //   meta: {
+  //     title: "组件",
+  //     icon: "apps-line",
+  //   },
+  //   children: [
+  //     {
+  //       path: "table",
+  //       name: "Table",
+  //       component: () => import("@/views/table/Table.vue"),
+  //       meta: {
+  //         title: "表格",
+  //         icon: "table-2",
+  //       },
+  //     },
+  //     {
+  //       path: "icon",
+  //       name: "Icon",
+  //       component: () => import("@/views/icon/Icon.vue"),
+  //       meta: {
+  //         title: "图标",
+  //         icon: "remixicon-line",
+  //       },
+  //     },
+  //   ],
+  // },
   {
     path: "/about",
     name: "About",
@@ -146,7 +146,7 @@ export const asyncRoutes = [
     component: Layout,
     redirect: "/error/403",
     meta: {
-      title: "错误页",
+      title: "异常页",
       icon: "error-warning-line",
     },
     children: [

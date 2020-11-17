@@ -26,6 +26,11 @@ export default {
               },
             ],
           },
+          {
+            type: "month-picker",
+            prop: "month-picker",
+            label: "月份选择",
+          },
         ],
         columns: [
           {

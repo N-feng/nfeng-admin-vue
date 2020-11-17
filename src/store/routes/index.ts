@@ -74,24 +74,31 @@ export const state: RoutesState = {
       ],
     },
     {
-      path: "/nf",
+      path: "/comp",
       meta: {
         title: "组件",
         icon: "apps-line",
       },
       children: [
         {
-          path: "/nf/table",
+          path: "/comp/icon",
           meta: {
-            title: "表格",
-            icon: "table-2",
+            title: "图标",
+            // icon: "remixicon-line",
           },
         },
         {
-          path: "/nf/icon",
+          path: "/comp/img-preview",
           meta: {
-            title: "图标",
-            icon: "remixicon-line",
+            title: "图片预览",
+            // icon: "table-2",
+          },
+        },
+        {
+          path: "/comp/description",
+          meta: {
+            title: "详情组件",
+            // icon: "table-2",
           },
         },
       ],
@@ -136,6 +143,24 @@ export const state: RoutesState = {
             title: "基础表单",
           },
         },
+        {
+          path: "/form/advancedForm",
+          meta: {
+            title: "可收缩表单",
+          },
+        },
+        {
+          path: "/form/ruleForm",
+          meta: {
+            title: "表单验证",
+          },
+        },
+        {
+          path: "/form/dynamicForm",
+          meta: {
+            title: "动态表单",
+          },
+        },
       ],
     },
     {
@@ -149,7 +174,7 @@ export const state: RoutesState = {
     {
       path: "/error",
       meta: {
-        title: "错误页",
+        title: "异常页",
         icon: "error-warning-line",
       },
       children: [
