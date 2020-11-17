@@ -97,6 +97,48 @@ export const state: RoutesState = {
       ],
     },
     {
+      path: "/table",
+      meta: {
+        title: "Table",
+        icon: "table-2",
+      },
+      children: [
+        {
+          path: "/table/basic",
+          meta: {
+            title: "基础表格",
+          },
+        },
+        {
+          path: "/table/customerCell",
+          meta: {
+            title: "自定义列",
+          },
+        },
+        {
+          path: "/table/formTable",
+          meta: {
+            title: "开启搜索区域",
+          },
+        },
+      ],
+    },
+    {
+      path: "/form",
+      meta: {
+        title: "Form",
+        icon: "table-2",
+      },
+      children: [
+        {
+          path: "/form/basic",
+          meta: {
+            title: "基础表单",
+          },
+        },
+      ],
+    },
+    {
       path: "/test/test",
       meta: {
         title: "动态路由测试",

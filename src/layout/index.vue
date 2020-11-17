@@ -8,7 +8,6 @@
     <a-layout-sider
       collapsible
       class="nf-sider"
-      width="250"
       v-model="collapse"
       :class="classObj"
       :trigger="null"
@@ -133,7 +132,7 @@ export default class NfLayout extends Vue {
     }
   }
   .nf-layout {
-    padding-left: 250px;
+    padding-left: 200px;
     transition: all 0.2s;
   }
   .nf-mobile-layout {

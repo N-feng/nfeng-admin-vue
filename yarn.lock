@@ -5631,10 +5631,10 @@ launch-editor@^2.2.1:
     chalk "^2.3.0"
     shell-quote "^1.6.1"
 
-less-loader@^7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/less-loader/-/less-loader-7.0.2.tgz#0d73a49ec32a9d3ff12614598e6e2b47fb2a35c4"
-  integrity sha512-7MKlgjnkCf63E3Lv6w2FvAEgLMx3d/tNBExITcanAq7ys5U8VPWT3F6xcRjYmdNfkoQ9udoVFb1r2azSiTnD6w==
+less-loader@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/less-loader/-/less-loader-7.1.0.tgz#958d41e86d7de0bcb490711ee0f235aa9dc596aa"
+  integrity sha512-EHbnRaTzHgsxnd3RK6OXSiygcCJs72+2ezXVLg+Hgl/ijUTtthKZXZh4MvQkWJr3h/SSKvxGZr7IIHzuS2KbVQ==
   dependencies:
     klona "^2.0.4"
     loader-utils "^2.0.0"
@@ -6190,10 +6190,10 @@ neo-async@^2.5.0, neo-async@^2.6.0, neo-async@^2.6.1:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-nfeng-ui-vue@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/nfeng-ui-vue/-/nfeng-ui-vue-2.0.3.tgz#a6df3751e45d375e7bd007eb2d9c2fce9c790d26"
-  integrity sha512-I78xjBlsn1dVOHNs0ww5gHLCAHYVYxkNCGQZF4JsF6Wbtz42iUYGF3cGZkSwGCsIne4W29erPwG1fddeNzDFBg==
+nfeng-ui-vue@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/nfeng-ui-vue/-/nfeng-ui-vue-2.0.5.tgz#aa902a0969debffe8f6d944f1a0d6a12c031546b"
+  integrity sha512-BQnbbinaqrLIlkH13C09NH5hdHvZp7BHOn/i28yeazqa5o7xWT3Jb0k2eoA+6dhYUctFlicQDLjKSFxXKiSecA==
   dependencies:
     ant-design-vue "^1.7.2"
     axios "^0.21.0"
@@ -7285,15 +7285,15 @@ q@^1.1.2:
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
-qiankun@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/qiankun/-/qiankun-2.3.0.tgz#23addcb37908c8bcc95973ab92a4ab2190c63304"
-  integrity sha512-2q7I98Vw5Ha3tEi27xkA17e5ZohlZbGqMF99mrykpBvS50nIYrh8trdTfW/icTRDn0OT6p1Bz52ch8K/8ttgWA==
+qiankun@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/qiankun/-/qiankun-2.3.1.tgz#9b9d6556a004787a809cf83b67ff486a3b86dd87"
+  integrity sha512-qC9pf9MwmxEwt9G+mjyK8j1zY3vifLlqRooz9TFruDrMenMqK6arG2aPw6t6VB53XAYLvyUm9zQcTxj5JwXOWA==
   dependencies:
     "@babel/runtime" "^7.10.5"
     import-html-entry "^1.9.0"
     lodash "^4.17.11"
-    single-spa "^5.6.1"
+    single-spa "5.8.1"
     tslib "^1.10.0"
 
 qs@6.7.0:
@@ -7925,7 +7925,7 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-single-spa@^5.6.1:
+single-spa@5.8.1:
   version "5.8.1"
   resolved "https://registry.yarnpkg.com/single-spa/-/single-spa-5.8.1.tgz#86c2575e297e31d8f06945944ec97e31851a59ae"
   integrity sha512-RlyLZ1IDIPdzI6mQPzCQnlgTt9jmbAXBZODmifoDut840wksPDSPhcSS8jXMpuUlqOidQiX2YuLVQSR9DEgsXw==

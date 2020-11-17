@@ -1,6 +1,8 @@
-import defaultSettings from "@/config";
+// import defaultSettings from "@/config";
 
-const { title, titleReverse, titleSeparator } = defaultSettings;
+// const { title, titleReverse, titleSeparator } = defaultSettings;
+
+const title = "N-feng Admin"
 
 /**
  * @author chuzhixin 1204505056@qq.com
@@ -12,6 +14,7 @@ export default function getPageTitle(pageTitle) {
   let newTitles: any = [];
   if (pageTitle) newTitles.push(pageTitle);
   if (title) newTitles.push(title);
-  if (titleReverse) newTitles = newTitles.reverse();
-  return newTitles.join(titleSeparator);
+  return newTitles.join(' - ')
+  // if (titleReverse) newTitles = newTitles.reverse();
+  // return newTitles.join(titleSeparator);
 }

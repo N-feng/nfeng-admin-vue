@@ -9,7 +9,7 @@
     <template v-for="item in routes">
       <a-menu-item v-if="!item.children.length" :key="item.path">
         <div @click="handleLink(item)">
-          <span class="anticon">
+          <span class="anticon" v-if="item.meta.icon">
             <nf-icon :icon="item.meta.icon" />
           </span>
           <!-- <a-icon type="pie-chart" /> -->
@@ -36,7 +36,7 @@ const SubMenu = {
   template: `
       <a-sub-menu :key="menuInfo.key" v-bind="$props" v-on="$listeners">
         <span slot="title">
-          <span class="anticon">
+          <span class="anticon" v-if="menuInfo.meta.icon">
             <nf-icon :icon="menuInfo.meta.icon" />
           </span>
           <span>{{ menuInfo.meta.title }}</span>
@@ -44,7 +44,7 @@ const SubMenu = {
         <template v-for="item in menuInfo.children">
           <a-menu-item v-if="!item.children" :key="item.path">
             <div @click="$emit('handleLink', item)">
-              <span class="anticon">
+              <span class="anticon" v-if="item.meta.icon">
                 <nf-icon :icon="item.meta.icon" />
               </span>
               <span>{{ item.meta.title }}</span>

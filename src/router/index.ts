@@ -1,9 +1,11 @@
 import Vue from "vue";
-import VueRouter, { RouteConfig } from "vue-router";
+import VueRouter from // , { RouteConfig }
+"vue-router";
 // import { component } from 'vue/types/umd'
 // import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from "../views/Home.vue";
+// import Home from "../views/Home.vue";
 import Layout from "@/layout/index.vue";
+import demoRoutes from "./demo";
 
 Vue.use(VueRouter);
 
@@ -14,15 +16,15 @@ export const constantRoutes: any = [
     hidden: true,
   },
   {
-    path: '/403',
-    name: '403',
-    component: () => import('@/views/403/403.vue'),
+    path: "/403",
+    name: "403",
+    component: () => import("@/views/403/403.vue"),
     hidden: true,
   },
   {
-    path: '/404',
-    name: '404',
-    component: () => import('@/views/404/404.vue'),
+    path: "/404",
+    name: "404",
+    component: () => import("@/views/404/404.vue"),
     hidden: true,
   },
 ];
@@ -64,19 +66,19 @@ export const asyncRoutes = [
       {
         path: "table",
         name: "Table",
-        component: () => import('@/views/table/Table.vue'),
+        component: () => import("@/views/table/Table.vue"),
         meta: {
-          title: '表格',
-          icon: 'table-2',
+          title: "表格",
+          icon: "table-2",
         },
       },
       {
         path: "icon",
         name: "Icon",
-        component: () => import('@/views/icon/Icon.vue'),
+        component: () => import("@/views/icon/Icon.vue"),
         meta: {
-          title: '图标',
-          icon: 'remixicon-line',
+          title: "图标",
+          icon: "remixicon-line",
         },
       },
     ],
@@ -119,21 +121,21 @@ export const asyncRoutes = [
     ],
   },
   {
-    path: '/test',
+    path: "/test",
     component: Layout,
-    redirect: '/test/test',
+    redirect: "/test/test",
     meta: {
-      title: '动态路由测试',
-      icon: 'test-tube-line',
+      title: "动态路由测试",
+      icon: "test-tube-line",
     },
     children: [
       {
-        path: 'test',
-        name: 'Test',
-        component: () => import('@/views/test/Test.vue'),
+        path: "test",
+        name: "Test",
+        component: () => import("@/views/test/Test.vue"),
         meta: {
-          title: '动态路由测试',
-          icon: 'test-tube-line',
+          title: "动态路由测试",
+          icon: "test-tube-line",
         },
       },
     ],
@@ -222,7 +224,7 @@ const router = new VueRouter({
   mode: "history",
   // base: process.env.BASE_URL,
   // routes: constantRoutes,
-  routes: [...constantRoutes, ...asyncRoutes],
+  routes: [...constantRoutes, ...demoRoutes, ...asyncRoutes],
 });
 
 // const router = createRouter({

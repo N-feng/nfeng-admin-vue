@@ -2,7 +2,7 @@
   <div class="nf-logo">
     <nf-icon v-if="logo" :icon="logo"></nf-icon>
     <span class="anticon"></span>
-    <span>{{ title }}</span>
+    <span style="margin-left: 8px;">{{ title }}</span>
   </div>
 </template>
 

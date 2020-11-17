@@ -1,10 +1,10 @@
 import { Module, ActionTree, MutationTree, GetterTree } from "vuex";
 import { SettingsState } from "./types";
 import { RootState } from "../types";
-import defaultSettings from "@/config";
+// import defaultSettings from "@/config";
 import { isJson } from "@/utils/validate";
 
-const { logo, title } = defaultSettings;
+// const { logo, title } = defaultSettings;
 
 const getLocalStorage = (key) => {
   const value: any = localStorage.getItem(key);
@@ -21,8 +21,8 @@ const { collapse } = getLocalStorage("vue-admin-beautiful-pro-collapse");
  * state
  */
 export const state: SettingsState = {
-  logo,
-  title,
+  logo: "vuejs-fill",
+  title: "N-feng Admin",
   collapse,
   device: "desktop",
 };
