@@ -1,9 +1,5 @@
 import Vue from "vue";
-import VueRouter from // , { RouteConfig }
-"vue-router";
-// import { component } from 'vue/types/umd'
-// import { createRouter, createWebHashHistory } from 'vue-router'
-// import Home from "../views/Home.vue";
+import VueRouter from "vue-router";
 import Layout from "@/layout/index.vue";
 import demoRoutes from "./demo";
 
@@ -49,40 +45,10 @@ export const asyncRoutes = [
           title: "首页",
           icon: "home-4-line",
           affix: true,
-          // sidebarActive: "/",
         },
       },
     ],
   },
-  // {
-  //   path: "/nf",
-  //   component: Layout,
-  //   alwaysShow: true,
-  //   meta: {
-  //     title: "组件",
-  //     icon: "apps-line",
-  //   },
-  //   children: [
-  //     {
-  //       path: "table",
-  //       name: "Table",
-  //       component: () => import("@/views/table/Table.vue"),
-  //       meta: {
-  //         title: "表格",
-  //         icon: "table-2",
-  //       },
-  //     },
-  //     {
-  //       path: "icon",
-  //       name: "Icon",
-  //       component: () => import("@/views/icon/Icon.vue"),
-  //       meta: {
-  //         title: "图标",
-  //         icon: "remixicon-line",
-  //       },
-  //     },
-  //   ],
-  // },
   {
     path: "/about",
     name: "About",
@@ -177,60 +143,11 @@ export const asyncRoutes = [
   },
 ];
 
-// const routes: Array<RouteConfig> = [
-//   {
-//     path: "/home",
-//     name: "Home",
-//     component: Home,
-//     children: [
-//       {
-//         path: "child-one",
-//         component: { template: "<p>child-one</p>" },
-//       },
-//       {
-//         path: "child-two",
-//         component: { template: "<p>child-two</p>" },
-//       },
-//     ],
-//   },
-//   {
-//     path: "/about",
-//     name: "About",
-//     // route level code-splitting
-//     // this generates a separate chunk (about.[hash].js) for this route
-//     // which is lazy-loaded when the route is visited.
-//     component: () =>
-//       import(/* webpackChunkName: "about" */ "../views/About.vue"),
-//   },
-//   {
-//     path: "/login",
-//     component: () => import("../views/Login.vue"),
-//   },
-//   {
-//     path: "/micro-*",
-//     component: () => import("../layout/index.vue"),
-//     children: [
-//       {
-//         path: ":resource/list",
-//         meta: {
-//           sidebarActive: "/micro-vue",
-//         },
-//       },
-//     ],
-//   },
-// ];
-
 const router = new VueRouter({
   mode: "history",
   // base: process.env.BASE_URL,
   // routes: constantRoutes,
   routes: [...constantRoutes, ...demoRoutes, ...asyncRoutes],
 });
-
-// const router = createRouter({
-//   history: createWebHashHistory(),
-//   // routes: constantRoutes,
-//   routes: [...constantRoutes, ...asyncRoutes]
-// })
 
 export default router;

@@ -22,7 +22,6 @@ export const state: RoutesState = {
         title: "首页",
         icon: "home-4-line",
         affix: true,
-        // sidebarActive: "/index",
       },
       children: [],
     },
