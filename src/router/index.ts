@@ -87,6 +87,11 @@ export const asyncRoutes = [
     ],
   },
   {
+    path: "/micro-react",
+    component: Layout,
+    children: [{path: "*"}]
+  },
+  {
     path: "/test",
     component: Layout,
     redirect: "/test/test",

@@ -30,7 +30,7 @@ module.exports = {
     headers: {
       "Access-Control-Allow-Origin": "*"
     },
-    port: 7099,
+    port: 7102,
     hot: true,
     // 注释掉的地方是前端配置代理访问后端的示例
     // proxy: {

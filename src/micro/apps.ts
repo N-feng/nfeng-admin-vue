@@ -5,13 +5,13 @@
  * activeRule: 微应用触发的路由规则 - 触发路由规则后将加载该微应用
  */
 const apps: any = [
-  //   {
-  //     name: "react",
-  //     entry: "//localhost:7100",
-  //     container: "#subapp-viewport",
-  //     activeRule: "/micro-react",
-  //     // loader,
-  //   },
+  {
+    name: "react",
+    entry: "//localhost:7100",
+    container: "#subapp-viewport",
+    activeRule: "/micro-react",
+    // loader,
+  },
   {
     name: "nfeng-admin-vue",
     entry: "//localhost:7101",

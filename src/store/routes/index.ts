@@ -73,6 +73,21 @@ export const state: RoutesState = {
       ],
     },
     {
+      path: "/micro-react",
+      meta: {
+        title: "React",
+        icon: "apps-line",
+      },
+      children: [
+        {
+          path: "/micro-react/form/create",
+          meta: {
+            title: "动态表单"
+          },
+        },
+      ]
+    },
+    {
       path: "/comp",
       meta: {
         title: "组件",
